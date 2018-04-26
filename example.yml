@@ -1,0 +1,9 @@
+- hosts: me
+  become: yes
+  tasks:
+    - name: include editable.yml
+      include_vars: vars/editable.yml
+    - name: include uneditable.yml
+      include_vars: vars/uneditable.yml
+    - name: include example task
+      include: tasks/apt_update_upgrade.yml
