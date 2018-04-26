@@ -1,0 +1,72 @@
+- name: Add Repository for NeoVim
+  apt_repository: repo=ppa:neovim-ppa/unstable
+
+- name: Update Apt Repository
+  apt: update_cache=yes
+
+- name: Install Basic Packages For NeoVim From Apt
+  apt: 
+    name: software-properties-common 
+
+- name: Install NeoVim From Apt
+  apt: 
+    name: neovim
+
+- name: Update NeoVim By Pip
+  shell: "pip install -U neovim"
+
+- name: Install Packages For NeoVim's Plugins From Apt
+  apt:
+    name: "{{item.name}}"
+  with_items:
+    - name: silversearcher-ag
+    - name: "llvm-{{llvm_version}}"
+    - name: "clang-{{llvm_version}}"
+
+- name: Install Packages For NeoVim's Plugins From Pip
+  pip:
+    name: neovim-remote
+
+- name: Make Directory For NeoVim
+  file:
+    path: "{{item.path}}"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - path: "{{nvim_config_files}}"
+    - path: "{{nvim_config_files}}/.cache"
+
+- name: Copy Files For NeoVim
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: src_files/nvim/init, dest: "{{nvim_config_files}}"}
+    - {src: src_files/nvim/plugins, dest: "{{nvim_config_files}}"}
+
+- name: Make Files From Templates
+  template: 
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "src_files/nvim/templates/init.vim", dest: "{{nvim_config_files}}/init.vim"}
+    - {src: "src_files/nvim/templates/dein_trigger.vim", dest: "{{nvim_config_files}}/plugins/dein_trigger.vim"}
+    - {src: "src_files/nvim/templates/lazy.toml", dest: "{{nvim_config_files}}/plugins/lazy.toml"}
+    - {src: "src_files/nvim/templates/denite.rc.vim", dest: "{{nvim_config_files}}/plugins/denite.rc.vim"}
+    - {src: "src_files/nvim/templates/let.vim", dest: "{{nvim_config_files}}/init/let.vim"}
+
+- name: Replace ANSIBLE_DOUBLE_BRACES
+  replace:
+    dest: "{{nvim_config_files}}/plugins/lazy.toml"
+    regexp: ANSIBLE_BRACES 
+    replace: "{"
+
+- name: Clone DEIN Repository
+  git:
+    repo: https://github.com/Shougo/dein.vim
+    dest: "{{nvim_config_files}}/repos/github.com/Shougo/dein.vim"
