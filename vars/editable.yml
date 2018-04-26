@@ -1,0 +1,39 @@
+# User Name
+# =============================================
+user: miyagaw61
+
+# Basic Directory Path
+# =============================================
+home: "/home/{{user}}"
+repos: "{{home}}/src/github.com"
+my_repos: "{{repos}}/{{user}}"
+tmp: "{{home}}/tmp"
+docs: "{{home}}/docs"
+events: "{{home}}/events"
+program_files: "{{home}}/program_files"
+config_files: "{{home}}/docs/config_files"
+bash_config_files: "{{config_files}}/bash"
+
+# LLVM
+# =============================================
+llvm_version: 5.0
+
+# GoLang
+# =============================================
+golang_version: 1.9
+
+# Python
+# =============================================
+python_version: 3.6
+pyenv_root: "{{repos}}/pyenv/pyenv"
+python3_binary: "/usr/bin/python3"
+
+# NeoVim
+# =============================================
+nvim_config_files: "{{config_files}}/nvim"
+libclang_path: "/usr/lib/llvm-{{llvm_version}}/lib/libclang-{{llvm_version}}.so"
+clang_header: "/usr/include/clang"
+
+# Editor
+# =============================================
+editor: "/usr/bin/nvim"
