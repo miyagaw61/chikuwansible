@@ -1,0 +1,4 @@
+- name: Make "netrc" From Template
+  template:
+    src: src_files/git/templates/netrc
+    dest: "{{home}}/.netrc"
