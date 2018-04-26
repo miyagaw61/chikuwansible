@@ -1,0 +1,10 @@
+- name: mkdirs
+  file:
+    path: "{{item.path}}"
+    state: directory
+  with_items:
+    - path: "{{tmp}}"
+    - path: "{{docs}}"
+    - path: "{{events}}"
+    - path: "{{program_files}}"
+    - path: "{{config_files}}"
