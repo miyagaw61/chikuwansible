@@ -1,0 +1,9 @@
+- name: Apt Install Latest Golang
+  apt:
+    name: "golang-{{golang_version}}-go"
+
+- name: "Make Symbolic Link From \"/usr/lib/go-{{golang_version}}/bin/go\" to \"/usr/local/bin/go\""
+  file:
+    path: /usr/local/bin/go
+    src: "/usr/lib/go-{{golang_version}}/bin/go"
+    state: link
