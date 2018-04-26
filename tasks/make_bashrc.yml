@@ -1,0 +1,6 @@
+- name: Make "netrc" From Template
+  template:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+  with_items:
+    - {src: "src_files/bash/templates/bashrc", dest: "{{home}}/.bashrc"}
