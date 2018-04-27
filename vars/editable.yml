@@ -26,6 +26,7 @@ golang_version: 1.9
 # =============================================
 python_version: 3.6
 pyenv_root: "{{repos}}/pyenv/pyenv"
+python2_binary: "/usr/bin/python2"
 python3_binary: "/usr/bin/python3"
 
 # NeoVim
