@@ -164,7 +164,7 @@ hook_source = '''
   set shell=bash
   " Set to $PATH.
   "let s:bin = dein#get('vim-themis').rtp . '/bin'
-  function! s:split_envpath(path) abort "ANSIBLE_BRACESANSIBLE_BLACES{
+  function! s:split_envpath(path) abort "ANSIBLE_BRACEANSIBLE_BLACE{
     let delimiter = has('win32') ? ';' : ':'
     if stridx(a:path, '\' . delimiter) < 0
       return split(a:path, delimiter)
@@ -173,7 +173,7 @@ hook_source = '''
     return map(split,'substitute(v:val, ''\\\([\\'
           \ . delimiter . ']\)'', "\\1", "g")')
   endfunction"}}}
-  function! s:join_envpath(list, orig_path, add_path) abort "ANSIBLE_BRACESANSIBLE_BRACES{
+  function! s:join_envpath(list, orig_path, add_path) abort "ANSIBLE_BRACEANSIBLE_BRACE{
     let delimiter = has('win32') ? ';' : ':'
     return (stridx(a:orig_path, '\' . delimiter) < 0
           \ && stridx(a:add_path, delimiter) < 0) ?

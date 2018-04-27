@@ -60,10 +60,10 @@
     - {src: "src_files/nvim/templates/denite.rc.vim", dest: "{{nvim_config_files}}/plugins/denite.rc.vim"}
     - {src: "src_files/nvim/templates/let.vim", dest: "{{nvim_config_files}}/init/let.vim"}
 
-- name: Replace ANSIBLE_DOUBLE_BRACES
+- name: Replace ANSIBLE_BRACE
   replace:
     dest: "{{nvim_config_files}}/plugins/lazy.toml"
-    regexp: ANSIBLE_BRACES 
+    regexp: ANSIBLE_BRACE 
     replace: "{"
 
 - name: Clone DEIN Repository
