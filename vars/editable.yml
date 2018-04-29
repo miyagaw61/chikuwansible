@@ -13,10 +13,12 @@ events: "{{home}}/events"
 program_files: "{{home}}/program_files"
 config_files: "{{home}}/docs/config_files"
 bash_config_files: "{{config_files}}/bash"
+grave_root: "{{tmp}}/grave_root"
 
-# LLVM
+# Git
 # =============================================
-llvm_version: 5.0
+git_user: "miyagaw61"
+git_email: "miyagaw61@gmail.com"
 
 # GoLang
 # =============================================
@@ -29,6 +31,15 @@ pyenv_root: "{{repos}}/pyenv/pyenv"
 python2_binary: "/usr/bin/python2"
 python3_binary: "/usr/bin/python3"
 
+# Rust
+# =============================================
+cargo_path: "{{home}}/.cargo"
+rust_src_path: "{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/srRc/rust/src"
+
+# LLVM
+# =============================================
+llvm_version: 5.0
+
 # NeoVim
 # =============================================
 nvim_config_files: "{{config_files}}/nvim"
@@ -38,3 +49,36 @@ clang_header: "/usr/include/clang"
 # Editor
 # =============================================
 editor: "/usr/bin/nvim"
+rusgit_editor: "vim -u NONE -N"
+
+# Browser
+# =============================================
+browser: "chrome"
+
+# Bashrc Aliases
+# =============================================
+#### set default useful options ####
+alias_diff: "diff -a -r -u -p"
+alias_objdump: "objdump -M intel"
+alias_less: "less -iMSR"
+#### be short ####
+alias_a: "cd ../"
+alias_pbcopy: "xsel --clipboard --input"
+alias_xl: "pbcopy"
+alias_pt: "xsel -o"
+alias_all_update: "apt -y update; apt -y upgrade; rustup update; slk"
+alias_op: "xdg-open"
+#### alias ls ####
+alias_ls: "exa --group-directories-first"
+alias_ll: "exa -hal --git --time-style: iso --group-directories-first"
+#### alias source bashrc ####
+alias_soba: "source ~/.bashrc 2> /dev/null"
+#### my config ####
+alias_vim: "{{editor}}"
+alias_ns: "rm -rf /tmp/nvimsocket; NVIM_LISTEN_ADDRESS: /tmp/nvimsocket nvim"
+alias_sl: "ls"
+#### alias make malware list ####
+#llcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -dalias_malist: "allcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -d"
+#### alias rusgit ####
+rusgit_init: 'eval "$(rusgit init --add ra --ac rac --diff rd --branch rb --undo ru --tag rt --push rpush --pull rpull --merge rmerge --rebase rrebase --log rl --commit rc --clone rclone)"'
+alias_rs: "rusgit status --ls 'exa --group-directories-first'"
