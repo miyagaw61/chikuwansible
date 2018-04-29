@@ -1,14 +1,3 @@
-#- name: apt install python3
-#  apt:
-#    name: python3-dev
-#- name: apt install pip3
-#  apt:
-#    name: python3-pip 
-#- name: pip upgrade
-#  shell: pip install --upgrade pip
-#  register: result
-#  changed_when: '"Requirement already up-to-date" not in result.stdout'
-
 - name: "Add Apt-Repository \"python-{{python_version}}\""
   apt_repository: "repo=ppa:jonathonf/python-{{python_version}}"
 
