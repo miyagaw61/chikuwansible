@@ -12,6 +12,7 @@ alias xl="{{alias_xl}}"
 alias pt="{{alias_pt}}"
 alias all-update="{{alias_all_update}}"
 alias op="{{alias_op}}"
+alias sd="{{alias_sudo_E}}"
 
 # alias ls
 # ====================================

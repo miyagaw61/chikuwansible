@@ -68,6 +68,7 @@ alias_xl: "pbcopy"
 alias_pt: "xsel -o"
 alias_all_update: "apt -y update; apt -y upgrade; rustup update; slk"
 alias_op: "xdg-open"
+alias_sd: "sudo -E"
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
 alias_ll: "exa -hal --git --time-style: iso --group-directories-first"
