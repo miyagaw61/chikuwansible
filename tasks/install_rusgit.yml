@@ -1,0 +1,9 @@
+- name: Install "rusgit" From Cargo
+  shell: "cargo install --git https://github.com/miyagaw61/rusgit --force"
+  become: no
+
+- name: Edit "bashrc" For Rusgit
+  replace:
+    path: "{{bash_config_files}}/aliases.sh"
+    regexp: "# ANSIBLE_RUSGIT:"
+    replace: ""
