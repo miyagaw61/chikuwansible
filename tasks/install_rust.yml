@@ -1,0 +1,17 @@
+- name: Download Rust Installer
+  get_url:
+    url: https://sh.rustup.rs
+    dest: "{{tmp}}/rust_installer.sh"
+    
+- name: Permit Rust Installer To Execute
+  file:
+    path: "{{tmp}}/rust_installer.sh"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Execute Rust Installer
+  shell: "{{tmp}}/rust_installer.sh -y"
+  args:
+    chdir: "{{tmp}}"
+  become: no
