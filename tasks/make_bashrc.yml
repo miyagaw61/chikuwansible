@@ -1,6 +1,26 @@
-- name: Make "netrc" From Template
+- name: Make "bashrc" From Template
   template:
     src: "{{item.src}}"
     dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
   with_items:
     - {src: "src_files/bash/templates/bashrc", dest: "{{home}}/.bashrc"}
+    - {src: "src_files/bash/templates/exports.sh", dest: "{{bash_config_files}}/exports.sh"}
+    - {src: "src_files/bash/templates/aliases.sh", dest: "{{bash_config_files}}/aliases.sh"}
+
+- name: Copy Files for bashrc
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "src_files/bash/colors.sh", dest: "{{bash_config_files}}/colors.sh"}
+    - {src: "src_files/bash/default.sh", dest: "{{bash_config_files}}/default.sh"}
+    - {src: "src_files/bash/functions.sh", dest: "{{bash_config_files}}/functions.sh"}
+    - {src: "src_files/bash/fzf.sh", dest: "{{bash_config_files}}/fzf.sh"}
+    - {src: "src_files/bash/prompt.sh", dest: "{{bash_config_files}}/prompt.sh"}
+    - {src: "src_files/bash/pyenv.sh", dest: "{{bash_config_files}}/pyenv.sh"}
+    - {src: "src_files/bash/xkb.sh", dest: "{{bash_config_files}}/xkb.sh"}
+    - {src: "src_files/bash/sources.sh", dest: "{{bash_config_files}}/sources.sh"}
