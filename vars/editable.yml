@@ -77,8 +77,6 @@ alias_soba: "source ~/.bashrc 2> /dev/null"
 alias_vim: "{{editor}}"
 alias_ns: "rm -rf /tmp/nvimsocket; NVIM_LISTEN_ADDRESS: /tmp/nvimsocket nvim"
 alias_sl: "ls"
-#### alias make malware list ####
-#llcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -dalias_malist: "allcp \$(rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk) -d"
 #### alias rusgit ####
 rusgit_init: 'eval "$(rusgit init --add ra --ac rac --diff rd --branch rb --undo ru --tag rt --push rpush --pull rpull --merge rmerge --rebase rrebase --log rl --commit rc --clone rclone)"'
 alias_rs: "rusgit status --ls 'exa --group-directories-first'"
