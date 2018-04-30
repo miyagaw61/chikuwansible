@@ -11,8 +11,6 @@
       include: tasks/apt.yml
     - name: Make Basic Directories
       include: tasks/make_directories.yml
-    - name: Chown Files
-      include: tasks/chown_files.yml
     - name: Make My Bashrc
       include: tasks/make_bashrc.yml
     - name: Install Latest Python

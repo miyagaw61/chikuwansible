@@ -1,5 +1,0 @@
-- name: chown files
-  file:
-    path: "{{home}}/.local"
-    owner: "{{user}}"
-    group: "{{user}}"
