@@ -9,7 +9,7 @@
     - {src: "src_files/bash/templates/exports.sh", dest: "{{bash_config_files}}/exports.sh"}
     - {src: "src_files/bash/templates/aliases.sh", dest: "{{bash_config_files}}/aliases.sh"}
 
-- name: Copy Files for bashrc
+- name: Copy Files For Bashrc
   copy:
     src: "{{item.src}}"
     dest: "{{item.dest}}"

@@ -1,10 +1,10 @@
-- name: Install Basic Packages From Apt
+- name: Install Basic Packages By Apt
   apt:
     name: "{{item}}"
   with_items:
     - cmake
     - zlib1g-dev
 
-- name: Install Exa
+- name: Install Exa By Cargo
   shell: "cargo install exa"
   become: no

@@ -1,4 +1,4 @@
-- name: apt install basic packages
+- name: Install Basic Packages By Apt
   apt: "name={{item.name}}"
   with_items:
     - name: curl
@@ -29,7 +29,7 @@
     - name: cifs-utils
     - name: openssh-server
 
-- name: apt install useful tools
+- name: Install Useful Tools By Apt
   apt: "name={{item.name}}"
   with_items:
     - name: traceroute
@@ -45,7 +45,7 @@
     - name: desktop-file-utils
     - name: nmap
 
-- name: apt install tools for kernel develop
+- name: Install Tools For Development Kernel By Apt
   apt: "name={{item.name}}"
   with_items:
     - name: linux-headers-$(uname -r)

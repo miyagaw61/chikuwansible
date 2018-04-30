@@ -1,4 +1,4 @@
-- name: Apt Install Latest Golang
+- name: Install Latest Golang By Apt
   apt:
     name: "golang-{{golang_version}}-go"
 

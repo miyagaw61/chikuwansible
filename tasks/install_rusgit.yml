@@ -1,4 +1,4 @@
-- name: Install "rusgit" From Cargo
+- name: Install "rusgit" By Cargo
   shell: "cargo install --git https://github.com/miyagaw61/rusgit --force"
   become: no
 

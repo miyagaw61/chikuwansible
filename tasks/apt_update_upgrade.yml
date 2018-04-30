@@ -1,5 +1,5 @@
-- name: apt update
+- name: Apt Update
   apt: update_cache=yes
 
-- name: apt upgrade
+- name: Apt Upgrade
   apt: upgrade=safe

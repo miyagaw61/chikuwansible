@@ -1,21 +1,21 @@
-- name: Add Repository for NeoVim
+- name: Add Apt-Repository For NeoVim
   apt_repository: repo=ppa:neovim-ppa/unstable
 
-- name: Update Apt Repository
+- name: Apt Update
   apt: update_cache=yes
 
-- name: Install Basic Packages For NeoVim From Apt
+- name: Install Basic Packages For NeoVim By Apt
   apt: 
     name: software-properties-common 
 
-- name: Install NeoVim From Apt
+- name: Install NeoVim By Apt
   apt: 
     name: neovim
 
 - name: Update NeoVim By Pip
   shell: "pip install -U neovim"
 
-- name: Install Packages For NeoVim's Plugins From Apt
+- name: Install Packages For NeoVim's Plugins By Apt
   apt:
     name: "{{item.name}}"
   with_items:
@@ -23,11 +23,11 @@
     - name: "llvm-{{llvm_version}}"
     - name: "clang-{{llvm_version}}"
 
-- name: Install Packages For NeoVim's Plugins From Pip
+- name: Install Packages For NeoVim's Plugins By Pip
   pip:
     name: neovim-remote
 
-- name: Make Directory For NeoVim
+- name: Make Directories For NeoVim
   file:
     path: "{{item.path}}"
     state: directory
@@ -47,7 +47,7 @@
     - {src: src_files/nvim/init, dest: "{{nvim_config_files}}"}
     - {src: src_files/nvim/plugins, dest: "{{nvim_config_files}}"}
 
-- name: Make Files From Templates
+- name: Make Files From Templates For NeoVim
   template: 
     src: "{{item.src}}"
     dest: "{{item.dest}}"

@@ -1,4 +1,4 @@
-- name: mkdirs
+- name: Make Basic Directories
   file:
     path: "{{item.path}}"
     state: directory

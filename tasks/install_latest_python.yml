@@ -1,7 +1,7 @@
 - name: "Add Apt-Repository \"python-{{python_version}}\""
   apt_repository: "repo=ppa:jonathonf/python-{{python_version}}"
 
-- name: "Apt Install \"python{{python_version}}\" \"python{{python_version}}-dev\""
+- name: "Install \"python{{python_version}}\" \"python{{python_version}}-dev\" By Apt"
   apt: "name={{item.name}}"
   with_items:
     - name: "python{{python_version}}"
