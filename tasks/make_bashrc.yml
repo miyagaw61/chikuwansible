@@ -1,3 +1,8 @@
+- name: Make Directory For Bashrc
+  file:
+    path: "{{bash_config_files}}"
+    state: directory
+
 - name: Make "bashrc" From Template
   template:
     src: "{{item.src}}"
