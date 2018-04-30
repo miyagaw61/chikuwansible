@@ -62,7 +62,7 @@
   changed_when: False
   failed_when: False
 
-- name: apt install tools for kernel develop
+- name: Install Tools For Development Kernel By Apt
   apt: "name={{item.name}}"
   with_items:
     - name: "linux-headers-{{result.stdout}}"
