@@ -6,5 +6,5 @@
     - zlib1g-dev
 
 - name: Install Exa By Cargo
-  shell: "cargo install exa"
+  shell: "cargo install exa --force"
   become: no
