@@ -1,2 +1,1 @@
-hoge_var: hogehoge
-double_braces: "{{"
+cargo_path: "{{home}}/.cargo"
