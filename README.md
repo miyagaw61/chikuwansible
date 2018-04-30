@@ -3,13 +3,56 @@
 * This can make my unique ubuntu environment.
 * Your using one task-file of this repository enable installing any program.
 
-## Usage
+## Prepare Ansible
 
 ### Step1. Install Ansible
 
-[READ HERE](https://qiita.com/miyagaw61/private/ca7eda54bbab392a8b78)
+```
+cd chikuwansible.git
+source ./install_ansible.sh
+```
 
-### Step2. Edit "vars/editable.yml"
+OR
+
+Read [this](https://qiita.com/miyagaw61/private/ca7eda54bbab392a8b78).
+
+### Step2. Make /usr/bin/python
+
+If you have no /usr/bin/python, you have to execute this command:
+```
+ln -s /usr/bin/python{version} /usr/bin/python
+```
+
+{version} is python version you have.
+
+(example)
+```
+ln -s /usr/bin/python3.5 /usr/bin/python
+```
+
+### Step3. Enable SSH-Logining To Yourself Without Password
+
+* You have private-key and public-key for ssh
+* Your private-key and public-key is `-rw-------`
+* You have ~/.ssh/authorized_keys for yourself
+
+(example)
+```
+cd ~/.ssh
+ssh-keygen -t rsa
+chmod 600 id_rsa id_rsa.pub
+ssh-copy-id localhost
+```
+
+### Step4. Check Your SSH-Logining To Yourself Without Password
+
+```
+ssh localhost
+```
+
+## Usage
+
+### Step1. Edit "vars/editable.yml"
 
 * "vars/editable.yml" is a file defining variables.
 * You may have to edit this accordingly.
@@ -19,7 +62,7 @@ cd chikuwansible.git
 vim vars/editable.yml
 ```
 
-### Step3. Make A Playbook
+### Step2. Make A Playbook
 
 * Make My Unique Environment
     * You have "make_my_environment.yml"
