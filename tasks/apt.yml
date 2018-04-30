@@ -11,8 +11,12 @@
     - name: xorg
     - name: autoconf
     - name: binutils
-    - name: lib32z1 libx32z1 lib64z1 lib64z1-dev
-    - name: libboost-all-dev lib32z1-dev libx32z1-dev libbz2-dev
+    - name: lib32z1
+    - name: libx32z1
+    - name: libboost-all-dev
+    - name: lib32z1-dev
+    - name: libx32z1-dev
+    - name: libbz2-dev
     - name: libtool
     - name: libtool-bin
     - name: bsdmainutils
@@ -20,7 +24,10 @@
     - name: libicu-dev
     - name: libfreetype6-dev
     - name: libpng-dev
-    - name: libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+    - name: libssl-dev
+    - name: libbz2-dev
+    - name: libreadline-dev
+    - name: libsqlite3-dev
     - name: ucommon-utils
     - name: software-properties-common
     - name: llvm-{{llvm_version}}
@@ -40,15 +47,25 @@
     - name: rsync
     - name: xclip
     - name: tree
-    - name: imagemagick ttyrec x11-apps xdotool
+    - name: imagemagick
+    - name: ttyrec
+    - name: x11-apps
+    - name: xdotool
     - name: silversearcher-ag
     - name: desktop-file-utils
     - name: nmap
 
 - name: Install Tools For Development Kernel By Apt
+- name: get kernel version
+  shell: "uname -r"
+  register: result
+  changed_when: False
+  failed_when: False
+
+- name: apt install tools for kernel develop
   apt: "name={{item.name}}"
   with_items:
-    - name: linux-headers-$(uname -r)
+    - name: "linux-headers-{{result.stdout}}"
     - name: libncurses5-dev
     - name: fakeroot
     - name: linux-headers-generic
