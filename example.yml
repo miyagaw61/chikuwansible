@@ -1,4 +1,4 @@
-- hosts: me
+- hosts: localhost
   become: yes
   tasks:
     - name: include editable.yml
