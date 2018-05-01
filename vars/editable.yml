@@ -70,7 +70,7 @@ alias_op: "xdg-open"
 alias_sd: "sudo -E"
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
-alias_ll: "exa -hal --git --time-style: iso --group-directories-first"
+alias_ll: "exa -hal --git --time-style=iso --group-directories-first"
 #### alias source bashrc ####
 alias_soba: "source ~/.bashrc 2> /dev/null"
 #### my config ####
