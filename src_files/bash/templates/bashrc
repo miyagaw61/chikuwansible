@@ -1,4 +1,5 @@
 source {{bash_config_files}}/exports.sh
+source {{bash_config_files}}/sources.sh
 source {{bash_config_files}}/default.sh
 #source {{bash_config_files}}/xkb.sh
 source {{bash_config_files}}/aliases.sh
@@ -7,4 +8,3 @@ source {{bash_config_files}}/aliases.sh
 source {{bash_config_files}}/functions.sh
 source {{bash_config_files}}/colors.sh
 source {{bash_config_files}}/prompt.sh
-source {{bash_config_files}}/sources.sh
