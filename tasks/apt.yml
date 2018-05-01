@@ -56,8 +56,7 @@
     - name: desktop-file-utils
     - name: nmap
 
-- name: Install Tools For Development Kernel By Apt
-- name: get kernel version
+- name: Get kernel Version
   shell: "uname -r"
   register: result
   changed_when: False
