@@ -74,4 +74,4 @@ vnoremap <silent> <Space>a mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-
 nnoremap [Space]s mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-r>/<CR>N:%s/<C-r>///g<Left><Left>
 
 "clipboard copy paste for tera term
-vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --output
+vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --output<CR>
