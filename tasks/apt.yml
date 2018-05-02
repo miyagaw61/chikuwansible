@@ -32,6 +32,7 @@
     - name: software-properties-common
     - name: llvm-{{llvm_version}}
     - name: libclang-{{llvm_version}}-dev
+    - name: clang
     - name: automake
     - name: socat
     - name: cifs-utils
