@@ -8,6 +8,7 @@ alias less="{{alias_less}}"
 # ====================================
 alias a="{{alias_a}}"
 alias pbcopy="{{alias_pbcopy}}"
+alias pbpaste="{{alias_pbpaste}}"
 alias xl="{{alias_xl}}"
 alias pt="{{alias_pt}}"
 alias all-update="{{alias_all_update}}"
