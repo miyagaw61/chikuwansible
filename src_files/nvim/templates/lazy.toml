@@ -218,6 +218,11 @@ hook_add = '''
     " Show reference of cousor word on quickfix
     nmap [denite-gtags]r :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
     nnoremap <C-j> :GtagsCursor<CR>
+    nnoremap <C-r> :<C-u>exe('Gtags -r '.expand('<cword>'))<CR>
+    nnoremap <C-i> :Gtags -f %<CR>
+    nnoremap <C-g> :Gtags
+    nnoremap <C-n> :cn<CR>
+    nnoremap <C-p> :cp<CR>
     nnoremap <C-h> <C-w><C-w>ZQ
 '''
 
