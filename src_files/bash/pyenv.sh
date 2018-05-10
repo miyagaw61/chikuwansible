@@ -1,5 +1,4 @@
 #pyenv
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-export PATH="$HOME/neovim/bin:$PATH"
+#ANSIBLE_PYENVexport PYENV_ROOT=$HOME/.pyenv
+#ANSIBLE_PYENVexport PATH=$PYENV_ROOT/bin:$PATH
+#ANSIBLE_PYENVeval "$(pyenv init -)"
