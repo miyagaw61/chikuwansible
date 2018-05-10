@@ -3,7 +3,8 @@ source {{bash_config_files}}/sources.sh
 source {{bash_config_files}}/default.sh
 #source {{bash_config_files}}/xkb.sh
 source {{bash_config_files}}/aliases.sh
-#source {{bash_config_files}}/pyenv.sh
+source {{bash_config_files}}/pyenv.sh
+source {{bash_config_files}}/pipenv.sh
 #source {{bash_config_files}}/fzf.sh
 source {{bash_config_files}}/functions.sh
 source {{bash_config_files}}/colors.sh
