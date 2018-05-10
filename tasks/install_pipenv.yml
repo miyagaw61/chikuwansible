@@ -1,0 +1,8 @@
+- name: Install "pipenv"
+  shell: "pip install pipenv"
+
+- name: Replace "ANSIBLE_PIPENV"
+  replace:
+    path: "{{bash_config_files}}/pipenv.sh"
+    regexp: "#ANSIBLE_PIPENV"
+    replace: ""
