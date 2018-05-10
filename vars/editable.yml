@@ -27,6 +27,8 @@ golang_version: 1.9
 # Python
 # =============================================
 python_version: 3.6
+python2_pyenv_version: 2.7.15
+python3_pyenv_version: 3.6.5
 pyenv_root: "{{repos}}/pyenv/pyenv"
 python2_binary: "/usr/bin/python2"
 python3_binary: "/usr/bin/python3"
