@@ -1,1 +1,1 @@
-ansible-playbook $ANSIBLE_PATH/remake_neovim.yml -K
+ansible-playbook $CHIKUWANSIBLE_PATH/remake_neovim.yml -K
