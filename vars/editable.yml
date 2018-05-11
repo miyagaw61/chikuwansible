@@ -14,6 +14,7 @@ program_files: "{{home}}/program_files"
 config_files: "{{home}}/docs/config_files"
 bash_config_files: "{{config_files}}/bash"
 grave_root: "{{tmp}}/grave_root"
+ansible_path: "{{repos}}/chikuwansible"
 
 # Git
 # =============================================
@@ -83,3 +84,5 @@ alias_sl: "ls"
 #### alias rusgit ####
 rusgit_init: 'eval "$(rusgit init --add ra --ac rac --diff rd --branch rb --undo ru --tag rt --push rpush --pull rpull --merge rmerge --rebase rrebase --log rl --commit rc --clone rclone)"'
 alias_rs: "rusgit status --ls 'exa --group-directories-first'"
+#### alias howdoi ####
+alias_h: "function hdi(){ howdoi $* -c -n 5; }; hdi"
