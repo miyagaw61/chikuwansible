@@ -1,0 +1,2 @@
+cwd=$(realpath $(dirname "${0}"))
+ansible-playbook $cwd/remake_neovim.yml -K

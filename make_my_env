@@ -1,0 +1,2 @@
+cwd=$(realpath $(dirname "${0}"))
+ansible-playbook $cwd/make_my_env.yml -K
