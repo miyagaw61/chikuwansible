@@ -1,5 +1,5 @@
 - hosts: localhost
-  become: yes
+  #become: yes
   tasks:
     - name: Include Variables From "editable.yml"
       include_vars: vars/editable.yml
@@ -7,7 +7,7 @@
       include_vars: vars/uneditable.yml
     #- name: Apt Update, Apt Upgrade
     #  include: tasks/apt_update_upgrade.yml
-    - name: Remake Files For Bashrc
-      include: tasks/remake_bash_files.yml
+    #- name: Remake Files For Bashrc
+    #  include: tasks/remake_bash_files.yml
     - name: Remake Files For NeoVim
       include: tasks/remake_neovim_files.yml
