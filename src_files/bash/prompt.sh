@@ -85,10 +85,10 @@ if [ "$color_prompt" = yes ]; then
         echo -ne "$now"
     }
 
-    PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${red}\]>> \[${white}\]"
+    PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${red}\]$ \[${white}\]"
 
     if test $USER = "root" ;then
-        PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${yellow}\]>>> \[${white}\]"
+        PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${yellow}\]# \[${white}\]"
     fi
 fi
 
