@@ -105,3 +105,14 @@ complete -F d_completion d
 malist() {
 	rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk | while read line ;do cp -a $line $1/$line ;done
 }
+
+ptpdb() {
+    if test "$1" == "-h" -o "$1" == "--help" ;then
+        echo "ptpdb [file] [line]"
+    else
+        cp -a ${1} ${1}.tmp
+        sed "$((${2}-1))aset_trace()" -i ${1}
+        python ${1}
+        mv ${1}.tmp ${1}
+    fi
+}
