@@ -32,5 +32,7 @@ alias sl="{{alias_sl}}"
 
 # alias rusgit
 # ====================================
-# ANSIBLE_RUSGIT:{{rusgit_init}}
-# ANSIBLE_RUSGIT:alias rs="{{alias_rs}}"
+if test "$(which rusgit)" ;then
+    {{rusgit_init}}
+    alias rs="{{alias_rs}}"
+fi
