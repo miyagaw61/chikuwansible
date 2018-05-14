@@ -106,13 +106,23 @@ malist() {
 	rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk | while read line ;do cp -a $line $1/$line ;done
 }
 
-ptpdb() {
-    if test "$1" == "-h" -o "$1" == "--help" ;then
-        echo "ptpdb [file] [line]"
+pd() {
+    if test "$1" == "-h" -o "$1" == "--help" -o $# -eq 0 ;then
+        echo "pd [file-name] [line-num]"
     else
-        cp -a ${1} ${1}.tmp
-        sed "$((${2}-1))aset_trace()" -i ${1}
-        python ${1}
-        mv ${1}.tmp ${1}
+        cp -a $1 pd_tmp.py
+        space_num=$(sed -n ${2}p pd_tmp.py | sed -E "s@(^ *).*@\1@g" | wc -m)
+        spaces=""
+        if test ${space_num} -gt 1 ;then
+            space_num=$((${space_num}-2))
+            for i in $(seq 0 ${space_num}) ;do
+                spaces="${spaces} "
+            done
+        fi
+        after="${spaces}""import ptpdb; ptpdb.set_trace()"
+        sed -E "$((${2}-1))a_PDHOGE_" -i pd_tmp.py
+        sed -E "s@_PDHOGE_@""${after}""@g" -i pd_tmp.py
+        python pd_tmp.py
+        rm -rf pd_tmp.py
     fi
 }
