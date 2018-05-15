@@ -202,7 +202,6 @@ onefile() {
             sed -E "s@COPY_OR_TEMPLATE@$mode@g" -i $yml_file
             sed -E "s@BASH_OR_NVIM@$type@g" -i $yml_file
             sed -E "s@SRC_FILE_NAME@$src@g" -i $yml_file
-            sed -E "s@DST_FILE_NAME@$target@g" -i $yml_file
             ansible-playbook $yml_file
             rm -rf $yml_file $base/tmp_onefile.retry
         fi
