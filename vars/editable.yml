@@ -16,6 +16,11 @@ bash_config_files: "{{config_files}}/bash"
 grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 
+# SLACK
+# =============================================
+rusgit_slack_url: "$(cat {{docs}}/slack_url)"
+rusgit_slack_channel: "@miyagaw61"
+
 # Git
 # =============================================
 git_user: "miyagaw61"
