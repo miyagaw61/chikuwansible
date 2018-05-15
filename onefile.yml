@@ -10,7 +10,7 @@
 
     - name: Generate One File
       COPY_OR_TEMPLATE:
-        src: src_files/BASH_OR_NVIM/SRC_FILE_NAME
+        src: src_files/BASH_OR_NVIM/FILE_NAME
         dest: "{{BASH_OR_NVIM_config_files}}"
         owner: "{{user}}"
         group: "{{user}}"
