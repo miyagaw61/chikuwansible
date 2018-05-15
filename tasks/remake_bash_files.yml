@@ -27,3 +27,4 @@
     - {src: "src_files/bash/tmp.sh", dest: "{{bash_config_files}}/tmp.sh"}
     - {src: "src_files/bash/pyenv.sh", dest: "{{bash_config_files}}/pyenv.sh"}
     - {src: "src_files/bash/pipenv.sh", dest: "{{bash_config_files}}/pipenv.sh"}
+    - {src: "src_files/bash/for_functions", dest: "{{bash_config_files}}"}
