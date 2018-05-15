@@ -1,0 +1,16 @@
+- hosts: localhost
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Include "editable.yml"
+      include_vars: vars/editable.yml
+
+    - name: Include "uneditable.yml"
+      include_vars: vars/uneditable.yml
+
+    - name: Generate One File
+      COPY_OR_TEMPLATE:
+        src: src_files/BASH_OR_NVIM/SRC_FILE_NAME
+        dest: "{{BASH_OR_NVIM_config_files}}/DST_FILE_NAME"
+        owner: "{{user}}"
+        group: "{{user}}"

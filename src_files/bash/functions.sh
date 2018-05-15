@@ -141,3 +141,70 @@ getrefs() {
         echo "・[${title}](${url}) ( [archive](${archive}) )"
     done
 }
+
+cp4sh() {
+    if test $# -eq 0 -o "$1" == "-h" ;then
+        echo "cp4sh [file_base_name]"
+    else
+        onefile copy bash $1
+    fi
+}
+
+mk4sh() {
+    if test $# -eq 0 -o "$1" == "-h" ;then
+        echo "mk4sh [file_base_name]"
+    else
+        onefile template bash $1
+    fi
+}
+
+cp4vi() {
+    if test $# -eq 0 -o "$1" == "-h" ;then
+        echo "cp4vi [file_base_name]"
+    else
+        onefile copy nvim $1
+    fi
+}
+
+mk4vi() {
+    if test $# -eq 0 -o "$1" == "-h" ;then
+        echo "mk4vi [file_base_name]"
+    else
+        onefile template nvim $1
+    fi
+}
+
+onefile() {
+    if test $# -lt 3 -o "$1" == "-h" ;then
+        echo "onefile [copy|template] [bash|nvim] [file_base_name]"
+    else
+        mode=""
+        type=""
+        target=""
+        if test "$1" == "copy" ;then
+            mode="$1"
+            src="$3"
+            target="$3"
+        elif test "$1" == "template" ;then
+            mode="$1"
+            src="templates/$3"
+            target="$3"
+        fi
+        if test "$2" == "bash" ;then
+            type="$2"
+        elif test "$2" == "nvim" ;then
+            type="$2"
+        fi
+        if test "$mode" != "" -a "$type" != "" ;then
+            base=$CHIKUWANSIBLE_PATH
+            yml_file=$base/tmp_onefile.yml
+            cp -a $base/onefile.yml $yml_file
+            sed -E "s@COPY_OR_TEMPLATE@$mode@g" -i $yml_file
+            sed -E "s@BASH_OR_NVIM@$type@g" -i $yml_file
+            sed -E "s@SRC_FILE_NAME@$src@g" -i $yml_file
+            sed -E "s@DST_FILE_NAME@$target@g" -i $yml_file
+            ansible-playbook $yml_file -K
+            rm -rf $yml_file $base/tmp_onefile.retry
+        fi
+    fi
+}
