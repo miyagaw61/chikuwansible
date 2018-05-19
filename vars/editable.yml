@@ -91,3 +91,7 @@ rusgit_init: 'eval "$(rusgit init --add ra --ac rac --diff rd --branch rb --undo
 alias_rs: "rusgit status --ls 'exa --group-directories-first'"
 #### alias howdoi ####
 alias_h: "function hdi(){ howdoi \\$* -c -n 5; }; hdi"
+#### alias global ####
+alias_gf: "global -x -f"
+alias_gr: "global -x -r"
+alias_g: "global -x"

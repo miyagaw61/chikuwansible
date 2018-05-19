@@ -36,3 +36,9 @@ if test "$(which rusgit)" ;then
     {{rusgit_init}}
     alias rs="{{alias_rs}}"
 fi
+
+# alias global
+# ====================================
+alias gf="{{alias_gf}}"
+alias gr="{{alias_gr}}"
+alias g="{{alias_g}}"
