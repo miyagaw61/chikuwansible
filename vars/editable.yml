@@ -95,3 +95,5 @@ alias_h: "function hdi(){ howdoi \\$* -c -n 5; }; hdi"
 alias_gf: "global -x -f"
 alias_gr: "global -x -r"
 alias_g: "global -x"
+### alias dret ###
+alias_dret: "tr '\\n' ' ' | sed -E 's/ +/ /g'"

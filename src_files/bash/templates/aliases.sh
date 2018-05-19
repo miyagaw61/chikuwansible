@@ -42,3 +42,7 @@ fi
 alias gf="{{alias_gf}}"
 alias gr="{{alias_gr}}"
 alias g="{{alias_g}}"
+
+# alias dret
+# ====================================
+alias dret="{{alias_dret}}"
