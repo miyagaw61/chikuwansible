@@ -69,7 +69,6 @@ alias_diff: "diff -a -r -u -p"
 alias_objdump: "objdump -M intel"
 alias_less: "less -iMSR"
 #### be short ####
-alias_a: "cd ../"
 alias_pbcopy: "xsel --clipboard --input"
 alias_pbpaste: "xsel --clipboard --output"
 alias_xl: "pbcopy"

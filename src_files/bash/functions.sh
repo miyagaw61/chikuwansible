@@ -219,3 +219,12 @@ cargonew() {
         sed -E "s@FILE_NAME@$1@g" -i $1/Makefile
     fi
 }
+
+d() {
+    pushd $1 > /dev/null
+}
+complete -o nospace -F _cd d
+
+a() {
+    popd > /dev/null
+}
