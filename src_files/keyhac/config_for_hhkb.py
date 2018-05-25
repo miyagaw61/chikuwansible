@@ -416,7 +416,8 @@ def configure(keymap):
         #    keymap_global["U1-" + chr(any)] = "C-" + chr(any)
         keymap_global["C-D"] = "A-F4"
         keymap_global["C-Q"] = "C-W"
-        keymap_global["C-Tab"] = "Win-F12"
+        keymap_global["C-Tab"] = "S-(240)"
+        #keymap_global["LS-LCtrl"] = "S-(240)"
         keymap_global["A-J"] = "A-D"
         keymap_global["A-K"] = "A-S-D"
         keymap_global["A-A"] = "A-S-D"
