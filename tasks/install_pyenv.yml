@@ -9,9 +9,6 @@
     regexp: "#ANSIBLE_PYENV"
     replace: ""
 
-- name: Source "bashrc"
-  shell: 'export PYENV_ROOT="$HOME/.pyenv"; export PATH="$PYENV_ROOT/bin:$PATH"; eval "$(pyenv init -)"'
-
 - name: Install Basic Packages For "pip install"
   apt:
     name: "{{item}}"
@@ -33,7 +30,11 @@
     - tk-dev
 
 - name: "Install \"python{{python2_pyenv_version}}\""
-  shell: "pyenv install {{python2_pyenv_version}}"
+  shell: "{{chikuwansible_path}}/install_python.sh {{home}} {{python2_pyenv_version}}"
 
 - name: "Install \"python{{python3_pyenv_version}}\""
-  shell: "pyenv install {{python3_pyenv_version}}"
+  shell: "{{chikuwansible_path}}/install_python.sh {{home}} {{python3_pyenv_version}}"
+
+- name: Install pip3
+  apt:
+    name: python3-pip
