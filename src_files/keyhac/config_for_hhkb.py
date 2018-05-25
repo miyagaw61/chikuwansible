@@ -463,8 +463,6 @@ def configure(keymap):
         keymap_notepad["A-F"] = "S-Right"
         keymap_notepad["A-B"] = "S-Left"
         keymap_notepad["C-S-F"] = "C-Right"
-        keymap_notepad["C-H"] = "C-Pageup"
-        keymap_notepad["C-L"] = "C-Pagedown"
         keymap_notepad["C-J"] = "Down"
         keymap_notepad["C-K"] = "Up"
         #def hoge():
