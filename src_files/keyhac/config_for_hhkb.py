@@ -421,7 +421,6 @@ def configure(keymap):
         keymap_global["A-J"] = "A-D"
         keymap_global["A-K"] = "A-S-D"
         keymap_global["A-A"] = "A-S-D"
-        keymap_global["LS-LCtrl"] = "S-(240)"
 
     # Config For Chrome
     if 1:
