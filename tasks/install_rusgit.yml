@@ -1,6 +1,8 @@
 - name: Install "rusgit" By Cargo
   shell: "cargo install --git https://github.com/miyagaw61/rusgit --force"
   become: no
+  environment:
+    PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
 
 - name: Edit "bashrc" For Rusgit
   replace:

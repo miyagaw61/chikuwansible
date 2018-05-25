@@ -8,3 +8,5 @@
 - name: Install Exa By Cargo
   shell: "cargo install exa --force"
   become: no
+  environment:
+    PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
