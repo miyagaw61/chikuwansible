@@ -421,6 +421,7 @@ def configure(keymap):
         keymap_global["A-J"] = "A-D"
         keymap_global["A-K"] = "A-S-D"
         keymap_global["A-A"] = "A-S-D"
+        keymap_global["Win-F"] = "C-F"
 
     # Config For Chrome
     if 1:
