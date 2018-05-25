@@ -24,8 +24,7 @@
     - name: "clang-{{llvm_version}}"
 
 - name: Install Packages For NeoVim's Plugins By Pip
-  pip:
-    name: neovim-remote
+  shell: "pip3 install neovim-remote"
 
 - name: Make Directories For NeoVim
   file:
