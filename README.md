@@ -96,3 +96,15 @@ vim make_your_environment.yml
     * install https://github.com/ogham/exa
 * make_directories.yml
     * make my unique directories
+
+### Step3. Run Ansible-Playbook
+
+```
+$ ansible-playbook make_my_environment.yml -K
+```
+
+OR
+
+```
+$ ansible-playbook make_your_environment.yml -K
+```
