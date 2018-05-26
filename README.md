@@ -70,7 +70,7 @@ cd chikuwansible.git
 vim make_your_environment.yml
 ```
 
-**(taks file list)**
+**(tasks)**
 
 * apt_update_upgrade.yml
     * apt-update, apt-upgrade
