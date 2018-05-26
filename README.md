@@ -78,6 +78,12 @@ vim make_your_environment.yml
     * apt-install my-favorite-packages
 * make_bashrc.yml
     * make my unique bashrc
+* install_pip.yml
+    * install pip
+* install_pyenv.yml
+    * install pyenv
+* install_pipenv.yml
+    * install pipenv
 * install_latest_golang.yml
     * install latest golang
 * install_rust.yml
