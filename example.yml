@@ -1,5 +1,6 @@
 - hosts: localhost
   become: yes
+  connection: local
   tasks:
     - name: include editable.yml
       include_vars: vars/editable.yml

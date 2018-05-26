@@ -7,13 +7,6 @@
 
 ### Step1. Install Ansible
 
-```
-cd chikuwansible.git
-source ./install_ansible.sh
-```
-
-OR
-
 Read [this](https://qiita.com/miyagaw61/private/ca7eda54bbab392a8b78).
 
 ### Step2. Make /usr/bin/python
@@ -28,26 +21,6 @@ ln -s /usr/bin/python{version} /usr/bin/python
 (example)
 ```
 ln -s /usr/bin/python3.5 /usr/bin/python
-```
-
-### Step3. Enable SSH-Logining To Yourself Without Password
-
-* You have private-key and public-key for ssh
-* Your private-key and public-key is `-rw-------`
-* You have ~/.ssh/authorized_keys for yourself
-
-(example)
-```
-cd ~/.ssh
-ssh-keygen -t rsa
-chmod 600 id_rsa id_rsa.pub
-ssh-copy-id localhost
-```
-
-### Step4. Check Your SSH-Logining To Yourself Without Password
-
-```
-ssh localhost
 ```
 
 ## Usage
