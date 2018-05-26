@@ -94,7 +94,5 @@ vim make_your_environment.yml
     * install https://github.com/miyagaw61/rusgit
 * install_exa.yml
     * install https://github.com/ogham/exa
-* chown_files.yml
-    * chown files
 * make_directories.yml
     * make my unique directories
