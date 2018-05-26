@@ -7,13 +7,20 @@
 
 ### Step1. Install Ansible
 
-Read [this](https://qiita.com/miyagaw61/private/ca7eda54bbab392a8b78).
+If you are ubuntu, try this command:
+
+```
+./install_ansible.sh
+```
+
+If not, you have to read [this](http://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-machine).
 
 ### Step2. Make /usr/bin/python
 
 If you have no /usr/bin/python, you have to execute this command:
 ```
 ln -s /usr/bin/python{version} /usr/bin/python
+hoge
 ```
 
 {version} is python version you have.
