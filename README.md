@@ -30,6 +30,21 @@ hoge
 ln -s /usr/bin/python3.5 /usr/bin/python
 ```
 
+### Step3. Check
+
+```
+$ cd chikuwansible.git
+$ ansible-playbook test.yml
+
+PLAY [localhost] *************************************************************************************
+
+TASK [Ping to localhost] *****************************************************************************
+ok: [localhost]
+
+PLAY RECAP *******************************************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=0
+```
+
 ## Usage
 
 ### Step1. Edit "vars/editable.yml"

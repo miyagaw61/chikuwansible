@@ -1,0 +1,7 @@
+- hosts: localhost
+  become: no
+  gather_facts: no
+  connection: local
+  tasks:
+    - name: Ping to localhost
+      ping:
