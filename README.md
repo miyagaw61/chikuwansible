@@ -63,6 +63,8 @@ vim vars/editable.yml
     * You have "make_my_environment.yml"
 
 * Make Your Unique Environment
+    * You have "tasks/\*.yml"
+
 ```
 cd chikuwansible.git
 vim make_your_environment.yml
