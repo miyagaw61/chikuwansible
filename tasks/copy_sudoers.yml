@@ -1,0 +1,8 @@
+- name: Copy Files For Bashrc
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "root"
+    group: "root"
+  with_items:
+    - {src: "src_files/sudoers", dest: "/etc/sudoers"}

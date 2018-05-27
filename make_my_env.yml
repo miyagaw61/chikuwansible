@@ -30,3 +30,5 @@
       include: tasks/install_exa.yml
     - name: Install Rusgit
       include: tasks/install_rusgit.yml
+    - name: Copy sudoers
+      include: tasks/copy_sudoers.yml
