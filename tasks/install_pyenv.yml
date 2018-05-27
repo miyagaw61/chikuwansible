@@ -1,7 +1,7 @@
 - name: Clone "pyenv"
   git: 
     repo: https://github.com/pyenv/pyenv.git
-    dest: "{{home}}/.pyenv"
+    dest: "{{pyenv_root}}"
 
 - name: Replace "#ANSIBLE_PYENV"
   replace:
