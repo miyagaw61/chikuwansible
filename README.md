@@ -97,6 +97,12 @@ vim make_your_environment.yml
     * install https://github.com/ogham/exa
 * make_directories.yml
     * make my unique directories
+* remake_bash_files.yml
+    * remake bash files
+* remake_neovim_files.yml
+    * remake neovim files
+* copy_sudoers.yml
+    * copy my unique sudoers
 
 ### Step3. Run Ansible-Playbook
 
