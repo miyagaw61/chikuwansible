@@ -67,6 +67,7 @@ vim vars/editable.yml
 
 ```
 cd chikuwansible.git
+cp -a make_my_environment.yml make_your_environment.yml
 vim make_your_environment.yml
 ```
 
