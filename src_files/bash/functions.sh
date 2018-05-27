@@ -131,14 +131,22 @@ getref() {
     url=$1
     title="$(curl -s ${url} | rg ".*<title>(.*)</title>.*" -r '$1')"
     archive="$(curl -s -H "User-Agent:archiveis (https://github.com/pastpages/archiveis)" -X POST http://archive.is/submit/ -d "url=${url}" -i | rg ".*:.*(http://archive.is/.*)" -r '$1' | tr -d '\r')"
-    echo "・[${title}](${url}) ( [archive](${archive}) )"
+    if test "$archive" ;then
+        echo "・[${title}](${url}) ( [archive](${archive}) )"
+    else
+        echo "・[${title}](${url})"
+    fi
 }
 
 getrefs() {
     cat $1 | while read url ;do
         title="$(curl -s ${url} | rg ".*<title>(.*)</title>.*" -r '$1')"
         archive="$(curl -s -H "User-Agent:archiveis (https://github.com/pastpages/archiveis)" -X POST http://archive.is/submit/ -d "url=${url}" -i | rg ".*:.*(http://archive.is/.*)" -r '$1' | tr -d '\r')"
-        echo "・[${title}](${url}) ( [archive](${archive}) )"
+        if test "$archive" ;then
+            echo "・[${title}](${url}) ( [archive](${archive}) )"
+        else
+            echo "・[${title}](${url})"
+        fi
     done
 }
 
