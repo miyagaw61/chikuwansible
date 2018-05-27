@@ -20,7 +20,6 @@ If not, you have to read [this](http://docs.ansible.com/ansible/latest/installat
 If you have no /usr/bin/python, you have to execute this command:
 ```
 ln -s /usr/bin/python{version} /usr/bin/python
-hoge
 ```
 
 {version} is python version you have.
