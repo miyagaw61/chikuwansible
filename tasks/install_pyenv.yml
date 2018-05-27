@@ -3,6 +3,13 @@
     repo: https://github.com/pyenv/pyenv.git
     dest: "{{pyenv_root}}"
 
+- name: Chown "pyenv_root"
+  file:
+    path: "{{pyenv_root}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
+
 - name: Replace "#ANSIBLE_PYENV"
   replace:
     path: "{{bash_config_files}}/pyenv.sh"
