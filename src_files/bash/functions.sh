@@ -236,3 +236,7 @@ complete -o nospace -F _cd d
 a() {
     popd > /dev/null
 }
+
+commits() {
+    curl https://api.github.com/users/${GIT_NAME}/events | rg "\"created_at\":|\"name\":.*${GIT_NAME}/|\"message\":" | red ".*\"name\": \"miyagaw61/(.*)\"," '[+]$1:' | red ".*\"message\": (.*)" '-> $1' | red ".*\"created_at\": \"\d{4}-\d{2}-(\d{2}).*\"" '                      ($1)_RETURN__RETURN_' | sed -E "s/_RETURN_/\\n/g" | less
+   }
