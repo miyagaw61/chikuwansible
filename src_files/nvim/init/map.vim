@@ -41,7 +41,7 @@ nnoremap gGCe <C-e>
 nnoremap gGCy <C-y>
 nnoremap gGCd <C-d>
 nnoremap gGCu <C-u>
-tnoremap <C-j> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 nnoremap <Tab> <Nop>
 nnoremap [Window]n :tabn<CR>
 nnoremap e :cd %:p:h<CR>:e<Space>
