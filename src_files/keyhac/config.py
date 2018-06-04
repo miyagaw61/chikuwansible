@@ -1,4 +1,4 @@
-import time
+﻿import time
 import sys
 import os
 import datetime
@@ -103,10 +103,8 @@ def configure(keymap):
             return closure
 
         def link_cmd():
-            f = put_str("[](")
-            f()
-            left_code = get_code("LEFT")
-            Input.send([pyauto.Key(left_code)]*2)
+            put_str("[](")
+            typewrite(["left"]*2)
 
         def def_cmd(trigger, char):
             trigger[char] = keymap.defineMultiStrokeKeymap(char)
@@ -129,7 +127,6 @@ def configure(keymap):
             cmds_dict = {}
             def set_cmd(func, cmd):
                 cmd_length = len(cmd)
-                cmd_chars = list(cmd)
                 for i in range(cmd_length):
                     cmds_dict_key = cmd[:i+1]
                     last_char = cmds_dict_key[-1]
@@ -203,6 +200,22 @@ def configure(keymap):
             put_key("LEFT")
             put_key("LEFT")
 
+        def insert_ul():
+            put_str("<UL><LI></UL>")
+            typewrite(["return"] + ["left"]*5)
+
+        def insert_li():
+            put_str("<LI>")
+            typewrite(["return"])
+
+        def insert_h4():
+            put_str("**<INS>**")
+            typewrite(["return"] + ["left"]*2)
+
+        def insert_ins():
+            put_str("<INS></INS>")
+            typewrite(["return"] + ["left"]*6)
+
         def initialize_keybind_alnum(keymap_class):
             for any in range(ord("A"), ord("Z")):
                 keymap_class["U1-" + chr(any)] = "C-" + chr(any)
@@ -225,11 +238,12 @@ def configure(keymap):
             keymap_class["S-CloseBracket"] = lambda:put_str("}")
 
         def initialize_keybind_alt(keymap_class):
-            keymap_class["A-Q"] = "A-F4"
             keymap_class["A-L"] = "A-Tab"
             keymap_class["A-H"] = "A-S-Tab"
             keymap_class["A-J"] = "A-Down"
             keymap_class["A-K"] = "A-Up"
+            keymap_class["A-Q"] = "A-Tab"
+            keymap_class["LA-RS-Q"] = "A-Left"
         
         def initialize_keybind_cursor(keymap_class):
             keymap_class["U1-A"] = "Home"
@@ -307,11 +321,16 @@ def configure(keymap):
             set_class_u1i_cmd = make_set_cmd(keymap_class, "U1-I")
             set_class_u1i_cmd(lambda:put_str(os.getenv("NAME", "<<<Please Export $NAME>>>")), "NAME")
             set_class_u1i_cmd(lambda:put_str(os.getenv("ADDR", "<<<Please Export $ADDR>>>")), "ADDR")
-            set_class_u1i_cmd(link_cmd, "LINK")
+            set_class_u1i_cmd(link_cmd, "LK")
+            set_class_u1i_cmd(lambda:put_strln("-> "), "Y")
             set_class_u1i_cmd(lambda:put_strln("# "), "1")
-            set_class_u1i_cmd(lambda:put_strln("## "), "2")
+            set_class_u1i_cmd(lambda:put_strln("## <INS>"), "2")
             set_class_u1i_cmd(lambda:put_strln("### "), "3")
+            set_class_u1i_cmd(insert_ins, "INS")
+            set_class_u1i_cmd(insert_h4, "4")
             set_class_u1i_cmd(insert_bold, "B")
+            set_class_u1i_cmd(insert_ul, "UL")
+            set_class_u1i_cmd(insert_li, "LI")
             set_class_u1i_cmd(lambda:put_strln("```\n"), "KD")
             set_class_u1i_cmd(lambda:put_strln("```Rust\n"), "KR")
             set_class_u1i_cmd(lambda:put_strln("```Bash\n"), "KB")
