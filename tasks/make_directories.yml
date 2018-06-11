@@ -2,6 +2,8 @@
   file:
     path: "{{item.path}}"
     state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
   with_items:
     - path: "{{tmp}}"
     - path: "{{docs}}"
