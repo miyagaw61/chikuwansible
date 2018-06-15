@@ -239,4 +239,33 @@ a() {
 
 commits() {
     curl https://api.github.com/users/${GIT_NAME}/events | rg "\"created_at\":|\"name\":.*${GIT_NAME}/|\"message\":" | red ".*\"name\": \"miyagaw61/(.*)\"," '[+]$1:' | red ".*\"message\": (.*)" '-> $1' | red ".*\"created_at\": \"\d{4}-\d{2}-(\d{2}).*\"" '_SPACES_($1)_RETURN__RETURN_' | sed -E "/:$/N;s/.*:\n_SPACES_.*/_DELETED_/g" | sed -E "/_RETURN_$/N;s/_RETURN_\n_SPACES_.*/_DELETED_/g" | sed -E "/:$/N;N;s/.*:\n_SPACES_.*/_DELETED_/g" | sed -E "s/_SPACES_/                      /g" | sed -E "s/_RETURN_/\\n/g" | tr -d "_DELETED_" | less
-   }
+}
+
+w2l() {
+    if test $# -eq 0 ;then
+        echo "Usage: w2l WIN_PATH"
+    else
+        path="$(echo $1 | sed -E 's@C:@/mnt/c@g')"
+        path="$(echo $path | sed -E 's@\\@/@g')"
+        echo $path
+    fi
+}
+
+lcp() {
+    if test $# -eq 0 ;then
+        echo "Usage: lcp WIN_PATH [LINUX_PATH]"
+    else
+        if test $# -eq 1 ;then
+            cp -a "$(w2l $1)" ./
+        else
+            dst=${@:$#}
+            if test -d $dst ;then
+                for x in ${@:1:$#-1} ;do
+                    cp -a "$(w2l $x)" $dst
+                done
+            else
+                echo "lcp: target '$dst' is not a directory"
+            fi
+        fi
+    fi
+}
