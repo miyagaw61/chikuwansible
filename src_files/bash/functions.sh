@@ -269,3 +269,9 @@ lcp() {
         fi
     fi
 }
+
+hhs() {
+    cmd.exe /c title $1
+    ssh $1
+    cmd.exe /c title WSL
+}
