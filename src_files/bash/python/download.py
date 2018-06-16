@@ -173,6 +173,7 @@ Example:
     f.close()
     os.system("ffmpeg -f concat -safe 0 -i ts_files.tmp -c copy result/" + tag_name + ".mp4")
     os.system("rm -rf result/" + tag_name)
+    os.system("rm -rf ts_files.tmp")
 
 def download_mp4_from_ts(list_dir, tag_name):
     download_ts(list_dir, tag_name)
