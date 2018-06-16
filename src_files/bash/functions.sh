@@ -251,6 +251,19 @@ w2l() {
     fi
 }
 
+l2w() {
+    if test $# -eq 0 ;then
+        echo "Usage: l2w LINUX_PATH"
+    else
+        path="$(echo $1 | sed -E 's@/mnt/c@C:@g')"
+        path="$(echo $path | sed -E 's@/home/miyagaw61@C:/Users/miyagaw61/home@g')"
+        path="$(echo $path | sed -E 's@~@C:/Users/miyagaw61/home@g')"
+        path="$(echo $path | sed -E 's@$HOME@C:/Users/miyagaw61/home@g')"
+        path="$(echo $path | sed -E 's@/@\\@g')"
+        echo $path
+    fi
+}
+
 lcp() {
     if test $# -eq 0 ;then
         echo "Usage: lcp WIN_PATH [LINUX_PATH]"
