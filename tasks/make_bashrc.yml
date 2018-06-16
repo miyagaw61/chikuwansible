@@ -1,7 +1,10 @@
-- name: Make Directory For Bashrc
+- name: Make Directories For Bashrc
   file:
-    path: "{{bash_config_files}}"
+    path: "{{item}}"
     state: directory
+  with_items:
+    - "{{bash_config_files}}"
+    - "{{bash_config_files}}/python"
 
 - name: Make "bashrc" From Template
   template:
@@ -32,3 +35,4 @@
     - {src: "src_files/bash/tmp.sh", dest: "{{bash_config_files}}/tmp.sh"}
     - {src: "src_files/bash/for_functions", dest: "{{bash_config_files}}"}
     - {src: "src_files/bash/pipenv.sh", dest: "{{bash_config_files}}/pipenv.sh"}
+    - {src: "src_files/bash/python/download.py", dest: "{{bash_config_files}}/python/download.py"}

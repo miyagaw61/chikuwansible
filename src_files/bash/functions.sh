@@ -288,3 +288,12 @@ hhs() {
     ssh $1
     cmd.exe /c title WSL
 }
+
+declare_python() {
+    lst=$(cat $1 | rg "^def (.*)\(.*\):" -r '$1')
+    for x in $lst ;do
+        eval $x" () { python $1 "$x "\$@ ; }"
+    done
+}
+
+declare_python $BASH_CONFIG_FILES/python/download.py
