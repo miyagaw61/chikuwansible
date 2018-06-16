@@ -294,6 +294,9 @@ declare_python() {
     for x in $lst ;do
         eval $x" () { python $1 "$x "\$@ ; }"
     done
+    base=$(basename $1)
+    #eval $base" () { echo Usage:; lst=\$(cat "$1" | rg \"^def (.*)\(.*\):\" -r '\$1'); for func in \$lst; do echo \$func ;done ; }"
+    eval $base" () { python $1 help ;}"
 }
 
 declare_python $BASH_CONFIG_FILES/python/download.py

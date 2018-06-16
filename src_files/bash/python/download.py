@@ -2,6 +2,17 @@ import os
 import subprocess
 import sys
 
+def help():
+    """
+Usage:
+    test_func
+    download_ts
+    download
+    ts2mp4
+    download_mp4_from_ts
+    """
+    print(help.__doc__)
+
 def test_func():
     print("test_func succesfull.")
 
