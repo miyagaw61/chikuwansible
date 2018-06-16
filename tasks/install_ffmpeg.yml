@@ -1,0 +1,14 @@
+- name: Add Apt-Repository For "ffmpeg"
+  apt_repository: repo=ppa:jonathonf/ffmpeg-3
+
+- name: Apt-Update
+  apt: update_cache=yes
+
+- name: Install "ffmpeg"
+  apt:
+    name: "{{item}}"
+  with_items:
+    - ffmpeg
+    - libav-tools
+    - x264
+    - x265
