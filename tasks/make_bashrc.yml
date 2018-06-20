@@ -35,3 +35,4 @@
     - {src: "src_files/bash/for_functions", dest: "{{bash_config_files}}"}
     - {src: "src_files/bash/pipenv.sh", dest: "{{bash_config_files}}/pipenv.sh"}
     - {src: "src_files/bash/python/download.py", dest: "{{bash_config_files}}/python/download.py"}
+    - {src: "{{home}}/.bashrc", dest: "/root/.bashrc"}
