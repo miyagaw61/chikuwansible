@@ -1,0 +1,57 @@
+#!/bin/bash
+set -eu
+
+vault_help() {
+    echo "Usage: chikuwansible-vault [conf] [edit]"
+}
+
+vault_conf() {
+    if [ $# -ne 2 -o "$1" = "-h" -o "$1" = "--help" ] ;then
+        echo "Usage: chikuwansible-vault conf SUDO_PASSWORD_FILE VAULT_PASSWORD_FILE"
+        exit 1
+    fi
+    if [ ! -e $1 ] ;then
+        echo "*** ERROR ***"
+        echo "$1: FILE NOT FOUND"
+        exit 1
+    fi
+    if [ ! -e $2 ] ;then
+        echo "*** ERROR ***"
+        echo "$2: FILE NOT FOUND"
+        exit 1
+    fi
+    echo "ansible_sudo_pass: $(sudo cat $1)" > vault.yml
+    echo '#!/bin/bash' > vault.sh
+    echo "echo \$(sudo cat $2)" >> vault.sh
+    sudo chmod +x vault.sh
+    ansible-vault encrypt vault.yml --vault-password-file=vault.sh
+}
+
+vault_edit() {
+    if [ ! -e vault.yml ] ;then
+        echo "*** ERROR ***"
+        echo "vault.yml: FILE NOT FOUND"
+        echo "*** TRY ***"
+        echo -e "\$ chikuwansible-vault conf SUDO_PASS_FILE VAULT_PASS_FILE"
+        exit 1
+    fi
+    ansible-vault edit vault.yml --vault-password-file=vault.sh
+}
+
+if [ $# -eq 0 ] ;then
+    vault_help
+    exit 1
+fi
+if [ "$1" = "conf" ] ;then
+    if [ $# -lt 2 ] ;then
+        vault_conf -h
+        exit 1
+    fi
+    vault_conf ${@:2}
+    exit 0
+fi
+if [ "$1" = "edit" ] ;then
+    vault_edit ${@:2}
+    exit 0
+fi
+vault_help
