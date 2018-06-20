@@ -300,3 +300,30 @@ declare_python() {
 }
 
 declare_python $BASH_CONFIG_FILES/python/download.py
+
+regren() {
+    usage() {
+        echo "Usage: regren OLD_FILE_REGEXP NEW_FILE_REGEXP"
+        echo "Example:"
+        echo """
+  $ ls
+  hoge.foo.bar fuga.foo.bar
+  $ regren '(.*).foo.bar' '~/tmp/\$1.baz'
+  $ ls
+  $ ls ~/tmp/
+  hoge.baz fuga.baz
+"""
+    }
+
+    if [ "$1" = "-h" -o "$1" = "--help" -o $# -lt 2 ] ;then
+        usage
+    else
+        ls | rg "$1" > regren.tmp
+        ls | rg "$1" -r "$2" > regren2.tmp
+        cp -a regren.tmp regrenmv.tmp
+        sed -E "s/.*/mv/g" -i regrenmv.tmp
+        paste -d " " regrenmv.tmp regren.tmp regren2.tmp > regren3.tmp
+        source regren3.tmp
+        rm -rf regren*.tmp
+    fi
+}
