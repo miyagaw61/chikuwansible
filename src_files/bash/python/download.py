@@ -61,7 +61,7 @@ Example:
     for url in lines:
         url = url.split()[0]
         if "http" in url:
-            os.system("curl \"" + url + "\" -o result/" + tag_name + "/" + tag_name + "_" + str(i) + ".ts")
+            os.system("curl \"" + url + "\" -o result/" + tag_name + "/" + tag_name + "_" + str(i).zfill(4) + ".ts")
             i += 1
 
 def download(list_path):
@@ -122,7 +122,7 @@ great.png
                 dst_path = d_path + "/" + file_name
                 i = 2
                 while os.path.exists(dst_path):
-                    dst_path = format_replace(dst_path, "_" + str(i))
+                    dst_path = format_replace(dst_path, "_" + str(i).zfill(2))
                     i += 1
                 print("url:", url) #d
                 print("dst_path:", dst_path) #d
