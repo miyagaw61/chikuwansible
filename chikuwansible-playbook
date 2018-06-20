@@ -1,0 +1,2 @@
+#!/bin/bash
+ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh
