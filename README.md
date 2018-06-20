@@ -103,14 +103,30 @@ vim make_your_environment.yml
 * copy_sudoers.yml
     * copy my unique sudoers
 
-### Step3. Run Ansible-Playbook
+### Step3. Prepare password-file
 
 ```
-$ ansible-playbook make_my_environment.yml -K
+$ vim /path/to/.sudo_password.txt
+$ vim /path/to/.vault_password.txt
+```
+
+file name is any name.
+vault password is any password for ansible-vault.
+
+### Step4. initialize ansible-vault
+
+```
+$ ./chikuwansible-vault init /path/to/.sudo_password.txt /path/to/.vault_password.txt
+```
+
+### Step5. Run Ansible-Playbook
+
+```
+$ ./make_my_env
 ```
 
 OR
 
 ```
-$ ansible-playbook make_your_environment.yml -K
+$ ./chikuwansible-playbook make_your_env.yml
 ```
