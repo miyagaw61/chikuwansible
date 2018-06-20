@@ -1,1 +1,1 @@
-ansible-playbook $CHIKUWANSIBLE_PATH/make_my_env.yml -K
+ansible-playbook ./make_my_env.yml -K
