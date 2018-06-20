@@ -1,5 +1,8 @@
+- name: Switch python3
+  shell: bash -lc "pyenv global {{python3_pyenv_version}}"
+
 - name: Install "pipenv"
-  shell: "pip install pipenv"
+  shell: bash -lc "pip install pipenv"
 
 - name: Replace "ANSIBLE_PIPENV"
   replace:
