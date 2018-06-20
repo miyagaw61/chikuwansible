@@ -1,0 +1,3 @@
+#!/bin/bash
+set -eu
+./chikuwansible-playbook make_my_env.yml

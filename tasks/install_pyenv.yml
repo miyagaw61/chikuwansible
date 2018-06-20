@@ -36,12 +36,12 @@
     - xz-utils
     - tk-dev
 
-- name: "Install \"python{{python2_pyenv_version}}\""
-  shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
-
-- name: "Install \"python{{python3_pyenv_version}}\""
-  shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python3_pyenv_version}}"
-
-- name: Install pip3
-  apt:
-    name: python3-pip
+#- name: "Install \"python{{python2_pyenv_version}}\""
+#  shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
+#
+#- name: "Install \"python{{python3_pyenv_version}}\""
+#  shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python3_pyenv_version}}"
+#
+#- name: Install pip3
+#  apt:
+#    name: python3-pip

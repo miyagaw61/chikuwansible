@@ -16,19 +16,19 @@
       include: tasks/make_bashrc.yml
     - name: Install "pyenv"
       include: tasks/install_pyenv.yml
-    - name: Install "pip"
-      include: tasks/install_pip.yml
+    - name: Install pyenv versions
+      include: tasks/install_pyenv_versions.yml
     - name: Install "pipenv"
       include: tasks/install_pipenv.yml
     - name: Install Latest Golang
       include: tasks/install_latest_golang.yml
     - name: Install Rust
       include: tasks/install_rust.yml
-    - name: Install NeoVim
-      include: tasks/install_neovim.yml
     - name: Install Exa
       include: tasks/install_exa.yml
     - name: Install Rusgit
       include: tasks/install_rusgit.yml
+    - name: Install NeoVim
+      include: tasks/install_neovim.yml
     - name: Copy sudoers
       include: tasks/copy_sudoers.yml

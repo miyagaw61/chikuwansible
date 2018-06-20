@@ -1,0 +1,5 @@
+- name: Install Python2
+  shell: "pyenv install {{python2_pyenv_version}}"
+
+- name: Install Python3
+  shell: "pyenv install {{python3_pyenv_version}}"
