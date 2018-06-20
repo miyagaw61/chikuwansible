@@ -179,6 +179,13 @@ def download_mp4_from_ts(list_dir, tag_name):
     download_ts(list_dir, tag_name)
     ts2mp4(tag_name)
 
+def mkv2mp4(mkv):
+    """
+Usage: mkv2mp4 MKV_FILE
+    """
+    mp4 = mkv.replace(".mkv", ".mp4")
+    os.system("ffmpeg -i " + mkv + " -vcodec copy " + mp4)
+
 def create_args(argv):
     args = ""
     for arg in argv[2:]:
