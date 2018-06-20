@@ -35,7 +35,7 @@ vault_edit() {
         echo -e "\$ chikuwansible-vault conf SUDO_PASS_FILE VAULT_PASS_FILE"
         exit 1
     fi
-    ansible-vault edit vault.yml --vault-password-file=vault.sh
+    sudo ansible-vault edit vault.yml --vault-password-file=vault.sh
 }
 
 if [ $# -eq 0 ] ;then
@@ -51,7 +51,7 @@ if [ "$1" = "conf" ] ;then
     exit 0
 fi
 if [ "$1" = "edit" ] ;then
-    vault_edit ${@:2}
+    vault_edit
     exit 0
 fi
 vault_help
