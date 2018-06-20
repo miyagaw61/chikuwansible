@@ -82,6 +82,8 @@ vim make_your_environment.yml
     * install pip
 * install_pyenv.yml
     * install pyenv
+* install_pyenv_versions.yml
+    * install python2 and python3 for pyenv
 * install_pipenv.yml
     * install pipenv
 * install_latest_golang.yml
@@ -102,6 +104,8 @@ vim make_your_environment.yml
     * remake neovim files
 * copy_sudoers.yml
     * copy my unique sudoers
+* install_ffmpeg.yml
+    * install ffmpeg
 
 ### Step3. Prepare password-file
 
