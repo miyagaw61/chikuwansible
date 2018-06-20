@@ -2,33 +2,18 @@
   become: yes
   connection: local
   tasks:
-    - name: Include Variables From "editable.yml"
-      include_vars: vars/editable.yml
-    - name: Include Vriables From "uneditable.yml"
-      include_vars: vars/uneditable.yml
-    - name: Apt Update, Apt Upgrade
-      include: tasks/apt_update_upgrade.yml
-    - name: Install Packages From Apt
-      include: tasks/apt.yml
-    - name: Make Basic Directories
-      include: tasks/make_directories.yml
-    - name: Make My Bashrc
-      include: tasks/make_bashrc.yml
-    - name: Install "pyenv"
-      include: tasks/install_pyenv.yml
-    - name: Install pyenv versions
-      include: tasks/install_pyenv_versions.yml
-    - name: Install "pipenv"
-      include: tasks/install_pipenv.yml
-    - name: Install Latest Golang
-      include: tasks/install_latest_golang.yml
-    - name: Install Rust
-      include: tasks/install_rust.yml
-    - name: Install Exa
-      include: tasks/install_exa.yml
-    - name: Install Rusgit
-      include: tasks/install_rusgit.yml
-    - name: Install NeoVim
-      include: tasks/install_neovim.yml
-    - name: Copy sudoers
-      include: tasks/copy_sudoers.yml
+    - include_vars: vars/editable.yml
+    - include_vars: vars/uneditable.yml
+    - include: tasks/apt_update_upgrade.yml
+    - include: tasks/apt.yml
+    - include: tasks/make_directories.yml
+    - include: tasks/make_bashrc.yml
+    - include: tasks/install_pyenv.yml
+    - include: tasks/install_pyenv_versions.yml
+    - include: tasks/install_pipenv.yml
+    - include: tasks/install_latest_golang.yml
+    - include: tasks/install_rust.yml
+    - include: tasks/install_exa.yml
+    - include: tasks/install_rusgit.yml
+    - include: tasks/install_neovim.yml
+    - include: tasks/copy_sudoers.yml
