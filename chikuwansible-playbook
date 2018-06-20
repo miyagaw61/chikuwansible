@@ -3,4 +3,4 @@ if [ $# -eq 0 -o "$1" = "-h" -o "$1" = "--help" ] ;then
     echo "Usage: chikuwansible-playbook PLAYBOOK_FILE"
     exit 1
 fi
-sudo ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh
+ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh
