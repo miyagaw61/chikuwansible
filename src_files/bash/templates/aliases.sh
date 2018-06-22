@@ -14,6 +14,7 @@ alias pt="{{alias_pt}}"
 alias all-update="{{alias_all_update}}"
 alias op="{{alias_op}}"
 alias sd="{{alias_sd}}"
+alias ac="{{alias_ac}}"
 
 # alias ls
 # ====================================
@@ -46,3 +47,17 @@ alias g="{{alias_g}}"
 # alias dret
 # ====================================
 alias dret="{{alias_dret}}"
+
+# alias rusgit
+# ====================================
+alias add="{{alias_add}}"
+alias rem="{{alias_rem}}"
+alias ch="{{alias_ch}}"
+alias imp="{{alias_imp}}"
+alias sup="{{alias_sup}}"
+alias fix="{{alias_fix}}"
+alias use="{{alias_use}}"
+alias upd="{{alias_upd}}"
+alias allow="{{alias_allow}}"
+alias avoid="{{alias_avoid}}"
+alias refactor="{{alias_refactor}}"
