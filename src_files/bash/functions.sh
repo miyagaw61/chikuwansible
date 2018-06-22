@@ -327,3 +327,5 @@ regren() {
         rm -rf regren*.tmp
     fi
 }
+
+title() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
