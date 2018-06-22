@@ -3,6 +3,7 @@
 alias diff="{{alias_diff}}"
 alias objdump="{{alias_objdump}}"
 alias less="{{alias_less}}"
+alias rg="{{alias_rg}}"
 
 # be short
 # ====================================
