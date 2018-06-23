@@ -374,3 +374,40 @@ rgb() {
         rg "$1" -B$2 | sed -E "s@^\-\-@___________________________________________________________________________________________________________________________________\n===================================================================================================================================@g"
     fi
 }
+
+rep() {
+    if [ "$1" = "-h" ] ;then
+        echo "Usage: rep REGEXP [OPTIONS]"
+    else
+        regexp=$1
+        if [ $# -gt 1 ] ;then
+            rg "$regexp" "${@:2}" | sed -E "s@^\-\-\$@___________________________________________________________________________________________________________________________________\n===================================================================================================================================@g"
+        else
+            rg "$regexp"
+        fi
+    fi
+}
+
+frep() {
+    if [ "$1" = "-h" ] ;then
+        echo "Usage: frep REGEXP PATH [OPTIONS]"
+    else
+        regexp=$1
+        path=$2
+        source-highlight-esc.sh $path > .rgcl_highlighted.tmp
+        if [ $# -gt 2 ] ;then
+            if [ -s $path ] ;then
+                cat .rgcl_highlighted.tmp | rep "$regexp" "${@:3}"
+            else
+                cat $path | rg "$regexp" "${@:3}"
+            fi
+        else
+            if [ -s $path ] ;then
+                cat .rgcl_highlighted.tmp | rep "$regexp"
+            else
+                cat $path | rg "$regexp"
+            fi
+        fi
+        rm -rf .rgcl_highlighted.tmp
+    fi
+}
