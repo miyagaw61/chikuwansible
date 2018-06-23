@@ -234,3 +234,19 @@ function! Git_Log(...)
     endif
     execute cmd
 endfunction
+
+command! -nargs=? GitDiff call Git_Diff(<f-args>)
+function! Git_Diff(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    let path = expand(args[0])
+    execute "w"
+    execute "b bash"
+    if argc > 1
+        let options = args[1]
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . " " . options . "\")"
+    else
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . "\")"
+    endif
+    execute cmd
+endfunction
