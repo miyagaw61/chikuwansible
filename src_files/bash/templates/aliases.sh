@@ -73,3 +73,7 @@ alias d="d_func"
 alias e="e_func"
 alias a="a_func"
 alias da="da_func"
+
+# alias syntax-highlight
+# ====================================
+alias lcat="source-highlight-esc.sh"
