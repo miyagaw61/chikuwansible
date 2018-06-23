@@ -63,9 +63,14 @@ alias refactor="{{alias_refactor}}"
 
 # alias cd
 # ====================================
+alias da="pushd .. > /dev/null"
+
+# alias short func name
+# ====================================
 alias h="h_func"
 alias r="r_func"
 alias d="d_func"
 alias e="e_func"
 alias a="a_func"
-alias da="pushd .. > /dev/null"
+alias da="da_func"
+alias rl="rl_func"

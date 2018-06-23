@@ -243,7 +243,7 @@ a_func() {
     popd > /dev/null
 }
 
-da() {
+da_func() {
     d ..
 }
 
@@ -339,3 +339,11 @@ regren() {
 }
 
 title() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
+
+rl_func() {
+    if [ "$1" = "-h" ] ;then
+        echo "Usage: rl REGEXP"
+    else 
+        rg "$1" --color=ansi | less -iMR
+    fi
+}
