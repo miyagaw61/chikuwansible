@@ -78,4 +78,4 @@ nnoremap [Space]o :copen 30<CR>
 vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --output<CR>
 
 " grep
-nnoremap [Window]g :Frep %:p 
+nnoremap [Window]g :Frepl %:p 
