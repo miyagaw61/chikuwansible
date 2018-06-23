@@ -34,6 +34,15 @@ repobase(){
     fi
 }
 
+cdrepobase() {
+    if [ "$1" = "-h" ] ;then
+        echo "Usage: cdrepobase PATH"
+    else
+        base="$(repobase $1)"
+        cd $base
+    fi
+}
+
 nv(){
     if test $# -eq 0 ;then
         nvr -c "Denite buffer"
