@@ -347,6 +347,6 @@ rgl() {
     if [ "$1" = "-h" ] ;then
         echo "Usage: rgl REGEXP"
     else 
-        rg "$1" --color=ansi | less -iMR
+        rg "$1" --color=ansi ${@:2} | less -iMR
     fi
 }
