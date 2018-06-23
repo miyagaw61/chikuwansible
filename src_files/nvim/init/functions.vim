@@ -207,3 +207,14 @@ function! Git_Diff(...)
     endif
     execute cmd
 endfunction
+
+command! -nargs=? GitStatus call Git_Status(<f-args>)
+function! Git_Status(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    let path = expand(args[0])
+    execute "w"
+    execute "b bash"
+    let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit status --ls='exa  --group-directories-first'\")"
+    execute cmd
+endfunction

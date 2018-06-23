@@ -56,9 +56,11 @@ nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tm
 nnoremap [Space]rr :MyRustRun<Space>
 nnoremap [Space]r :MyRustRun<Space>
 nnoremap [Space]t  :Deol<CR>
-nnoremap [Space]ga :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "rusgit ac " . expand("#:p"))<CR>
+"nnoremap [Space]ga :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "rusgit ac " . expand("#:p"))<CR>
+nnoremap [Space]ga :!rusgit ac % -m 
 nnoremap [Space]gs :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "repobase; " . "rusgit status")<CR>
-nnoremap [Space]gt :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "gitmp")<CR>
+nnoremap [Space]gs :GitStatus %:p:h<CR>
+"nnoremap [Space]gt :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "gitmp")<CR>
 nnoremap [Space]gd :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "rusgit diff " . expand("#:p"))<CR>
 nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>
@@ -73,6 +75,10 @@ vnoremap <silent> <Space>a mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-
 "nnoremap [Space]n n
 "nnoremap [Space]p N
 nnoremap [Space]s mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-r>/<CR>N:%s/<C-r>///g<Left><Left>
+nnoremap [Space]o :copen 30<CR>
 
 "clipboard copy paste for tera term
 vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --output<CR>
+
+" grep
+nnoremap [Window]g :Frep  % <Left><Left><Left>

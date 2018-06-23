@@ -77,8 +77,8 @@ hook_add = '''
         \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
   "nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
   "nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
-  nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
-        \ -no-empty -mode=normal grep<CR>
+  "nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
+  "      \ -no-empty -mode=normal grep<CR>
   nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search
         \ -resume -mode=normal -refresh<CR>
   nnoremap <silent> ft :<C-u>Denite filetype<CR>
