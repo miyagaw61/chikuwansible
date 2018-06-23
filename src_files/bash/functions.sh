@@ -62,7 +62,8 @@ red(){ #この関数を作らないとゼロマッチの時に何も出力され
 #  READLINE_POINT=${#READLINE_LINE}
 #}
 #bind -x '"\C-j":readline_injection'
-h() {
+
+h_func() {
     cd $HOME/$1
 }
 h_completion() {
@@ -70,9 +71,10 @@ h_completion() {
     _get_comp_words_by_ref -n : cur prev cword
     COMPREPLY=( $(compgen -W "$(ls -F $HOME/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
 }
+complete -F h_completion h_func
 complete -F h_completion h
 
-r() {
+r_func() {
     cd $HOME/repos/$1
 }
 r_completion() {
@@ -80,9 +82,10 @@ r_completion() {
     _get_comp_words_by_ref -n : cur prev cword
     COMPREPLY=( $(compgen -W "$(ls -F $HOME/repos/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
 }
+complete -F r_completion r_func
 complete -F r_completion r
 
-e() {
+e_func() {
     cd $HOME/events/$1
 }
 e_completion() {
@@ -90,9 +93,10 @@ e_completion() {
     _get_comp_words_by_ref -n : cur prev cword
     COMPREPLY=( $(compgen -W "$(ls -F $HOME/events/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
 }
+complete -F e_completion e_func
 complete -F e_completion e
 
-d() {
+d_func() {
     cd $HOME/docs/$1
 }
 d_completion() {
@@ -100,6 +104,7 @@ d_completion() {
     _get_comp_words_by_ref -n : cur prev cword
     COMPREPLY=( $(compgen -W "$(ls -F $HOME/docs/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
 }
+complete -F d_completion d_func
 complete -F d_completion d
 
 malist() {
@@ -228,12 +233,13 @@ cargonew() {
     fi
 }
 
-d() {
+d_func() {
     pushd $1 > /dev/null
 }
+complete -o nospace -F _cd d_func
 complete -o nospace -F _cd d
 
-a() {
+a_func() {
     popd > /dev/null
 }
 
