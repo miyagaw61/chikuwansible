@@ -126,16 +126,13 @@ command! -nargs=? Frep call Frep_Func(<f-args>)
 function! Frep_Func(...)
     let args = split(a:000[0], " ")
     let argc = len(args)
-    "echom "args: " . join(args, " ")
-    "echom "argc: " . argc
-    let regexp = expand(args[0])
-    let path = expand(args[1])
+    let path = expand(args[0])
+    let regexp = join(args[1:], " ")
+    let regexp = substitute(regexp, '"', '\\"', "g")
     execute "w"
     execute "b bash"
     if argc > 2
-        let args2to = join(args[2:], " ")
-        "echom "args2to: " . args2to
-        let cmd = "call deol#send(\"frep " . regexp . " " . path . " " . args2to . "\")"
+        let cmd = "call deol#send(\"frep " . regexp . " " . path . "\")"
         execute cmd
     else
         let cmd = "call deol#send(\"frep " . regexp . " " . path . "\")"
@@ -147,16 +144,13 @@ command! -nargs=? Frepl call Frepl_Func(<f-args>)
 function! Frepl_Func(...)
     let args = split(a:000[0], " ")
     let argc = len(args)
-    "echom "args: " . join(args, " ")
-    "echom "argc: " . argc
-    let regexp = expand(args[0])
-    let path = expand(args[1])
+    let path = expand(args[0])
+    let regexp = join(args[1:], " ")
+    let regexp = substitute(regexp, '"', '\\"', "g")
     execute "w"
     execute "b bash"
     if argc > 2
-        let args2to = join(args[2:], " ")
-        "echom "args2to: " . args2to
-        let cmd = "call deol#send(\"frepl " . regexp . " " . path . " " . args2to . "\")"
+        let cmd = "call deol#send(\"frepl " . regexp . " " . path . "\")"
         execute cmd
     else
         let cmd = "call deol#send(\"frepl " . regexp . " " . path . "\")"
