@@ -55,8 +55,8 @@ nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tm
 nnoremap [Space]rr :MyRustRun<Space>
 nnoremap [Space]r :MyRustRun<Space>
 nnoremap [Space]t  :Deol<CR>
-nnoremap [Space]ga :!rusgit add %<CR>
-nnoremap [Space]gc :!rusgit ac % -m 
+nnoremap [Space]ga :!rusgit add %:p<CR>
+nnoremap [Space]gc :!rusgit ac %:p -m 
 nnoremap [Space]gs :GitStatus %:p<CR>
 nnoremap [Space]gl :GitLog %:p 
 nnoremap [Space]gd :GitDiff %:p 
@@ -78,4 +78,4 @@ nnoremap [Space]o :copen 30<CR>
 vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --output<CR>
 
 " grep
-nnoremap [Window]g :Frep  % <Left><Left><Left>
+nnoremap [Window]g :Frep  %:p <Left><Left><Left><Left><Left>
