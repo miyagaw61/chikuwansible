@@ -57,8 +57,8 @@ nnoremap [Space]r :MyRustRun<Space>
 nnoremap [Space]t  :Deol<CR>
 nnoremap [Space]ga :!rusgit add %<CR>
 nnoremap [Space]gc :!rusgit ac % -m 
-nnoremap [Space]gs :GitStatus %:p:h<CR>
-nnoremap [Space]gl :GitLog %:p:h 
+nnoremap [Space]gs :GitStatus %:p<CR>
+nnoremap [Space]gl :GitLog %:p 
 nnoremap [Space]gd :GitDiff %:p 
 nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>
