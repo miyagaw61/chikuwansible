@@ -67,7 +67,6 @@ browser: "chrome"
 alias_diff: "diff -a -r -u -p"
 alias_objdump: "objdump -M intel"
 alias_less: "less -iMSR"
-alias_rg: "rg --color=ansi"
 #### be short ####
 alias_pbcopy: "xsel --clipboard --input"
 alias_pbpaste: "xsel --clipboard --output"
