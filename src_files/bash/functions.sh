@@ -343,9 +343,9 @@ regren() {
 
 title() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
-rl_func() {
+rgl() {
     if [ "$1" = "-h" ] ;then
-        echo "Usage: rl REGEXP"
+        echo "Usage: rgl REGEXP"
     else 
         rg "$1" --color=ansi | less -iMR
     fi
