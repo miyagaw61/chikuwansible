@@ -332,8 +332,11 @@ regren() {
         ls | rg "$1" -r "$2" > regren2.tmp
         cp -a regren.tmp regrenmv.tmp
         sed -E "s/.*/mv/g" -i regrenmv.tmp
-        paste -d " " regrenmv.tmp regren.tmp regren2.tmp > regren3.tmp
-        source regren3.tmp
+        sed -E "s/(.*)/\"\1\"/g" -i regren.tmp
+        sed -E "s/(.*)/\"\1\"/g" -i regren2.tmp
+        paste -d " " regrenmv.tmp regren.tmp > regrenmv2.tmp
+        paste -d " " regrenmv2.tmp regren2.tmp > regrenmv3.tmp
+        source regrenmv3.tmp
         rm -rf regren*.tmp
     fi
 }
