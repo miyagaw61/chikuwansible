@@ -60,11 +60,10 @@ nnoremap [Space]t  :Deol<CR>
 nnoremap [Space]ga :!rusgit ac % -m 
 nnoremap [Space]gs :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "repobase; " . "rusgit status")<CR>
 nnoremap [Space]gs :GitStatus %:p:h<CR>
-"nnoremap [Space]gt :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "gitmp")<CR>
+nnoremap [Space]gl :GitLog %:p:h 
 nnoremap [Space]gd :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "rusgit diff " . expand("#:p"))<CR>
 nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>
-
 
 "test
 function! s:set_vsearch()

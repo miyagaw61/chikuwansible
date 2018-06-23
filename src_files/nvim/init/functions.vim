@@ -218,3 +218,19 @@ function! Git_Status(...)
     let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit status --ls='exa  --group-directories-first'\")"
     execute cmd
 endfunction
+
+command! -nargs=? GitLog call Git_Log(<f-args>)
+function! Git_Log(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    let path = expand(args[0])
+    execute "w"
+    execute "b bash"
+    if argc > 1
+        let n = args[1]
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log " . n . "\")"
+    else
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log \")"
+    endif
+    execute cmd
+endfunction
