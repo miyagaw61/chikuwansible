@@ -62,7 +62,7 @@ hook_add = '''
         \ register neoyank<CR>
   nnoremap <silent> [Window]<Space>
         \ :<C-u>Denite file_rec:~/.vim/rc<CR>
-  nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
+  nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=40
         \ line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
         \ -auto-highlight -mode=normal line<CR>
@@ -322,12 +322,14 @@ hook_source = '''
 
 [[plugins]]
 repo = 'rking/ag.vim'
-#hook_source = '''
+#hook_add = '''
 #    let g:ag_prg="/usr/bin/ag --vimgrep"
 #'''
 
 [[plugins]]
 repo = 'jremmen/vim-ripgrep'
-#hook_source = '''
-#let g:rg_binary='/home/miyagaw61/.cargo/bin/rg'
-#'''
+hook_add = '''
+    "let g:rg_binary='/home/miyagaw61/.cargo/bin/rg'
+    let g:ag_qhandler="copen 30"
+    let g:ag_highlight=1
+'''
