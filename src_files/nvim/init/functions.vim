@@ -59,3 +59,8 @@ function! My_rust_run(...)
     "normal icd $(cat /tmp/deol_cd.tmp); cargo run<Space>"
     execute "call deol#send(\"cd \" . expand(\"#:p:h\") . \"; \" . \"cargo run " . join(a:000, " ") . "\")"
 endfunction
+
+command! -nargs=? MyAg call My_Ag(<f-args>)
+function! My_Ag(...)
+    execute "Ag " . join(a:000, " ") . " %"
+endfunction
