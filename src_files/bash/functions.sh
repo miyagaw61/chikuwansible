@@ -371,21 +371,21 @@ frep() {
     else
         regexp=$1
         path=$2
-        source-highlight-esc.sh $path > .rgcl_highlighted.tmp
+        source-highlight-esc.sh $path > .frep_$path
         if [ $# -gt 2 ] ;then
-            if [ -s $path ] ;then
-                cat .rgcl_highlighted.tmp | rep "$regexp" "${@:3}"
+            if [ -s .frep_$path ] ;then
+                cat .frep_$path | rep "$regexp" "${@:3}"
             else
                 cat $path | rg "$regexp" "${@:3}"
             fi
         else
-            if [ -s $path ] ;then
-                cat .rgcl_highlighted.tmp | rep "$regexp"
+            if [ -s .frep_$path ] ;then
+                cat .frep_$path | rep "$regexp"
             else
                 cat $path | rg "$regexp"
             fi
         fi
-        rm -rf .rgcl_highlighted.tmp
+        rm -rf .frep_$path
     fi
 }
 
