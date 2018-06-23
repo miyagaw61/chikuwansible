@@ -52,13 +52,11 @@ vnoremap <C-l> <Esc>
 
 "terminal mapping
 nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tmp/deol_cd.tmp);<Space>
-"nnoremap [Space]rr :w<CR>:!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tmp/deol_cd.tmp); cargo run<Space>
 nnoremap [Space]rr :MyRustRun<Space>
 nnoremap [Space]r :MyRustRun<Space>
 nnoremap [Space]t  :Deol<CR>
-"nnoremap [Space]ga :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "rusgit ac " . expand("#:p"))<CR>
-nnoremap [Space]ga :!rusgit ac % -m 
-nnoremap [Space]gs :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "repobase; " . "rusgit status")<CR>
+nnoremap [Space]ga :!rusgit add %<CR>
+nnoremap [Space]gc :!rusgit ac % -m 
 nnoremap [Space]gs :GitStatus %:p:h<CR>
 nnoremap [Space]gl :GitLog %:p:h 
 nnoremap [Space]gd :b bash<CR>:call deol#send("cd " . expand("#:p:h") . "; " . "rusgit diff " . expand("#:p"))<CR>
