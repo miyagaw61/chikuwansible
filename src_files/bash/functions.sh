@@ -379,3 +379,19 @@ frep() {
         rm -rf .rgcl_highlighted.tmp
     fi
 }
+
+repl() {
+    if [ "$1" = "-h" ] ;then
+        echo "Usage: repl REGEXP [OPTIONS]"
+    else
+        rep "$@" --color=ansi | less -iMSR
+    fi
+}
+
+frepl() {
+    if [ "$1" = "-h" ] ;then
+        echo "Usage: frepl REGEXP PATH [OPTIONS]"
+    else
+        frep "$@" --color=ansi | less -iMSR
+    fi
+}

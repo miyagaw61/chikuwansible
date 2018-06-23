@@ -119,3 +119,91 @@ command! -nargs=? Refactor call Refactor_Func(<f-args>)
 function! Refactor_Func(...)
     execute "!rusgit ac % -R " . join(a:000, " ")
 endfunction
+
+" GREP
+" ====
+command! -nargs=? Frep call Frep_Func(<f-args>)
+function! Frep_Func(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    "echom "args: " . join(args, " ")
+    "echom "argc: " . argc
+    let regexp = expand(args[0])
+    let path = expand(args[1])
+    execute "w"
+    execute "b bash"
+    if argc > 2
+        let args2to = join(args[2:], " ")
+        "echom "args2to: " . args2to
+        let cmd = "call deol#send(\"frep " . regexp . " " . path . " " . args2to . "\")"
+        execute cmd
+    else
+        let cmd = "call deol#send(\"frep " . regexp . " " . path . "\")"
+        execute cmd
+    endif
+endfunction
+
+command! -nargs=? Frepl call Frepl_Func(<f-args>)
+function! Frepl_Func(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    "echom "args: " . join(args, " ")
+    "echom "argc: " . argc
+    let regexp = expand(args[0])
+    let path = expand(args[1])
+    execute "w"
+    execute "b bash"
+    if argc > 2
+        let args2to = join(args[2:], " ")
+        "echom "args2to: " . args2to
+        let cmd = "call deol#send(\"frepl " . regexp . " " . path . " " . args2to . "\")"
+        execute cmd
+    else
+        let cmd = "call deol#send(\"frepl " . regexp . " " . path . "\")"
+        execute cmd
+    endif
+    normal i
+endfunction
+
+command! -nargs=? GitStatus call Git_Status(<f-args>)
+function! Git_Status(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    let path = expand(args[0])
+    execute "w"
+    execute "b bash"
+    let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit status --ls='exa  --group-directories-first'\")"
+    execute cmd
+endfunction
+
+command! -nargs=? GitLog call Git_Log(<f-args>)
+function! Git_Log(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    let path = expand(args[0])
+    execute "w"
+    execute "b bash"
+    if argc > 1
+        let n = args[1]
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log " . n . "\")"
+    else
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log \")"
+    endif
+    execute cmd
+endfunction
+
+command! -nargs=? GitDiff call Git_Diff(<f-args>)
+function! Git_Diff(...)
+    let args = split(a:000[0], " ")
+    let argc = len(args)
+    let path = expand(args[0])
+    execute "w"
+    execute "b bash"
+    if argc > 1
+        let options = args[1]
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . " " . options . "\")"
+    else
+        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . "\")"
+    endif
+    execute cmd
+endfunction
