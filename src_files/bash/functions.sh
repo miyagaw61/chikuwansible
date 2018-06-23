@@ -371,21 +371,26 @@ frep() {
     else
         regexp=$1
         path=$2
-        source-highlight-esc.sh $path > .frep_$path
+        before_path="$(echo $path | sed -E "s@(.*/)([^/]*)@\1@g")"
+        after_path="$(echo $path | sed -E "s@(.*/)([^/]*)@\2@g")"
+        tmp_file=${before_path}/frep_${after_path}
+        source-highlight-esc.sh $path > $tmp_file 2> /dev/null
         if [ $# -gt 2 ] ;then
-            if [ -s .frep_$path ] ;then
-                cat .frep_$path | rep "$regexp" "${@:3}"
+            if [ -s $tmp_file ] ;then
+                cat $path | rep "$regexp" "${@:3}" > $tmp_file
+                source-highlight-esc.sh $tmp_file
             else
                 cat $path | rg "$regexp" "${@:3}"
             fi
         else
-            if [ -s .frep_$path ] ;then
-                cat .frep_$path | rep "$regexp"
+            if [ -s $tmp_file ] ;then
+                cat $path | rep "$regexp" "${@:3}" > $tmp_file
+                source-highlight-esc.sh $tmp_file
             else
                 cat $path | rg "$regexp"
             fi
         fi
-        rm -rf .frep_$path
+        rm -rf $tmp_file
     fi
 }
 
