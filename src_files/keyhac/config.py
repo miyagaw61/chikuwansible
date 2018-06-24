@@ -355,6 +355,8 @@ def configure(keymap):
             set_class_u1i_cmd(insert_bold, "B")
             set_class_u1i_cmd(insert_ul, "UL")
             set_class_u1i_cmd(insert_li, "LI")
+            set_class_u1i_cmd(lambda:put_strln("https://qiita.com/search?utf8=%E2%9C%93&sort=&q=user%3Amiyagaw61+"), "QI")
+            set_class_u1i_cmd(lambda:put_strln("https://qiita.com/drafts/new"), "NQI")
             set_class_u1i_cmd(lambda:put_strln("```\n"), "KD")
             set_class_u1i_cmd(lambda:put_strln("```Rust\n"), "KR")
             set_class_u1i_cmd(lambda:put_strln("```Bash\n"), "KB")
