@@ -367,10 +367,10 @@ rep() {
 
 frep() {
     if [ "$1" = "-h" ] ;then
-        echo "Usage: frep REGEXP PATH [OPTIONS]"
+        echo "Usage: frep PATH REGEXP [OPTIONS]"
     else
-        regexp=$1
-        path=$2
+        regexp=$2
+        path=$1
         before_path="$(echo $path | sed -E "s@(.*/)([^/]*)@\1@g")"
         after_path="$(echo $path | sed -E "s@(.*/)([^/]*)@\2@g")"
         tmp_file=${before_path}/frep_${after_path}
@@ -404,7 +404,7 @@ repl() {
 
 frepl() {
     if [ "$1" = "-h" ] ;then
-        echo "Usage: frepl REGEXP PATH [OPTIONS]"
+        echo "Usage: frepl PATH REGEXP [OPTIONS]"
     else
         frep "$@" --color=ansi | less -iMSR
     fi

@@ -132,10 +132,10 @@ function! Frep_Func(...)
     execute "w"
     execute "b bash"
     if argc > 2
-        let cmd = "call deol#send(\"frep " . regexp . " " . path . "\")"
+        let cmd = "call deol#send(\"frep " . path . " " . regexp . "\")"
         execute cmd
     else
-        let cmd = "call deol#send(\"frep " . regexp . " " . path . "\")"
+        let cmd = "call deol#send(\"frep " . path . " " . regexp . "\")"
         execute cmd
     endif
 endfunction
@@ -150,10 +150,10 @@ function! Frepl_Func(...)
     execute "w"
     execute "b bash"
     if argc > 2
-        let cmd = "call deol#send(\"frepl " . regexp . " " . path . "\")"
+        let cmd = "call deol#send(\"frepl " . path . " " . regexp . "\")"
         execute cmd
     else
-        let cmd = "call deol#send(\"frepl " . regexp . " " . path . "\")"
+        let cmd = "call deol#send(\"frepl " . path . " " . regexp . "\")"
         execute cmd
     endif
     normal i
