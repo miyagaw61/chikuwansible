@@ -171,9 +171,13 @@ Example:
     for x in res:
         f.write(x + "\n")
     f.close()
-    os.system("ffmpeg -f concat -safe 0 -i ts_files.tmp -c copy result/" + tag_name + ".mp4")
-    os.system("rm -rf result/" + tag_name)
-    os.system("rm -rf ts_files.tmp")
+    cmd = "sudo ffmpeg -f concat -safe 0 -i ts_files.tmp -c copy -bsf aac_adtstoasc result/" + tag_name + ".mp4"
+    print(cmd)
+    os.system(cmd)
+    cmd = "sudo rm -rf result/" + tag_name
+    cmd += " && sudo rm -rf ts_files.tmp"
+    print("if you succeeded, try:")
+    print(cmd)
 
 def download_mp4_from_ts(list_dir, tag_name):
     download_ts(list_dir, tag_name)
