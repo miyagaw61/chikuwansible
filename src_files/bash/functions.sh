@@ -383,14 +383,14 @@ frep() {
                 cat $path | rep "$regexp" "${@:3}" > $tmp_file
                 source-highlight-esc.sh $tmp_file
             else
-                cat $path | rg "$regexp" "${@:3}"
+                cat $path | rep "$regexp" "${@:3}"
             fi
         else
             if [ -s $tmp_file ] ;then
                 cat $path | rep "$regexp" "${@:3}" > $tmp_file
                 source-highlight-esc.sh $tmp_file
             else
-                cat $path | rg "$regexp"
+                cat $path | rep "$regexp"
             fi
         fi
         rm -rf $tmp_file
