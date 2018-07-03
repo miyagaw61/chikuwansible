@@ -188,7 +188,9 @@ def mkv2mp4(mkv):
 Usage: mkv2mp4 MKV_FILE
     """
     mp4 = mkv.replace(".mkv", ".mp4")
-    os.system("ffmpeg -i " + mkv + " -vcodec copy " + mp4)
+    cmd = "sudo ffmpeg -i " + mkv + " -vcodec copy -strict -2 " + mp4
+    print(cmd)
+    os.system(cmd)
 
 def create_args(argv):
     args = ""
