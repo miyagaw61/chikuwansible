@@ -380,15 +380,13 @@ frep() {
         source-highlight-esc.sh $path > $tmp_file 2> /dev/null
         if [ $# -gt 2 ] ;then
             if [ -s $tmp_file ] ;then
-                cat $path | rep "$regexp" "${@:3}" > $tmp_file
-                source-highlight-esc.sh $tmp_file
+                source-highlight-esc.sh $path | rep "$regexp" "${@:3}"
             else
                 cat $path | rep "$regexp" "${@:3}"
             fi
         else
             if [ -s $tmp_file ] ;then
-                cat $path | rep "$regexp" "${@:3}" > $tmp_file
-                source-highlight-esc.sh $tmp_file
+                source-highlight-esc.sh $path | rep "$regexp"
             else
                 cat $path | rep "$regexp"
             fi
