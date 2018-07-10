@@ -412,6 +412,12 @@ def configure(keymap):
                 for x in ["A", "E", "U", "F", "B", "S-F", "S-B"]:
                     keymap_class["C-" + x] = "C-" + x
 
+        def config_vim(keymap_class):
+            keymap_class["U2-J"] = escape
+            keymap_class["U2-I"] = insert_jp
+            keymap_class["U2-O"] = o_jp
+            keymap_class["U1-SEMICOLON"] = "C-F", "BackSlash"
+
         def n_slack(keymap_class):
             keymap_class["U1-N"] = "S-A-Down"
             keymap_class["U1-U2-N"] = "S-A-Up"
@@ -568,9 +574,7 @@ def configure(keymap):
         keymap_cmd = keymap.defineWindowKeymap(exe_name="cmd.exe")
         initialize_keybind(keymap_cmd)
         config_terminal(keymap_cmd)
-        keymap_cmd["U2-J"] = escape
-        keymap_cmd["U2-I"] = insert_jp
-        keymap_cmd["U2-O"] = o_jp
+        config_vim(keymap_cmd)
 
         def for_python():
             down_key("SHIFT")
@@ -594,18 +598,14 @@ def configure(keymap):
         keymap_powershell = keymap.defineWindowKeymap(exe_name="powershell.exe")
         initialize_keybind(keymap_powershell)
         #config_terminal(keymap_powershell)
-        keymap_powershell["U2-J"] = escape
-        keymap_powershell["U2-I"] = insert_jp
-        keymap_powershell["U2-O"] = o_jp
+        config_vim(keymap_powershell)
 
     # Config For WSL
     if 1:
         keymap_wsl = keymap.defineWindowKeymap(exe_name="ubuntu1604.exe")
         initialize_keybind(keymap_wsl)
-        #config_terminal(keymap_wsl)
-        keymap_wsl["U2-J"] = escape
-        keymap_wsl["U2-I"] = insert_jp
-        keymap_wsl["U2-O"] = o_jp
+        config_terminal(keymap_wsl)
+        config_vim(keymap_wsl)
 
     # Config For Explorer
     if 1:
