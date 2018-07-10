@@ -598,6 +598,15 @@ def configure(keymap):
         keymap_powershell["U2-I"] = insert_jp
         keymap_powershell["U2-O"] = o_jp
 
+    # Config For WSL
+    if 1:
+        keymap_wsl = keymap.defineWindowKeymap(exe_name="ubuntu1604.exe")
+        initialize_keybind(keymap_wsl)
+        #config_terminal(keymap_wsl)
+        keymap_wsl["U2-J"] = escape
+        keymap_wsl["U2-I"] = insert_jp
+        keymap_wsl["U2-O"] = o_jp
+
     # Config For Explorer
     if 1:
         def open_vim():
