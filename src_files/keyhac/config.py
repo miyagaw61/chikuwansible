@@ -590,7 +590,7 @@ def configure(keymap):
         keymap_cmd["U2-X"] = hoge
 
     # Config For PowerShell
-    if 0:
+    if 1:
         keymap_powershell = keymap.defineWindowKeymap(exe_name="powershell.exe")
         initialize_keybind(keymap_powershell)
         #config_terminal(keymap_powershell)
