@@ -64,6 +64,7 @@ nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>
 
 "cursor moving
+inoremap <C-f>\ <Esc><Right>;i
 inoremap <C-a>a <Esc><Right>fAi
 inoremap <C-1>B <Esc><Right>fBi
 inoremap <C-1>C <Esc><Right>fCi
