@@ -63,6 +63,66 @@ nnoremap [Space]gd :GitDiff %:p
 nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>
 
+"cursor moving
+inoremap <C-a>a <Esc><Right>fAi
+inoremap <C-1>B <Esc><Right>fBi
+inoremap <C-1>C <Esc><Right>fCi
+inoremap <C-1>D <Esc><Right>fDi
+inoremap <C-1>E <Esc><Right>fEi
+inoremap <C-1>F <Esc><Right>fFi
+inoremap <C-1>G <Esc><Right>fGi
+inoremap <C-1>H <Esc><Right>fHi
+inoremap <C-1>I <Esc><Right>fIi
+inoremap <C-1>J <Esc><Right>fJi
+inoremap <C-1>K <Esc><Right>fKi
+inoremap <C-1>L <Esc><Right>fLi
+inoremap <C-1>M <Esc><Right>fMi
+inoremap <C-1>N <Esc><Right>fNi
+inoremap <C-1>O <Esc><Right>fOi
+inoremap <C-1>P <Esc><Right>fPi
+inoremap <C-1>Q <Esc><Right>fQi
+inoremap <C-1>R <Esc><Right>fRi
+inoremap <C-1>S <Esc><Right>fSi
+inoremap <C-1>T <Esc><Right>fTi
+inoremap <C-1>U <Esc><Right>fUi
+inoremap <C-1>V <Esc><Right>fVi
+inoremap <C-1>W <Esc><Right>fWi
+inoremap <C-1>X <Esc><Right>fXi
+inoremap <C-1>Y <Esc><Right>fYi
+inoremap <C-1>Z <Esc><Right>fZi
+"inoremap <C-f>[ <Esc><Right>f[i
+"inoremap <C-f>\ <Esc><Right>f\i
+"inoremap <C-f>] <Esc><Right>f]i
+"inoremap <C-f>^ <Esc><Right>f^i
+"inoremap <C-f>_ <Esc><Right>f_i
+"inoremap <C-f>` <Esc><Right>f`i
+inoremap <C-f>a <Esc><Right>fai
+inoremap <C-f>b <Esc><Right>fbi
+inoremap <C-f>c <Esc><Right>fci
+inoremap <C-f>d <Esc><Right>fdi
+inoremap <C-f>e <Esc><Right>fei
+inoremap <C-f>f <Esc><Right>ffi
+inoremap <C-f>g <Esc><Right>fgi
+inoremap <C-f>h <Esc><Right>fhi
+inoremap <C-f>i <Esc><Right>fii
+inoremap <C-f>j <Esc><Right>fji
+inoremap <C-f>k <Esc><Right>fki
+inoremap <C-f>l <Esc><Right>fli
+inoremap <C-f>m <Esc><Right>fmi
+inoremap <C-f>n <Esc><Right>fni
+inoremap <C-f>o <Esc><Right>foi
+inoremap <C-f>p <Esc><Right>fpi
+inoremap <C-f>q <Esc><Right>fqi
+inoremap <C-f>r <Esc><Right>fri
+inoremap <C-f>s <Esc><Right>fsi
+inoremap <C-f>t <Esc><Right>fti
+inoremap <C-f>u <Esc><Right>fui
+inoremap <C-f>v <Esc><Right>fvi
+inoremap <C-f>w <Esc><Right>fwi
+inoremap <C-f>x <Esc><Right>fxi
+inoremap <C-f>y <Esc><Right>fyi
+inoremap <C-f>z <Esc><Right>fzi
+
 "test
 function! s:set_vsearch()
   silent normal gv"zy
