@@ -410,3 +410,17 @@ frepl() {
         frep "$@" --color=ansi | less -iMSR
     fi
 }
+
+mysync() {
+    if [ "$1" = "-h" ] ;then
+        echo "mysync - rsync from host to remote & rsync from remote to host"
+        echo "Usage: mysync SSH_INFO DIRECTORY_PATH"
+    else
+        if [ $# -eq 2 ] ;then
+            ssh_info="$1"
+            directory_path="$2"
+            rsync -auv ${directory_path}/* ${ssh_info}:${directory_path}
+            rsync -auv ${ssh_info}:${directory_path}/* ${directory_path}
+        fi
+    fi
+}
