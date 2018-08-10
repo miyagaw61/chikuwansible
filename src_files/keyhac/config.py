@@ -263,8 +263,8 @@ def configure(keymap):
             keymap_class["U2-B"] = "C-Left"
             keymap_class["A-A"] = "S-Home"
             keymap_class["A-E"] = "S-End"
-            keymap_class["A-F"] = "S-Right"
-            keymap_class["A-B"] = "S-Left"
+            #keymap_class["A-F"] = "S-Right"
+            #keymap_class["A-B"] = "S-Left"
 
         def initialize_keybind_jump(keymap_class):
             """
