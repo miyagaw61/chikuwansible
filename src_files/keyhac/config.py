@@ -8,7 +8,8 @@ from keyhac import *
 
 from pyautogui import *
 
-hhkb_flag = True
+hhkb_flag = False
+jp_flag = True
 
 def configure(keymap):
     # --------------------------------------------------------------------
@@ -253,7 +254,7 @@ def configure(keymap):
             keymap_class["U1-U"] = "S-Home", "Delete"
             keymap_class["U1-F"] = "Right"
             keymap_class["U1-B"] = "Left"
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-A"] = "Home"
                 keymap_class["C-E"] = "End"
                 keymap_class["C-U"] = "S-Home", "Delete"
@@ -281,7 +282,7 @@ def configure(keymap):
             """
             keymap_class["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
             set_class_u1j_cmd = make_set_cmd(keymap_class, "U1-J")
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
                 set_class_u1j_cmd = make_set_cmd(keymap_class, "C-J")
             set_class_u1j_cmd(lambda:jump_google_tab_nr(2), "TY")
@@ -305,7 +306,7 @@ def configure(keymap):
             keymap_class["U1-OpenBracket"] = lambda:put_str("[")
             keymap_class["U1-CloseBracket"] = lambda:put_str("]")
             keymap_class["U1-Quote"] = lambda:put_str("`")
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-7"] = lambda:put_function_key("F7")
                 keymap_class["C-8"] = lambda:put_function_key("F8")
                 keymap_class["C-0"] = lambda:put_function_key("F10")
@@ -331,7 +332,7 @@ def configure(keymap):
             keymap_class["U1-Space"] = keymap.defineMultiStrokeKeymap("U1-Space")
             keymap_class["U1-Space"]["E"] = keymap.defineMultiStrokeKeymap("E")
             keymap_class["U1-Space"]["E"]["N"] = translate
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-Space"] = keymap.defineMultiStrokeKeymap("C-Space")
                 keymap_class["C-Space"]["E"] = keymap.defineMultiStrokeKeymap("E")
                 keymap_class["C-Space"]["E"]["N"] = translate
@@ -340,7 +341,7 @@ def configure(keymap):
         def initialize_keybind_u1i(keymap_class):
             keymap_class["U1-I"] = keymap.defineMultiStrokeKeymap("U1-I")
             set_class_u1i_cmd = make_set_cmd(keymap_class, "U1-I")
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-I"] = keymap.defineMultiStrokeKeymap("C-I")
                 set_class_u1i_cmd = make_set_cmd(keymap_class, "C-I")
             set_class_u1i_cmd(lambda:put_str(os.getenv("NAME", "<<<Please Export $NAME>>>")), "NAME")
@@ -368,7 +369,7 @@ def configure(keymap):
             keymap_class["U2-J"] = "PageDown"
             keymap_class["U2-K"] = "PageUp"
             #keymap_class["U2-Q"] = "A-F4"
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["U2-F"] = "C-F"
 
         def initialize_keybind_u1u2(keymap_class):
@@ -377,8 +378,27 @@ def configure(keymap):
         def initialize_keybind_win(keymap_class):
             keymap_class["Win-Tab"] = "Win-Tab"
 
+        def initialize_keybind_jp2en(keymap_class):
+            keymap_class["D-240"] = lambda:put_str("~")
+            keymap_class["S-Semicolon"] = lambda:put_str(":")
+            keymap_class["S-Minus"] = lambda:put_str("_")
+            keymap_class["S-BackSlash"] = lambda:put_str("|")
+            keymap_class["Yen"] = "S-Caret"
+            keymap_class["S-Yen"] = lambda:put_str("`")
+            keymap_class["Atmark"] = "OpenBracket"
+            keymap_class["S-Atmark"] = lambda:put_str("{")
+            keymap_class["OpenBracket"] = "CloseBracket"
+            keymap_class["S-OpenBracket"] = lambda:put_str("}")
+            keymap_class["Colon"] = lambda:put_str("'")
+            keymap_class["CloseBracket"] = lambda:put_str("=")
+            keymap_class["S-CloseBracket"] = lambda:put_str("+")
+            keymap_class["Caret"] = lambda:put_str("=")
+            keymap_class["S-Caret"] = lambda:put_str("+")
+            keymap_class["S-7"] = lambda:put_str("&")
+            keymap_class["S-Colon"] = lambda:put_str("\"")
+
         def initialize_keybind(keymap_class):
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 initialize_alttab(keymap_class)
                 initialize_jpen(keymap_class)
             else:
@@ -393,9 +413,12 @@ def configure(keymap):
             initialize_keybind_u2(      keymap_class )
             #initialize_keybind_u1u2(    keymap_class )
             initialize_keybind_win(     keymap_class )
-            keymap_class["Quote"] = lambda:put_str("'")
             keymap_class["BackSlash"] = lambda:put_str("\\")
             keymap_class["U2-Space"] = space_4
+            if jp_flag:
+                initialize_keybind_jp2en(keymap_class)
+            else:
+                keymap_class["Quote"] = lambda:put_str("'")
 
         def get_keymap(exe_name):
             return keymap.defineWindowKeymap(exe_name=exe_name)
@@ -408,7 +431,7 @@ def configure(keymap):
         def config_terminal(keymap_class):
             for x in ["A", "E", "U", "F", "B", "S-F", "S-B"]:
                 keymap_class["U1-" + x] = "C-" + x
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 for x in ["A", "E", "U", "F", "B", "S-F", "S-B"]:
                     keymap_class["C-" + x] = "C-" + x
 
@@ -421,14 +444,14 @@ def configure(keymap):
         def n_slack(keymap_class):
             keymap_class["U1-N"] = "S-A-Down"
             keymap_class["U1-U2-N"] = "S-A-Up"
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-N"] = "S-A-Down"
                 keymap_class["C-U2-N"] = "S-A-Up"
         
         def n_notepad(keymap_class):
             keymap_class["U1-N"] = "Down"
             keymap_class["U1-U2-N"] = "Up"
-            if hhkb_flag:
+            if hhkb_flag or jp_flag:
                 keymap_class["C-N"] = "Down"
                 keymap_class["C-U2-N"] = "Up"
 
@@ -452,7 +475,8 @@ def configure(keymap):
     # Config For All
     if 1:
         if not hhkb_flag:
-            keymap.defineModifier("CapsLock", "User1")
+            if not jp_flag:
+                keymap.defineModifier("CapsLock", "User1")
         keymap.defineModifier("Tab", "User2")
 
     # Config For Global
@@ -511,7 +535,7 @@ def configure(keymap):
         keymap_chrome["U1-L"] = "A-Right"
         keymap_chrome["U1-PageUp"] = "C-PageUp"
         keymap_chrome["U1-PageDown"] = "C-PageDown"
-        if hhkb_flag:
+        if hhkb_flag or jp_flag:
             keymap_chrome["C-H"] = "A-Left"
             keymap_chrome["C-L"] = "A-Right"
             keymap_chrome["C-PageUp"] = "C-PageUp"
@@ -530,7 +554,7 @@ def configure(keymap):
         # Config For Jump
         keymap_chrome["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
         set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "U1-J")
-        if hhkb_flag:
+        if hhkb_flag or jp_flag:
             keymap_chrome["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
             set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "C-J")
         set_chrome_u1j_cmd(lambda:jump_tab_nr(2), "TY")
