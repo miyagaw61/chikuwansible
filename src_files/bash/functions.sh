@@ -424,3 +424,11 @@ mysync() {
         fi
     fi
 }
+
+rps() {
+    find $REPOS -maxdepth 2 -type d | sed -E "s@$REPOS/@@g" | grep -v "$REPOS" | grep -v '^[^/]*$' | grep -v '^\.$' | sed -E 's@^\./@@g' | sed -E 's@^([^/]*)/(.*)@\1/\x1b[32;1m\2\x1b[m@g'
+}
+
+rpd() {
+    cd $REPOS/$1
+}
