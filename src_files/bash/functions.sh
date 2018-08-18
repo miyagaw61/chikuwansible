@@ -432,3 +432,74 @@ rps() {
 rpd() {
     cd $REPOS/$1
 }
+
+lf(){
+    all_flag=0
+    for x in $@ ;do
+        if [ $x == '-a' ] ;then
+            rg_list=""
+            for y in $@ ;do
+                rg_list="$rg_list|$y"
+            done
+            rg_list=$(echo $rg_list | sed -E 's@\|-a\|@@g' | sed -E 's@\|-a@@g' | sed -E 's@^\|@@g')
+            rg_list=\($rg_list\)
+            rg --files | rg $rg_list
+            return
+        fi
+    done
+    for x in $@ ;do
+        if [ $x == '-a' ] ;then
+            echo hoge
+        else
+            if [ $(echo $x | grep '/') ] ;then
+                dir_name=$(echo $x | sed -E 's@(.*)/.*@\1@g')
+                result_dir=$(ls -F $dir_name | grep '.*'$(basename $x)'.*/')
+                result_exe=$(ls -F $dir_name | grep '.*'$(basename $x)'.*\*')
+                if [ $result_dir ] ;then
+                    echo $dir_name/$result_dir | sed -E 's@(.*)@\x1b[34;1m\1\x1b[m@g' | sed -E 's@/@\x1b[30;1m/\x1b[34;1m@g'
+                elif [ $result_exe ] ;then
+                    echo $dir_name/$result_exe | sed -E 's@(.*)/(.*)@\x1b[34;1m\1/\x1b[32;1m\2\x1b[m@g' | sed -E 's@/@\x1b[30;1m/\x1b[34;1m@g'
+                else
+                    echo $x | sed -E 's@(^.*)/@\x1b[34;1m\1/\x1b[m@g' | sed -E 's@/@\x1b[30;1m/\x1b[34;1m@g'
+                fi
+            else
+                y="^$x/$"
+                if [ "$(ls -F | rg $y)" ] ;then
+                    echo $x | sed -E 's@(.*)@\x1b[34;1m\1\x1b[m@g'
+                    continue
+                fi
+                y="^$x\*$"
+                if [ "$(ls -F | rg $y)" ] ;then
+                    echo $x | sed -E 's@(.*)@\x1b[32;1m\1\x1b[m@g'
+                    continue
+                fi
+                y="^$x@$"
+                if [ "$(\ls -F | rg $y)" ] ;then
+                    #echo $x | sed -E 's@(.*)@\x1b[37;1m\1\x1b[m@g'
+                    n1=$(ls -l $x | sed -E 's@^[^ ]* [^ ]* [^ ]* [^ ]* [^ ]*  [^ ]* @@g' | sed -E 's@(.*) -> (.*)@\x1b[36;1m\1\x1b[m@g')
+                    n2=$(ls -l $x | sed -E 's@^[^ ]* [^ ]* [^ ]* [^ ]* [^ ]*  [^ ]* @@g' | sed -E 's@(.*) -> (.*)@\2@g')
+                    n2_dir=$(\ls -F $n2 | rg '.*/$')
+                    n2_exe=$(\ls -F $n2 | rg '.*\*$')
+                    n2_nor=$(\ls -F $n2 | rg "^$n2$")
+                    if [ "$n2_dir" ] ;then
+                        n2_f="\x1b[34;1m$n2\x1b[m"
+                    elif [ "$n2_exe" ] ;then
+                        n2_f="\x1b[32;1m$n2\x1b[m"
+                    elif [ "$n2_nor" ] ;then
+                        n2_f="\x1b[37;1m$n2\x1b[m"
+                    else
+                        n2_f=""
+                    fi
+                    if [ "$n2_f" ] ;then
+                        echo -e "$n1 -> $n2_f"
+                    fi
+                    continue
+                fi
+                y="^$x$"
+                if [ "$(\ls | rg $y)" ] ;then
+                    echo $x
+                fi
+            fi
+        fi
+    done
+}
