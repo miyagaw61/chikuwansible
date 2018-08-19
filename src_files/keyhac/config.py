@@ -626,7 +626,12 @@ def configure(keymap):
 
     # Config For WSL
     if 1:
-        keymap_wsl = keymap.defineWindowKeymap(exe_name="ubuntu1604.exe")
+        keymap_ubuntu = keymap.defineWindowKeymap(exe_name="ubuntu1604.exe")
+        initialize_keybind(keymap_ubuntu)
+        config_terminal(keymap_ubuntu)
+        config_vim(keymap_ubuntu)
+
+        keymap_wsl = keymap.defineWindowKeymap(exe_name="wsl.exe")
         initialize_keybind(keymap_wsl)
         config_terminal(keymap_wsl)
         config_vim(keymap_wsl)
