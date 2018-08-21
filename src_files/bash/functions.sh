@@ -239,6 +239,8 @@ cargonew() {
         cp -a $BASH_CONFIG_FILES/for_functions/Cargo.toml $1/Cargo.toml
         cp -a $BASH_CONFIG_FILES/for_functions/rust_template.mk $1/Makefile
         sed -E "s@FILE_NAME@$1@g" -i $1/Makefile
+        sed -E "s@FILE_NAME@$1@g" -i $1/Cargo.toml
+        sed -E "s@FILE_NAME@$1@g" -i $1/src/main.rs
     fi
 }
 

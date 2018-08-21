@@ -91,18 +91,26 @@ lazy_static! {
 fn help() {
     println!("\
 USAGE:
-    manukazeny [SUBCOMMAND]
-manukazeny -h for help\
+    FILE_NAME [SUBCOMMAND]
+FILE_NAME -h for help\
 ");
 }
 
+fn start(matches: &clap::ArgMatches) {
+    println!("start");
+}
+
+fn stop() {
+    println!("stop");
+}
+
 fn main() {
-    let matches = App::new("Manuka Zeny")
+    let matches = App::new("FILE_NAME")
         .version("0.0.1")
         .author("miyagaw61 <miyagaw61@gmail.com>")
         .about("Cpuminer Wrapper in Rust")
         .subcommand(SubCommand::with_name("start")
-                    .about("start manukazeny")
+                    .about("start FILE_NAME")
                     .arg(Arg::with_name("json_file")
                          .help(r#"config json file
     (Example)
@@ -112,7 +120,7 @@ fn main() {
                          )
                     )
         .subcommand(SubCommand::with_name("stop")
-                    .about("stop manukazeny")
+                    .about("stop FILE_NAME")
                     )
         .get_matches();
     let sub_command = matches.subcommand_name().unwrap_or("");
