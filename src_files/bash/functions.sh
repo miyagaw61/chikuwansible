@@ -84,12 +84,12 @@ complete -F h_completion h_func
 complete -F h_completion h
 
 r_func() {
-    cd $HOME/repos/$1
+    cd $MY_REPOS/$1
 }
 r_completion() {
     local cur prev cword opts
     _get_comp_words_by_ref -n : cur prev cword
-    COMPREPLY=( $(compgen -W "$(ls -F $HOME/repos/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+    COMPREPLY=( $(compgen -W "$(ls -F $MY_REPOS | rg '(.*)/$' -r '$1')" -- "${cur}") )
 }
 complete -F r_completion r_func
 complete -F r_completion r
