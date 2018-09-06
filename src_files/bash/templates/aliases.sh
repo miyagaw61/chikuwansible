@@ -14,6 +14,7 @@ alias all-update="{{alias_all_update}}"
 alias op="{{alias_op}}"
 alias sd="{{alias_sd}}"
 alias ac="{{alias_ac}}"
+alias vim_plugins_update="{{alias_vim_plugins_update}}"
 
 # alias ls
 # ====================================
