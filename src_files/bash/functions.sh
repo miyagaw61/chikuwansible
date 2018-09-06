@@ -505,3 +505,17 @@ lf(){
         fi
     done
 }
+
+rust() {
+    # $ rust hoge.rs
+    # $ rust +nightly hoge.rs
+    # $ rust -e '1 + 1'
+    # $ cat /etc/passwd | rust -l '|line| print!("{}", line)'
+    local toolchain=+stable
+
+    if [[ "$1" =~ "\+.+" ]]; then
+        toolchain="$1"
+        shift
+    fi
+    cargo "$toolchain" script "$@"
+}
