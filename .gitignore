@@ -1,2 +1,4 @@
 vault.sh
 vault.yml
+.sudo_password.txt
+.vault_password.txt
