@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+
+import os, sys, re
+
+def simple_escape(s):
+    s = repr(s)
+    s = s[1:-1]
+    s = s.replace(r'\'', r"'")
+    return s
+
+def make_escape(escape_list):
+    escape_regex = re.compile(r"([" + escape_list + "])")
+    def escape(s):
+        s = simple_escape(s)
+        return escape_regex.sub(lambda m: "\\" + m.group(1), s)
+    return escape
+
+def unescape(s):
+    s = "\"" + s + "\""
+    s = eval(s)
+    return s
+
+arg1 = sys.argv[1]
+data = open(arg1).read()
+r = re.compile("\{[^\}]+\}")
+text = r.sub("", data)
+print(text)
+jsons = r.findall(data)
+r = re.compile("\n")
+os.system("rm -rf .json_data.txt")
+with open(".json_data.txt", "a") as f:
+    for line in jsons:
+        line = r.sub("", line)
+        f.write(line)
+os.system("cat .json_data.txt | jq")
+
+print("")
+print("=======================================")
+print("[+]module_stdout")
+print("=======================================")
+
+os.system("cat .json_data.txt | jq .module_stdout > .module_stdout.txt")
+data = open(".module_stdout.txt").read()
+data = eval(data)
+print(data)
+
+print("")
+print("=======================================")
+print("[+]module_stderr")
+print("=======================================")
+
+os.system("cat .json_data.txt | jq .module_stderr > .module_stderr.txt")
+data = open(".module_stderr.txt").read()
+data = eval(data)
+print(data)
+
+os.system("rm -rf .json_data.txt .module_stdout.txt .module_stderr.txt")
