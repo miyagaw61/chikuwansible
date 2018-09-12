@@ -36,8 +36,8 @@
     - {src: "src_files/bash/for_functions", dest: "{{bash_config_files}}"}
     - {src: "src_files/bash/python/download.py", dest: "{{bash_config_files}}/python/download.py"}
 
-- name: Replace "ANSIBLE_PIPENV"
+- name: Replace "#ANSIBLE_PYENV"
   replace:
-    path: "{{bash_config_files}}/pipenv.sh"
-    regexp: "#ANSIBLE_PIPENV"
+    path: "{{bash_config_files}}/pyenv.sh"
+    regexp: "#ANSIBLE_PYENV"
     replace: ""
