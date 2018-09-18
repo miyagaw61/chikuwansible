@@ -406,7 +406,7 @@ def configure(keymap):
             initialize_keybind_shift(   keymap_class )
             initialize_keybind_alt(     keymap_class )
             initialize_keybind_cursor(  keymap_class )
-            initialize_keybind_jump(    keymap_class )
+            #initialize_keybind_jump(    keymap_class )
             initialize_keybind_u1(      keymap_class )
             initialize_keybind_u1space( keymap_class )
             initialize_keybind_u1i(     keymap_class )
@@ -551,21 +551,21 @@ def configure(keymap):
         set_chrome_u1s_cmd(translate_page, "P")
         set_chrome_u1s_cmd(translate_now, "EN")
 
-        # Config For Jump
-        keymap_chrome["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
-        set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "U1-J")
-        if hhkb_flag or jp_flag:
-            keymap_chrome["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
-            set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "C-J")
-        set_chrome_u1j_cmd(lambda:jump_tab_nr(2), "TY")
-        set_chrome_u1j_cmd(lambda:jump_tab_nr(3), "BA")
-        set_chrome_u1j_cmd(lambda:jump_tab_nr(4), "EN")
-        set_chrome_u1j_cmd(lambda:jump_window_nr(3), "TW")
-        set_chrome_u1j_cmd(lambda:jump_window_nr(4), "SL")
-        set_chrome_u1j_cmd(lambda:jump_window_nr(5), "DI")
-        set_chrome_u1j_cmd(lambda:jump_window_nr(6), "V")
-        set_chrome_u1j_cmd(lambda:jump_window_nr(7), "C")
-        set_chrome_u1j_cmd(qiita, "QI")
+        ## Config For Jump
+        #keymap_chrome["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
+        #set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "U1-J")
+        #if hhkb_flag or jp_flag:
+        #    keymap_chrome["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
+        #    set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "C-J")
+        #set_chrome_u1j_cmd(lambda:jump_tab_nr(2), "TY")
+        #set_chrome_u1j_cmd(lambda:jump_tab_nr(3), "BA")
+        #set_chrome_u1j_cmd(lambda:jump_tab_nr(4), "EN")
+        #set_chrome_u1j_cmd(lambda:jump_window_nr(3), "TW")
+        #set_chrome_u1j_cmd(lambda:jump_window_nr(4), "SL")
+        #set_chrome_u1j_cmd(lambda:jump_window_nr(5), "DI")
+        #set_chrome_u1j_cmd(lambda:jump_window_nr(6), "V")
+        #set_chrome_u1j_cmd(lambda:jump_window_nr(7), "C")
+        #set_chrome_u1j_cmd(qiita, "QI")
 
     # Config For Discord
     if 1:
