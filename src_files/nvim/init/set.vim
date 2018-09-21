@@ -117,3 +117,6 @@ set laststatus=2
 
 "ビープ音を消す
 set visualbell t_vb=
+
+"日本語をスペルチェックの対象から外す
+set spelllang=en,cjk
