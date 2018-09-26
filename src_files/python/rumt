@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+
+from enert import *
+import sys
+import re
+
+default_rumtfile_name = "Rumtfile"
+tmp_shellscript_name = "tmp_shellscript_for_rumt.sh"
+final_name = "final_" + tmp_shellscript_name
+variable_regex = re.compile(r"\{\{([0-9]+)\}\}")
+mark_regex = re.compile(r"\([^\)]+\)")
+split_regex = re.compile(r" |&")
+
+def show_usage():
+    print("rumt - Run Many Times")
+    print("Usage: rumt [CONFIG_FILE]")
+
+def remove_tmpfiles():
+    Shell(f"rm -rf {tmp_shellscript_name}").call()
+    Shell(f"rm -rf {final_name}").call()
+
+def rumt(rumtfile_name):
+    f_rumtfile = File(rumtfile_name)
+    if not(f_rumtfile.exist()):
+        print(red("ERROR."))
+        print(red(f"File not found: '{rumtfile_name}'"))
+        remove_tmpfiles()
+        return
+    rumtfile_lines = f_rumtfile.readlines()
+    commands = rumtfile_lines[1:]
+    f_tmp_shellscript = File(tmp_shellscript_name)
+    if f_tmp_shellscript.exist():
+        print(red("ERROR."))
+        print(red(f"Already exist: '{tmp_shellscript_name}'"))
+        remove_tmpfiles()
+        print("hoge")
+        return
+    for command in commands:
+        variables = variable_regex.findall(command)
+        for n in variables:
+            command = command.replace(r"{{" + str(n) + r"}}", r"${rumt_" + str(n) + r"}")
+        f_tmp_shellscript.add(f"{command}\n")
+    target_file_pattern = rumtfile_lines[0]
+    target_file_pattern = target_file_pattern.replace(r"\ ", "rumt_SPACE")
+    target_file_patterns = split_regex.split(target_file_pattern)
+    for target_file_pattern in target_file_patterns:
+        do_rumt(target_file_pattern)
+
+def do_rumt(target_file_pattern):
+    print(f"[+]target_file_pattern: {target_file_pattern}")
+    target_regex = re.compile(target_file_pattern)
+    mark_count = len(mark_regex.findall(target_file_pattern))
+    print(f"[+]mark_count: {mark_count}")
+    target_file_glob = mark_regex.sub(r"*", target_file_pattern)
+    print(f"[+]target_file_glob: {target_file_glob}")
+    targetable_file_names, _ = Shell(f"echo {target_file_glob}").readlines()
+    targetable_file_names = targetable_file_names[0].split(" ")
+    for targetable_file_name in targetable_file_names:
+        if r"*" in targetable_file_name:
+            print(red("ERROR."))
+            print(red(f"Target file is not found: {target_file_glob}"))
+            remove_tmpfiles()
+            return
+        matched_list = target_regex.findall(targetable_file_name)
+        if len(matched_list) == 0:
+            continue
+        matched_list = matched_list[0]
+        if type(matched_list) == tuple:
+            matched_list = list(matched_list)
+        else:
+            matched_list = [matched_list]
+        if len(matched_list) == mark_count:
+            print("="*30)
+            f_final = File(final_name)
+            f_final.rm()
+            f_final.add(f"rumt_0=\"{targetable_file_name}\"\n")
+            print(f"[+]target file: {targetable_file_name}")
+            for i, matched_str in enumerate(matched_list):
+                n = i + 1
+                command = f"rumt_{n}=\"{matched_str}\"\n"
+                print(f"[+]variable {str(n).zfill(2)}: {matched_str}")
+                f_final.add(command)
+            Shell(f"cat {tmp_shellscript_name} >> {final_name}").call()
+            Shell(f"chmod +x {final_name} && ./{final_name}").call()
+
+argv = sys.argv
+argc = len(argv)
+
+if argc > 1:
+    for rumtfile_name in argv[1:]:
+        if argv[1] in ("-h", "--help"):
+            show_usage()
+            exit()
+        try:
+            rumt(rumtfile_name)
+        except:
+            import traceback
+            traceback.print_exc()
+            remove_tmpfiles()
+else:
+    try:
+        rumt(default_rumtfile_name)
+    except:
+        import traceback
+        traceback.print_exc()
+        remove_tmpfiles()
+
+remove_tmpfiles()
