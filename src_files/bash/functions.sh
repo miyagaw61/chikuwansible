@@ -310,48 +310,6 @@ hhs() {
     cmd.exe /c title WSL
 }
 
-declare_python() {
-    lst=$(cat $1 | rg "^def (.*)\(.*\):" -r '$1')
-    for x in $lst ;do
-        eval $x" () { python $1 "$x "\$@ ; }"
-    done
-    base=$(basename $1)
-    #eval $base" () { echo Usage:; lst=\$(cat "$1" | rg \"^def (.*)\(.*\):\" -r '\$1'); for func in \$lst; do echo \$func ;done ; }"
-    eval $base" () { python $1 help ;}"
-}
-
-declare_python $BASH_CONFIG_FILES/python/download.py
-
-regren() {
-    usage() {
-        echo "Usage: regren OLD_FILE_REGEXP NEW_FILE_REGEXP"
-        echo "Example:"
-        echo """
-  $ ls
-  hoge.foo.bar fuga.foo.bar
-  $ regren '(.*).foo.bar' '~/tmp/\$1.baz'
-  $ ls
-  $ ls ~/tmp/
-  hoge.baz fuga.baz
-"""
-    }
-
-    if [ "$1" = "-h" -o "$1" = "--help" -o $# -lt 2 ] ;then
-        usage
-    else
-        ls | rg "$1" > regren.tmp
-        ls | rg "$1" -r "$2" > regren2.tmp
-        cp -a regren.tmp regrenmv.tmp
-        sed -E "s/.*/mv/g" -i regrenmv.tmp
-        sed -E "s/(.*)/\"\1\"/g" -i regren.tmp
-        sed -E "s/(.*)/\"\1\"/g" -i regren2.tmp
-        paste -d " " regrenmv.tmp regren.tmp > regrenmv2.tmp
-        paste -d " " regrenmv2.tmp regren2.tmp > regrenmv3.tmp
-        source regrenmv3.tmp
-        rm -rf regren*.tmp
-    fi
-}
-
 title() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
 rep() {
