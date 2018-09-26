@@ -34,24 +34,40 @@ with open(".json_data.txt", "a") as f:
         f.write(line)
 os.system("cat .json_data.txt | jq")
 
-print("")
-print("=======================================")
-print("[+]module_stdout")
-print("=======================================")
+try:
+    print("")
+    print("=======================================")
+    print("[+]module_stdout")
+    print("=======================================")
+    os.system("cat .json_data.txt | jq .module_stdout > .module_stdout.txt")
+    data = open(".module_stdout.txt").read()
+    data = eval(data)
+    print(data)
+except:
+    pass
 
-os.system("cat .json_data.txt | jq .module_stdout > .module_stdout.txt")
-data = open(".module_stdout.txt").read()
-data = eval(data)
-print(data)
+try:
+    print("")
+    print("=======================================")
+    print("[+]module_stderr")
+    print("=======================================")
+    os.system("cat .json_data.txt | jq .module_stderr > .module_stderr.txt")
+    data = open(".module_stderr.txt").read()
+    data = eval(data)
+    print(data)
+except:
+    pass
 
-print("")
-print("=======================================")
-print("[+]module_stderr")
-print("=======================================")
+try:
+    print("")
+    print("=======================================")
+    print("[+]reason")
+    print("=======================================")
+    os.system("cat .json_data.txt | jq .reason > .reason.txt")
+    data = open(".reason.txt").read()
+    data = eval(data)
+    print(data)
+except:
+    pass
 
-os.system("cat .json_data.txt | jq .module_stderr > .module_stderr.txt")
-data = open(".module_stderr.txt").read()
-data = eval(data)
-print(data)
-
-os.system("rm -rf .json_data.txt .module_stdout.txt .module_stderr.txt")
+os.system("rm -rf .json_data.txt .module_stdout.txt .module_stderr.txt .reason.txt")
