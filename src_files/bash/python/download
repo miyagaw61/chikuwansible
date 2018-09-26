@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import subprocess
 import sys
@@ -5,30 +7,26 @@ import sys
 def help():
     """
 Usage:
-    test_func
-    download_ts
-    download
-    ts2mp4
-    download_mp4_from_ts
+    download ts
+    download simple
+    download ts2mp4
+    download mp4_from_ts
+    download mkv2mp4
     """
     print(help.__doc__)
-
-def test_func():
-    print("test_func succesfull.")
 
 def get_stdout(cmd):
   return subprocess.Popen(
       cmd, stdout=subprocess.PIPE,
       shell=True).communicate()[0]
 
-def download_ts(list_dir, tag_name):
+def ts(list_dir, tag_name):
     """
 
-Usage: download_ts LIST_DIR TAG_NAME
+Usage: ts LIST_DIR TAG_NAME
 Example:
     $ ls
-    result/ list/ this.py
-    $ ls result/
+    list/ this.py
     $ ls list/
     foo bar
     $ cat list/foo
@@ -36,7 +34,7 @@ Example:
     https://hoge.com/2.ts
     https://hoge.com/3.ts
 
-    >>> download_ts("list", "foo")
+    >>> ts("list", "foo")
 
     $ ls result/
     foo
@@ -64,7 +62,7 @@ Example:
             os.system("curl \"" + url + "\" -o result/" + tag_name + "/" + tag_name + "_" + str(i).zfill(4) + ".ts")
             i += 1
 
-def download(list_path):
+def simple(list_path):
     """
 $ ls
 list/ this.py
@@ -75,7 +73,7 @@ https://hoge.com/fuga.mp4 movie_01.mp4
 https://foo.com/bar.mp4 great.png dir1 dir2
 https://abc.com/xyz.mp4 this_is_file_name.jpeg
 
->>> download_mp4("list/mp4_list")
+>>> simple("list/mp4_list")
 
 $ ls
 list/ result/ this.py
@@ -179,13 +177,18 @@ Example:
     print("if you succeeded, try:")
     print(cmd)
 
-def download_mp4_from_ts(list_dir, tag_name):
-    download_ts(list_dir, tag_name)
+def mp4_from_tslist(list_dir, tag_name):
+    """
+Usage: mp4_from_tslist LIST_DIR TAG_NAME
+Description:
+    ts LIST_DIR TAG_NAME && ts2mp4 TAG_NAME
+    """
+    ts(list_dir, tag_name)
     ts2mp4(tag_name)
 
 def mkv2mp4(mkv):
     """
-Usage: mkv2mp4 MKV_FILE
+Usage: mkv2mp4 MKV_FILE_PATH
     """
     mp4 = mkv.replace(".mkv", ".mp4")
     cmd = "sudo ffmpeg -i " + mkv + " -vcodec copy -strict -2 " + mp4
@@ -200,7 +203,7 @@ def create_args(argv):
 
 if __name__ == '__main__':
     if len(sys.argv) == 1 or sys.argv[1] in ("-h", "--help"):
-        print("Usage: python " + sys.argv[0] + " FUNCTION_NAME [ARG...]")
+        help()
         exit(0)
     elif len(sys.argv) > 2 and sys.argv[2] in ("-h", "--help"):
         cmd = "print(" + sys.argv[1] + ".__doc__)"
