@@ -1,0 +1,9 @@
+- name: Copy My Python Scripts
+  copy:
+    src: "src_files/python/{{item.name}}"
+    dest: "{{binaries}}/{{item.name}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "u=rwx,g=rwx,o=rwx"
+  with_items:
+    - name: download

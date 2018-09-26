@@ -13,6 +13,7 @@ events: "{{home}}/events"
 program_files: "{{home}}/program_files"
 config_files: "{{home}}/docs/config_files"
 bash_config_files: "{{config_files}}/bash"
+binaries: "{{home}}/bin"
 grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 

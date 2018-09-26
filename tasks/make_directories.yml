@@ -10,3 +10,4 @@
     - path: "{{events}}"
     - path: "{{program_files}}"
     - path: "{{config_files}}"
+    - path: "{{binaries}}"
