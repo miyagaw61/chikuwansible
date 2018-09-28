@@ -2,6 +2,8 @@
   file:
     path: "{{item}}"
     state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
   with_items:
     - "{{bash_config_files}}"
     - "{{bash_config_files}}/python"
