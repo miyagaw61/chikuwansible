@@ -19,7 +19,8 @@ chikuwansible_path: "{{my_repos}}/chikuwansible"
 
 # SLACK
 # =============================================
-rusgit_slack_url: "$(cat {{docs}}/slack_url)"
+rusgit_slack_url_file: "{{docs}}/slack_url"
+rusgit_slack_url: "$(cat {{rusgit_slack_url_file}})"
 rusgit_slack_channel: "@miyagaw61"
 
 # Git

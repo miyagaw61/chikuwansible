@@ -18,7 +18,9 @@ export GRAVE_ROOT="{{grave_root}}"
 export CARGO_PATH="{{cargo_path}}"
 export PATH="$CARGO_PATH/bin:$PATH"
 export CHIKUWANSIBLE_PATH="{{chikuwansible_path}}"
-export RUSGIT_SLACK_URL="{{rusgit_slack_url}}"
+if test -e "{{rusgit_slack_url_file}}" ;then
+    export RUSGIT_SLACK_URL="{{rusgit_slack_url}}"
+fi
 export RUSGIT_SLACK_CHANNEL="{{rusgit_slack_channel}}"
 export PYTHON3_PYENV_VERSION="{{python3_pyenv_version}}"
 export PYTHON2_PYENV_VERSION="{{python2_pyenv_version}}"
