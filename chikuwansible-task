@@ -30,3 +30,4 @@ for task_name in argv[1:]:
     execute_task(task_name)
 
 tmp_one_task_file.rm()
+File(tmp_one_task_file.name[:-4] + ".retry").rm()
