@@ -79,6 +79,8 @@ alias_op: "xdg-open"
 alias_sd: "sudo -E"
 alias_ac: "rac . -m"
 alias_vim_plugins_update: "pushd {{nvim_config_files}}/repos/github.com && echo */* | sed -E \\\"s/ /\\n/g\\\" | while read line ;do echo -n \\\"[+]\\\" && echo \\$line && echo \\\"===============================\\\" && cd \\$line && rl 1 && sudo git pull --rebase origin master && rl 1 && cd ../../ ;done && popd"
+alias_ej: "trans {en=ja}"
+alias_je: "trans {ja=en}"
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
 alias_ll: "exa -hal --git --time-style=iso --group-directories-first"
