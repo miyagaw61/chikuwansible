@@ -7,6 +7,7 @@ import re
 default_rumtfile_name = "Rumtfile"
 tmp_shellscript_name = "tmp_shellscript_for_rumt.sh"
 final_name = "final_" + tmp_shellscript_name
+logfile_path = "/tmp/rumt.log"
 variable_regex = re.compile(r"\{\{([0-9]+)\}\}")
 mark_regex = re.compile(r"\([^\)]+\)")
 split_regex = re.compile(r" |&")
@@ -47,18 +48,20 @@ def rumt(rumtfile_name):
         do_rumt(target_file_pattern)
 
 def do_rumt(target_file_pattern):
-    print(f"[+]target_file_pattern: {target_file_pattern}")
+    Shell(f"echo \"[+]target_file_pattern: {target_file_pattern}\" >> {logfile_path}").call()
     target_regex = re.compile(target_file_pattern)
     mark_count = len(mark_regex.findall(target_file_pattern))
-    print(f"[+]mark_count: {mark_count}")
+    Shell(f"echo \"[+]mark_count: {mark_count}\" >> {logfile_path}").call()
     target_file_glob = mark_regex.sub(r"*", target_file_pattern)
-    print(f"[+]target_file_glob: {target_file_glob}")
+    Shell(f"echo \"[+]target_file_glob: {target_file_glob}\" >> {logfile_path}").call()
     targetable_file_names, _ = Shell(f"echo {target_file_glob}").readlines()
     targetable_file_names = targetable_file_names[0].split(" ")
     for targetable_file_name in targetable_file_names:
         if r"*" in targetable_file_name:
             print(red("ERROR."))
             print(red(f"Target file is not found: {target_file_glob}"))
+            Shell("echo \"ERROR.\" >> {logfile_path}").call()
+            Shell(f"echo \"Target file is not found: {target_file_glob}\" >> {logfile_path}").call()
             remove_tmpfiles()
             return
         matched_list = target_regex.findall(targetable_file_name)
@@ -70,22 +73,25 @@ def do_rumt(target_file_pattern):
         else:
             matched_list = [matched_list]
         if len(matched_list) == mark_count:
-            print("="*30)
+            bar = "="*30
+            Shell(f"echo \"{bar}\" >> {logfile_path}").call()
             f_final = File(final_name)
             f_final.rm()
             f_final.add(f"rumt_0=\"{targetable_file_name}\"\n")
-            print(f"[+]target file: {targetable_file_name}")
+            Shell(f"echo \"[+]target file: {targetable_file_name}\" >> {logfile_path}").call()
             for i, matched_str in enumerate(matched_list):
                 n = i + 1
                 command = f"rumt_{n}=\"{matched_str}\"\n"
-                print(f"[+]variable {str(n).zfill(2)}: {matched_str}")
+                Shell(f"echo \"[+]variable {str(n).zfill(2)}: {matched_str}\" >> {logfile_path}").call()
                 f_final.add(command)
             Shell(f"cat {tmp_shellscript_name} >> {final_name}").call()
             Shell(f"chmod +x {final_name} && ./{final_name}").call()
+            Shell(f"cat {final_name} >> {logfile_path}").call()
 
 argv = sys.argv
 argc = len(argv)
 
+Shell(f"rm -rf {logfile_path}").call()
 if argc > 1:
     for rumtfile_name in argv[1:]:
         if argv[1] in ("-h", "--help"):
