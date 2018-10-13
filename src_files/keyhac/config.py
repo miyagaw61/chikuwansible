@@ -484,7 +484,7 @@ def configure(keymap):
         keymap_global = keymap.defineWindowKeymap()
         initialize_keybind(keymap_global)
 
-    # Config For Chrome
+    # Config For Firefox
     if 1:
         def step_in():
             down_key("CTRL")
@@ -528,44 +528,44 @@ def configure(keymap):
             hotkey("ctrl", "v")
             typewrite(["return"])
 
-        keymap_chrome = get_keymap("chrome.exe")
-        initialize_keybind(keymap_chrome)
-        n_notepad(keymap_chrome)
-        keymap_chrome["U1-H"] = "A-Left"
-        keymap_chrome["U1-L"] = "A-Right"
-        keymap_chrome["U1-PageUp"] = "C-PageUp"
-        keymap_chrome["U1-PageDown"] = "C-PageDown"
+        keymap_firefox = get_keymap("firefox.exe")
+        initialize_keybind(keymap_firefox)
+        n_notepad(keymap_firefox)
+        keymap_firefox["U1-H"] = "A-Left"
+        keymap_firefox["U1-L"] = "A-Right"
+        keymap_firefox["U1-PageUp"] = "C-PageUp"
+        keymap_firefox["U1-PageDown"] = "C-PageDown"
         if hhkb_flag or jp_flag:
-            keymap_chrome["C-H"] = "A-Left"
-            keymap_chrome["C-L"] = "A-Right"
-            keymap_chrome["C-PageUp"] = "C-PageUp"
-            keymap_chrome["C-PageDown"] = "C-PageDown"
-        keymap_chrome["U2-H"] = "C-Pageup"
-        keymap_chrome["U2-L"] = "C-Pagedown"
-        keymap_chrome["U2-Q"] = "C-W"
-        keymap_chrome["U2-I"] = step_in
-        keymap_chrome["U2-O"] = step_over
-        #keymap_chrome["O-Tab"] = space_4
-        keymap_chrome["U1-Space"] = keymap.defineMultiStrokeKeymap("U1-Space")
-        set_chrome_u1s_cmd = make_set_cmd(keymap_chrome, "U1-Space")
-        set_chrome_u1s_cmd(translate_page, "P")
-        set_chrome_u1s_cmd(translate_now, "EN")
+            keymap_firefox["C-H"] = "A-Left"
+            keymap_firefox["C-L"] = "A-Right"
+            keymap_firefox["C-PageUp"] = "C-PageUp"
+            keymap_firefox["C-PageDown"] = "C-PageDown"
+        keymap_firefox["U2-H"] = "C-Pageup"
+        keymap_firefox["U2-L"] = "C-Pagedown"
+        keymap_firefox["U2-Q"] = "C-W"
+        keymap_firefox["U2-I"] = step_in
+        keymap_firefox["U2-O"] = step_over
+        #keymap_firefox["O-Tab"] = space_4
+        keymap_firefox["U1-Space"] = keymap.defineMultiStrokeKeymap("U1-Space")
+        set_firefox_u1s_cmd = make_set_cmd(keymap_firefox, "U1-Space")
+        set_firefox_u1s_cmd(translate_page, "P")
+        set_firefox_u1s_cmd(translate_now, "EN")
 
         ## Config For Jump
-        #keymap_chrome["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
-        #set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "U1-J")
+        #keymap_firefox["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
+        #set_firefox_u1j_cmd = make_set_cmd(keymap_firefox, "U1-J")
         #if hhkb_flag or jp_flag:
-        #    keymap_chrome["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
-        #    set_chrome_u1j_cmd = make_set_cmd(keymap_chrome, "C-J")
-        #set_chrome_u1j_cmd(lambda:jump_tab_nr(2), "TY")
-        #set_chrome_u1j_cmd(lambda:jump_tab_nr(3), "BA")
-        #set_chrome_u1j_cmd(lambda:jump_tab_nr(4), "EN")
-        #set_chrome_u1j_cmd(lambda:jump_window_nr(3), "TW")
-        #set_chrome_u1j_cmd(lambda:jump_window_nr(4), "SL")
-        #set_chrome_u1j_cmd(lambda:jump_window_nr(5), "DI")
-        #set_chrome_u1j_cmd(lambda:jump_window_nr(6), "V")
-        #set_chrome_u1j_cmd(lambda:jump_window_nr(7), "C")
-        #set_chrome_u1j_cmd(qiita, "QI")
+        #    keymap_firefox["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
+        #    set_firefox_u1j_cmd = make_set_cmd(keymap_firefox, "C-J")
+        #set_firefox_u1j_cmd(lambda:jump_tab_nr(2), "TY")
+        #set_firefox_u1j_cmd(lambda:jump_tab_nr(3), "BA")
+        #set_firefox_u1j_cmd(lambda:jump_tab_nr(4), "EN")
+        #set_firefox_u1j_cmd(lambda:jump_window_nr(3), "TW")
+        #set_firefox_u1j_cmd(lambda:jump_window_nr(4), "SL")
+        #set_firefox_u1j_cmd(lambda:jump_window_nr(5), "DI")
+        #set_firefox_u1j_cmd(lambda:jump_window_nr(6), "V")
+        #set_firefox_u1j_cmd(lambda:jump_window_nr(7), "C")
+        #set_firefox_u1j_cmd(qiita, "QI")
 
     # Config For Discord
     if 1:
