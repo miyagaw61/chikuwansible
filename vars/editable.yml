@@ -62,6 +62,7 @@ rusgit_editor: "vim -u NONE -N"
 # Browser
 # =============================================
 browser: "chrome"
+photo: "i_view"
 
 # Bashrc Aliases
 # =============================================

@@ -11,6 +11,7 @@ export GIT_NAME="{{git_user}}"
 export GIT_EMAIL="{{git_email}}"
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export BROWSER="{{browser}}"
+export PHOTO="{{photo}}"
 export RUST_SRC_PATH="{{rust_src_path}}"
 export EDITOR="{{editor}}"
 export RUSGIT_EDITOR="{{rusgit_editor}}"
