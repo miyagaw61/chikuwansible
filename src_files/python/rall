@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+from enert import *
+
+def usage():
+    print("Usage: rall [FILE_NAME]")
+    print("  FILE_NAME: source file name (default: Rallfile)")
+    exit()
+
+argv = sys.argv
+argc = len(argv)
+
+def rall(rallfile):
+    if not File(rallfile).exist():
+        print(red(f"\nERROR: `{rallfile}` is not found.\n", "bold"))
+        exit()
+    f = File(rallfile)
+    lines = f.readlines()
+    tmp_script = File("tmp_script.rall")
+    if tmp_script.exist():
+        tmp_script.rm()
+    tmp_script.create()
+    tmp_script.add("#!/bin/bash\n\n")
+    tmp_script.add("set -e\n\n")
+    tmp_script.add("echo -e '\\033[31;01m\\n\\n[-]START\\033[00m\\n'\n")
+    for line in lines:
+        line = line.replace("$ ", "")
+        tmp_script.add(f"cmd='{line}'\n")
+        tmp_script.add("echo -e '\\n\\033[31;01m[+]'${cmd}'\\033[00m'\n")
+        tmp_script.add(f"{line}\n")
+    try:
+        run_script(tmp_script.name)
+    except:
+        print(red("\n[!]ERROR: stop script because any error.", "bold"))
+        import traceback
+        traceback.print_exc()
+
+def run_script(name):
+    Shell(f"chmod +x {name}").call()
+    Shell(f"./{name}").call()
+
+def move_tmp_script():
+    Shell(f"rm -rf /tmp/tmp_script.rall_").call()
+    Shell(f"mv tmp_script.rall /tmp/tmp_script.rall").call()
+    print(red("\n[-]FINISH. tmp-script is now `/tmp/tmp_script.rall` .\n", "bold"))
+
+if argc == 1:
+    rall("Rallfile")
+    move_tmp_script()
+elif argc == 2:
+    if argv[1] == "-h" or argv[1] == "--help":
+        usage()
+    rall(argv[1])
+    move_tmp_script()
+else:
+    usage()

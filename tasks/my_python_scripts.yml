@@ -8,3 +8,4 @@
   with_items:
     - name: download
     - name: rumt
+    - name: rall
