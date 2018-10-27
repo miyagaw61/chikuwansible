@@ -17,6 +17,8 @@ alias ac="{{alias_ac}}"
 alias vim_plugins_update="{{alias_vim_plugins_update}}"
 alias ej="{{alias_ej}}"
 alias je="{{alias_je}}"
+alias no_alphanumeric="{{alias_no_alphanumeric}}"
+alias naln="no_alphanumeric"
 
 # alias ls
 # ====================================
