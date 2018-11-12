@@ -83,6 +83,7 @@ alias_vim_plugins_update: "pushd {{nvim_config_files}}/repos/github.com && echo 
 alias_ej: "trans {en=ja}"
 alias_je: "trans {ja=en}"
 alias_no_alphanumeric: "rg \\\"[^\\.a-zA-Z0-9_-]\\\""
+alias_ipa: "ip a | rg \\\"(^[0-9]+: [^:]+:|inet [^ ]+)\\\""
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
 alias_ll: "exa -hal --git --time-style=iso --group-directories-first"
