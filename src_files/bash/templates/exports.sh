@@ -25,3 +25,4 @@ fi
 export RUSGIT_SLACK_CHANNEL="{{rusgit_slack_channel}}"
 export PYTHON3_PYENV_VERSION="{{python3_pyenv_version}}"
 export PYTHON2_PYENV_VERSION="{{python2_pyenv_version}}"
+export GIT_TOKEN_FILE="{{git_token_file}}"

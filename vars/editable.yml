@@ -27,6 +27,7 @@ rusgit_slack_channel: "@miyagaw61"
 # =============================================
 git_user: "miyagaw61"
 git_email: "miyagaw61@gmail.com"
+git_token_file: "{{docs}}/git_token"
 
 # GoLang
 # =============================================
