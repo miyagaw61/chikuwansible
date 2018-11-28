@@ -406,3 +406,18 @@ rust() {
     fi
     cargo "$toolchain" script "$@"
 }
+
+v() {
+    if [[ $# -eq 0 ]] ;then
+        fg
+    elif [[ $# -eq 1 ]] ;then
+        echo "$(realpath $1)" > /tmp/viming_path
+        fg
+    else
+        rm -rf /tmp/viming_path
+        for x in $@ ;do
+            echo "$(realpath $x)" >> /tmp/viming_path
+        done
+        fg
+    fi
+}
