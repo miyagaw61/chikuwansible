@@ -244,3 +244,14 @@ function! Git_Diff(...)
     endif
     execute cmd
 endfunction
+
+" quick_open
+" ==========
+function! g:Quick_open()
+    let l:path = system("cat /tmp/viming_path")
+    let l:pathes = split(l:path, "\n")
+    for l:x in l:pathes
+        execute "e " . l:x
+    endfor
+endfunction
+nnoremap <leader>o :call Quick_open()<CR>
