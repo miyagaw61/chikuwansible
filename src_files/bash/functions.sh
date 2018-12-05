@@ -421,3 +421,7 @@ v() {
         fg
     fi
 }
+
+fgrep() {
+    rg -n "$1.*[\){]$" | rg -v " *if" | rg -v " *while" | rg -v " *for" | rg $1
+}
