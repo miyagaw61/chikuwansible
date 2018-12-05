@@ -83,7 +83,7 @@ alias_ac: "rac . -m"
 alias_vim_plugins_update: "pushd {{nvim_config_files}}/repos/github.com && echo */* | sed -E \\\"s/ /\\n/g\\\" | while read line ;do echo -n \\\"[+]\\\" && echo \\$line && echo \\\"===============================\\\" && cd \\$line && rl 1 && sudo git pull --rebase origin master && rl 1 && cd ../../ ;done && popd"
 alias_ej: "trans {en=ja}"
 alias_je: "trans {ja=en}"
-alias_no_alphanumeric: "rg \\\"[^\\.a-zA-Z0-9_-]\\\""
+alias_no_alphanumeric: "rg \\\"[^/\\.a-zA-Z0-9_-]\\\""
 alias_ipa: "ip a | rg \\\"(^[0-9]+: [^:]+:|inet [^ ]+)\\\""
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
