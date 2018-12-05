@@ -423,5 +423,6 @@ v() {
 }
 
 defrep() {
-    rg -n "$1.*[\){]$" | rg -v " *if" | rg -v " *while" | rg -v " *for" | rg $1
+    rg -n "\s$1[\s\(].*[\){]*$" | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2                  ---- [\1]@g" | rg -v "^\s" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\("
+    #rg -n "$1.*[\){]$" | rg -v "if\s*\(" | rg -v "while\s*\(" | rg -v "for\s*\(" | rg $1 | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2                        ---- [\1]@g"
 }
