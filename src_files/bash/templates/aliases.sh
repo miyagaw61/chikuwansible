@@ -20,6 +20,7 @@ alias je="{{alias_je}}"
 alias no_alphanumeric="{{alias_no_alphanumeric}}"
 alias naln="no_alphanumeric"
 alias ipa="{{alias_ipa}}"
+alias lf="{{alias_lf}}"
 
 # alias ls
 # ====================================
