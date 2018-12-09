@@ -247,6 +247,8 @@ def configure(keymap):
             keymap_class["A-K"] = "A-Up"
             keymap_class["A-Q"] = "A-Tab"
             keymap_class["LA-RS-Q"] = "A-Left"
+            keymap_class["A-Insert"] = "C-C"
+            keymap_class["A-Pause"] = "C-V"
         
         def initialize_keybind_cursor(keymap_class):
             keymap_class["C-A"] = "Home"
@@ -414,6 +416,9 @@ def configure(keymap):
         def initialize_keybind_muhenkan(keymap_class):
             keymap_class["U2-A"] = "C-A"
 
+        #def initialize_keybind_katahira(keymap_class):
+        #    keymap_class["U3-A"] = lambda:put_str("hoge")
+
         def initialize_keybind(keymap_class):
             if hhkb_flag or jp_flag:
                 initialize_alttab(keymap_class)
@@ -439,6 +444,7 @@ def configure(keymap):
                 initialize_keybind_jp2en(keymap_class)
                 initialize_keybind_henkan(   keymap_class )
                 initialize_keybind_muhenkan( keymap_class )
+                #initialize_keybind_katahira( keymap_class )
             else:
                 keymap_class["Quote"] = lambda:put_str("'")
 
