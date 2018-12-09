@@ -121,11 +121,11 @@ def configure(keymap):
 
         def make_set_cmd(keymap_class, trigger):
             """
-            keymap_global["U1-Space"] = keymap.defineMultiStrokeKeymap("U1-Space")
-            set_global_u1space_cmd = make_set_cmd(keymap_global, "U1-Space")
-            set_global_u1space_cmd(put_str("John"), "NAME")
-            set_global_u1space_cmd(put_str("# "), "H1") # cmds_dict enable to survive this.
-            set_global_u1space_cmd(put_str("## "), "H2")
+            keymap_global["C-Space"] = keymap.defineMultiStrokeKeymap("C-Space")
+            set_global_cspace_cmd = make_set_cmd(keymap_global, "C-Space")
+            set_global_cspace_cmd(put_str("John"), "NAME")
+            set_global_cspace_cmd(put_str("# "), "H1") # cmds_dict enable to survive this.
+            set_global_cspace_cmd(put_str("## "), "H2")
             """
             cmds_dict = {}
             def set_cmd(func, cmd):
@@ -221,9 +221,9 @@ def configure(keymap):
 
         def initialize_keybind_alnum(keymap_class):
             for any in range(ord("A"), ord("Z")):
-                keymap_class["U1-" + chr(any)] = "C-" + chr(any)
+                keymap_class["C-" + chr(any)] = "C-" + chr(any)
             for any in range(ord("0"), ord("9")):
-                keymap_class["U1-" + chr(any)] = "C-" + chr(any)
+                keymap_class["C-" + chr(any)] = "C-" + chr(any)
 
         def initialize_keybind_shift(keymap_class):
             keymap_class["S-2"] = lambda:put_str("@")
@@ -249,19 +249,19 @@ def configure(keymap):
             keymap_class["LA-RS-Q"] = "A-Left"
         
         def initialize_keybind_cursor(keymap_class):
-            keymap_class["U1-A"] = "Home"
-            keymap_class["U1-E"] = "End"
-            keymap_class["U1-U"] = "S-Home", "Delete"
-            keymap_class["U1-F"] = "Right"
-            keymap_class["U1-B"] = "Left"
+            keymap_class["C-A"] = "Home"
+            keymap_class["C-E"] = "End"
+            keymap_class["C-U"] = "S-Home", "Delete"
+            keymap_class["C-F"] = "Right"
+            keymap_class["C-B"] = "Left"
             if hhkb_flag or jp_flag:
                 keymap_class["C-A"] = "Home"
                 keymap_class["C-E"] = "End"
                 keymap_class["C-U"] = "S-Home", "Delete"
                 keymap_class["C-F"] = "Right"
                 keymap_class["C-B"] = "Left"
-            keymap_class["U2-F"] = "C-Right"
-            keymap_class["U2-B"] = "C-Left"
+            keymap_class["U0-F"] = "C-Right"
+            keymap_class["U0-B"] = "C-Left"
             keymap_class["A-A"] = "S-Home"
             keymap_class["A-E"] = "S-End"
             #keymap_class["A-F"] = "S-Right"
@@ -280,32 +280,32 @@ def configure(keymap):
             t3 - BA: Backlog
             t4 - EN: Google English
             """
-            keymap_class["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
-            set_class_u1j_cmd = make_set_cmd(keymap_class, "U1-J")
+            keymap_class["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
+            set_class_cj_cmd = make_set_cmd(keymap_class, "C-J")
             if hhkb_flag or jp_flag:
                 keymap_class["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
-                set_class_u1j_cmd = make_set_cmd(keymap_class, "C-J")
-            set_class_u1j_cmd(lambda:jump_google_tab_nr(2), "TY")
-            set_class_u1j_cmd(lambda:jump_google_tab_nr(3), "BA")
-            set_class_u1j_cmd(lambda:jump_google_tab_nr(4), "EN")
-            set_class_u1j_cmd(lambda:jump_window_nr(1), "G")
-            set_class_u1j_cmd(lambda:jump_window_nr(2), "EX")
-            set_class_u1j_cmd(lambda:jump_window_nr(3), "TW")
-            set_class_u1j_cmd(lambda:jump_window_nr(4), "SL")
-            set_class_u1j_cmd(lambda:jump_window_nr(5), "DI")
-            set_class_u1j_cmd(lambda:jump_window_nr(6), "V")
-            set_class_u1j_cmd(lambda:jump_window_nr(7), "C")
+                set_class_cj_cmd = make_set_cmd(keymap_class, "C-J")
+            set_class_cj_cmd(lambda:jump_google_tab_nr(2), "TY")
+            set_class_cj_cmd(lambda:jump_google_tab_nr(3), "BA")
+            set_class_cj_cmd(lambda:jump_google_tab_nr(4), "EN")
+            set_class_cj_cmd(lambda:jump_window_nr(1), "G")
+            set_class_cj_cmd(lambda:jump_window_nr(2), "EX")
+            set_class_cj_cmd(lambda:jump_window_nr(3), "TW")
+            set_class_cj_cmd(lambda:jump_window_nr(4), "SL")
+            set_class_cj_cmd(lambda:jump_window_nr(5), "DI")
+            set_class_cj_cmd(lambda:jump_window_nr(6), "V")
+            set_class_cj_cmd(lambda:jump_window_nr(7), "C")
 
-        def initialize_keybind_u1(keymap_class):
+        def initialize_keybind_c(keymap_class):
             def put_function_key(function_key):
                 put_key(function_key)
                 put_key("RETURN")
-            keymap_class["U1-7"] = lambda:put_function_key("F7")
-            keymap_class["U1-8"] = lambda:put_function_key("F8")
-            keymap_class["U1-0"] = lambda:put_function_key("F10")
-            keymap_class["U1-OpenBracket"] = lambda:put_str("[")
-            keymap_class["U1-CloseBracket"] = lambda:put_str("]")
-            keymap_class["U1-Quote"] = lambda:put_str("`")
+            keymap_class["C-7"] = lambda:put_function_key("F7")
+            keymap_class["C-8"] = lambda:put_function_key("F8")
+            keymap_class["C-0"] = lambda:put_function_key("F10")
+            keymap_class["C-OpenBracket"] = lambda:put_str("[")
+            keymap_class["C-CloseBracket"] = lambda:put_str("]")
+            keymap_class["C-Quote"] = lambda:put_str("`")
             if hhkb_flag or jp_flag:
                 keymap_class["C-7"] = lambda:put_function_key("F7")
                 keymap_class["C-8"] = lambda:put_function_key("F8")
@@ -314,7 +314,7 @@ def configure(keymap):
                 keymap_class["C-CloseBracket"] = lambda:put_str("]")
                 keymap_class["C-Quote"] = lambda:put_str("`")
 
-        def initialize_keybind_u1space(keymap_class):
+        def initialize_keybind_cspace(keymap_class):
             def translate():
                 time.sleep(0.5)
                 hotkey("ctrl", "c")
@@ -329,50 +329,50 @@ def configure(keymap):
                 time.sleep(1)
                 hotkey("ctrl", "v")
                 typewrite(["return"])
-            keymap_class["U1-Space"] = keymap.defineMultiStrokeKeymap("U1-Space")
-            keymap_class["U1-Space"]["E"] = keymap.defineMultiStrokeKeymap("E")
-            keymap_class["U1-Space"]["E"]["N"] = translate
+            keymap_class["C-Space"] = keymap.defineMultiStrokeKeymap("C-Space")
+            keymap_class["C-Space"]["E"] = keymap.defineMultiStrokeKeymap("E")
+            keymap_class["C-Space"]["E"]["N"] = translate
             if hhkb_flag or jp_flag:
                 keymap_class["C-Space"] = keymap.defineMultiStrokeKeymap("C-Space")
                 keymap_class["C-Space"]["E"] = keymap.defineMultiStrokeKeymap("E")
                 keymap_class["C-Space"]["E"]["N"] = translate
 
 
-        def initialize_keybind_u1i(keymap_class):
-            keymap_class["U1-I"] = keymap.defineMultiStrokeKeymap("U1-I")
-            set_class_u1i_cmd = make_set_cmd(keymap_class, "U1-I")
+        def initialize_keybind_ci(keymap_class):
+            keymap_class["C-I"] = keymap.defineMultiStrokeKeymap("C-I")
+            set_class_ci_cmd = make_set_cmd(keymap_class, "C-I")
             if hhkb_flag or jp_flag:
                 keymap_class["C-I"] = keymap.defineMultiStrokeKeymap("C-I")
-                set_class_u1i_cmd = make_set_cmd(keymap_class, "C-I")
-            set_class_u1i_cmd(lambda:put_str(os.getenv("NAME", "<<<Please Export $NAME>>>")), "NAME")
-            set_class_u1i_cmd(lambda:put_str(os.getenv("ADDR", "<<<Please Export $ADDR>>>")), "ADDR")
-            set_class_u1i_cmd(link_cmd, "LK")
-            set_class_u1i_cmd(lambda:put_strln("-> "), "Y")
-            set_class_u1i_cmd(lambda:put_strln("# "), "1")
-            set_class_u1i_cmd(lambda:put_strln("## <INS>"), "2")
-            set_class_u1i_cmd(lambda:put_strln("### "), "3")
-            set_class_u1i_cmd(insert_ins, "INS")
-            set_class_u1i_cmd(insert_h4, "4")
-            set_class_u1i_cmd(insert_bold, "B")
-            set_class_u1i_cmd(insert_ul, "UL")
-            set_class_u1i_cmd(insert_li, "LI")
-            set_class_u1i_cmd(lambda:put_strln("https://qiita.com/search?utf8=%E2%9C%93&sort=&q=user%3Amiyagaw61+"), "QI")
-            set_class_u1i_cmd(lambda:put_strln("https://qiita.com/drafts/new"), "NQI")
-            set_class_u1i_cmd(lambda:put_strln("```\n"), "KD")
-            set_class_u1i_cmd(lambda:put_strln("```Rust\n"), "KR")
-            set_class_u1i_cmd(lambda:put_strln("```Bash\n"), "KB")
-            set_class_u1i_cmd(lambda:put_strln("```C\n"), "KC")
-            set_class_u1i_cmd(lambda:put_strln("```Python\n"), "KP")
+                set_class_ci_cmd = make_set_cmd(keymap_class, "C-I")
+            set_class_ci_cmd(lambda:put_str(os.getenv("NAME", "<<<Please Export $NAME>>>")), "NAME")
+            set_class_ci_cmd(lambda:put_str(os.getenv("ADDR", "<<<Please Export $ADDR>>>")), "ADDR")
+            set_class_ci_cmd(link_cmd, "LK")
+            set_class_ci_cmd(lambda:put_strln("-> "), "Y")
+            set_class_ci_cmd(lambda:put_strln("# "), "1")
+            set_class_ci_cmd(lambda:put_strln("## <INS>"), "2")
+            set_class_ci_cmd(lambda:put_strln("### "), "3")
+            set_class_ci_cmd(insert_ins, "INS")
+            set_class_ci_cmd(insert_h4, "4")
+            set_class_ci_cmd(insert_bold, "B")
+            set_class_ci_cmd(insert_ul, "UL")
+            set_class_ci_cmd(insert_li, "LI")
+            set_class_ci_cmd(lambda:put_strln("https://qiita.com/search?utf8=%E2%9C%93&sort=&q=user%3Amiyagaw61+"), "QI")
+            set_class_ci_cmd(lambda:put_strln("https://qiita.com/drafts/new"), "NQI")
+            set_class_ci_cmd(lambda:put_strln("```\n"), "KD")
+            set_class_ci_cmd(lambda:put_strln("```Rust\n"), "KR")
+            set_class_ci_cmd(lambda:put_strln("```Bash\n"), "KB")
+            set_class_ci_cmd(lambda:put_strln("```C\n"), "KC")
+            set_class_ci_cmd(lambda:put_strln("```Python\n"), "KP")
 
-        def initialize_keybind_u2(keymap_class):
+        def initialize_keybind_u0(keymap_class):
             keymap_class["O-Tab"] = "Tab"
-            keymap_class["U2-J"] = "PageDown"
-            keymap_class["U2-K"] = "PageUp"
-            #keymap_class["U2-Q"] = "A-F4"
+            keymap_class["U0-J"] = "PageDown"
+            keymap_class["U0-K"] = "PageUp"
+            #keymap_class["U0-Q"] = "A-F4"
             if hhkb_flag or jp_flag:
-                keymap_class["U2-F"] = "C-F"
+                keymap_class["U0-F"] = "C-F"
 
-        def initialize_keybind_u1u2(keymap_class):
+        def initialize_keybind_cu0(keymap_class):
             pass
 
         def initialize_keybind_win(keymap_class):
@@ -397,26 +397,48 @@ def configure(keymap):
             keymap_class["S-7"] = lambda:put_str("&")
             keymap_class["S-Colon"] = lambda:put_str("\"")
 
+        def initialize_keybind_henkan(keymap_class):
+            def henkan_a():
+                down_key("SHIFT")
+                put_key("HOME")
+                up_key("SHIFT")
+
+            def henkan_e():
+                down_key("SHIFT")
+                put_key("END")
+                up_key("SHIFT")
+
+            keymap_class["U1-A"] = lambda:henkan_a()
+            keymap_class["U1-E"] = lambda:henkan_e()
+
+        def initialize_keybind_muhenkan(keymap_class):
+            keymap_class["U2-A"] = "C-A"
+
         def initialize_keybind(keymap_class):
             if hhkb_flag or jp_flag:
                 initialize_alttab(keymap_class)
                 initialize_jpen(keymap_class)
             else:
                 initialize_keybind_alnum(keymap_class)
-            initialize_keybind_shift(   keymap_class )
-            initialize_keybind_alt(     keymap_class )
-            initialize_keybind_cursor(  keymap_class )
+
+            initialize_keybind_shift(    keymap_class )
+            initialize_keybind_alt(      keymap_class )
+            initialize_keybind_cursor(   keymap_class )
             #initialize_keybind_jump(    keymap_class )
-            initialize_keybind_u1(      keymap_class )
-            initialize_keybind_u1space( keymap_class )
-            initialize_keybind_u1i(     keymap_class )
-            initialize_keybind_u2(      keymap_class )
-            #initialize_keybind_u1u2(    keymap_class )
-            initialize_keybind_win(     keymap_class )
+            initialize_keybind_c(        keymap_class )
+            initialize_keybind_cspace(   keymap_class )
+            initialize_keybind_ci(       keymap_class )
+            initialize_keybind_u0(       keymap_class )
+            #initialize_keybind_cu0(     keymap_class )
+            initialize_keybind_win(      keymap_class )
+
             keymap_class["BackSlash"] = lambda:put_str("\\")
-            keymap_class["U2-Space"] = space_4
+            keymap_class["U0-Space"] = space_4
+
             if jp_flag:
                 initialize_keybind_jp2en(keymap_class)
+                initialize_keybind_henkan(   keymap_class )
+                initialize_keybind_muhenkan( keymap_class )
             else:
                 keymap_class["Quote"] = lambda:put_str("'")
 
@@ -430,30 +452,30 @@ def configure(keymap):
 
         def config_terminal(keymap_class):
             for x in ["A", "E", "U", "F", "B", "S-F", "S-B"]:
-                keymap_class["U1-" + x] = "C-" + x
+                keymap_class["C-" + x] = "C-" + x
             if hhkb_flag or jp_flag:
                 for x in ["A", "E", "U", "F", "B", "S-F", "S-B"]:
                     keymap_class["C-" + x] = "C-" + x
 
         def config_vim(keymap_class):
-            keymap_class["U2-J"] = escape
-            keymap_class["U2-I"] = insert_jp
-            keymap_class["U2-O"] = o_jp
-            keymap_class["U1-SEMICOLON"] = "C-F", "BackSlash"
+            keymap_class["U0-J"] = escape
+            keymap_class["U0-I"] = insert_jp
+            keymap_class["U0-O"] = o_jp
+            keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
 
         def n_slack(keymap_class):
-            keymap_class["U1-N"] = "S-A-Down"
-            keymap_class["U1-U2-N"] = "S-A-Up"
+            keymap_class["C-N"] = "S-A-Down"
+            keymap_class["C-U0-N"] = "S-A-Up"
             if hhkb_flag or jp_flag:
                 keymap_class["C-N"] = "S-A-Down"
-                keymap_class["C-U2-N"] = "S-A-Up"
+                keymap_class["C-U0-N"] = "S-A-Up"
         
         def n_notepad(keymap_class):
-            keymap_class["U1-N"] = "Down"
-            keymap_class["U1-U2-N"] = "Up"
+            keymap_class["C-N"] = "Down"
+            keymap_class["C-U0-N"] = "Up"
             if hhkb_flag or jp_flag:
                 keymap_class["C-N"] = "Down"
-                keymap_class["C-U2-N"] = "Up"
+                keymap_class["C-U0-N"] = "Up"
 
         def qiita():
             base_url = "https://qiita.com/search?utf8=%E2%9C%93&sort=&q=user%3Amiyagaw61+"
@@ -474,10 +496,12 @@ def configure(keymap):
 
     # Config For All
     if 1:
-        if not hhkb_flag:
-            if not jp_flag:
-                keymap.defineModifier("CapsLock", "User1")
-        keymap.defineModifier("Tab", "User2")
+        keymap.defineModifier("Tab", "User0")
+        if jp_flag:
+            keymap.defineModifier("(28)", "User1")
+            keymap.defineModifier("(29)", "User2")
+            keymap.defineModifier("(241)", "User3")
+            keymap.defineModifier("(242)", "User3")
 
     # Config For Global
     if 1:
@@ -531,41 +555,41 @@ def configure(keymap):
         keymap_firefox = get_keymap("firefox.exe")
         initialize_keybind(keymap_firefox)
         n_notepad(keymap_firefox)
-        keymap_firefox["U1-H"] = "A-Left"
-        keymap_firefox["U1-L"] = "A-Right"
-        keymap_firefox["U1-PageUp"] = "C-PageUp"
-        keymap_firefox["U1-PageDown"] = "C-PageDown"
+        keymap_firefox["C-H"] = "A-Left"
+        keymap_firefox["C-L"] = "A-Right"
+        keymap_firefox["C-PageUp"] = "C-PageUp"
+        keymap_firefox["C-PageDown"] = "C-PageDown"
         if hhkb_flag or jp_flag:
             keymap_firefox["C-H"] = "A-Left"
             keymap_firefox["C-L"] = "A-Right"
             keymap_firefox["C-PageUp"] = "C-PageUp"
             keymap_firefox["C-PageDown"] = "C-PageDown"
-        keymap_firefox["U2-H"] = "C-Pageup"
-        keymap_firefox["U2-L"] = "C-Pagedown"
-        keymap_firefox["U2-Q"] = "C-W"
-        keymap_firefox["U2-I"] = step_in
-        keymap_firefox["U2-O"] = step_over
+        keymap_firefox["U0-H"] = "C-Pageup"
+        keymap_firefox["U0-L"] = "C-Pagedown"
+        keymap_firefox["U0-Q"] = "C-W"
+        keymap_firefox["U0-I"] = step_in
+        keymap_firefox["U0-O"] = step_over
         #keymap_firefox["O-Tab"] = space_4
-        keymap_firefox["U1-Space"] = keymap.defineMultiStrokeKeymap("U1-Space")
-        set_firefox_u1s_cmd = make_set_cmd(keymap_firefox, "U1-Space")
-        set_firefox_u1s_cmd(translate_page, "P")
-        set_firefox_u1s_cmd(translate_now, "EN")
+        keymap_firefox["C-Space"] = keymap.defineMultiStrokeKeymap("C-Space")
+        set_firefox_cs_cmd = make_set_cmd(keymap_firefox, "C-Space")
+        set_firefox_cs_cmd(translate_page, "P")
+        set_firefox_cs_cmd(translate_now, "EN")
 
         ## Config For Jump
-        #keymap_firefox["U1-J"] = keymap.defineMultiStrokeKeymap("U1-J")
-        #set_firefox_u1j_cmd = make_set_cmd(keymap_firefox, "U1-J")
+        #keymap_firefox["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
+        #set_firefox_cj_cmd = make_set_cmd(keymap_firefox, "C-J")
         #if hhkb_flag or jp_flag:
         #    keymap_firefox["C-J"] = keymap.defineMultiStrokeKeymap("C-J")
-        #    set_firefox_u1j_cmd = make_set_cmd(keymap_firefox, "C-J")
-        #set_firefox_u1j_cmd(lambda:jump_tab_nr(2), "TY")
-        #set_firefox_u1j_cmd(lambda:jump_tab_nr(3), "BA")
-        #set_firefox_u1j_cmd(lambda:jump_tab_nr(4), "EN")
-        #set_firefox_u1j_cmd(lambda:jump_window_nr(3), "TW")
-        #set_firefox_u1j_cmd(lambda:jump_window_nr(4), "SL")
-        #set_firefox_u1j_cmd(lambda:jump_window_nr(5), "DI")
-        #set_firefox_u1j_cmd(lambda:jump_window_nr(6), "V")
-        #set_firefox_u1j_cmd(lambda:jump_window_nr(7), "C")
-        #set_firefox_u1j_cmd(qiita, "QI")
+        #    set_firefox_cj_cmd = make_set_cmd(keymap_firefox, "C-J")
+        #set_firefox_cj_cmd(lambda:jump_tab_nr(2), "TY")
+        #set_firefox_cj_cmd(lambda:jump_tab_nr(3), "BA")
+        #set_firefox_cj_cmd(lambda:jump_tab_nr(4), "EN")
+        #set_firefox_cj_cmd(lambda:jump_window_nr(3), "TW")
+        #set_firefox_cj_cmd(lambda:jump_window_nr(4), "SL")
+        #set_firefox_cj_cmd(lambda:jump_window_nr(5), "DI")
+        #set_firefox_cj_cmd(lambda:jump_window_nr(6), "V")
+        #set_firefox_cj_cmd(lambda:jump_window_nr(7), "C")
+        #set_firefox_cj_cmd(qiita, "QI")
 
     # Config For Discord
     if 1:
@@ -589,9 +613,9 @@ def configure(keymap):
         keymap_teraterm = keymap.defineWindowKeymap(exe_name="TTERMPRO.exe")
         initialize_keybind(keymap_teraterm)
         config_terminal(keymap_teraterm)
-        keymap_teraterm["U2-J"] = escape
-        keymap_teraterm["U2-I"] = insert_jp
-        keymap_teraterm["U2-O"] = o_jp
+        keymap_teraterm["U0-J"] = escape
+        keymap_teraterm["U0-I"] = insert_jp
+        keymap_teraterm["U0-O"] = o_jp
 
     # Config For cmd
     if 1:
@@ -615,7 +639,7 @@ def configure(keymap):
         def hoge():
             typewrite(["return"])
 
-        keymap_cmd["U2-X"] = hoge
+        keymap_cmd["U0-X"] = hoge
 
     # Config For PowerShell
     if 1:
@@ -650,4 +674,4 @@ def configure(keymap):
             typewrite([":", "e", " "], interval=0.03)
             rightClick(1000, 1000)
         keymap_explorer = keymap.defineWindowKeymap(exe_name="explorer.exe")
-        keymap_explorer["U2-V"] = open_vim
+        keymap_explorer["U0-V"] = open_vim
