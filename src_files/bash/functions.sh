@@ -423,6 +423,25 @@ v() {
 }
 
 defrep() {
-    rg -n "\s$1[\s\(].*[\){]*$" | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2                  ---- [\1]@g" | rg -v "^\s" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\("
-    #rg -n "$1.*[\){]$" | rg -v "if\s*\(" | rg -v "while\s*\(" | rg -v "for\s*\(" | rg $1 | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2                        ---- [\1]@g"
+    # simple
+    #rg -n "$1" | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2--------------------------------------------------- [\1]@g" | sed -E "s@^\s+@@g" | rg -v "^$1" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\("
+
+    # customized
+    rg -n "$1" | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2 DEFREP_FILEIS:[\1]@g" | sed -E "s@^\s+@@g" | rg -v "^$1" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\(" | sed -E "s@^.*DEFREP_FILEIS:@@g" > /tmp/defrep_file_names_org
+    rg -n "$1" | sed -E "s@(^[^:]+:[^:]+:)(.*)@\2@g" | sed -E "s@^\s+@@g" | rg -v "^$1" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\(" > /tmp/defrep_code_lines_org
+    rm -rf /tmp/defrep_file_names
+    rm -rf /tmp/defrep_code_lines
+    cat /tmp/defrep_file_names_org | while read line ;do
+        n="$(echo $line | wc -m)"
+        n=$(($n - 1))
+        if [ $n -le 50 ] ;then
+            printf "\033[1;34m%50s\033[0m\n" $line >> /tmp/defrep_file_names
+        else
+            printf "\033[1;34m%80s\033[0m\n" $line >> /tmp/defrep_file_names
+        fi
+    done
+    cat /tmp/defrep_code_lines_org | while read line ;do
+        printf "\033[33;01;41m%s\033[0m\n" "$line" >> /tmp/defrep_code_lines
+    done
+    paste /tmp/defrep_file_names /tmp/defrep_code_lines
 }
