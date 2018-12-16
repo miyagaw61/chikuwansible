@@ -7,5 +7,4 @@
     mode: "u=rwx,g=rwx,o=rwx"
   with_items:
     - name: download
-    - name: rumt
     - name: rall
