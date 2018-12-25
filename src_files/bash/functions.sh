@@ -442,3 +442,7 @@ fnrg() {
     done
     paste /tmp/defrep_file_names /tmp/defrep_code_lines
 }
+
+middle() {
+    head -n $2 | tail -n $(($2 - $1 + 1))
+}
