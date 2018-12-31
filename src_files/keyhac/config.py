@@ -485,13 +485,20 @@ def configure(keymap):
                     keymap_class["C-" + x] = "C-" + x
 
         def config_vim(keymap_class):
+            keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
             keymap_class["U0-J"] = escape
             keymap_class["U0-I"] = insert_jp
             keymap_class["U0-O"] = o_jp
             keymap_class["U0-S-O"] = s_o_jp
             keymap_class["U0-A"] = a_jp
             keymap_class["U0-S-A"] = s_a_jp
-            keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
+            if jp_flag:
+                keymap_class["U2-J"] = escape
+                keymap_class["U2-I"] = insert_jp
+                keymap_class["U2-O"] = o_jp
+                keymap_class["U2-S-O"] = s_o_jp
+                keymap_class["U2-A"] = a_jp
+                keymap_class["U2-S-A"] = s_a_jp
 
         def n_slack(keymap_class):
             keymap_class["C-N"] = "S-A-Down"
