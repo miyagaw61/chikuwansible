@@ -193,6 +193,22 @@ def configure(keymap):
             put_key("O")
             keymap.wnd.setImeStatus(1)
 
+        def s_o_jp():
+            down_key("SHIFT")
+            put_str("O")
+            up_key("SHIFT")
+            keymap.wnd.setImeStatus(1)
+
+        def a_jp():
+            put_str("A")
+            keymap.wnd.setImeStatus(1)
+
+        def s_a_jp():
+            down_key("SHIFT")
+            put_str("A")
+            up_key("SHIFT")
+            keymap.wnd.setImeStatus(1)
+
         def space_4():
             put_str("    ")
             put_key("RETURN")
@@ -472,6 +488,9 @@ def configure(keymap):
             keymap_class["U0-J"] = escape
             keymap_class["U0-I"] = insert_jp
             keymap_class["U0-O"] = o_jp
+            keymap_class["U0-S-O"] = s_o_jp
+            keymap_class["U0-A"] = a_jp
+            keymap_class["U0-S-A"] = s_a_jp
             keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
 
         def n_slack(keymap_class):
