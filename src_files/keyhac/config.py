@@ -381,23 +381,23 @@ def configure(keymap):
             keymap_class["Win-Tab"] = "Win-Tab"
 
         def initialize_keybind_jp2en(keymap_class):
-            keymap_class["D-240"] = lambda:put_str("~")
-            keymap_class["S-Semicolon"] = lambda:put_str(":")
-            keymap_class["S-Minus"] = lambda:put_str("_")
-            keymap_class["S-BackSlash"] = lambda:put_str("|")
-            keymap_class["Yen"] = "S-Caret"
-            keymap_class["S-Yen"] = lambda:put_str("`")
+            keymap_class["D-240"] = "S-Caret"
+            keymap_class["S-Semicolon"] = "Colon"
+            keymap_class["S-Minus"] = "S-BackSlash"
+            keymap_class["S-BackSlash"] = "S-Yen"
+            keymap_class["Yen"] = "S-Atmark"
+            keymap_class["S-Yen"] = "S-Caret"
             keymap_class["Atmark"] = "OpenBracket"
-            keymap_class["S-Atmark"] = lambda:put_str("{")
+            keymap_class["S-Atmark"] = "S-OpenBracket"
             keymap_class["OpenBracket"] = "CloseBracket"
-            keymap_class["S-OpenBracket"] = lambda:put_str("}")
-            keymap_class["Colon"] = lambda:put_str("'")
-            keymap_class["CloseBracket"] = lambda:put_str("=")
-            keymap_class["S-CloseBracket"] = lambda:put_str("+")
-            keymap_class["Caret"] = lambda:put_str("=")
-            keymap_class["S-Caret"] = lambda:put_str("+")
-            keymap_class["S-7"] = lambda:put_str("&")
-            keymap_class["S-Colon"] = lambda:put_str("\"")
+            keymap_class["S-OpenBracket"] = "S-CloseBracket"
+            keymap_class["Colon"] = "S-7"
+            keymap_class["CloseBracket"] = "S-Minus"
+            keymap_class["S-CloseBracket"] = "S-Plus"
+            keymap_class["Caret"] = "S-Minus"
+            keymap_class["S-Caret"] = "S-Plus"
+            keymap_class["S-7"] = "S-6"
+            keymap_class["S-Colon"] = "S-2"
 
         def initialize_keybind_henkan(keymap_class):
             def henkan_a():
