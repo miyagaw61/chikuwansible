@@ -1,0 +1,12 @@
+$if Bash
+    set visible-stats on
+    set horizontal-scroll-mode off
+
+    set bell-style none
+    set show-all-if-ambiguous on
+    set completion-ignore-case on
+
+    set convert-meta off
+    set input-meta on
+    set output-meta on
+$endif

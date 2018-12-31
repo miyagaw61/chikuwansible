@@ -37,4 +37,5 @@
     - {src: "src_files/bash/for_functions", dest: "{{bash_config_files}}"}
     - {src: "src_files/bash/pipenv.sh", dest: "{{bash_config_files}}/pipenv.sh"}
     - {src: "src_files/bash/tmp.sh", dest: "{{bash_config_files}}/tmp.sh"}
+    - {src: "src_files/bash/inputrc", dest: "{{home}}/.inputrc"}
     - {src: "{{home}}/.bashrc", dest: "/root/.bashrc"}
