@@ -348,6 +348,8 @@ def configure(keymap):
                 set_class_ci_cmd = make_set_cmd(keymap_class, "C-I")
             set_class_ci_cmd(lambda:put_str(os.getenv("NAME", "<<<Please Export $NAME>>>")), "NAME")
             set_class_ci_cmd(lambda:put_str(os.getenv("ADDR", "<<<Please Export $ADDR>>>")), "ADDR")
+            set_class_ci_cmd(lambda:put_str(os.getenv("MAIL", "<<<Please Export $MAIL>>>")), "MAIL")
+            set_class_ci_cmd(lambda:put_str(os.getenv("USER", "<<<Please Export $MAIL>>>")), "MAIL")
             set_class_ci_cmd(link_cmd, "LK")
             set_class_ci_cmd(lambda:put_strln("-> "), "Y")
             set_class_ci_cmd(lambda:put_strln("# "), "1")
