@@ -361,7 +361,7 @@ def configure(keymap):
             set_class_ci_cmd(insert_ul, "UL")
             set_class_ci_cmd(insert_li, "LI")
             set_class_ci_cmd(lambda:put_strln("https://qiita.com/search?utf8=%E2%9C%93&sort=&q=user%3Amiyagaw61+"), "QIITA")
-            #set_class_ci_cmd(lambda:put_strln("https://twitter.com/search?f=tweets&vertical=default&q=list%3Amiyagaw61%2Fperfect-monitoring%20min_faves%3A1"), "TWITTER")
+            set_class_ci_cmd(lambda:put_strln("https://twitter.com/search?f=tweets&vertical=default&q=list%3Amiyagaw61%2Fperfect-monitoring%20min_faves%3A1"), "TWITTER")
             set_class_ci_cmd(lambda:put_strln("https://qiita.com/drafts/new"), "NQI")
             set_class_ci_cmd(lambda:put_strln("```\n"), "KD")
             set_class_ci_cmd(lambda:put_strln("```Rust\n"), "KR")
