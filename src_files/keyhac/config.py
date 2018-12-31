@@ -415,6 +415,8 @@ def configure(keymap):
 
         def initialize_keybind_muhenkan(keymap_class):
             keymap_class["U2-A"] = "C-A"
+            keymap_class["U2-J"] = "PageDown"
+            keymap_class["U2-K"] = "PageUp"
 
         #def initialize_keybind_katahira(keymap_class):
         #    keymap_class["U3-A"] = lambda:put_str("hoge")
