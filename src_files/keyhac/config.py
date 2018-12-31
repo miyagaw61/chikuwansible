@@ -503,9 +503,6 @@ def configure(keymap):
         def n_slack(keymap_class):
             keymap_class["C-N"] = "S-A-Down"
             keymap_class["C-U0-N"] = "S-A-Up"
-            if hhkb_flag or jp_flag:
-                keymap_class["C-N"] = "S-A-Down"
-                keymap_class["C-U0-N"] = "S-A-Up"
         
         def n_notepad(keymap_class):
             keymap_class["C-N"] = "Down"
