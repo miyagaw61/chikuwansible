@@ -8,3 +8,4 @@
   with_items:
     - name: download
     - name: rall
+    - name: tmp.py

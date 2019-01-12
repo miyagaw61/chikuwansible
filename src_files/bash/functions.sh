@@ -446,3 +446,11 @@ fnrg() {
 middle() {
     head -n $2 | tail -n $(($2 - $1 + 1))
 }
+
+mktmp() {
+    if [ -e "./tmp.py" ] ;then
+        echo tmp.py: already exists
+    else
+        cp -a $HOME/bin/tmp.py .
+    fi
+}
