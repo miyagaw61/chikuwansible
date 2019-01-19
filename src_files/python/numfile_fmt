@@ -12,9 +12,22 @@ files, _ = Shell(cmd).readlines()
 for f in files:
     if f == this_file or f == 's' or f == 'desktop.ini':
         continue
-    n = r.findall(f)
-    if len(n) == 0:
+    num = r.findall(f)
+    if len(num) == 0:
         continue
-    n = n[0]
-    n = r.sub(f"_{n}", f)
+    num = num[0]
+    n = r.sub(f"_{num}", f)
+    if File(n).exist():
+        num = int(num)
+        while True:
+            num = num + 1
+            if num == 100:
+                print(f + ": over 100")
+                break
+            n = r.sub(f"_{num}", f)
+            if File(n).exist():
+                continue
+            Shell(f'mv "{f}" "{n}"').call()
+            break
+        continue
     Shell(f'mv "{f}" "{n}"').call()
