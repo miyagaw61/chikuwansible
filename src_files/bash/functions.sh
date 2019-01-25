@@ -514,3 +514,12 @@ mdgp() {
         rg -n $1 | dgp $1
     fi
 }
+
+x() {
+    touch /tmp/gdb.loop
+    touch /tmp/gdb.pause
+    nohup ./x &
+    sleep 2
+    gdb -p $(cat /tmp/gdb.pid)
+    rm -rf /tmp/gdb.loop
+}
