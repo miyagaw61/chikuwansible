@@ -523,3 +523,7 @@ x() {
     gdb -p $(cat /tmp/gdb.pid)
     rm -rf /tmp/gdb.loop
 }
+
+at() {
+    gdb -p $(cat /tmp/gdb.pid)
+}
