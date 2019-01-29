@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+from enert import *
+from sys import argv
+from os import path
+
+args = argv[1:]
+if len(args) < 1:
+    exit(0)
+zip_file = args[0]
+lszip_file = path.abspath(zip_file)
+lszip_file = lszip_file.replace('/', '@')
+lszip_file = '/tmp/' + lszip_file + '.lszip'
+f = File(lszip_file)
+f_flag = False
+
+if '-f' in args:
+    f_flag = True
+    args.remove('-f')
+    Shell(f'rm -rf {lszip_file}').call()
+
+if not f.exist():
+    Shell(f"less -iMRS {zip_file} | awk '{{print $8}}' | tail -n +4 | grep -v '^$' > {lszip_file}").call()
+
+if len(args) == 1:
+    Shell(f'less -iMRS -#5 {lszip_file}').call()
+
+if len(args) == 2:
+    depth = int(args[1])
+    new_lszip_file = lszip_file.replace('.lszip', f'.lszip{depth}.lszip')
+    if f_flag:
+        Shell(f'rm -rf {new_lszip_file}').call()
+    if not File(new_lszip_file).exist():
+        sedcmd = '^('
+        sedcmd += '[^/]*'
+        if depth >= 2:
+            for _ in range(depth-1):
+                sedcmd += '/[^/]*'
+        sedcmd += ').*'
+        sedcmd = f'"s@{sedcmd}@\\1@g"'
+        Shell(f'cat {lszip_file} | sed -E {sedcmd} | sort | uniq > {new_lszip_file}').call()
+    Shell(f'less -iMRS -#5 {new_lszip_file}').call()
