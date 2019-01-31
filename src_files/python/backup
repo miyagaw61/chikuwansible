@@ -1,0 +1,42 @@
+#!/bin/bash
+
+source $HOME/bin/error_trap.sh
+
+if [ $# -eq 2 ] ;then
+    home1=$1
+    home2=$2
+
+    date
+
+    diff ${home1}/bin ${home2}/bin | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/bin/\1@g' > /tmp/will_delete_files
+    if [ ! -e ${home2}/bin_grave ] ;then
+        mkdir ${home2}/bin_grave
+    fi
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        rsync -a $(cat /tmp/will_delete_files) ${home2}/bin_grave
+    fi
+    rsync -a --delete ${home1}/bin/ ${home2}/bin
+
+    diff ${home1}/program ${home2}/program | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/program/\1@g' > /tmp/will_delete_files
+    if [ ! -e ${home2}/program_grave ] ;then
+        mkdir ${home2}/program_grave
+    fi
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        rsync -a $(cat /tmp/will_delete_files) ${home2}/program_grave
+    fi
+    rsync -a --delete ${home1}/program/ ${home2}/program
+
+    diff ${home1}/docs ${home2}/docs | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/docs/\1@g' > /tmp/will_delete_files
+    if [ ! -e ${home2}/docs_grave ] ;then
+        mkdir ${home2}/docs_grave
+    fi
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        rsync -a $(cat /tmp/will_delete_files) ${home2}/docs_grave
+    fi
+    rsync -a --delete ${home1}/docs/ ${home2}/docs
+
+    date
+    python $HOME/src/github.com/miyagaw61/miyagaw61_linebot/push.py $MY_LINE_ID 'backup finished.'
+else
+    echo "backup <src home directory> <dest home directory>"
+fi
