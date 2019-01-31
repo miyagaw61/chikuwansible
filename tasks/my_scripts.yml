@@ -1,6 +1,6 @@
-- name: Copy My Python Scripts
+- name: Copy My Scripts
   copy:
-    src: "src_files/python/{{item.name}}"
+    src: "src_files/scripts/{{item.name}}"
     dest: "{{binaries}}/{{item.name}}"
     owner: "{{user}}"
     group: "{{user}}"

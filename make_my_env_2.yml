@@ -4,7 +4,7 @@
   tasks:
     - include_vars: vars/editable.yml
     - include_vars: vars/uneditable.yml
-    - include: tasks/my_python_scripts.yml
+    - include: tasks/my_scripts.yml
     - include: tasks/install_pyenv.yml
     - include: tasks/install_pyenv_versions.yml
     - include: tasks/install_pipenv.yml
