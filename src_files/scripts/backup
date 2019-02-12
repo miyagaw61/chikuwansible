@@ -8,39 +8,71 @@ if [ $# -eq 2 ] ;then
 
     date
 
-    diff ${home1}/bin ${home2}/bin | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/bin/\1@g' > /tmp/will_delete_files
+    diff -r ${home1}/bin ${home2}/bin | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
     if [ ! -e ${home2}/bin_grave ] ;then
         mkdir ${home2}/bin_grave
     fi
     if [ "$(cat /tmp/will_delete_files)" ] ;then
-        rsync -a $(cat /tmp/will_delete_files) ${home2}/bin_grave
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/bin@${home2}/bin_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
     fi
     rsync -a --delete ${home1}/bin/ ${home2}/bin
 
-    diff ${home1}/program ${home2}/program | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/program/\1@g' > /tmp/will_delete_files
+    diff -r ${home1}/program ${home2}/program | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
     if [ ! -e ${home2}/program_grave ] ;then
         mkdir ${home2}/program_grave
     fi
     if [ "$(cat /tmp/will_delete_files)" ] ;then
-        rsync -a $(cat /tmp/will_delete_files) ${home2}/program_grave
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/program@${home2}/program_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
     fi
     rsync -a --delete ${home1}/program/ ${home2}/program
 
-    diff ${home1}/docs ${home2}/docs | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/docs/\1@g' > /tmp/will_delete_files
+    diff -r ${home1}/docs ${home2}/docs | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
     if [ ! -e ${home2}/docs_grave ] ;then
         mkdir ${home2}/docs_grave
     fi
     if [ "$(cat /tmp/will_delete_files)" ] ;then
-        rsync -a $(cat /tmp/will_delete_files) ${home2}/docs_grave
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/docs@${home2}/docs_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
     fi
     rsync -a --delete ${home1}/docs/ ${home2}/docs
 
-    diff ${home1}/VMs ${home2}/VMs | grep "Only in ${home2}" | sed -E 's@^[^:]+: (.*)@'${home2}'/VMs/\1@g' > /tmp/will_delete_files
+    diff -r ${home1}/VMs ${home2}/VMs | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
     if [ ! -e ${home2}/VMs_grave ] ;then
         mkdir ${home2}/VMs_grave
     fi
     if [ "$(cat /tmp/will_delete_files)" ] ;then
-        rsync -a $(cat /tmp/will_delete_files) ${home2}/VMs_grave
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/VMs@${home2}/VMs_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
     fi
     rsync -a --delete ${home1}/VMs/ ${home2}/VMs
 
