@@ -59,6 +59,23 @@ if [ $# -eq 2 ] ;then
     fi
     rsync -a --delete ${home1}/docs/ ${home2}/docs
 
+    diff -r ${home1}/images ${home2}/images | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
+    if [ ! -e ${home2}/images_grave ] ;then
+        mkdir ${home2}/images_grave
+    fi
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/images@${home2}/images_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
+    fi
+    rsync -a --delete ${home1}/images/ ${home2}/images
+
     diff -r ${home1}/VMs ${home2}/VMs | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
     if [ ! -e ${home2}/VMs_grave ] ;then
         mkdir ${home2}/VMs_grave
