@@ -93,6 +93,40 @@ if [ $# -eq 2 ] ;then
     fi
     rsync -a --delete ${home1}/large_docs/VMs/ ${home2}/large_docs/VMs
 
+    diff -r ${home1}/large_docs/ctf ${home2}/large_docs/ctf | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
+    if [ ! -e ${home2}/large_docs/ctf_grave ] ;then
+        mkdir ${home2}/large_docs/ctf_grave
+    fi
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/large_docs/ctf@${home2}/large_docs/ctf_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
+    fi
+    rsync -a --delete ${home1}/large_docs/ctf/ ${home2}/large_docs/ctf
+
+    diff -r ${home1}/large_docs/iso ${home2}/large_docs/iso | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
+    if [ ! -e ${home2}/large_docs/iso_grave ] ;then
+        mkdir ${home2}/large_docs/iso_grave
+    fi
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/large_docs/iso@${home2}/large_docs/iso_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
+    fi
+    rsync -a --delete ${home1}/large_docs/iso/ ${home2}/large_docs/iso
+
     date
     python $HOME/src/github.com/miyagaw61/miyagaw61_linebot/push.py $MY_LINE_ID 'backup finished.'
 else
