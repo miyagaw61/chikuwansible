@@ -7,6 +7,7 @@ import re
 
 args = argv[1:]
 if len(args) < 1:
+    print('Usage: lszip [-f] <zipped_file>')
     exit(0)
 zip_file = args[0]
 abs_zip_file = path.abspath(zip_file)
