@@ -19,8 +19,12 @@ if '-f' in args:
     args.remove('-f')
     Shell(f'rm -rf {lszip_file}').call()
 
-if not f.exist():
-    Shell(f"less -iMRS {zip_file} | awk '{{print $8}}' | tail -n +4 | grep -v '^$' > {lszip_file}").call()
+if zip_file[-2:] == 'ip':
+    if not f.exist():
+        Shell(f"less -iMRS {zip_file} | awk '{{print $8}}' | tail -n +4 | grep -v '^$' > {lszip_file}").call()
+elif zip_file[-2:] == '7z':
+    if not f.exist():
+        Shell(f"less -iMRS {zip_file} | awk '{{print $6}}' | tail -n +18 | grep -v '^$' > {lszip_file}").call()
 
 if len(args) == 1:
     Shell(f'less -iMRS -#5 {lszip_file}').call()
