@@ -422,27 +422,6 @@ v() {
     fi
 }
 
-fnrg() {
-    rg -n "\s+$1[^0-9a-zA-Z_]" | sed -E "s@(^[^:]+):([^:]+):(.*)@\3 DEFREP_FILE_IS:[ \1 : \2 ]@g" | sed -E "s@^\s+@@g" | rg -v "^$1" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\(" | rg -v "; DEFREP_FILE_IS:" | rg -v "[^,\)] DEFREP_FILE_IS:" > /tmp/defrep_org
-    cat /tmp/defrep_org | sed -E "s@^.*DEFREP_FILE_IS:@@g" > /tmp/defrep_file_names_org
-    cat /tmp/defrep_org | sed -E "s@ DEFREP_FILE_IS:.*@@g" > /tmp/defrep_code_lines_org
-    rm -rf /tmp/defrep_file_names
-    rm -rf /tmp/defrep_code_lines
-    cat /tmp/defrep_file_names_org | while read line ;do
-        n="$(echo $line | wc -m)"
-        n=$(($n - 1))
-        if [ $n -le 50 ] ;then
-            printf "\033[1;34m%50s\033[0m\n" "$line" >> /tmp/defrep_file_names
-        else
-            printf "\033[1;34m%80s\033[0m\n" "$line" >> /tmp/defrep_file_names
-        fi
-    done
-    cat /tmp/defrep_code_lines_org | while read line ;do
-        printf "\033[33;01;41m%s\033[0m\n" "$line" >> /tmp/defrep_code_lines
-    done
-    paste /tmp/defrep_file_names /tmp/defrep_code_lines
-}
-
 middle() {
     head -n $2 | tail -n $(($2 - $1 + 1))
 }
@@ -453,4 +432,73 @@ mktmp() {
     else
         cp -a $HOME/bin/tmp.py .
     fi
+}
+
+greparse() {
+    if [ "$1" = "-p" ] ;then
+        cat /tmp/greparse_result | less -iSMR -#5
+    else
+        if [ -p /dev/stdin ]; then
+            __str=`cat -`
+        else
+            __str=$@
+        fi
+        #echo "$__str" | sed -E "s@(^[^:]+):([^:]+):(.*)@\3 GREPARSE_FILE_IS:[ \1 : \2 ]@g" | sed -E "s@^\s+@@g" | rg -v "^if\s*\(" | rg -v "^for\s*\(" | rg -v "^while\s*\(" > /tmp/greparse_org # First Version
+        #echo "$__str" | sed -E "s@(^[^:]+):([^:]+):(.*)@\3 GREPARSE_FILE_IS:[ \1 : \2 ]@g" | sed -E "s@^\s+@@g" > /tmp/greparse_org # Use sed -E "s@^\s+@@g"
+        #echo "$__str" | sed -E "s@^\s*([^:]+):([^:]+):(.*)@\3 GREPARSE_FILE_IS:[ \1 : \2 ]@g" > /tmp/greparse_org # Use s@^\s*
+        echo "$__str" | sed -E "s@(^[^:]+):([^:]+):(.*)@\3 GREPARSE_FILE_IS:[ \1 : \2 ]@g" > /tmp/greparse_org # Use no sed -E "s@^\s+@@g" or s@^\s*
+        cat /tmp/greparse_org | sed -E "s@^.*GREPARSE_FILE_IS:@@g" > /tmp/greparse_file_names_org
+        cat /tmp/greparse_org | sed -E "s@ GREPARSE_FILE_IS:.*@@g" > /tmp/greparse_code_lines_org
+        cp -a /tmp/greparse_file_names_org /tmp/greparse_file_names_org.bak
+        rm -rf /tmp/greparse_file_names
+        rm -rf /tmp/greparse_code_lines
+        cat /tmp/greparse_file_names_org | while read line ;do
+            n="$(echo $line | wc -m)"
+            n=$(($n - 1))
+            if [ $n -le 50 ] ;then
+                printf "\033[1;34m%50s\033[0m\n" "$line" >> /tmp/greparse_file_names
+            else
+                printf "\033[1;34m%80s\033[0m\n" "$line" >> /tmp/greparse_file_names
+            fi
+        done
+        cat /tmp/greparse_code_lines_org | while read line ;do
+            printf "\033[33;01;41m%s\033[0m\n" "$line" >> /tmp/greparse_code_lines
+        done
+        paste /tmp/greparse_file_names /tmp/greparse_code_lines > /tmp/greparse_result
+        if [ $# -eq 1 ] ;then
+            cat /tmp/greparse_result | rg --color=always "$1" | less -iSMR -#5
+        else
+            cat /tmp/greparse_result | less -iSMR -#5
+        fi
+    fi
+}
+
+defgrep() {
+    if [ -p /dev/stdin ]; then
+        __str=`cat -`
+    else
+        __str=$@
+    fi
+    if [ $# -eq 1 ] ;then
+        echo "$__str" | rg -v "\d:\s*if\s*\(" | rg -v "\d:\s*for\s*\(" | rg -v "\d:\s*while\s*\(" | rg -v "\d:\s*$1" | rg "\s+$1"
+    else
+        echo "$__str" | rg -v "\d:\s*if\s*\(" | rg -v "\d:\s*for\s*\(" | rg -v "\d:\s*while\s*\("
+    fi
+}
+
+defgreparse() {
+        if [ "$1" = "-p" ] ;then
+            cat /tmp/greparse_result | less -iSMR -#5
+        else
+            if [ -p /dev/stdin ]; then
+                __str=`cat -`
+            else
+                __str=$@
+            fi
+            if [ $# -eq 1 ] ;then
+                echo "$__str" | defgrep "$1" | rg --color=always "$1" | greparse
+            else
+                echo "$__str" | defgrep | greparse
+            fi
+        fi
 }

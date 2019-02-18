@@ -21,6 +21,9 @@ alias no_alphanumeric="{{alias_no_alphanumeric}}"
 alias naln="no_alphanumeric"
 alias ipa="{{alias_ipa}}"
 alias lf="{{alias_lf}}"
+alias gp="{{alias_gp}}"
+alias dg="{{alias_dg}}"
+alias dgp="{{alias_dgp}}"
 
 # alias ls
 # ====================================
