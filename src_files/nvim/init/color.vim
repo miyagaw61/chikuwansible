@@ -9,3 +9,7 @@ colorscheme neodark
 "UNDER LINE
 "==========
 "highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
+
+"SEARCH HIGHLIGHT
+"================
+highlight Search ctermfg=22 guifg=White guibg=#707070
