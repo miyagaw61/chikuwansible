@@ -503,6 +503,12 @@ defgreparse() {
         fi
 }
 
+mgp() {
+    if [ $# -eq 1 ] ;then
+        rg -n $1 | gp
+    fi
+}
+
 mdgp() {
     if [ $# -eq 1 ] ;then
         rg -n $1 | dgp $1
