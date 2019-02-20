@@ -1,6 +1,6 @@
 syntax on
 set t_ut=
-set termguicolors
+"set termguicolors
 colorscheme neodark
 "set t_AB=[48;2;%lu;%lu;%lum
 "set t_Sb=[48;2;%lu;%lu;%lum
@@ -12,4 +12,5 @@ colorscheme neodark
 
 "SEARCH HIGHLIGHT
 "================
-highlight Search ctermfg=22 guifg=White guibg=#707070
+highlight Search ctermfg=15 ctermbg=8 guifg=White guibg=#707070
+highlight Normal ctermbg=none
