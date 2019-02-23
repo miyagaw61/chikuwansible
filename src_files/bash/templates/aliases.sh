@@ -11,7 +11,6 @@ alias pbpaste="{{alias_pbpaste}}"
 alias xl="{{alias_xl}}"
 alias pt="{{alias_pt}}"
 alias all-update="{{alias_all_update}}"
-alias op="{{alias_op}}"
 alias sd="{{alias_sd}}"
 alias ac="{{alias_ac}}"
 alias vim_plugins_update="{{alias_vim_plugins_update}}"
@@ -24,6 +23,7 @@ alias lf="{{alias_lf}}"
 alias gp="{{alias_gp}}"
 alias dg="{{alias_dg}}"
 alias dgp="{{alias_dgp}}"
+alias op="{{alias_op}}"
 
 # alias ls
 # ====================================

@@ -12,3 +12,5 @@
     - name: numfile_fmt
     - name: lszip
     - name: backup
+    - name: l2w
+    - name: w2l

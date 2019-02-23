@@ -1,0 +1,7 @@
+if test $# -eq 0 ;then
+    echo "Usage: w2l WIN_PATH"
+else
+    path="$(echo $1 | sed -E 's@C:@/mnt/c@g')"
+    path="$(echo $path | sed -E 's@\\@/@g')"
+    echo $path
+fi
