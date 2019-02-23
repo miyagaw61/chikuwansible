@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+from enert import *
+from sys import argv
+
+#def only_z(arg):
+#    if arg[0:2] == 'z_':
+#        return True
+#    else:
+#        return False
+#
+#def not_only_z(arg):
+#    return not(only_z(arg))
+
+args = argv[1:]
+
+if '-h' in args:
+    print('Usage: gettag [-a] [-t]')
+    print('Options:')
+    print('     -a: show all')
+    print('     -t: show top tag only')
+    exit()
+
+cmd = 'lf -tf'
+if '-a' in args:
+    cmd = cmd + ' -a'
+cmd = cmd + ' | sed -E \'s@^.*/@@g\' | sed -E \'s@\.[^\.]+$@@g\' | sed -E \'s@^([0-99]|z)+_@@g\''
+
+if '-t' in args:
+    cmd = cmd + ' | sed -E \'s@_.*$@@g\''
+
+fnames, _ = Shell(cmd).readlines()
+
+tags = [tag for fname in fnames for tag in fname.split('_')]
+tags = list(set(tags))
+tags.sort()
+
+for tag in tags:
+    print(tag)
