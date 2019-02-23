@@ -1,5 +1,10 @@
+#!/usr/bin/env bash
 if [ $# -eq 1 ] ;then
-    cmd.exe /c start "$(l2w $1)"
+    if [ $1 = '-h' ] ;then
+        echo "start LINUX_PATH"
+    else
+        cmd.exe /c start "$(l2w $1)"
+    fi
 else
-    echo "start [LINUX_PATH]"
+    echo "start LINUX_PATH"
 fi
