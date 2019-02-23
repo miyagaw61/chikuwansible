@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+
+from enert import *
+from sys import argv
+from os import environ, path
+import datetime
+
+def l2w(linux_path):
+    windows_path = linux_path.replace('/mnt/c', 'C:')
+    windows_path = windows_path.replace('/home/miyagaw61', 'C:/Users/miyagaw61/home')
+    windows_path = windows_path.replace('~', 'C:/Users/miyagaw61/home')
+    windows_path = windows_path.replace('$HOME', 'C:/Users/miyagaw61/home')
+    windows_path = windows_path.replace('/', '\\')
+    return windows_path
+
+def fil_shortcut(newdir, x):
+    d = newdir + '/' + path.dirname(path.abspath(x))
+    f_d = File(d)
+    if not f_d.exist():
+        f_d.mkdir()
+    shortcut_dst_linux = newdir + '/' + path.abspath(x).replace('/mnt/c', 'TMP_MNT_C')
+    shortcut_dst_windows = l2w(shortcut_dst_linux) + '.lnk'
+    shortcut_dst_windows = shortcut_dst_windows.replace('TMP_MNT_C', '\\mnt\\c')
+    shortcut_src_windows = l2w(path.abspath(x))
+    cmd = f'cmd.exe /c shortcut "{shortcut_dst_windows}" "{shortcut_src_windows}" > /dev/null'
+    Shell(cmd).call()
+
+def base_fil_shortcut(newdir, x):
+    shortcut_dst_linux = newdir + '/' + path.basename(x)
+    shortcut_dst_windows = l2w(shortcut_dst_linux) + '.lnk'
+    shortcut_dst_windows = shortcut_dst_windows.replace('TMP_MNT_C', '\\mnt\\c')
+    shortcut_src_windows = l2w(path.abspath(x))
+    cmd = f'cmd.exe /c shortcut "{shortcut_dst_windows}" "{shortcut_src_windows}" > /dev/null'
+    Shell(cmd).call()
+
+def fil_ln(newdir, x):
+    d = newdir + '/' + path.dirname(path.abspath(x))
+    f_d = File(d)
+    if not f_d.exist():
+        f_d.mkdir()
+    shortcut_dst_linux = newdir + '/' + path.abspath(x)
+    shortcut_src_linux = path.abspath(x)
+    cmd = f'ln -s "{shortcut_src_linux}" "{shortcut_dst_linux}" > /dev/null'
+    Shell(cmd).call()
+
+def base_fil_ln(newdir, x):
+    shortcut_dst_linux = newdir + '/' + path.basename(x)
+    shortcut_src_linux = path.abspath(x)
+    cmd = f'ln -s "{shortcut_src_linux}" "{shortcut_dst_linux}" > /dev/null'
+    Shell(cmd).call()
+
+args = argv[1:]
+
+if '-h' in args:
+    print('FIle fiLter')
+    print('Usage: fil FILES [-h] [-b]')
+    print('OPTIONS:')
+    print('  FILES: file nmaes')
+    print('     -h: show this help')
+    print('     -b: use basename')
+    print('ENVIRON:')
+    print('  WINDOWS_FILDIR: fildir for windows')
+    print('  LINUX_FILDIR: fildir for linux')
+    exit()
+
+username = environ['USER']
+# WINDOWS
+if args[0][:4] == '/mnt':
+    try:
+        fildir = environ['WINDOWS_FILDIR']
+    except:
+        fildir = '/mnt/c/Users/' + username + '/home/tmp/fil'
+# LINUX
+else:
+    try:
+        fildir = environ['LINUX_FILDIR']
+    except:
+        fildir = '/tmp/fil'
+f_fildir = File(fildir)
+if not f_fildir.exist():
+    f_fildir.mkdir()
+
+now = datetime.datetime.now()
+year = now.year
+month = now.month
+day = now.day
+hour = now.hour
+minute = now.minute
+second = now.second
+newdir = fildir + f'/{year:04}{month:02}{day:02}-{hour:02}{minute:02}{second:02}'
+f_newdir = File(newdir)
+f_newdir.mkdir()
+
+def ln():
+    pass
+
+# WINDOWS
+if newdir[:4] == '/mnt':
+    if '-b' in args:
+        args.remove('-b')
+        ln = base_fil_shortcut
+    else:
+        ln = fil_shortcut
+    for x in args:
+        try:
+            ln(newdir, x)
+        except:
+            print('error: ' + x)
+            continue
+    Shell('op ' + newdir).call()
+# LINUX
+else:
+    if '-b' in args:
+        args.remove('-b')
+        ln = base_fil_ln
+    else:
+        ln = fil_ln
+    for x in args:
+        try:
+            ln(newdir, x)
+        except:
+            print('error: ' + x)
+            continue
+    print(newdir)
