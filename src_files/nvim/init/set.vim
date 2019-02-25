@@ -120,3 +120,6 @@ set visualbell t_vb=
 
 "日本語をスペルチェックの対象から外す
 set spelllang=en,cjk
+
+"自動移動
+set autochdir
