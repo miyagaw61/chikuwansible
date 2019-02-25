@@ -285,3 +285,10 @@ function! My_vimgrep_all(...)
     execute "cd %:h"
     execute "vimgrep /" . join(l:args[0:l:num], " ") . "/j " . l:args[l:last] . " | cw"
 endfunction
+
+" make
+" ====
+command! -nargs=? Makeb call Makeb(<f-args>)
+function! Makeb(...)
+    execute "make build | cw"
+endfunction
