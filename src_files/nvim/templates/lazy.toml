@@ -333,3 +333,6 @@ hook_add = '''
     let g:ag_qhandler="copen 30"
     let g:ag_highlight=1
 '''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
