@@ -408,17 +408,29 @@ rust() {
 }
 
 v() {
-    if [[ $# -eq 0 ]] ;then
-        fg
-    elif [[ $# -eq 1 ]] ;then
+    if [ $# -eq 0 ] ;then
+        if [ "$(jobs)" ] ;then
+            fg
+        else
+            vim
+        fi
+    elif [ $# -eq 1 ] ;then
         echo "$(realpath $1)" > /tmp/viming_path
-        fg
+        if [ "$(jobs)" ] ;then
+            fg
+        else
+            vim $(cat /tmp/viming_path)
+        fi
     else
         rm -rf /tmp/viming_path
         for x in $@ ;do
             echo "$(realpath $x)" >> /tmp/viming_path
         done
-        fg
+        if [ "$(jobs)" ] ;then
+            fg
+        else
+            vim
+        fi
     fi
 }
 
