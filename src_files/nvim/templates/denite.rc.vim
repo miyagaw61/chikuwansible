@@ -16,8 +16,7 @@ call denite#custom#source('file_old', 'matchers',
       \ ['matcher_fuzzy', 'matcher_project_files'])
 call denite#custom#source('tag', 'matchers', ['matcher_substring'])
 if has('nvim')
-  call denite#custom#source('file_rec,grep', 'matchers',
-        \ ['matcher_cpsm'])
+    call denite#custom#source('file_rec,grep,line', 'matchers', ['matcher_regexp'])
 endif
 call denite#custom#source('file_old', 'converters',
       \ ['converter_relative_word'])
@@ -30,7 +29,7 @@ call denite#custom#map('insert', '<C-j>',
       \ '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>',
       \ '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', "'",
+call denite#custom#map('insert', "<C-b>",
       \ '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('normal', 'r',
       \ '<denite:do_action:quickfix>', 'noremap')
