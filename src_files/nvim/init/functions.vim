@@ -288,8 +288,8 @@ endfunction
 
 " make
 " ====
-command! -nargs=? Makeb call Makeb(<f-args>)
-function! Makeb(...)
+command! -nargs=? MB call MB(<f-args>)
+function! MB(...)
     execute "make build | cw"
 endfunction
 
