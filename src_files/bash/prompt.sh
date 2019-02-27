@@ -85,10 +85,16 @@ if [ "$color_prompt" = yes ]; then
         echo -ne "$now"
     }
 
-    PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${red}\](\$(cat /etc/hostname)) $ \[${white}\]"
+    function vim_check() {
+        if [ "$(echo $VIM)" ] ;then
+            echo -ne '[Vim]'
+        fi
+    }
+
+    PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${red}\](\$(cat /etc/hostname)\[${yellow}\]\$(vim_check)\[${red}\]) $ \[${white}\]"
 
     if test $USER = "root" ;then
-        PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${yellow}\](\$(cat /etc/hostname)) # \[${white}\]"
+        PS1="\n${cyan}\$(parse_path) \$(parse_branch)\n\[${yellow}\](\$(cat /etc/hostname)\[${red}\]\$(vim_check)\[${yellow}\]) # \[${white}\]"
     fi
 fi
 
