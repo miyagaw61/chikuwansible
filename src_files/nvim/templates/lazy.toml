@@ -62,8 +62,7 @@ hook_add = '''
         \ register neoyank<CR>
   nnoremap <silent> [Window]<Space>
         \ :<C-u>Denite file_rec:~/.vim/rc<CR>
-  nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=15
-        \ line<CR>
+  "nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=15 line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
         \ -auto-highlight -mode=normal line<CR>
   nnoremap <silent> [Window]s :<C-u>Denite file_point file_old
