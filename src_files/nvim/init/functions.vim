@@ -261,7 +261,7 @@ nnoremap <leader>o :call Quick_open()<CR>
 command! -nargs=? MyVimgrep call My_vimgrep(<f-args>)
 function! My_vimgrep(...)
     execute "mark a"
-    execute "vimgrep /" . join(a:000, " ") . "/j %" . " | cw"
+    execute "vimgrep /" . join(a:000, " ") . "/ %" . " | cw"
     normal gk
 endfunction
 
@@ -283,9 +283,9 @@ endfunction
 command! -nargs=? MyVimgrepadd call My_vimgrepadd(<f-args>)
 function! My_vimgrepadd(...)
     let l:args = join(a:000, " ")
-    let l:cmd = "bufdo vimgrepadd /" . l:args . "/j %"
+    let l:cmd = "bufdo vimgrepadd /" . l:args . "/ %"
     execute "cex ''"
-    execute "bufdo vimgrepadd /" . l:args . "/j %"
+    execute l:cmd
     execute "cw"
     normal gk
     execute "call Quick_open()"
@@ -301,7 +301,7 @@ function! My_vimgrep_all(...)
     let l:last = l:argc - 1
     execute "mark a"
     execute "cd %:h"
-    execute "vimgrep /" . join(l:args[0:l:num], " ") . "/j " . l:args[l:last] . " | cw"
+    execute "vimgrep /" . join(l:args[0:l:num], " ") . "/ " . l:args[l:last] . " | cw"
     normal gk
 endfunction
 
