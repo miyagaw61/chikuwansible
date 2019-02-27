@@ -285,6 +285,7 @@ command! -nargs=? MyVimgrepadd call My_vimgrepadd(<f-args>)
 function! My_vimgrepadd(...)
     let l:args = join(a:000, " ")
     let l:cmd = "bufdo vimgrepadd /" . l:args . "/ %"
+    execute "mark a"
     execute "cex ''"
     execute l:cmd
     execute "cw"
