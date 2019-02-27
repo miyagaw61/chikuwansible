@@ -265,13 +265,27 @@ function! My_vimgrep(...)
     normal gk
 endfunction
 
+" save this file name
+" ===================
+command! -nargs=? SaveThisFileName call SaveThisFileName(<f-args>)
+function! SaveThisFileName(...)
+    execute "r !echo %:p"
+    normal ddk
+    execute "w!"
+    execute "e /tmp/viming_path"
+    normal Vp
+    execute "w"
+    execute "bd"
+endfunction
+
 " my_vimgrepadd
 " ==============
 command! -nargs=? MyVimgrepadd call My_vimgrepadd(<f-args>)
 function! My_vimgrepadd(...)
-    execute "mark a"
-    execute "!echo %:p > /tmp/viming_path"
-    execute "cex '' | bufdo vimgrepadd /" . join(a:000, " ") . "/j %"
+    let l:args = join(a:000, " ")
+    let l:cmd = "bufdo vimgrepadd /" . l:args . "/j %"
+    execute "cex ''"
+    execute "bufdo vimgrepadd /" . l:args . "/j %"
     execute "cw"
     normal gk
     execute "call Quick_open()"

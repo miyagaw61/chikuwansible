@@ -49,6 +49,7 @@ nnoremap e :cd %:p:h<CR>:e<Space>
 vmap # :<BS><BS><BS><BS><BS>let @/ = @"<CR>:'<,'>s/<C-r>///g<Left><Left>
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 vnoremap <C-l> <Esc>
+nnoremap <silent>gGso :!echo %:p > /tmp/viming_path 2> /dev/null<CR><CR>
 
 "terminal mapping
 nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tmp/deol_cd.tmp);<Space>
@@ -193,6 +194,6 @@ vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --out
 
 " grep
 "nnoremap [Window]g :Frepl %:p 
-nnoremap [Window]g :MyVimgrep<Space>
-nnoremap [Window]G :MyVimgrepadd<Space>
-nnoremap [Window]a :MyVimgrepAll<Space>
+nnoremap <silent>[Window]g :MyVimgrep<Space>
+nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
+nnoremap <silent>[Window]a :MyVimgrepAll<Space>
