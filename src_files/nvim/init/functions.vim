@@ -301,3 +301,33 @@ function! Denite_grep(...)
     execute "Denite -buffer-name=search -auto-highlight -winheight=15 line"
 endfunction
 nnoremap <silent>/ :<C-u>DG<CR>
+
+" CNEXT
+" =====
+command! -nargs=? CN call CN(<f-args>)
+function! CN(...)
+    execute "cnext"
+    normal zz
+    set cursorline
+endfunction
+nnoremap <silent><C-n> :<C-u>CN<CR>
+
+" CPREV
+" =====
+command! -nargs=? CP call CP(<f-args>)
+function! CP(...)
+    execute "cNext"
+    normal zz
+    set cursorline
+endfunction
+nnoremap <silent><C-p> :<C-u>CP<CR>
+
+" QuickFix Closer
+" ===============
+command! -nargs=? QC call QC(<f-args>)
+function! QC(...)
+    set nocursorline
+    normal gj
+    execute "bd"
+endfunction
+nnoremap <silent><C-h> :<C-u>QC<CR>
