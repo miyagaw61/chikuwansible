@@ -263,6 +263,7 @@ function! My_vimgrep(...)
     execute "mark a"
     execute "vimgrep /" . join(a:000, " ") . "/ %" . " | cw"
     normal gk
+    set cursorline
 endfunction
 
 " save this file name
@@ -288,6 +289,7 @@ function! My_vimgrepadd(...)
     execute l:cmd
     execute "cw"
     normal gk
+    set cursorline
     execute "call Quick_open()"
 endfunction
 
@@ -303,6 +305,7 @@ function! My_vimgrep_all(...)
     execute "cd %:h"
     execute "vimgrep /" . join(l:args[0:l:num], " ") . "/ " . l:args[l:last] . " | cw"
     normal gk
+    set cursorline
 endfunction
 
 " make
