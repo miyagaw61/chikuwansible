@@ -2,10 +2,8 @@ import time
 import sys
 import os
 import datetime
-
 import pyauto
 from keyhac import *
-
 from pyautogui import *
 
 hhkb_flag = False
@@ -436,6 +434,11 @@ def configure(keymap):
             keymap_class["U2-A"] = "C-A"
             keymap_class["U2-J"] = "PageDown"
             keymap_class["U2-K"] = "PageUp"
+            keymap_class["U2-H"] = "C-PageUp"
+            keymap_class["U2-L"] = "C-PageDown"
+            keymap_class["U2-F"] = "C-F"
+            keymap_class["U2-S-9"] = lambda:put_str("（")
+            keymap_class["U2-S-0"] = lambda:put_str("）")
 
         #def initialize_keybind_katahira(keymap_class):
         #    keymap_class["U3-A"] = lambda:put_str("hoge")
