@@ -64,6 +64,7 @@ if '-h' in args:
     exit()
 
 username = environ['USER']
+args[0] = path.abspath(args[0])
 # WINDOWS
 if args[0][:4] == '/mnt':
     try:
