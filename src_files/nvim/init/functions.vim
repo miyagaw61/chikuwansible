@@ -262,6 +262,7 @@ command! -nargs=? MyVimgrep call My_vimgrep(<f-args>)
 function! My_vimgrep(...)
     execute "mark a"
     execute "vimgrep /" . join(a:000, " ") . "/j %" . " | cw"
+    normal gk
 endfunction
 
 " my_vimgrepadd
@@ -269,8 +270,11 @@ endfunction
 command! -nargs=? MyVimgrepadd call My_vimgrepadd(<f-args>)
 function! My_vimgrepadd(...)
     execute "mark a"
+    execute "!echo %:p > /tmp/viming_path"
     execute "cex '' | bufdo vimgrepadd /" . join(a:000, " ") . "/j %"
     execute "cw"
+    normal gk
+    execute "call Quick_open()"
 endfunction
 
 " my_vimgrep_all
@@ -284,6 +288,7 @@ function! My_vimgrep_all(...)
     execute "mark a"
     execute "cd %:h"
     execute "vimgrep /" . join(l:args[0:l:num], " ") . "/j " . l:args[l:last] . " | cw"
+    normal gk
 endfunction
 
 " make
