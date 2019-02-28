@@ -409,27 +409,39 @@ rust() {
 
 v() {
     if [ $# -eq 0 ] ;then
-        if [ "$(jobs)" ] ;then
-            fg
+        if [ "$(echo $VIM)" ] ;then
+            nvr -c "Denite buffer"
         else
-            vim
+            if [ "$(jobs)" ] ;then
+                fg
+            else
+                NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+            fi
         fi
     elif [ $# -eq 1 ] ;then
-        echo "$(realpath $1)" > /tmp/viming_path
-        if [ "$(jobs)" ] ;then
-            fg
+        if [ "$(echo $VIM)" ] ;then
+            nvr -c "e "$(realpath $1)
         else
-            vim $(cat /tmp/viming_path)
+            echo "$(realpath $1)" > /tmp/viming_path
+            if [ "$(jobs)" ] ;then
+                fg
+            else
+                NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $(cat /tmp/viming_path)
+            fi
         fi
     else
         rm -rf /tmp/viming_path
         for x in $@ ;do
             echo "$(realpath $x)" >> /tmp/viming_path
         done
-        if [ "$(jobs)" ] ;then
-            fg
+        if [ "$(echo $VIM)" ] ;then
+            nvr -c "Denite buffer"
         else
-            vim
+            if [ "$(jobs)" ] ;then
+                fg
+            else
+                NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+            fi
         fi
     fi
 }
