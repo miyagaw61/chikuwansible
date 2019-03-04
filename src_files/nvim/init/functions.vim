@@ -334,6 +334,7 @@ function! CN(...)
     set cursorline
 endfunction
 nnoremap <silent><C-n> :<C-u>CN<CR>
+nnoremap <silent><C-j> :<C-u>CN<CR>
 
 " CPREV
 " =====
@@ -344,6 +345,7 @@ function! CP(...)
     set cursorline
 endfunction
 nnoremap <silent><C-p> :<C-u>CP<CR>
+nnoremap <silent><C-k> :<C-u>CP<CR>
 
 " QuickFix Closer
 " ===============
