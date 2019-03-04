@@ -488,7 +488,9 @@ greparse() {
                 printf "\033[1;34m%80s\033[0m\n" "$line" >> /tmp/greparse_file_names
             fi
         done
+        sed -E 's@\\@\\\\@g' -i /tmp/greparse_code_lines_org
         cat /tmp/greparse_code_lines_org | while read line ;do
+            echo hoge
             printf "\033[33;01;41m%s\033[0m\n" "$line" >> /tmp/greparse_code_lines
         done
         paste /tmp/greparse_file_names /tmp/greparse_code_lines > /tmp/greparse_result
