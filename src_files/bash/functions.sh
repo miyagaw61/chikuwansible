@@ -412,6 +412,7 @@ v() {
         if [ "$(echo $VIM)" ] ;then
             nvr -c "Denite buffer"
         else
+            rm -rf /tmp/nvimsocket
             if [ "$(jobs)" ] ;then
                 fg
             else
@@ -422,6 +423,7 @@ v() {
         if [ "$(echo $VIM)" ] ;then
             nvr -c "e "$(realpath $1)
         else
+            rm -rf /tmp/nvimsocket
             echo "$(realpath $1)" > /tmp/viming_path
             if [ "$(jobs)" ] ;then
                 fg
@@ -437,6 +439,7 @@ v() {
         if [ "$(echo $VIM)" ] ;then
             nvr -c "Denite buffer"
         else
+            rm -rf /tmp/nvimsocket
             if [ "$(jobs)" ] ;then
                 fg
             else
