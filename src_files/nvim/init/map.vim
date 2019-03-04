@@ -43,7 +43,7 @@ nnoremap gGCd <C-d>
 nnoremap gGCu <C-u>
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-j> <C-\><C-n>
-nnoremap <Tab> <Nop>
+"nnoremap <Tab> <Nop>
 nnoremap [Window]n :tabn<CR>
 nnoremap e :cd %:p:h<CR>:e<Space>
 vmap # :<BS><BS><BS><BS><BS>let @/ = @"<CR>:'<,'>s/<C-r>///g<Left><Left>
