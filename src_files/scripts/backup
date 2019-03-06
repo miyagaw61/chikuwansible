@@ -2,165 +2,45 @@
 
 source $HOME/bin/error_trap.sh
 
+backup_fn() {
+    source $HOME/bin/error_trap.sh
+    dst_dir=$1
+    echo "[+]save: ${dst_dir}"
+    if [ ! -e ${home2}/${dst_dir} ] ;then
+        mkdir ${home2}/${dst_dir}
+    fi
+    if [ ! -e ${home2}/${dst_dir}_grave ] ;then
+        mkdir ${home2}/${dst_dir}_grave
+    fi
+    diff -r ${home1}/${dst_dir} ${home2}/${dst_dir} | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname $line)
+            dname=$(echo $dname | sed -E "s@${home2}/${dst_dir}@${home2}/${dst_dir}_grave@g")
+            bname=$(basename $line)
+            if [ ! -e $dname ] ;then
+                mkdir -p $dname
+            fi
+            cp -a $line $dname/$bname
+        done
+    fi
+    echo "[+]sync: ${dst_dir}"
+    rsync -a --delete ${home1}/${dst_dir}/ ${home2}/${dst_dir}
+}
+
 if [ $# -eq 2 ] ;then
     home1=$1
     home2=$2
 
     date
 
-    echo '[+]save: bin'
-    if [ ! -e ${home2}/bin ] ;then
-        mkdir ${home2}/bin
-    fi
-    if [ ! -e ${home2}/bin_grave ] ;then
-        mkdir ${home2}/bin_grave
-    fi
-    diff -r ${home1}/bin ${home2}/bin | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/bin@${home2}/bin_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: bin'
-    rsync -a --delete ${home1}/bin/ ${home2}/bin
-
-    echo '[+]save: program'
-    if [ ! -e ${home2}/program ] ;then
-        mkdir ${home2}/program
-    fi
-    if [ ! -e ${home2}/program_grave ] ;then
-        mkdir ${home2}/program_grave
-    fi
-    diff -r ${home1}/program ${home2}/program | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/program@${home2}/program_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: program'
-    rsync -a --delete ${home1}/program/ ${home2}/program
-
-    echo '[+]save: docs'
-    if [ ! -e ${home2}/docs ] ;then
-        mkdir ${home2}/docs
-    fi
-    if [ ! -e ${home2}/docs_grave ] ;then
-        mkdir ${home2}/docs_grave
-    fi
-    diff -r ${home1}/docs ${home2}/docs | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/docs@${home2}/docs_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: docs'
-    rsync -a --delete ${home1}/docs/ ${home2}/docs
-
-    echo '[+]save: large_docs/images'
-    if [ ! -e ${home2}/large_docs/images ] ;then
-        mkdir ${home2}/large_docs/images
-    fi
-    if [ ! -e ${home2}/large_docs/images_grave ] ;then
-        mkdir ${home2}/large_docs/images_grave
-    fi
-    diff -r ${home1}/large_docs/images ${home2}/large_docs/images | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/large_docs/images@${home2}/large_docs/images_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: large_docs/images'
-    rsync -a --delete ${home1}/large_docs/images/ ${home2}/large_docs/images
-
-    echo '[+]save: large_docs/VMs'
-    if [ ! -e ${home2}/large_docs/VMs ] ;then
-        mkdir ${home2}/large_docs/VMs
-    fi
-    if [ ! -e ${home2}/large_docs/VMs_grave ] ;then
-        mkdir ${home2}/large_docs/VMs_grave
-    fi
-    diff -r ${home1}/large_docs/VMs ${home2}/large_docs/VMs | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/large_docs/VMs@${home2}/large_docs/VMs_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: large_docs/VMs'
-    rsync -a --delete ${home1}/large_docs/VMs/ ${home2}/large_docs/VMs
-
-    echo '[+]save: large_docs/ctf'
-    if [ ! -e ${home2}/large_docs/ctf ] ;then
-        mkdir ${home2}/large_docs/ctf
-    fi
-    if [ ! -e ${home2}/large_docs/ctf_grave ] ;then
-        mkdir ${home2}/large_docs/ctf_grave
-    fi
-    diff -r ${home1}/large_docs/ctf ${home2}/large_docs/ctf | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/large_docs/ctf@${home2}/large_docs/ctf_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: large_docs/ctf'
-    rsync -a --delete ${home1}/large_docs/ctf/ ${home2}/large_docs/ctf
-
-    echo '[+]save: large_docs/iso'
-    if [ ! -e ${home2}/large_docs/iso ] ;then
-        mkdir ${home2}/large_docs/iso
-    fi
-    if [ ! -e ${home2}/large_docs/iso_grave ] ;then
-        mkdir ${home2}/large_docs/iso_grave
-    fi
-    diff -r ${home1}/large_docs/iso ${home2}/large_docs/iso | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname $line)
-            dname=$(echo $dname | sed -E "s@${home2}/large_docs/iso@${home2}/large_docs/iso_grave@g")
-            bname=$(basename $line)
-            if [ ! -e $dname ] ;then
-                mkdir -p $dname
-            fi
-            cp -a $line $dname/$bname
-        done
-    fi
-    echo '[+]sync: large_docs/iso'
-    rsync -a --delete ${home1}/large_docs/iso/ ${home2}/large_docs/iso
+    backup_fn bin
+    backup_fn program
+    backup_fn docs
+    backup_fn large_docs/images
+    backup_fn large_docs/VMs
+    backup_fn large_docs/ctf
+    backup_fn large_docs/iso
 
     date
     python $HOME/src/github.com/miyagaw61/miyagaw61_linebot/push.py $MY_LINE_ID 'backup finished.'
