@@ -41,6 +41,7 @@ if [ $# -eq 2 ] ;then
     backup_fn large_docs/ctf
     backup_fn large_docs/images
     backup_fn large_docs/iso
+    backup_fn large_docs/videos
     backup_fn large_docs/VMs
 
     date
