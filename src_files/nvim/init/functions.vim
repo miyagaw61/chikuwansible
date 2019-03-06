@@ -202,49 +202,6 @@ function! Git_Diff(...)
     execute cmd
 endfunction
 
-command! -nargs=? GitStatus call Git_Status(<f-args>)
-function! Git_Status(...)
-    let args = split(a:000[0], " ")
-    let argc = len(args)
-    let path = expand(args[0])
-    execute "w"
-    execute "b bash"
-    let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit status --ls='exa  --group-directories-first'\")"
-    execute cmd
-endfunction
-
-command! -nargs=? GitLog call Git_Log(<f-args>)
-function! Git_Log(...)
-    let args = split(a:000[0], " ")
-    let argc = len(args)
-    let path = expand(args[0])
-    execute "w"
-    execute "b bash"
-    if argc > 1
-        let n = args[1]
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log " . n . "\")"
-    else
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log \")"
-    endif
-    execute cmd
-endfunction
-
-command! -nargs=? GitDiff call Git_Diff(<f-args>)
-function! Git_Diff(...)
-    let args = split(a:000[0], " ")
-    let argc = len(args)
-    let path = expand(args[0])
-    execute "w"
-    execute "b bash"
-    if argc > 1
-        let options = args[1]
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . " " . options . "\")"
-    else
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . "\")"
-    endif
-    execute cmd
-endfunction
-
 " quick_open
 " ==========
 function! g:Quick_open()
