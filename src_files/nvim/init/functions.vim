@@ -168,6 +168,7 @@ function! Git_Status(...)
     execute "b bash"
     let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit status --ls='exa  --group-directories-first'\")"
     execute cmd
+    normal i
 endfunction
 
 command! -nargs=? GitLog call Git_Log(<f-args>)
@@ -184,6 +185,7 @@ function! Git_Log(...)
         let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log \")"
     endif
     execute cmd
+    normal i
 endfunction
 
 command! -nargs=? GitDiff call Git_Diff(<f-args>)
@@ -200,6 +202,7 @@ function! Git_Diff(...)
         let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . "\")"
     endif
     execute cmd
+    normal i
 endfunction
 
 " quick_open
