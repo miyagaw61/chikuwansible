@@ -412,10 +412,10 @@ v() {
         if [ "$(echo $VIM)" ] ;then
             nvr -c "Denite buffer"
         else
-            rm -rf /tmp/nvimsocket
             if [ "$(jobs)" ] ;then
                 fg
             else
+                rm -rf /tmp/nvimsocket
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
             fi
         fi
@@ -423,11 +423,11 @@ v() {
         if [ "$(echo $VIM)" ] ;then
             nvr -c "e "$(realpath $1)
         else
-            rm -rf /tmp/nvimsocket
             echo "$(realpath $1)" > /tmp/viming_path
             if [ "$(jobs)" ] ;then
                 fg
             else
+                rm -rf /tmp/nvimsocket
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $(cat /tmp/viming_path)
             fi
         fi
@@ -439,10 +439,10 @@ v() {
         if [ "$(echo $VIM)" ] ;then
             nvr -c "Denite buffer"
         else
-            rm -rf /tmp/nvimsocket
             if [ "$(jobs)" ] ;then
                 fg
             else
+                rm -rf /tmp/nvimsocket
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
             fi
         fi
