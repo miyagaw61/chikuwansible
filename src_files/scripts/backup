@@ -37,6 +37,7 @@ if [ $# -eq 2 ] ;then
     backup_fn bin
     backup_fn program
     backup_fn docs
+    backup_fn tmp
     backup_fn large_docs/images
     backup_fn large_docs/VMs
     backup_fn large_docs/ctf
