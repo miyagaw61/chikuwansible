@@ -410,7 +410,8 @@ rust() {
 v() {
     if [ $# -eq 0 ] ;then
         if [ "$(echo $VIM)" ] ;then
-            nvr -c "Denite buffer"
+            socket="$(echo /tmp/nvim*/0)"
+            NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
         else
             if [ "$(jobs)" ] ;then
                 fg
@@ -421,7 +422,8 @@ v() {
         fi
     elif [ $# -eq 1 ] ;then
         if [ "$(echo $VIM)" ] ;then
-            nvr -c "e "$(realpath $1)
+            socket="$(echo /tmp/nvim*/0)"
+            NVIM_LISTEN_ADDRESS=$socket nvr -c "e "$(realpath $1)
         else
             echo "$(realpath $1)" > /tmp/viming_path
             if [ "$(jobs)" ] ;then
@@ -437,7 +439,8 @@ v() {
             echo "$(realpath $x)" >> /tmp/viming_path
         done
         if [ "$(echo $VIM)" ] ;then
-            nvr -c "Denite buffer"
+            socket="$(echo /tmp/nvim*/0)"
+            NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
         else
             if [ "$(jobs)" ] ;then
                 fg
