@@ -509,9 +509,9 @@ defgrep() {
         __str=$@
     fi
     if [ $# -eq 1 ] ;then
-        echo "$__str" | rg -v "\d:\s*if\s*\(" | rg -v "\d:\s*for\s*\(" | rg -v "\d:\s*while\s*\(" | rg -v "\d:\s*$1" | rg "\s+$1"
+        echo "$__str" | rg -v "\d:\s*if\s*\(" | rg -v "\d:\s*for\s*\(" | rg -v "\d:\s*while\s*\(" | rg -v ";$" | rg -v "\d:\s*$1" | rg "\s+$1"
     else
-        echo "$__str" | rg -v "\d:\s*if\s*\(" | rg -v "\d:\s*for\s*\(" | rg -v "\d:\s*while\s*\("
+        echo "$__str" | rg -v "\d:\s*if\s*\(" | rg -v "\d:\s*for\s*\(" | rg -v "\d:\s*while\s*\(" | rg -v ";$"
     fi
 }
 
