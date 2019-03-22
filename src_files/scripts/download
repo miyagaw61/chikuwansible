@@ -120,7 +120,7 @@ great.png
                 dst_path = d_path + "/" + file_name
                 i = 2
                 while os.path.exists(dst_path):
-                    dst_path = format_replace(dst_path, "_" + str(i).zfill(2))
+                    dst_path = format_replace(dst_path, "_{}".format(i))
                     i += 1
                 print("url:", url) #d
                 print("dst_path:", dst_path) #d
