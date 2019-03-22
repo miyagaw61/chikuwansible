@@ -128,7 +128,7 @@ great.png
 
 def format_replace(url, s):
     """
->>> format_replace("/path/to/hoge.mp4", "_2.mp4")
+>>> format_replace("/path/to/hoge.mp4", "_2")
 
 /path/to/hoge.mp4 -> /path/to/hoge_2.mp4
     """
