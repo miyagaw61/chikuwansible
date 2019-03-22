@@ -101,15 +101,16 @@ great.png
     lines = open(list_path).readlines()
     for line in lines:
         line = line.replace("\n", "")
-        print("line:", line) #d
+        #print("line:", line) #d
         splited_line = line.split(" ")
         url = splited_line[0]
         file_name = splited_line[1]
         if len(splited_line) == 2:
             dst_path = "result/" + list_name + "/" + file_name
-            print("url:", url) #d
-            print("dst_path:", dst_path) #d
-            os.system("curl \"" + url + "\" -o " + dst_path)
+            #print("url:", url) #d
+            #print("dst_path:", dst_path) #d
+            print("[+]{}".format(dst_path)) #d
+            os.system("curl \"" + url + "\" -o " + dst_path + ' > /dev/null 2>&1')
         else:
             dirs = splited_line[2:]
             for d in dirs:
@@ -122,13 +123,14 @@ great.png
                 while os.path.exists(dst_path):
                     dst_path = format_replace(dst_path, "_{}".format(i))
                     i += 1
-                print("url:", url) #d
-                print("dst_path:", dst_path) #d
-                os.system("curl \"" + url + "\" -o " + dst_path)
+                #print("url:", url) #d
+                #print("dst_path:", dst_path) #d
+                print("[+]{}".format(dst_path)) #d
+                os.system("curl \"" + url + "\" -o " + dst_path + ' > /dev/null 2>&1')
 
 def format_replace(url, s):
     """
->>> format_replace("/path/to/hoge.mp4", "_2")
+>>> format_replace("/path/to/hoge.mp4", "_2.mp4")
 
 /path/to/hoge.mp4 -> /path/to/hoge_2.mp4
     """
