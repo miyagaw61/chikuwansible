@@ -4,6 +4,8 @@ import os
 import subprocess
 import sys
 
+from enert import *
+
 def help():
     """
 Usage:
@@ -196,6 +198,19 @@ Usage: mkv2mp4 MKV_FILE_PATH
     cmd = "sudo ffmpeg -i " + mkv + " -vcodec copy -strict -2 " + mp4
     print(cmd)
     os.system(cmd)
+
+def urls2list(urls, fmt):
+    """
+Usage: urls2list URLS_PATH FORMAT
+    """
+    lines = File(urls).readlines()
+    new_f = File(urls + '.tmp')
+    i = 0
+    for line in lines:
+        i = i + 1
+        new_line = line + ' {0}.{1}'.format(i, fmt)
+        new_f.add(new_line + '\n')
+    Shell('mv {0} {1}'.format(new_f.abspath, urls)).call()
 
 def create_args(argv):
     args = ""
