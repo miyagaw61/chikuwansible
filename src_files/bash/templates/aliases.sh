@@ -49,8 +49,12 @@ fi
 
 # alias global
 # ====================================
-alias gf="{{alias_gf}}"
-alias gr="{{alias_gr}}"
+alias glf="{{alias_glf}}"
+alias glr="{{alias_glr}}"
+alias gl="{{alias_gl}}"
+
+# alias git
+# ====================================
 alias g="{{alias_g}}"
 
 # alias dret

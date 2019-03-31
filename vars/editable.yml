@@ -106,9 +106,11 @@ alias_rs: "rusgit status --ls 'exa --group-directories-first'"
 #### alias howdoi ####
 alias_h: "function hdi(){ howdoi \\$* -c -n 5; }; hdi"
 #### alias global ####
-alias_gf: "global -x -f"
-alias_gr: "global -x -r"
-alias_g: "global -x"
+alias_glf: "global -x -f"
+alias_glr: "global -x -r"
+alias_gl: "global -x"
+#### alias git ####
+alias_g: "git"
 #### alias dret ####
 alias_dret: "tr '\\n' ' ' | sed -E 's/ +/ /g'"
 #### alias rg ####
