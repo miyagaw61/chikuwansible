@@ -706,6 +706,11 @@ def configure(keymap):
         config_terminal(keymap_wsl)
         config_vim(keymap_wsl)
 
+        keymap_wsl = keymap.defineWindowKeymap(exe_name="mintty.exe")
+        initialize_keybind(keymap_wsl)
+        config_terminal(keymap_wsl)
+        config_vim(keymap_wsl)
+
     # Config For Explorer
     if 1:
         def open_vim():
