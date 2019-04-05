@@ -181,30 +181,36 @@ def configure(keymap):
         def escape():
             esc_code = get_code("ESCAPE")
             Input.send([pyauto.Key(esc_code)])
+            time.sleep(0.1)
             keymap.wnd.setImeStatus(0)
 
         def insert_jp():
             put_key("I")
+            time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def o_jp():
             put_key("O")
+            time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def s_o_jp():
             down_key("SHIFT")
             put_str("O")
             up_key("SHIFT")
+            time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def a_jp():
             put_str("A")
+            time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def s_a_jp():
             down_key("SHIFT")
             put_str("A")
             up_key("SHIFT")
+            time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def space_4():
