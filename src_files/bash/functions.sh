@@ -72,49 +72,49 @@ red(){ #この関数を作らないとゼロマッチの時に何も出力され
 #}
 #bind -x '"\C-j":readline_injection'
 
-h_func() {
-    cd $HOME/$1
-}
-h_completion() {
-    local cur prev cword opts
-    _get_comp_words_by_ref -n : cur prev cword
-    COMPREPLY=( $(compgen -W "$(ls -F $HOME/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
-}
-complete -F h_completion h_func
-complete -F h_completion h
-
-r_func() {
-    cd $MY_REPOS/$1
-}
-r_completion() {
-    local cur prev cword opts
-    _get_comp_words_by_ref -n : cur prev cword
-    COMPREPLY=( $(compgen -W "$(ls -F $MY_REPOS | rg '(.*)/$' -r '$1')" -- "${cur}") )
-}
-complete -F r_completion r_func
-complete -F r_completion r
-
-e_func() {
-    cd $HOME/events/$1
-}
-e_completion() {
-    local cur prev cword opts
-    _get_comp_words_by_ref -n : cur prev cword
-    COMPREPLY=( $(compgen -W "$(ls -F $HOME/events/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
-}
-complete -F e_completion e_func
-complete -F e_completion e
-
-d_func() {
-    cd $HOME/docs/$1
-}
-d_completion() {
-    local cur prev cword opts
-    _get_comp_words_by_ref -n : cur prev cword
-    COMPREPLY=( $(compgen -W "$(ls -F $HOME/docs/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
-}
-complete -F d_completion d_func
-complete -F d_completion d
+#h_func() {
+#    cd $HOME/$1
+#}
+#h_completion() {
+#    local cur prev cword opts
+#    _get_comp_words_by_ref -n : cur prev cword
+#    COMPREPLY=( $(compgen -W "$(ls -F $HOME/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+#}
+#complete -F h_completion h_func
+#complete -F h_completion h
+#
+#r_func() {
+#    cd $MY_REPOS/$1
+#}
+#r_completion() {
+#    local cur prev cword opts
+#    _get_comp_words_by_ref -n : cur prev cword
+#    COMPREPLY=( $(compgen -W "$(ls -F $MY_REPOS | rg '(.*)/$' -r '$1')" -- "${cur}") )
+#}
+#complete -F r_completion r_func
+#complete -F r_completion r
+#
+#e_func() {
+#    cd $HOME/events/$1
+#}
+#e_completion() {
+#    local cur prev cword opts
+#    _get_comp_words_by_ref -n : cur prev cword
+#    COMPREPLY=( $(compgen -W "$(ls -F $HOME/events/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+#}
+#complete -F e_completion e_func
+#complete -F e_completion e
+#
+#d_func() {
+#    cd $HOME/docs/$1
+#}
+#d_completion() {
+#    local cur prev cword opts
+#    _get_comp_words_by_ref -n : cur prev cword
+#    COMPREPLY=( $(compgen -W "$(ls -F $HOME/docs/ | rg '(.*)/$' -r '$1')" -- "${cur}") )
+#}
+#complete -F d_completion d_func
+#complete -F d_completion d
 
 malist() {
 	rg --files -g*.exe -g*.bat -g*.scr -g*.rtf -g*.cpl -g*.jar -g*.lnk | while read line ;do cp -a $line $1/$line ;done
