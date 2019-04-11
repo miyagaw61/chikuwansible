@@ -4,3 +4,12 @@ import os
 
 home = os.environ['HOME']
 Shell('cp -a ' + home + '/bin/procon_template.rs ./src/main.rs').call()
+Shell('echo "1.15.1" > rust-toolchain').call()
+f = File('Cargo.toml')
+f_new = File('Cargo.toml.new')
+lines = f.readlines()
+for line in lines:
+    if line[:10] == 'edition = ':
+        continue
+    f_new.add(line + '\n')
+Shell('mv Cargo.toml.new Cargo.toml').call()
