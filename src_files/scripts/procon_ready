@@ -3,8 +3,11 @@ from enert import *
 import os
 
 home = os.environ['HOME']
+
 Shell('cp -a ' + home + '/bin/procon_template.rs ./src/main.rs').call()
+
 Shell('echo "1.15.1" > rust-toolchain').call()
+
 f = File('Cargo.toml')
 f_new = File('Cargo.toml.new')
 lines = f.readlines()
@@ -13,3 +16,20 @@ for line in lines:
         continue
     f_new.add(line + '\n')
 Shell('mv Cargo.toml.new Cargo.toml').call()
+
+f_makefile = File('src/Makefile')
+f_makefile.rm()
+f_makefile.add('all:\n')
+f_makefile.add('\tcargo run\n')
+f_makefile.add('d:\n')
+filename, _ = Shell('cat Cargo.toml | rg "name = " | sed -E \'s@name = "(.*)"@\\1@g\'').read()
+filename = filename[:-1]
+f_makefile.add('\trust-gdb ../target/debug/{} -x gdbrc.py'.format(filename))
+
+f_gdbrc = File('src/gdbrc.py')
+f_gdbrc.rm()
+f_gdbrc.add('e = Exgdb()\n')
+f_gdbrc.add('c = ExgdbCmd()\n')
+f_gdbrc.add('c.b(\'{}::main\')\n'.format(filename))
+f_gdbrc.add('gdb.execute(\'run\')\n')
+f_gdbrc.add('gdb.execute(\'layout src\')\n')
