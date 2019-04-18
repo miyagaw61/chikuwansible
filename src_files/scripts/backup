@@ -32,6 +32,11 @@ if [ $# -eq 2 ] ;then
     home1=$1
     home2=$2
 
+    if [ ! -e $2 ] ;then
+        echo "[!]ERROR"
+        exit
+    fi
+
     date
 
     backup_fn bin
