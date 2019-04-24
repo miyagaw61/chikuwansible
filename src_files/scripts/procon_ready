@@ -24,7 +24,9 @@ f_makefile.add('\tcargo run\n')
 f_makefile.add('d:\n')
 filename, _ = Shell('cat Cargo.toml | rg "name = " | sed -E \'s@name = "(.*)"@\\1@g\'').read()
 filename = filename[:-1]
-f_makefile.add('\trust-gdb ../target/debug/{} -x gdbrc.py'.format(filename))
+f_makefile.add('\trust-gdb ../target/debug/{} -x gdbrc.py\n'.format(filename))
+f_makefile.add('r:\n')
+f_makefile.add('\tcargo run --release')
 
 f_gdbrc = File('src/gdbrc.py')
 f_gdbrc.rm()
