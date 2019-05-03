@@ -197,3 +197,4 @@ vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --out
 nnoremap <silent>[Window]g :MyVimgrep<Space>
 nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
 nnoremap <silent>[Window]a :MyVimgrepAll<Space>
+nnoremap <silent>[Window]d :Defx<Space>
