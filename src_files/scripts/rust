@@ -1,0 +1,8 @@
+#!/bin/bash
+
+toolchain=+stable;
+if [[ "$1" =~ "\+.+" ]]; then
+    toolchain="$1";
+    shift;
+fi;
+cargo "$toolchain" script "$@"
