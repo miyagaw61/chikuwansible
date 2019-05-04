@@ -27,8 +27,12 @@ filename = filename[:-1]
 f_makefile.add('\trust-gdb ../target/debug/{} -x gdbrc.py\n'.format(filename))
 f_makefile.add('r:\n')
 f_makefile.add('\tcargo run --release\n')
+f_makefile.add('rb:\n')
+f_makefile.add('\tRUST_BACKTRACE=1 cargo run\n')
 f_makefile.add('t:\n')
-f_makefile.add('\tcargo test -- --test-threads=1')
+f_makefile.add('\tcargo test -- --test-threads=1\n')
+f_makefile.add('tb:\n')
+f_makefile.add('\tRUST_BACKTRACE=1 cargo test -- --test-threads=1\n')
 
 f_gdbrc = File('src/gdbrc.py')
 f_gdbrc.rm()
