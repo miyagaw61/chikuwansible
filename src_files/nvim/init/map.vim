@@ -183,10 +183,10 @@ function! s:set_vsearch()
   silent normal gv"zy
   let @/ = '\V' . substitute(escape(@z, '/\'), '\n', '\\n', 'g')
 endfunction
-vnoremap <silent> <Space>a mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-r>/<CR>N
+vnoremap <silent> <Space>aa mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-r>/<CR>N
 "nnoremap [Space]n n
 "nnoremap [Space]p N
-nnoremap [Space]s mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-r>/<CR>N:%s/<C-r>///g<Left><Left>
+nnoremap [Space]as mz:call <SID>set_vsearch()<CR>:set hlsearch<CR>`z/<C-r>/<CR>N:%s/<C-r>///g<Left><Left>
 nnoremap [Space]o :copen 30<CR>
 
 "clipboard copy paste for tera term
