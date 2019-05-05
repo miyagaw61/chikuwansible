@@ -6,3 +6,15 @@
 
 - name: "Chown {{user}}"
   file: "path={{pyenv_root}} owner={{user}} group={{user}}"
+
+- name: Install Python2
+  shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
+  args:
+    chdir: "{{chikuwansible_path}}"
+  become: no
+
+- name: Install Python3
+  shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python3_pyenv_version}}"
+  args:
+    chdir: "{{chikuwansible_path}}"
+  become: no
