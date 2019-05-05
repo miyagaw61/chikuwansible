@@ -69,3 +69,10 @@
   git:
     repo: https://github.com/Shougo/dein.vim
     dest: "{{nvim_config_files}}/repos/github.com/Shougo/dein.vim"
+
+- name: Chown "nvim"
+  file:
+    path: "{{nvim_config_files}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
