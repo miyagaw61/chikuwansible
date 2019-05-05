@@ -36,7 +36,7 @@ golang_version: 1.9
 # Python
 # =============================================
 python2_pyenv_version: 2.7.15
-python3_pyenv_version: 3.6.5
+python3_pyenv_version: 3.7.0
 pyenv_root: "{{config_files}}/.pyenv"
 python2_binary: "{{pyenv_root}}/shims/python2"
 python3_binary: "{{pyenv_root}}/shims/python3"
