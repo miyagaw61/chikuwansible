@@ -4,9 +4,6 @@
 #- name: Install Python3
 #  shell: bash -lc "pyenv install {{python3_pyenv_version}}"
 
-- name: "Chown {{user}}"
-  file: "path={{pyenv_root}} owner={{user}} group={{user}}"
-
 - name: Install Python2
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
   args:
