@@ -205,3 +205,6 @@ nnoremap <silent>[Window]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 "Move
 nnoremap <silent>T gE
+
+"Move
+nnoremap <silent>[Window]c :ChangeFileDefx<Space>
