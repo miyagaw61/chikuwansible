@@ -366,8 +366,8 @@ hook_source = '''
          \ defx#do_action('remove')
           nnoremap <silent><buffer><expr> r
          \ defx#do_action('rename')
-          nnoremap <silent><buffer><expr> x
-         \ defx#do_action('execute_system')
+         " nnoremap <silent><buffer><expr> x
+         "\ defx#do_action('execute_system')
           nnoremap <silent><buffer><expr> yy
          \ defx#do_action('yank_path')
           nnoremap <silent><buffer><expr> .
@@ -392,5 +392,7 @@ hook_source = '''
          \ defx#do_action('print')
           nnoremap <silent><buffer><expr> cd
          \ defx#do_action('change_vim_cwd')
+          nnoremap <silent><buffer> x
+         \ :SystemDefx<Space>
         endfunction
 '''
