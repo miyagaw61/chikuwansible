@@ -159,52 +159,6 @@ function! Frepl_Func(...)
     normal i
 endfunction
 
-command! -nargs=? GitStatus call Git_Status(<f-args>)
-function! Git_Status(...)
-    let args = split(a:000[0], " ")
-    let argc = len(args)
-    let path = expand(args[0])
-    execute "w"
-    execute "b bash"
-    let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit status --ls='exa  --group-directories-first'\")"
-    execute cmd
-    normal i
-endfunction
-
-command! -nargs=? GitLog call Git_Log(<f-args>)
-function! Git_Log(...)
-    let args = split(a:000[0], " ")
-    let argc = len(args)
-    let path = expand(args[0])
-    execute "w"
-    execute "b bash"
-    if argc > 1
-        let n = args[1]
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log " . n . "\")"
-    else
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit log \")"
-    endif
-    execute cmd
-    normal i
-endfunction
-
-command! -nargs=? GitDiff call Git_Diff(<f-args>)
-function! Git_Diff(...)
-    let args = split(a:000[0], " ")
-    let argc = len(args)
-    let path = expand(args[0])
-    execute "w"
-    execute "b bash"
-    if argc > 1
-        let options = args[1]
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . " " . options . "\")"
-    else
-        let cmd = "call deol#send(\"cdrepobase " . path . " && rusgit diff " . path . "\")"
-    endif
-    execute cmd
-    normal i
-endfunction
-
 " quick_open
 " ==========
 function! g:Quick_open()
@@ -316,3 +270,96 @@ function! QC(...)
     execute "bd"
 endfunction
 nnoremap <silent><C-h> :<C-u>QC<CR>
+
+" GitCommit
+" =========
+command! -nargs=? -complete=file_in_path GitCommit call GitCommit(<f-args>)
+function! GitCommit(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    let l:message = join(l:args[1:], " ")
+    execute "cd " . l:dirname
+    execute "silent !git a " . l:fullpath
+    execute "silent !git c -m '" . l:message . "'"
+    execute "!git l3n"
+endfunction
+
+" GitStatus
+" =========
+command! -nargs=? -complete=file_in_path GitStatus call GitStatus(<f-args>)
+function! GitStatus(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    let l:message = join(l:args[1:], " ")
+    execute "cd " . l:dirname
+    execute "!git_sn"
+endfunction
+
+" GitLog
+" ======
+command! -nargs=? -complete=file_in_path GitLog call GitLog(<f-args>)
+function! GitLog(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    let l:message = join(l:args[1:], " ")
+    execute "cd " . l:dirname
+    execute "!git l20n"
+endfunction
+
+" GitPush
+" =======
+command! -nargs=? -complete=file_in_path GitPush call GitPush(<f-args>)
+function! GitPush(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    let l:message = join(l:args[1:], " ")
+    execute "cd " . l:dirname
+    execute "!git push"
+endfunction
+
+" GitDiff
+" =======
+command! -nargs=? -complete=file_in_path GitDiff call GitDiff(<f-args>)
+function! GitDiff(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    let l:message = join(l:args[1:], " ")
+    execute "cd " . l:dirname
+    execute "silent !git diff > /tmp/git_diff"
+    execute "e /tmp/git_diff"
+endfunction
+
+" GitAdd
+" ======
+command! -nargs=? -complete=file_in_path GitAdd call GitAdd(<f-args>)
+function! GitAdd(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    let l:message = join(l:args[1:], " ")
+    execute "cd " . l:dirname
+    execute "silent !git add " . l:fullpath
+endfunction

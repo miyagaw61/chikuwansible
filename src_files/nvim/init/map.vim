@@ -56,11 +56,12 @@ nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tm
 nnoremap [Space]rr :MyRustRun<Space>
 nnoremap [Space]r :MyRustRun<Space>
 nnoremap [Space]t  :Deol<CR>
-nnoremap [Space]ga :!rusgit add %:p<CR>
-nnoremap [Space]gc :!rusgit ac %:p -m 
-nnoremap [Space]gs :GitStatus %:p<CR>
-nnoremap [Space]gl :GitLog %:p 
-nnoremap [Space]gd :GitDiff %:p 
+nnoremap ga :GitAdd %:p<CR>
+nnoremap gc :GitCommit %:p<Space>
+nnoremap gs :GitStatus %:p<CR>
+nnoremap gl :GitLog %:p<CR>
+nnoremap gd :GitDiff %:p<CR>
+nnoremap gp :GitPush %:p<CR>
 nnoremap [Space]rc :QuickRun -args<Space>
 nnoremap [Space]rp :QuickRun -args<Space>
 
