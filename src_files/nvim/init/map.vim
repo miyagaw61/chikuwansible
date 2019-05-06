@@ -197,7 +197,10 @@ vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --out
 nnoremap <silent>[Window]g :MyVimgrep<Space>
 nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
 nnoremap <silent>[Window]a :MyVimgrepAll<Space>
+
+"Defx
 nnoremap <silent>[Window]d :Defx<Space>
+nnoremap <silent>[Window]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 "Move
 nnoremap <silent>T gE
