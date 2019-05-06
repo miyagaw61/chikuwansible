@@ -376,3 +376,70 @@ function! GitAdd(...)
     execute "cd " . l:dirname
     execute "silent !git add " . l:fullpath
 endfunction
+
+" GitCommitDefx
+" =============
+command! -nargs=? -complete=file_in_path GitCommitDefx call GitCommitDefx(<f-args>)
+function! GitCommitDefx(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:message = l:args_str
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "silent !git add " . l:fullpath
+    execute "silent !git c -m '" . l:message . "'"
+    execute "!git l3n"
+endfunction
+
+" GitDiffDefx
+" ===========
+command! -nargs=? GitDiffDefx call GitDiffDefx(<f-args>)
+function! GitDiffDefx(...)
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "silent !git diff > /tmp/git_diff"
+    execute "e /tmp/git_diff"
+endfunction
+
+" GitPushDefx
+" ===========
+command! -nargs=? GitPushDefx call GitPushDefx(<f-args>)
+function! GitPushDefx(...)
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "!git push"
+endfunction
+
+" GitAddDefx
+" ==========
+command! -nargs=? GitAddDefx call GitAddDefx(<f-args>)
+function! GitAddDefx(...)
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "silent !git add " . l:fullpath
+endfunction
+
+" GitLogDefx
+" ==========
+command! -nargs=? GitLogDefx call GitLogDefx(<f-args>)
+function! GitLogDefx(...)
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "!git l20n"
+endfunction
