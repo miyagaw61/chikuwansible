@@ -271,6 +271,19 @@ function! QC(...)
 endfunction
 nnoremap <silent><C-h> :<C-u>QC<CR>
 
+" CdDirname
+" =========
+command! -nargs=? -complete=file_in_path CdDirname call CdDirname(<f-args>)
+function! CdDirname(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:path = expand(l:args[0])
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+endfunction
+
 " GitCommit
 " =========
 command! -nargs=? -complete=file_in_path GitCommit call GitCommit(<f-args>)
