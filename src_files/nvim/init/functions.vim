@@ -443,3 +443,19 @@ function! GitLogDefx(...)
     execute "cd " . l:dirname
     execute "!git l20n"
 endfunction
+
+" SystemDefx
+" ==========
+command! -nargs=? -complete=file_in_path SystemDefx call SystemDefx(<f-args>)
+function! SystemDefx(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    let l:command = l:args_str
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "!" . l:command
+endfunction
