@@ -43,9 +43,9 @@ hook_add = '''
     nmap [Space]m <Plug>(easymotion-sn)
     xmap [Space]m <Plug>(easymotion-sn)
     omap [Space]m <Plug>(easymotion-sn)
-    nmap m <Plug>(easymotion-s2)
-    xmap m <Plug>(easymotion-s2)
-    omap m <Plug>(easymotion-s2)
+    nmap <S-m> <Plug>(easymotion-s2)
+    xmap <S-m> <Plug>(easymotion-s2)
+    omap <S-m> <Plug>(easymotion-s2)
     let g:EasyMotion_smartcase = 1
     map <Leader>j <Plug>(easymotion-j)
     map <Leader>k <Plug>(easymotion-k)
