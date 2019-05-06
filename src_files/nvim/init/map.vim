@@ -198,3 +198,6 @@ nnoremap <silent>[Window]g :MyVimgrep<Space>
 nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
 nnoremap <silent>[Window]a :MyVimgrepAll<Space>
 nnoremap <silent>[Window]d :Defx<Space>
+
+"Move
+nnoremap <silent>T gE
