@@ -18,3 +18,4 @@
     - name: fil
     - name: procon_ready
     - name: get_tag_from_commit
+    - name: git_sn

@@ -1,0 +1,2 @@
+echo -e "\n\n\n\n"
+git status --short
