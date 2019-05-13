@@ -92,3 +92,7 @@ alias da="da_func"
 # alias syntax-highlight
 # ====================================
 alias lcat="source-highlight-esc.sh"
+
+# alias vim-cd
+# ====================================
+alias vd="{{alias_vd}}"

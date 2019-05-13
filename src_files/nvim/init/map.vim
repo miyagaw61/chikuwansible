@@ -208,3 +208,6 @@ nnoremap <silent>T gE
 
 "Move
 nnoremap <silent>[Window]c :ChangeFileDefx<Space>
+
+" C-Z
+nnoremap <silent><C-z> :SaveDir<CR><C-z>

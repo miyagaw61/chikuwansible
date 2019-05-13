@@ -126,3 +126,5 @@ alias_upd: "rac . -U"
 alias_allow: "rac . -l"
 alias_avoid: "rac . -v"
 alias_refactor: "rac . -R"
+#### alias vim-cd ####
+alias_vd: 'cd \"\$(cat /tmp/SaveDir.tmp)\"'

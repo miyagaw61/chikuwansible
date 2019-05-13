@@ -483,6 +483,16 @@ function! ChangeFileDefx(...)
     execute "bd " . l:fullpath
 endfunction
 
+" SaveDir
+" =======
+command! -nargs=? -complete=file_in_path SaveDir call SaveDir(<f-args>)
+function! SaveDir(...)
+    let l:fullpath = expand("%:p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "silent !echo " . l:dirname . " > /tmp/SaveDir.tmp"
+    execute "silent w!"
+endfunction
+
 " CdNowDefx
 " ==========
 command! -nargs=? -complete=file_in_path CdNowDefx call CdNowDefx(<f-args>)
