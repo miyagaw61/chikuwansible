@@ -482,3 +482,36 @@ function! ChangeFileDefx(...)
     execute "Defx " . l:open_dirname
     execute "bd " . l:fullpath
 endfunction
+
+" CdNowDefx
+" ==========
+command! -nargs=? -complete=file_in_path CdNowDefx call CdNowDefx(<f-args>)
+function! CdNowDefx(...)
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    if isdirectory(l:path)
+        let l:dirname = fnamemodify(l:dirname, ":h")
+    endif
+    execute "cd " . l:dirname
+endfunction
+
+" CdDefx
+" ======
+command! -nargs=? -complete=file_in_path CdDefx call CdDefx(<f-args>)
+function! CdDefx(...)
+    let l:args_len = len(a:000)
+    if l:args_len != 0
+        let l:args = split(a:000[0], " ")
+        let l:argc = len(args)
+        let l:args_str = join(l:args, " ")
+        "let l:open_path = expand(l:args[0])
+        "let l:open_fullpath = fnamemodify(l:open_path, ":p")
+        "let l:open_dirname = fnamemodify(l:open_fullpath, ":h")
+        let l:goto_path = fnamemodify(l:args_str, ":p")
+        execute "Defx " . l:goto_path
+    else
+        execute "Defx ."
+    endif
+endfunction

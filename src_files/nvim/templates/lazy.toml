@@ -400,8 +400,10 @@ hook_source = '''
          \ defx#do_action('redraw')
           nnoremap <silent><buffer><expr> <C-g>
          \ defx#do_action('print')
-         "  nnoremap <silent><buffer><expr> cd
-         "\ defx#do_action('change_vim_cwd')
+          nnoremap <silent><buffer><expr> chd
+         \ defx#do_action('change_vim_cwd')
+          nnoremap <silent><buffer> cd
+         \ :CdNowDefx<CR>:CdDefx<Space>
           nnoremap <silent><buffer> ga
          \ :GitAddDefx<CR><CR>
           nnoremap <silent><buffer> gc
