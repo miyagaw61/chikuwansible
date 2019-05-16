@@ -20,6 +20,7 @@ export RUSGIT_EDITOR="{{rusgit_editor}}"
 export GRAVE_ROOT="{{grave_root}}"
 export CARGO_PATH="{{cargo_path}}"
 export PATH="$CARGO_PATH/bin:$PATH"
+export PATH="{{binaries}}:$PATH"
 export CHIKUWANSIBLE_PATH="{{chikuwansible_path}}"
 if test -e "{{rusgit_slack_url_file}}" ;then
     export RUSGIT_SLACK_URL="{{rusgit_slack_url}}"
