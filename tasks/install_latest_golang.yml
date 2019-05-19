@@ -1,9 +1,17 @@
-- name: Install Latest Golang By Apt
+- name: Install Old Golang By Apt
   apt:
-    name: "golang-{{golang_version}}-go"
+    name: "golang-1.9-go"
 
-- name: "Make Symbolic Link From \"/usr/lib/go-{{golang_version}}/bin/go\" to \"/usr/local/bin/go\""
+- name: Install Latest Golang
+  shell: "/usr/lib/go-1.9/bin/go get golang.org/dl/go{{golang_version}}"
+  become: no
+
+- name: Install Latest Golang
+  shell: "{{home}}/go/bin/go{{golang_version}} download"
+  become: no
+
+- name: "Make Go Symbolic Link"
   file:
     path: /usr/local/bin/go
-    src: "/usr/lib/go-{{golang_version}}/bin/go"
+    src: "{{home}}/go/bin/go{{golang_version}}"
     state: link
