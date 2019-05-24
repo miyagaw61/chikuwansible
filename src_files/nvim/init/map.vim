@@ -211,3 +211,9 @@ nnoremap <silent>[Window]c :ChangeFileDefx<Space>
 
 " C-Z
 nnoremap <silent><C-z> :SaveDir<CR><C-z>
+
+" Window and Tab
+nnoremap <silent>te :GoTab<CR>
+nnoremap <silent>[denite-gtags]n :ReadyNew<CR>
+nnoremap <silent><C-s>p :Sp<CR>
+nnoremap <silent><C-s>v :Sv<CR>

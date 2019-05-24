@@ -552,3 +552,47 @@ function! OpenFileByDenite(...)
         execute "Denite file/rec -path=$HOME/"
     endif
 endfunction
+
+" ReadyNew
+" ========
+command! -nargs=? -complete=file_in_path ReadyNew call ReadyNew(<f-args>)
+function! ReadyNew(...)
+    let l:filename = expand('%')
+    let l:fullpath = fnamemodify(l:filename, ':p')
+    execute 'redir! > /tmp/viming_path'
+    execute 'silent! echon "' . l:fullpath . '"'
+    execute 'redir END'
+    let l:linenr = line('.')
+    execute 'redir! > /tmp/viming_linenr'
+    execute 'silent! echon "' . l:linenr . '"'
+    execute 'redir END'
+    normal gt
+endfunction
+
+" Sp
+" ==
+command! -nargs=? -complete=file_in_path Sp call Sp(<f-args>)
+function! Sp(...)
+    execute 'sp'
+    execute 'wincmd j'
+    execute 'call Quick_open()'
+    normal gt
+endfunction
+
+" Sv
+" ==
+command! -nargs=? -complete=file_in_path Sv call Sv(<f-args>)
+function! Sv(...)
+    execute 'vs'
+    execute 'wincmd l'
+    execute 'call Quick_open()'
+    normal gt
+endfunction
+
+" GoTab
+" =====
+command! -nargs=? -complete=file_in_path GoTab call GoTab(<f-args>)
+function! GoTab(...)
+    execute 'ReadyNew'
+    execute 'call Quick_open()'
+endfunction
