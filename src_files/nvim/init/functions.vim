@@ -525,3 +525,30 @@ function! CdDefx(...)
         execute "Defx ."
     endif
 endfunction
+
+" OpenFileByDenite
+" ================
+command! -nargs=? -complete=file_in_path OpenFileByDenite call OpenFileByDenite(<f-args>)
+function! OpenFileByDenite(...)
+    let l:args_len = len(a:000)
+    if l:args_len != 0
+        let l:args = split(a:000[0], " ")
+        let l:argc = len(args)
+        let l:args_str = join(l:args, " ")
+        if l:args_str == "d"
+            execute "Denite file/rec -path=$HOME/docs"
+        elseif l:args_str == "s"
+            execute "Denite file/rec -path=$HOME/src"
+        elseif l:args_str == "m"
+            execute "Denite file/rec -path=$HOME/src/github.com/miyagaw61"
+        else
+            "let l:open_path = expand(l:args[0])
+            "let l:open_fullpath = fnamemodify(l:open_path, ":p")
+            "let l:open_dirname = fnamemodify(l:open_fullpath, ":h")
+            let l:goto_path = fnamemodify(l:args_str, ":p")
+            execute "Denite file/rec -path=" . l:goto_path
+        endif
+    else
+        execute "Denite file/rec -path=$HOME/"
+    endif
+endfunction
