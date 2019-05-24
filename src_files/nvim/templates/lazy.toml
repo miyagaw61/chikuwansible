@@ -61,14 +61,14 @@ hook_add = '''
         \ :<C-u>Denite -default-action=replace -buffer-name=register
         \ register neoyank<CR>
   nnoremap <silent> [Window]<Space>
-        \ :<C-u>Denite file_rec:~/.vim/rc<CR>
+        \ :<C-u>Denite file/rec:~/.vim/rc<CR>
   "nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=10 line<CR>
   nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
         \ -auto-highlight -mode=normal line<CR>
-  nnoremap <silent> [Window]s :<C-u>Denite file_point file_old
+  nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
         \ -sorters=sorter_rank
-        \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-  nnoremap <silent> [Window]f :<C-u>Denite file_rec -path=
+        \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
+  nnoremap <silent> [Window]e :<C-u>Denite file/rec -path=
   nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
         \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
         \  tag:include\<CR>"
@@ -78,8 +78,9 @@ hook_add = '''
   "nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
   "nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
   "      \ -no-empty -mode=normal grep<CR>
-  nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search
-        \ -resume -mode=normal -refresh<CR>
+  "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search
+  "      \ -resume -mode=normal -refresh -mode=normal<CR>
+  nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search -resume -mode=normal<CR>
   nnoremap <silent> ft :<C-u>Denite filetype<CR>
   nnoremap <silent> <C-t> :<C-u>Denite
         \ -select=`tabpagenr()-1` -mode=normal deol<CR>
