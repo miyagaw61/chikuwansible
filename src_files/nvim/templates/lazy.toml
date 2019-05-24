@@ -416,3 +416,21 @@ hook_source = '''
          \ :SystemDefx<Space>
         endfunction
 '''
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+hook_add = '''
+    let g:EasyMotion_do_mapping = 0
+    let g:EasyMotion_smartcase = 1
+    let g:EasyMotion_startofline = 0
+    let g:EasyMotion_use_upper = 1
+    let g:EasyMotion_enter_jump_first = 1
+    " let g:EasyMotion_keys = 'QZASDFGHJKL;'
+    " let g:EasyMotion_keys = 'Q1Z2A3S4D5F6G7H8J9K/;'
+    let g:EasyMotion_keys = 'ASDFGHJKL;WEROIUXCVNM'
+    nmap m <Plug>(easymotion-sn)
+    xmap m <Plug>(easymotion-sn)
+    omap m <Plug>(easymotion-sn)
+    nmap [Space]f <Plug>(easymotion-overwin-f)
+    nmap [Space]l <Plug>(easymotion-overwin-line)
+'''
