@@ -211,18 +211,10 @@ hook_add = '''
     " Options
     let g:Gtags_Auto_Map = 0
     let g:Gtags_OpenQuickfixWindow = 1
-    " Keymap
-    " Show definetion of function cousor word on quickfix
-    nmap [denite-gtags]k :<C-u>exe("Gtags ".expand('<cword>'))<CR>
-    " Show reference of cousor word on quickfix
-    nmap [denite-gtags]r :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
-    nnoremap <C-j> :GtagsCursor<CR>
-    nnoremap <C-r> :<C-u>exe('Gtags -r '.expand('<cword>'))<CR>
-    nnoremap <C-i> :Gtags -f %<CR>
-    nnoremap <C-g> :Gtags
-    nnoremap <C-n> :cn<CR>
-    nnoremap <C-p> :cp<CR>
-    nnoremap <C-h> <C-w><C-w>ZQ
+    "nnoremap <C-j> :GtagsCursor<CR>
+    "nnoremap <C-r> :<C-u>exe('Gtags -r '.expand('<cword>'))<CR>
+    "nnoremap <C-i> :Gtags -f %<CR>
+    "nnoremap <C-g> :Gtags<Space>
 '''
 
 #[[plugins]]
@@ -236,9 +228,15 @@ repo = 'ozelentok/denite-gtags'
 hook_add = '''
     noremap [denite-gtags]  <Nop>
     nmap ,t [denite-gtags]
-    nnoremap [denite-gtags]d :<C-u>DeniteCursorWord -buffer-name=gtags_def -mode=normal gtags_def<CR>
-    nnoremap [denite-gtags]f :<C-u>DeniteCursorWord -buffer-name=gtags_ref -mode=normal gtags_ref<CR>
-    nnoremap [denite-gtags]c :<C-u>DeniteCursorWord -buffer-name=gtags_context -mode=normal gtags_context<CR>
+    nnoremap [denite-gtags]a :<C-u>DeniteCursorWord -buffer-name=search gtags_context<CR>
+    nnoremap [denite-gtags]d :<C-u>DeniteCursorWord -buffer-name=search gtags_def<CR>
+    nnoremap [denite-gtags]c :<C-u>DeniteCursorWord -buffer-name=search gtags_context<CR>
+    nnoremap [denite-gtags]r :<C-u>DeniteCursorWord -buffer-name=search gtags_ref<CR>
+    nnoremap [denite-gtags]g :<C-u>DeniteCursorWord -buffer-name=search gtags_grep<CR>
+    nnoremap [denite-gtags]f :<C-u>Denite -buffer-name=search gtags_file<CR>
+    nnoremap [denite-gtags]F :<C-u>Denite -buffer-name=search gtags_files<CR>
+    nnoremap [denite-gtags]p :<C-u>Denite -buffer-name=search gtags_path<CR>
+    nnoremap [denite-gtags]c :<C-u>Denite -buffer-name=search gtags_completion<CR>
 '''
 
 [[plugins]]
