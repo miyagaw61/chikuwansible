@@ -434,3 +434,13 @@ hook_add = '''
     nmap [Space]f <Plug>(easymotion-overwin-f)
     nmap [Space]l <Plug>(easymotion-overwin-line)
 '''
+
+[[plugins]]
+repo = 'osyo-manga/vital-over'
+
+[[plugins]]
+repo = 'haya14busa/is.vim'
+hook_add = '''
+    source /home/miyagaw61/docs/config_files/nvim/repos/github.com/haya14busa/is.vim/plugin/is.vim
+    nnoremap [Window]g /
+'''
