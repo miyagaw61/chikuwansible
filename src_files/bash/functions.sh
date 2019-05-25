@@ -415,7 +415,9 @@ v() {
             NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
         else
             if [ "$(jobs)" ] ;then
-                fg
+                jobs > /tmp/jobs
+                job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
+                fg $job_spec
             else
                 rm -rf /tmp/nvimsocket
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
@@ -480,7 +482,9 @@ v() {
                 echo "$(realpath $1)" > /tmp/viming_path
             fi
             if [ "$(jobs)" ] ;then
-                fg
+                jobs > /tmp/jobs
+                job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
+                fg $job_spec
             else
                 rm -rf /tmp/nvimsocket
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $(cat /tmp/viming_path)
@@ -497,7 +501,9 @@ v() {
             NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
         else
             if [ "$(jobs)" ] ;then
-                fg
+                jobs > /tmp/jobs
+                job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
+                fg $job_spec
             else
                 rm -rf /tmp/nvimsocket
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
