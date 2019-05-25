@@ -230,6 +230,19 @@ function! MB(...)
     execute "make build | cw"
 endfunction
 
+command! -nargs=? MT call MT(<f-args>)
+function! MT(...)
+    execute "make test"
+endfunction
+
+command! -nargs=? MR call MR(<f-args>)
+function! MR(...)
+    let l:args = split(a:000[0], " ")
+    let l:argc = len(args)
+    let l:args_str = join(l:args, " ")
+    execute "make run " . l:args_str
+endfunction
+
 " Denite Grep
 " ===========
 command! -nargs=? DG call Denite_grep(<f-args>)
