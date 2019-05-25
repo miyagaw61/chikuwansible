@@ -237,10 +237,14 @@ endfunction
 
 command! -nargs=? MR call MR(<f-args>)
 function! MR(...)
-    let l:args = split(a:000[0], " ")
-    let l:argc = len(args)
-    let l:args_str = join(l:args, " ")
-    execute "make run " . l:args_str
+    let l:argc = len(a:000)
+    if l:argc != 0
+        let l:args = split(a:000[0], " ")
+        let l:args_str = join(l:args, " ")
+        execute "make run " . l:args_str
+    else
+        execute "make run"
+    endif
 endfunction
 
 " Denite Grep
