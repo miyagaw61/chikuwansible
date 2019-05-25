@@ -410,15 +410,17 @@ hook_source = '''
          \ defx#do_action('change_vim_cwd')
           nnoremap <silent><buffer> cd
          \ :CdNowDefx<CR>:CdDefx<Space>
-          nnoremap <silent><buffer> ga
+          nnoremap <silent><buffer> <C-g>s
+         \ :GitStatusDefx<CR>
+          nnoremap <silent><buffer> <C-g>a
          \ :GitAddDefx<CR><CR>
-          nnoremap <silent><buffer> gc
+          nnoremap <silent><buffer> <C-g>c
          \ :GitCommitDefx<Space>
-          nnoremap <silent><buffer> gd
+          nnoremap <silent><buffer> <C-g>d
          \ :GitDiffDefx<CR><CR>
-          nnoremap <silent><buffer> gl
+          nnoremap <silent><buffer> <C-g>l
          \ :GitLogDefx<CR>
-          nnoremap <silent><buffer> gp
+          nnoremap <silent><buffer> <C-g>p
          \ :GitPushDefx<CR>
           nnoremap <silent><buffer> x
          \ :SystemDefx<Space>
