@@ -68,8 +68,8 @@ hook_add = '''
   nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
         \ -sorters=sorter_rank
         \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
-  "nnoremap <silent> [Window]e :<C-u>Denite file/rec -path=
-  nnoremap <silent> [Window]e :OpenFileByDenite<Space>
+  "nnoremap <silent> [Window]d :<C-u>Denite file/rec -path=
+  nnoremap <silent> [Window]d :OpenFileByDenite<Space>
   nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
         \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
         \  tag:include\<CR>"

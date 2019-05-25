@@ -200,7 +200,6 @@ nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
 nnoremap <silent>[Window]a :MyVimgrepAll<Space>
 
 "Defx
-nnoremap <silent>[Window]d :Defx<Space>
 nnoremap <silent>[Window]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 nnoremap <silent>[Window]c :ChangeFileDefx<CR>
 
