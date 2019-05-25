@@ -537,10 +537,18 @@ function! OpenFileByDenite(...)
         let l:args_str = join(l:args, " ")
         if l:args_str == "d"
             execute "Denite file/rec -path=$HOME/docs"
+        elseif l:args_str == "v"
+            execute "Denite file/rec -path=$HOME/docs/config_files/nvim"
+        elseif l:args_str == "b"
+            execute "Denite file/rec -path=$HOME/docs/config_files/bash"
         elseif l:args_str == "s"
             execute "Denite file/rec -path=$HOME/src"
+        elseif l:args_str == "g"
+            execute "Denite file/rec -path=$HOME/src/github.com"
         elseif l:args_str == "m"
             execute "Denite file/rec -path=$HOME/src/github.com/miyagaw61"
+        elseif l:args_str == "/"
+            execute "Denite file/rec -path=/"
         else
             "let l:open_path = expand(l:args[0])
             "let l:open_fullpath = fnamemodify(l:open_path, ":p")
