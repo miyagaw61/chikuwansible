@@ -427,7 +427,58 @@ v() {
             #NVIM_LISTEN_ADDRESS=$socket nvr -c "e "$(realpath $1)
             NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "e "$(realpath $1)
         else
-            echo "$(realpath $1)" > /tmp/viming_path
+            old_dir="$PWD"
+            if [ "$1" = "/" ] ;then
+                base_dir="/"
+                cd "$base_dir"
+                echo -n "$base_dir" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "." ] ;then
+                base_dir="$HOME"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "d" ] ;then
+                base_dir="$HOME/docs"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "v" ] ;then
+                base_dir="$HOME/docs/config_files/nvim/"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "b" ] ;then
+                base_dir="$HOME/docs/config_files/bash"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "s" ] ;then
+                base_dir="$HOME/src"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "g" ] ;then
+                base_dir="$HOME/src/github.com"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            elif [ "$1" = "m" ] ;then
+                base_dir="$HOME/src/github.com/miyagaw61"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
+            else
+                echo "$(realpath $1)" > /tmp/viming_path
+            fi
             if [ "$(jobs)" ] ;then
                 fg
             else
