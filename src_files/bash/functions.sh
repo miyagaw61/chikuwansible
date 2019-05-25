@@ -481,13 +481,17 @@ v() {
             else
                 echo "$(realpath $1)" > /tmp/viming_path
             fi
-            if [ "$(jobs)" ] ;then
-                jobs > /tmp/jobs
-                job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
-                fg $job_spec
+            if [ -d "$(cat /tmp/viming_path)" ] ;then
+                echo "" > /tmp/viming_path
             else
-                rm -rf /tmp/nvimsocket
-                NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $(cat /tmp/viming_path)
+                if [ "$(jobs)" ] ;then
+                    jobs > /tmp/jobs
+                    job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
+                    fg $job_spec
+                else
+                    rm -rf /tmp/nvimsocket
+                    NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $(cat /tmp/viming_path)
+                fi
             fi
         fi
     else
