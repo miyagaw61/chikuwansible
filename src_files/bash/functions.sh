@@ -478,6 +478,12 @@ v() {
                 echo -n "$base_dir/" > /tmp/viming_path
                 lf -a -tf | fzf2nd >> /tmp/viming_path
                 cd -
+            elif [ "$1" = "t" ] ;then
+                base_dir="$HOME/tmp"
+                cd "$base_dir"
+                echo -n "$base_dir/" > /tmp/viming_path
+                lf -a -tf | fzf2nd >> /tmp/viming_path
+                cd -
             else
                 echo "$(realpath $1)" > /tmp/viming_path
             fi
