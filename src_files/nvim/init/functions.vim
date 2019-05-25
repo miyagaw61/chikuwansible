@@ -462,25 +462,13 @@ endfunction
 
 " ChangeFileDefx
 " ==============
-command! -nargs=? -complete=file_in_path ChangeFileDefx call ChangeFileDefx(<f-args>)
+command! -nargs=? ChangeFileDefx call ChangeFileDefx(<f-args>)
 function! ChangeFileDefx(...)
-    let l:args_len = len(a:000)
-    if l:args_len != 0
-        let l:args = split(a:000[0], " ")
-        let l:argc = len(args)
-        let l:args_str = join(l:args, " ")
-        let l:open_path = expand(l:args[0])
-        let l:open_fullpath = fnamemodify(l:open_path, ":p")
-        let l:open_dirname = fnamemodify(l:open_fullpath, ":h")
-    else
-        let l:open_dirname = "."
-    endif
-    let l:fullpath = expand("%:p")
-    let l:dirname = fnamemodify(l:fullpath, ":h")
-    let l:buf_nr = bufnr("%")
     execute "w!"
-    execute "Defx " . l:open_dirname
-    execute "bd " . l:fullpath
+    let l:filename = expand('%:p')
+    let l:dirname = expand('%:p:h')
+    execute "bd"
+    execute "Defx " . l:dirname . " -search=" . l:filename
 endfunction
 
 " SaveDir

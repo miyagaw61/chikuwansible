@@ -202,12 +202,10 @@ nnoremap <silent>[Window]a :MyVimgrepAll<Space>
 "Defx
 nnoremap <silent>[Window]d :Defx<Space>
 nnoremap <silent>[Window]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap <silent>[Window]c :ChangeFileDefx<CR>
 
 "Move
 nnoremap <silent>T gE
-
-"Move
-nnoremap <silent>[Window]c :ChangeFileDefx<Space>
 
 " C-Z
 nnoremap <silent><C-z> :SaveDir<CR><C-z>
