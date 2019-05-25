@@ -386,6 +386,12 @@ hook_source = '''
          \ defx#do_action('cd') . defx#do_action('cd', 'src/github.com')
           nnoremap <silent><buffer><expr> <S-j>m
          \ defx#do_action('cd') . defx#do_action('cd', 'src/github.com/miyagaw61')
+          nnoremap <silent><buffer><expr> <S-j>d
+         \ defx#do_action('cd') . defx#do_action('cd', 'docs')
+          nnoremap <silent><buffer><expr> <S-j>v
+         \ defx#do_action('cd') . defx#do_action('cd', 'docs/config_files/nvim')
+          nnoremap <silent><buffer><expr> <S-j>b
+         \ defx#do_action('cd') . defx#do_action('cd', 'docs/config_files/bash')
           nnoremap <silent><buffer><expr> q
          \ defx#do_action('quit')
           nnoremap <silent><buffer><expr> <Tab>
