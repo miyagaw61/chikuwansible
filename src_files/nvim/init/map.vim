@@ -53,8 +53,7 @@ nnoremap <silent>gGso :!echo %:p > /tmp/viming_path 2> /dev/null<CR><CR>
 
 "terminal mapping
 nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tmp/deol_cd.tmp);<Space>
-nnoremap [Space]rr :MyRustRun<Space>
-nnoremap [Space]r :MyRustRun<Space>
+nnoremap [Space]r :QuickRun -args<Space>
 nnoremap [Space]t  :Deol<CR>
 nnoremap <C-g>a :GitAdd %:p<CR>
 nnoremap <C-g>c :GitCommit %:p<Space>
@@ -62,8 +61,6 @@ nnoremap <C-g>s :GitStatus %:p<CR>
 nnoremap <C-g>l :GitLog %:p<CR>
 nnoremap <C-g>d :GitDiff %:p<CR>
 nnoremap <C-g>p :GitPush %:p<CR>
-nnoremap [Space]rc :QuickRun -args<Space>
-nnoremap [Space]rp :QuickRun -args<Space>
 
 "cursor moving
 inoremap <C-f>\ <Esc><Right>;i
