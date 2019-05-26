@@ -1,3 +1,32 @@
+#[[plugins]]
+#repo = 'Shougo/unite.vim'
+#depends = 'neomru.vim'
+#hook_source = 'source {{nvim_config_files}}/plugins/unite.rc.vim'
+
+#[[plugins]]
+#repo = 'kana/vim-smartword'
+#hook_add = '''
+#    nnoremap w <Plug>(smartword-w)
+#    nnoremap b <Plug>(smartword-b)
+#    nnoremap e <Plug>(smartword-e)
+#'''
+
+#[[plugins]]
+#repo = 'jsfaint/gen_tags.vim'
+#on_i = 1
+#hook_add = '''
+#    let g:gen_tags#gtags_auto_gen = 1
+#'''
+
+#[[plugins]]
+#repo = 'tpope/vim-fugitive'
+
+#[[plugins]]
+#repo = 'rking/ag.vim'
+#hook_add = '''
+#    let g:ag_prg="/usr/bin/ag --vimgrep"
+#'''
+
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
@@ -8,19 +37,6 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'nixprime/cpsm'
-hook_add = 'set runtimepath+={{nvim_config_files}}/repos/github.com/nixprime/cpsm'
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
 repo = 'Shougo/neoyank.vim'
 on_if = 1
 on_event = 'TextYankPost'
@@ -28,17 +44,62 @@ on_source = ['unite.vim', 'denite.nvim']
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
-#on_i = 1
 on_ft = 'python'
+depends = ['deoplete.nvim']
 
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
+repo = 'zchee/deoplete-clang'
+on_ft = ['c', 'cpp', 'cmake']
+depends = ['deoplete.nvim']
+hook_source = '''
+    let g:deoplete#sources#clang#libclang_path = '{{libclang_path}}'
+    let g:deoplete#sources#clang#clang_header = '{{clang_header}}'
+'''
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_source = '''
+    let g:rustfmt_autosave = 1
+    let g:rust_doc#define_map_K = 0
+'''
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'
+hook_source = '''
+    " racerバイナリ指定
+    let g:racer_cmd = "{{home}}/.cargo/bin/racer"
+    " rust本体のソースコードパス指定
+    "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+    let $RUST_SRC_PATH="{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+'''
+
+[[plugins]]
+repo = 'rhysd/rust-doc.vim'
+on_ft = 'rust'
+hook_source = '''
+    " rustドキュメントのパス指定
+    let g:rust_doc#downloaded_rust_doc_dir = "{{home}}/docs/rust-docs"
+'''
+
+[[plugins]]
+repo = 'sebastianmarkow/deoplete-rust'
+on_ft = 'rust'
+depends = ['deoplete.nvim']
+hook_source = '''
+    let g:deoplete#sources#rust#racer_binary='{{home}}/.cargo/bin/racer'
+    let g:deoplete#sources#rust#rust_source_path='{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+    let g:deoplete#sources#rust#show_duplicates=1
+    let g:deoplete#sources#rust#disable_keymap=1
+    nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
+    nmap <buffer> K  <plug>DeopleteRustShowDocumentation
+'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = ['neosnippet-snippets', 'context_filetype.vim']
 on_i = 1
-#on_ft = 'snippet'
 hook_source = '''
   imap <silent><C-k> <Plug>(neosnippet_jump_or_expand)
   smap <silent><C-k> <Plug>(neosnippet_jump_or_expand)
@@ -46,13 +107,12 @@ hook_source = '''
   let g:neosnippet#enable_snipmate_compatibility = 1
   let g:neosnippet#enable_completed_snippet = 1
   let g:neosnippet#expand_word_boundary = 1
-  let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
-  "let g:snippets_dir = '$REPOS/mgtools/conf/rc/vim/plugins/snippets/'
+  let g:neosnippet#snippets_directory = '{{home}}/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/'
 '''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-#on_cmd = 'Denite'
+on_cmd = 'Denite'
 hook_add = '''
   nnoremap <silent> [Window]r
         \ :<C-u>Denite -buffer-name=register
@@ -94,15 +154,6 @@ hook_add = '''
 hook_source = 'source {{nvim_config_files}}/plugins/denite.rc.vim'
 
 [[plugins]]
-repo = 'zchee/deoplete-clang'
-hook_source = '''
-let g:deoplete#sources#clang#libclang_path = '{{libclang_path}}'
-let g:deoplete#sources#clang#clang_header = '{{clang_header}}'
-'''
-on_ft = ['c', 'cpp', 'cmake']
-depends = ['deoplete.nvim']
-
-[[plugins]]
 repo = 'Shougo/vinarise'
 on_cmd = 'Vinarise'
 hook_add = '''
@@ -110,62 +161,21 @@ let g:vinarise_enable_auto_detect = 1
 let g:vinarise_guifont = 'Courier\ 10\ Pitch:h14'
 '''
 
-#[[plugins]]
-#repo = 'easymotion/vim-easymotion'
-#hook_add = '''
-#    let g:EasyMotion_do_mapping = 0
-#    nmap s <Plug>(easymotion-s2)
-#    xmap s <Plug>(easymotion-s2)
-#    omap z <Plug>(easymotion-s2)
-#    nmap S <Plug>(easymotion-sn)
-#    xmap S <Plug>(easymotion-sn)
-#    omap S <Plug>(easymotion-tn)
-#    let g:EasyMotion_smartcase = 1
-#    map <Leader>j <Plug>(easymotion-j)
-#    map <Leader>k <Plug>(easymotion-k)
-#    let g:EasyMotion_startofline = 0
-#    " let g:EasyMotion_keys = 'QZASDFGHJKL;'
-#    let g:EasyMotion_keys = 'Q1Z2A3S4D5F6G7H8J9K/;'
-#    let g:EasyMotion_use_upper = 1
-#    let g:EasyMotion_enter_jump_first = 1
-#'''
-
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
 on_if = 1
 on_event = 'TextYankPost'
 on_source = ['unite.vim', 'denite.nvim']
 
-
-#[[plugins]]
-#repo = 'kana/vim-smartword'
-#hook_add = '''
-#    nnoremap w <Plug>(smartword-w)
-#    nnoremap b <Plug>(smartword-b)
-#    nnoremap e <Plug>(smartword-e)
-#'''
-
-#[[plugins]]
-#repo = 'rking/ag.vim'
-
-[[plugins]]
-repo = 'erickbelfy/rg.vim'
-
 [[plugins]]
 repo = 'Shougo/deol.nvim'
 on_cmd = 'Deol'
-on_source = 'denite.nvim'
-#hook_add = '''
-#  "nnoremap <silent> N :<C-u>call deol#new({'command': 'bash'})<CR>
-#  "nnoremap <silent> N :terminal<CR>i
-#  "nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
-#'''
 hook_source = '''
   let g:deol#prompt_pattern = '\w*%'
   set shell=bash
   " Set to $PATH.
   "let s:bin = dein#get('vim-themis').rtp . '/bin'
-  function! s:split_envpath(path) abort "ANSIBLE_BRACEANSIBLE_BLACE{
+  function! s:split_envpath(path) abort
     let delimiter = has('win32') ? ';' : ':'
     if stridx(a:path, '\' . delimiter) < 0
       return split(a:path, delimiter)
@@ -174,7 +184,7 @@ hook_source = '''
     return map(split,'substitute(v:val, ''\\\([\\'
           \ . delimiter . ']\)'', "\\1", "g")')
   endfunction"}}}
-  function! s:join_envpath(list, orig_path, add_path) abort "ANSIBLE_BRACEANSIBLE_BRACE{
+  function! s:join_envpath(list, orig_path, add_path) abort
     let delimiter = has('win32') ? ';' : ':'
     return (stridx(a:orig_path, '\' . delimiter) < 0
           \ && stridx(a:add_path, delimiter) < 0) ?
@@ -197,18 +207,8 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
-depends = 'neomru.vim'
-hook_source = 'source {{nvim_config_files}}/plugins/unite.rc.vim'
-
-[[plugins]]
-repo = 'mhinz/neovim-remote'
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
 repo = 'lighttiger2505/gtags.vim'
+on_cmd = 'Gtags'
 hook_add = '''
     " Options
     let g:Gtags_Auto_Map = 0
@@ -219,14 +219,9 @@ hook_add = '''
     "nnoremap <C-g> :Gtags<Space>
 '''
 
-#[[plugins]]
-#repo = 'jsfaint/gen_tags.vim'
-#hook_add = '''
-#    let g:gen_tags#gtags_auto_gen = 1
-#'''
-
 [[plugins]]
 repo = 'ozelentok/denite-gtags'
+on_source = ['gtags.vim', 'denite.nvim']
 hook_add = '''
     noremap [denite-gtags]  <Nop>
     nmap ,t [denite-gtags]
@@ -242,45 +237,8 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = 'rust'
-hook_source = '''
-    let g:rustfmt_autosave = 1
-'''
-
-[[plugins]]
-repo = 'sebastianmarkow/deoplete-rust'
-on_ft = 'rust'
-depends = ['deoplete.nvim']
-hook_source = '''
-    let g:deoplete#sources#rust#racer_binary='{{home}}.cargo/bin/racer'
-    let g:deoplete#sources#rust#rust_source_path='{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-    let g:deoplete#sources#rust#show_duplicates=1
-    let g:deoplete#sources#rust#disable_keymap=1
-    nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-    nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-'''
-
-[[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
-hook_source = '''
-    " racerバイナリ指定
-    let g:racer_cmd = "~/.cargo/bin/racer"
-    " rust本体のソースコードパス指定
-    "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-'''
-
-#[[plugins]]
-#repo = 'rhysd/rust-doc.vim'
-#on_ft = 'rust'
-#hook_source = '''
-#    " rustドキュメントのパス指定
-#    "let g:rust_doc#downloaded_rust_doc_dir = "~/docs/rust-docs"
-#'''
-
-[[plugins]]
 repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
 hook_source = '''
     map <Space>r [Space]r
     " hook-shabadoubi_touch_henshin を有効にする
@@ -296,48 +254,8 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'terryma/vim-multiple-cursors'
-hook_source = '''
-    " Called once right before you start selecting multiple cursors
-    function! Multiple_cursors_before()
-      if exists(':NeoCompleteLock')==2
-        exe 'NeoCompleteLock'
-      endif
-    endfunction
-
-    " Called once only when the multiple selection is canceled (default <Esc>)
-    function! Multiple_cursors_after()
-      if exists(':NeoCompleteUnlock')==2
-        exe 'NeoCompleteUnlock'
-      endif
-    endfunction
-'''
-
-#[[plugins]]
-#repo = 'nathanaelkane/vim-indent-guides'
-#hook_source = '''
-#    let g:indent_guides_enable_on_vim_startup = 1
-#'''
-
-[[plugins]]
-repo = 'rking/ag.vim'
-#hook_add = '''
-#    let g:ag_prg="/usr/bin/ag --vimgrep"
-#'''
-
-[[plugins]]
-repo = 'jremmen/vim-ripgrep'
-hook_add = '''
-    "let g:rg_binary='/home/miyagaw61/.cargo/bin/rg'
-    let g:ag_qhandler="copen 30"
-    let g:ag_highlight=1
-'''
-
-[[plugins]]
-repo = 'thinca/vim-qfreplace'
-
-[[plugins]]
 repo = 'Shougo/defx.nvim'
+on_cmd = 'Defx'
 hook_source = '''
     autocmd FileType defx call s:defx_my_settings()
         function! s:defx_my_settings() abort
@@ -428,11 +346,9 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vital-over'
+repo = 'neoclide/denite-extra'
+on_source = 'denite.nvim'
 
 [[plugins]]
-repo = 'haya14busa/is.vim'
-hook_add = '''
-    source /home/miyagaw61/docs/config_files/nvim/repos/github.com/haya14busa/is.vim/plugin/is.vim
-    nnoremap [Window]g /
-'''
+repo = 'mhinz/neovim-remote'
+on_source = 'deol.nvim'

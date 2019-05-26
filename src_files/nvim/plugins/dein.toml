@@ -1,25 +1,3 @@
-[[plugins]]
-repo = 'Shougo/dein.vim'
-
-#[[plugins]]
-#repo = 'Lokaltog/vim-easymotion'
-
-# [[plugins]]
-# repo = 'Shougo/unite.vim'
-# depends = 'neomru.vim'
-
-[[plugins]]
-repo = 'KeitaNakamura/neodark.vim'
-
-#[[plugins]]
-#repo = 'chemzqm/denite-git'
-
-#[[plugins]]
-#repo = 'chemzqm/vim-easygit'
-#hook_add = '''
-#    let g:easygit_enable_command = 1
-#'''
-
 #[[plugins]]
 #repo = 't9md/vim-smalls'
 #hook_add = '''
@@ -36,21 +14,40 @@ repo = 'KeitaNakamura/neodark.vim'
 #    map F <Plug>Sneak_F
 #'''
 
+#[[plugins]]
+#repo = 'nathanaelkane/vim-indent-guides'
+#hook_add = '''
+#    let g:indent_guides_enable_on_vim_startup = 1
+#    let g:indent_guides_guide_size = 1
+#'''
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'KeitaNakamura/neodark.vim'
+
+[[plugins]]
+repo = 'erickbelfy/rg.vim'
+
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
-#hook_post_update = '''
-#    if dein#util#_is_windows()
-#        let cmd = 'tools\\update-dll-mingw'
-#    elseif dein#util#_is_cygwin()
-#        let cmd = 'make -f make_cygwin.mak'
-#    elseif executable('gmake')
-#        let cmd = 'gmake'
-#    else
-#        let cmd = 'make'
-#    endif
-#    let g:dein#plugin.build = cmd
-#'''
+hook_post_update = '''
+    if dein#util#_is_windows()
+        let cmd = 'tools\\update-dll-mingw'
+    elseif dein#util#_is_cygwin()
+        let cmd = 'make -f make_cygwin.mak'
+    elseif executable('gmake')
+        let cmd = 'gmake'
+    else
+        let cmd = 'make'
+    endif
+    let g:dein#plugin.build = cmd
+'''
 
 [[plugins]]
 repo = 'Lokaltog/vim-easymotion'
@@ -69,3 +66,75 @@ hook_add = '''
     nmap [Space]f <Plug>(easymotion-overwin-f)
     nmap [Space]l <Plug>(easymotion-overwin-line)
 '''
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'nixprime/cpsm'
+#hook_add = 'set runtimepath+=/home/miyagaw61/docs/config_files/nvim/repos/github.com/nixprime/cpsm'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vital-over'
+
+#[[plugins]]
+#repo = 'haya14busa/is.vim'
+#hook_add = '''
+#    nnoremap [Window]g /
+#'''
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+hook_add = '''
+    map [Window]g <Plug>(incsearch-stay)
+    nmap [Window]g <Plug>(incsearch-stay)
+    xmap [Window]g <Plug>(incsearch-stay)
+    omap [Window]g <Plug>(incsearch-stay)
+'''
+
+[[plugins]]
+repo = 'haya14busa/incsearch-easymotion.vim'
+hook_add = '''
+    nmap m <Plug>(incsearch-easymotion-stay)
+'''
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+hook_add = '''
+    let g:multi_cursor_use_default_mapping=0
+    " Default mapping
+    let g:multi_cursor_start_word_key      = '<C-n>'
+    let g:multi_cursor_select_all_word_key = '<A-n>'
+    let g:multi_cursor_start_key           = 'g<C-n>'
+    let g:multi_cursor_select_all_key      = 'g<A-n>'
+    let g:multi_cursor_next_key            = '<C-n>'
+    let g:multi_cursor_prev_key            = '<C-p>'
+    let g:multi_cursor_skip_key            = '<C-x>'
+    let g:multi_cursor_quit_key            = '<C-l>'
+    " Called once right before you start selecting multiple cursors
+    function! Multiple_cursors_before()
+        if exists(':NeoCompleteLock')==2
+            exe 'NeoCompleteLock'
+        endif
+    endfunction
+    " Called once only when the multiple selection is canceled (default <Esc>)
+    function! Multiple_cursors_after()
+        if exists(':NeoCompleteUnlock')==2
+            exe 'NeoCompleteUnlock'
+        endif
+    endfunction
+'''
+
+[[plugins]]
+repo = 'jremmen/vim-ripgrep'
+hook_add = '''
+    "let g:rg_binary='/home/miyagaw61/.cargo/bin/rg'
+    let g:ag_qhandler="copen 30"
+    let g:ag_highlight=1
+'''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
