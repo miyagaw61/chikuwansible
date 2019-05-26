@@ -660,6 +660,8 @@ fzfd() {
         cd "$old_dir"
         if [ "$dir" ] ;then
             cd "$base_dir/$dir"
+        else
+            cd "$base_dir"
         fi
     else
         dir="$(lf -a -td | fzf2nd)"
