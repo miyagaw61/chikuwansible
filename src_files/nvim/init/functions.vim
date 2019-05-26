@@ -232,18 +232,32 @@ endfunction
 
 command! -nargs=? MT call MT(<f-args>)
 function! MT(...)
-    execute "make test"
+    let l:ft = &filetype
+    if l:ft == 'rust'
+        execute "!make test"
+    else 
+        execute "make test"
+    endif
 endfunction
 
 command! -nargs=? MR call MR(<f-args>)
 function! MR(...)
     let l:argc = len(a:000)
+    let l:ft = &filetype
     if l:argc != 0
         let l:args = split(a:000[0], " ")
         let l:args_str = join(l:args, " ")
-        execute "make run " . l:args_str
+        if l:ft == 'rust'
+            execute "make run " . l:args_str
+        else
+            execute "!make run ARG='" . l:args_str . "'"
+        endif
     else
-        execute "make run"
+        if l:ft == 'rust'
+            execute "make run"
+        else
+            execute "make run ARG=''"
+        endif
     endif
 endfunction
 
