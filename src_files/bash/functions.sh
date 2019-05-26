@@ -628,3 +628,50 @@ x() {
 at() {
     gdb -p $(cat /tmp/gdb.pid)
 }
+
+fzfd() {
+    if [ $# -eq 1 ] ;then
+        old_dir=$PWD
+        if [ "$1" = "h" ] ;then
+            base_dir="$HOME"
+        elif [ "$1" = "." ] ;then
+            base_dir="$HOME"
+        elif [ "$1" = "/" ] ;then
+            base_dir="/"
+        elif [ "$1" = "s" ] ;then
+            base_dir="$HOME/src"
+        elif [ "$1" = "g" ] ;then
+            base_dir="$HOME/src/github.com"
+        elif [ "$1" = "m" ] ;then
+            base_dir="$HOME/src/github.com/miyagaw61"
+        elif [ "$1" = "d" ] ;then
+            base_dir="$HOME/docs"
+        elif [ "$1" = "v" ] ;then
+            base_dir="$HOME/docs/config_files/nvim"
+        elif [ "$1" = "b" ] ;then
+            base_dir="$HOME/docs/config_files/bash"
+        elif [ "$1" = "t" ] ;then
+            base_dir="$HOME/tmp"
+        else
+            base_dir="$1"
+        fi
+        cd "$base_dir"
+        dir="$(lf -a -td | fzf2nd)"
+        cd "$old_dir"
+        if [ "$dir" ] ;then
+            cd "$base_dir/$dir"
+        fi
+    else
+        dir="$(lf -a -td | fzf2nd)"
+        if [ "$dir" ] ;then
+            cd "$dir"
+        fi
+    fi
+}
+
+repod() {
+    dir="$(ghq list | fzf2nd)"
+    if [ "$dir" ] ;then
+        cd "$HOME/src/$dir"
+    fi
+}
