@@ -64,16 +64,16 @@ hook_source = '''
     let g:rust_doc#define_map_K = 0
 '''
 
-[[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
-hook_source = '''
-    " racerバイナリ指定
-    let g:racer_cmd = "{{home}}/.cargo/bin/racer"
-    " rust本体のソースコードパス指定
-    "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-    let $RUST_SRC_PATH="{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-'''
+#[[plugins]]
+#repo = 'racer-rust/vim-racer'
+#on_ft = 'rust'
+#hook_source = '''
+#    " racerバイナリ指定
+#    let g:racer_cmd = "{{home}}/.cargo/bin/racer"
+#    " rust本体のソースコードパス指定
+#    "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+#    let $RUST_SRC_PATH="{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+#'''
 
 [[plugins]]
 repo = 'rhysd/rust-doc.vim'
@@ -90,6 +90,7 @@ depends = ['deoplete.nvim']
 hook_source = '''
     let g:deoplete#sources#rust#racer_binary='{{home}}/.cargo/bin/racer'
     let g:deoplete#sources#rust#rust_source_path='{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+    let $RUST_SRC_PATH="{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
     let g:deoplete#sources#rust#show_duplicates=1
     let g:deoplete#sources#rust#disable_keymap=1
     nmap <buffer> gd <Space>w<plug>DeopleteRustGoToDefinitionDefault
