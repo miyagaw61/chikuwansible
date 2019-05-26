@@ -611,3 +611,32 @@ function! GoTab(...)
     execute 'ReadyNew'
     execute 'call Quick_open()'
 endfunction
+
+" GetBufferFiles
+" ==============
+command! -nargs=? GetBufferFiles call GetBufferFiles(<f-args>)
+function! GetBufferFiles(...)
+    let l:infs = getbufinfo()
+    execute 'call delete("/tmp/buffer_files")'
+    for inf in l:infs
+        let l:name = inf.name
+        if l:name !~ '/\[[^]]*\][^/]*$'
+            execute 'redir! >> /tmp/buffer_files'
+            execute 'silent! echon "' . l:name . '\n"'
+            execute 'redir END'
+        endif
+    endfor
+endfunction
+
+" GrepBuffers
+" ===========
+command! -nargs=? GrepBuffers call GrepBuffers(<f-args>)
+function! GrepBuffers(...)
+    let l:argc = len(a:000)
+    let l:args = split(a:000[0], " ")
+    let l:args_str = join(l:args, " ")
+    execute 'GetBufferFiles'
+    let l:cmd = 'rg -nH "' . l:args_str . '" $(cat /tmp/buffer_files) > /tmp/quickfix'
+    execute 'silent !' . l:cmd
+    execute 'cgetfile /tmp/quickfix | cwindow'
+endfunction

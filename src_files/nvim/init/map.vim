@@ -193,7 +193,8 @@ vnoremap <C-c> :'<,'>w !xsel --clipboard --input<CR><CR>:!xsel --clipboard --out
 " grep
 "nnoremap [Window]g :Frepl %:p 
 nnoremap <silent>[Window]g :MyVimgrep<Space>
-nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
+"nnoremap <silent>[Window]G :SaveThisFileName<CR>:MyVimgrepadd<Space>
+nnoremap <silent>[Window]G :GrepBuffers<Space>
 nnoremap <silent>[Window]a :MyVimgrepAll<Space>
 
 "Defx
