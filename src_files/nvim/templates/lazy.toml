@@ -75,13 +75,13 @@ hook_source = '''
 #    let $RUST_SRC_PATH="{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 #'''
 
-[[plugins]]
-repo = 'rhysd/rust-doc.vim'
-on_ft = 'rust'
-hook_source = '''
-    " rustドキュメントのパス指定
-    let g:rust_doc#downloaded_rust_doc_dir = "{{home}}/docs/rust-docs"
-'''
+#[[plugins]]
+#repo = 'rhysd/rust-doc.vim'
+#on_ft = 'rust'
+#hook_source = '''
+#    " rustドキュメントのパス指定
+#    let g:rust_doc#downloaded_rust_doc_dir = "{{home}}/docs/rust-docs"
+#'''
 
 [[plugins]]
 repo = 'sebastianmarkow/deoplete-rust'
