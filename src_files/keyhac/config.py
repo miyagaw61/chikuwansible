@@ -282,12 +282,10 @@ def configure(keymap):
                 keymap_class["C-U"] = "S-Home", "Delete"
                 keymap_class["C-F"] = "Right"
                 keymap_class["C-B"] = "Left"
-            keymap_class["U0-F"] = "C-Right"
-            keymap_class["U0-B"] = "C-Left"
-            keymap_class["A-A"] = "S-Home"
-            keymap_class["A-E"] = "S-End"
-            #keymap_class["A-F"] = "S-Right"
-            #keymap_class["A-B"] = "S-Left"
+            #keymap_class["U0-F"] = "C-Right"
+            #keymap_class["U0-B"] = "C-Left"
+            #keymap_class["A-A"] = "S-Home"
+            #keymap_class["A-E"] = "S-End"
 
         def initialize_keybind_jump(keymap_class):
             """
@@ -539,12 +537,13 @@ fn main() {
             set_class_ci_cmd(lambda:put_strln(procon_template), "PT")
 
         def initialize_keybind_u0(keymap_class):
-            keymap_class["O-Tab"] = "Tab"
-            keymap_class["U0-J"] = "PageDown"
-            keymap_class["U0-K"] = "PageUp"
+            #keymap_class["O-Tab"] = "Tab"
+            #keymap_class["U0-J"] = "PageDown"
+            #keymap_class["U0-K"] = "PageUp"
             #keymap_class["U0-Q"] = "A-F4"
-            if hhkb_flag or jp_flag:
-                keymap_class["U0-F"] = "C-F"
+            #if hhkb_flag or jp_flag:
+            #    keymap_class["U0-F"] = "C-F"
+            pass
 
         def initialize_keybind_cu0(keymap_class):
             pass
@@ -612,12 +611,14 @@ fn main() {
             initialize_keybind_c(        keymap_class )
             initialize_keybind_cspace(   keymap_class )
             initialize_keybind_ci(       keymap_class )
-            initialize_keybind_u0(       keymap_class )
+            #initialize_keybind_u0(       keymap_class )
             #initialize_keybind_cu0(     keymap_class )
             initialize_keybind_win(      keymap_class )
 
             keymap_class["BackSlash"] = lambda:put_str("\\")
-            keymap_class["U0-Space"] = space_4
+            #keymap_class["U0-Space"] = space_4
+            if jp_flag:
+                keymap_class["U2-Space"] = space_4
 
             if jp_flag:
                 initialize_keybind_jp2en(keymap_class)
@@ -644,12 +645,12 @@ fn main() {
 
         def config_vim(keymap_class):
             keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
-            keymap_class["U0-J"] = escape
-            keymap_class["U0-I"] = insert_jp
-            keymap_class["U0-O"] = o_jp
-            keymap_class["U0-S-O"] = s_o_jp
-            keymap_class["U0-A"] = a_jp
-            keymap_class["U0-S-A"] = s_a_jp
+            #keymap_class["U0-J"] = escape
+            #keymap_class["U0-I"] = insert_jp
+            #keymap_class["U0-O"] = o_jp
+            #keymap_class["U0-S-O"] = s_o_jp
+            #keymap_class["U0-A"] = a_jp
+            #keymap_class["U0-S-A"] = s_a_jp
             if jp_flag:
                 keymap_class["U2-J"] = escape
                 keymap_class["U2-I"] = insert_jp
@@ -660,17 +661,18 @@ fn main() {
 
         def n_slack(keymap_class):
             keymap_class["C-N"] = "S-A-Down"
-            keymap_class["C-U0-N"] = "S-A-Up"
+            #keymap_class["C-U0-N"] = "S-A-Up"
             if jp_flag:
                 keymap_class["U2-N"] = "S-A-Down"
                 keymap_class["U2-S-N"] = "S-A-Up"
         
         def n_notepad(keymap_class):
             keymap_class["C-N"] = "Down"
-            keymap_class["C-U0-N"] = "Up"
+            #keymap_class["C-U0-N"] = "Up"
             if hhkb_flag or jp_flag:
                 keymap_class["C-N"] = "Down"
-                keymap_class["C-U0-N"] = "Up"
+                #keymap_class["C-U0-N"] = "Up"
+                keymap_class["C-U2-N"] = "Up"
 
         def qiita():
             base_url = "https://qiita.com/search?utf8=%E2%9C%93&sort=&q=user%3Amiyagaw61+"
@@ -691,7 +693,7 @@ fn main() {
 
     # Config For All
     if 1:
-        keymap.defineModifier("Tab", "User0")
+        #keymap.defineModifier("Tab", "User0")
         if jp_flag:
             keymap.defineModifier("(28)", "User1")
             keymap.defineModifier("(29)", "User2")
@@ -759,12 +761,12 @@ fn main() {
             keymap_firefox["C-L"] = "A-Right"
             keymap_firefox["C-PageUp"] = "C-PageUp"
             keymap_firefox["C-PageDown"] = "C-PageDown"
-        keymap_firefox["U0-H"] = "C-Pageup"
-        keymap_firefox["U0-L"] = "C-Pagedown"
-        keymap_firefox["U0-Q"] = "C-W"
-        keymap_firefox["U0-I"] = step_in
-        keymap_firefox["U0-O"] = step_over
-        #keymap_firefox["O-Tab"] = space_4
+        #keymap_firefox["U0-H"] = "C-Pageup"
+        #keymap_firefox["U0-L"] = "C-Pagedown"
+        #keymap_firefox["U0-Q"] = "C-W"
+        #keymap_firefox["U0-I"] = step_in
+        #keymap_firefox["U0-O"] = step_over
+        ##keymap_firefox["O-Tab"] = space_4
         keymap_firefox["C-Space"] = keymap.defineMultiStrokeKeymap("C-Space")
         set_firefox_cs_cmd = make_set_cmd(keymap_firefox, "C-Space")
         set_firefox_cs_cmd(translate_page, "P")
@@ -808,9 +810,13 @@ fn main() {
         keymap_teraterm = keymap.defineWindowKeymap(exe_name="TTERMPRO.exe")
         initialize_keybind(keymap_teraterm)
         config_terminal(keymap_teraterm)
-        keymap_teraterm["U0-J"] = escape
-        keymap_teraterm["U0-I"] = insert_jp
-        keymap_teraterm["U0-O"] = o_jp
+        #keymap_teraterm["U0-J"] = escape
+        #keymap_teraterm["U0-I"] = insert_jp
+        #keymap_teraterm["U0-O"] = o_jp
+        if jp_flag:
+            keymap_teraterm["U2-J"] = escape
+            keymap_teraterm["U2-I"] = insert_jp
+            keymap_teraterm["U2-O"] = o_jp
 
     # Config For cmd
     if 1:
@@ -834,7 +840,7 @@ fn main() {
         def hoge():
             typewrite(["return"])
 
-        keymap_cmd["U0-X"] = hoge
+        #keymap_cmd["U0-X"] = hoge
 
     # Config For PowerShell
     if 1:
@@ -874,4 +880,6 @@ fn main() {
             typewrite([":", "e", " "], interval=0.03)
             rightClick(1000, 1000)
         keymap_explorer = keymap.defineWindowKeymap(exe_name="explorer.exe")
-        keymap_explorer["U0-V"] = open_vim
+        #keymap_explorer["U0-V"] = open_vim
+        if jp_flag:
+            keymap_explorer["U2-V"] = open_vim
