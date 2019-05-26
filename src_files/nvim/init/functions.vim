@@ -552,6 +552,8 @@ function! OpenFileByDenite(...)
             execute "Denite file/rec -path=$HOME/src/github.com"
         elseif l:args_str == "m"
             execute "Denite file/rec -path=$HOME/src/github.com/miyagaw61"
+        elseif l:args_str == "t"
+            execute "Denite file/rec -path=$HOME/tmp"
         elseif l:args_str == "/"
             execute "Denite file/rec -path=/"
         else
