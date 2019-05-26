@@ -93,10 +93,10 @@ call deoplete#custom#option({
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
 " call deoplete#custom#source('clang', 'debug_enabled', 1)
 
-call deoplete#custom#option('candidate_marks',
-      \ ['A', 'S', 'D', 'F', 'G'])
-inoremap <expr>A       deoplete#insert_candidate(0)
-inoremap <expr>S       deoplete#insert_candidate(1)
-inoremap <expr>D       deoplete#insert_candidate(2)
-inoremap <expr>F       deoplete#insert_candidate(3)
-inoremap <expr>G deoplete#insert_candidate(4)
+"call deoplete#custom#option('candidate_marks',
+"      \ ['A', 'S', 'D', 'F', 'G'])
+"inoremap <expr>A       deoplete#insert_candidate(0)
+"inoremap <expr>S       deoplete#insert_candidate(1)
+"inoremap <expr>D       deoplete#insert_candidate(2)
+"inoremap <expr>F       deoplete#insert_candidate(3)
+"inoremap <expr>G deoplete#insert_candidate(4)
