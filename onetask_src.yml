@@ -1,0 +1,7 @@
+- hosts: localhost
+  become: yes
+  connection: local
+  tasks:
+    - include_vars: vars/editable.yml
+    - include_vars: vars/uneditable.yml
+    - include: ARG

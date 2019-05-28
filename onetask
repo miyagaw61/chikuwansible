@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+if [ "$UID" != "0" ] ;then
+  echo "Require root privilege"
+  exit 1
+fi
+if [ $# -eq 1 ] ;then
+    cp -a ./onetask_src.yml ./onetask_tmp.yml
+    sed -E "s@ARG@$1@g" -i ./onetask_tmp.yml
+    ./chikuwansible-playbook onetask_tmp.yml
+    rm -rf ./onetask_tmp.yml
+fi
