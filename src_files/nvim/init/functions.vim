@@ -463,6 +463,18 @@ function! GitAddDefx(...)
     execute "silent !git add " . l:fullpath
 endfunction
 
+" GitStatusDefx
+" =============
+command! -nargs=? GitStatusDefx call GitStatusDefx(<f-args>)
+function! GitStatusDefx(...)
+    normal yy
+    let l:path = @+
+    let l:fullpath = fnamemodify(l:path, ":p")
+    let l:dirname = fnamemodify(l:fullpath, ":h")
+    execute "cd " . l:dirname
+    execute "!git_sn"
+endfunction
+
 " GitLogDefx
 " ==========
 command! -nargs=? GitLogDefx call GitLogDefx(<f-args>)
