@@ -684,6 +684,7 @@ fn main() {
                 keymap_class["U2-S-C"] = s_c_jp
                 keymap_class["U2-M"] = m_jp
                 keymap_class["U2-RETURN"] = return_en
+                keymap_class["U2-K"] = return_en
 
         def n_slack(keymap_class):
             keymap_class["C-N"] = "S-A-Down"
