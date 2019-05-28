@@ -184,34 +184,55 @@ def configure(keymap):
             time.sleep(0.1)
             keymap.wnd.setImeStatus(0)
 
-        def insert_jp():
-            put_key("I")
+        def i_jp():
+            put_str("i")
+            time.sleep(0.1)
+            keymap.wnd.setImeStatus(1)
+
+        def s_i_jp():
+            put_str("I")
             time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def o_jp():
-            put_key("O")
+            put_str("o")
             time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def s_o_jp():
-            down_key("SHIFT")
             put_str("O")
-            up_key("SHIFT")
             time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def a_jp():
-            put_str("A")
+            put_str("a")
             time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
 
         def s_a_jp():
-            down_key("SHIFT")
             put_str("A")
-            up_key("SHIFT")
             time.sleep(0.1)
             keymap.wnd.setImeStatus(1)
+
+        def c_jp():
+            put_str("c")
+            time.sleep(0.1)
+            keymap.wnd.setImeStatus(1)
+
+        def s_c_jp():
+            put_str("C")
+            time.sleep(0.1)
+            keymap.wnd.setImeStatus(1)
+
+        def m_jp():
+            put_str("m")
+            time.sleep(0.1)
+            keymap.wnd.setImeStatus(1)
+
+        def return_en():
+            put_key("RETURN")
+            time.sleep(0.1)
+            keymap.wnd.setImeStatus(0)
 
         def space_4():
             put_str("    ")
@@ -646,18 +667,23 @@ fn main() {
         def config_vim(keymap_class):
             keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
             #keymap_class["U0-J"] = escape
-            #keymap_class["U0-I"] = insert_jp
+            #keymap_class["U0-I"] = i_jp
             #keymap_class["U0-O"] = o_jp
             #keymap_class["U0-S-O"] = s_o_jp
             #keymap_class["U0-A"] = a_jp
             #keymap_class["U0-S-A"] = s_a_jp
             if jp_flag:
                 keymap_class["U2-J"] = escape
-                keymap_class["U2-I"] = insert_jp
+                keymap_class["U2-I"] = i_jp
+                keymap_class["U2-S-I"] = s_i_jp
                 keymap_class["U2-O"] = o_jp
                 keymap_class["U2-S-O"] = s_o_jp
                 keymap_class["U2-A"] = a_jp
                 keymap_class["U2-S-A"] = s_a_jp
+                keymap_class["U2-C"] = c_jp
+                keymap_class["U2-S-C"] = s_c_jp
+                keymap_class["U2-M"] = m_jp
+                keymap_class["U2-RETURN"] = return_en
 
         def n_slack(keymap_class):
             keymap_class["C-N"] = "S-A-Down"
@@ -811,12 +837,9 @@ fn main() {
         initialize_keybind(keymap_teraterm)
         config_terminal(keymap_teraterm)
         #keymap_teraterm["U0-J"] = escape
-        #keymap_teraterm["U0-I"] = insert_jp
+        #keymap_teraterm["U0-I"] = i_jp
         #keymap_teraterm["U0-O"] = o_jp
-        if jp_flag:
-            keymap_teraterm["U2-J"] = escape
-            keymap_teraterm["U2-I"] = insert_jp
-            keymap_teraterm["U2-O"] = o_jp
+        config_vim(keymap_teraterm)
 
     # Config For cmd
     if 1:
