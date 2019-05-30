@@ -138,3 +138,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'thinca/vim-qfreplace'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+    let g:winresizer_start_key = '<C-w>'
+'''
