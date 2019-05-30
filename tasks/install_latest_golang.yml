@@ -15,3 +15,10 @@
     path: /usr/local/bin/go
     src: "{{home}}/go/bin/go{{golang_version}}"
     state: link
+
+- name: Chown "{{home}}/go"
+  file:
+    path: "{{home}}/go"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
