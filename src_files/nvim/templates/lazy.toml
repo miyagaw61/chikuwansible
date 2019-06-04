@@ -319,41 +319,62 @@ on_source = 'deol.nvim'
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_add = '''
-  nnoremap <silent> [Window]r
-        \ :<C-u>Denite -buffer-name=register
-        \ register neoyank<CR>
-  xnoremap <silent> [Window]r
-        \ :<C-u>Denite -default-action=replace -buffer-name=register
-        \ register neoyank<CR>
-  nnoremap <silent> [Window]<Space>
-        \ :<C-u>Denite file/rec:~/.vim/rc<CR>
-  "nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=10 line<CR>
-  nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-        \ -auto-highlight -mode=normal line<CR>
-  nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
-        \ -sorters=sorter_rank
-        \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
-  "nnoremap <silent> [Window]d :<C-u>Denite file/rec -path=
-  nnoremap <silent> [Window]d :OpenFileByDenite<Space>
-  nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
-        \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
-        \  tag:include\<CR>"
-  nnoremap <silent><expr> tp  &filetype == 'help' ?
-        \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-  "nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
-  "nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
-  "nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
-  "      \ -no-empty -mode=normal grep<CR>
-  "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search
-  "      \ -resume -mode=normal -refresh -mode=normal<CR>
-  nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search -resume -mode=normal<CR>
-  nnoremap <silent> ft :<C-u>Denite filetype<CR>
-  nnoremap <silent> <C-t> :<C-u>Denite
-        \ -select=`tabpagenr()-1` -mode=normal deol<CR>
-  nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-  "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
-  nnoremap <silent> [Space]h
-        \ :<C-u>Denite command_history<CR>
-  nnoremap <silent> [Window]b :Denite buffer<CR>
+    autocmd FileType denite call s:denite_my_settings()
+    function! s:denite_my_settings() abort
+      nnoremap <silent><buffer><expr> <CR>
+      \ denite#do_map('do_action')
+      nnoremap <silent><buffer><expr> d
+      \ denite#do_map('do_action', 'delete')
+      nnoremap <silent><buffer><expr> p
+      \ denite#do_map('do_action', 'preview')
+      nnoremap <silent><buffer><expr> q
+      \ denite#do_map('quit')
+      nnoremap <silent><buffer><expr> i
+      \ denite#do_map('open_filter_buffer')
+      nnoremap <silent><buffer><expr> <Space>
+      \ denite#do_map('toggle_select').'j'
+      "nnoremap <silent><buffer><expr> j
+      "\ 'j' . denite#do_map('do_action', 'preview')
+      "nnoremap <silent><buffer><expr> k
+      "\ 'k' . denite#do_map('do_action', 'preview')
+    endfunction
+    nnoremap <silent> [Window]r
+          \ :<C-u>Denite -buffer-name=register
+          \ register neoyank<CR>
+    xnoremap <silent> [Window]r
+          \ :<C-u>Denite -default-action=replace -buffer-name=register
+          \ register neoyank<CR>
+    nnoremap <silent> [Window]<Space>
+          \ :<C-u>Denite file/rec:~/.vim/rc<CR>
+    "nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=10 line<CR>
+    nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
+          \ -auto-highlight -mode=normal line<CR>
+    nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
+          \ -sorters=sorter_rank
+          \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
+    "nnoremap <silent> [Window]d :<C-u>Denite file/rec -path=
+    nnoremap <silent> [Window]d :OpenFileByDenite<Space>
+    nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
+          \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+          \  tag:include\<CR>"
+    nnoremap <silent><expr> tp  &filetype == 'help' ?
+          \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
+    "nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
+    "nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
+    "nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
+    "      \ -no-empty -mode=normal grep<CR>
+    "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search
+    "      \ -resume -mode=normal -refresh -mode=normal<CR>
+    "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search -resume -mode=normal<CR>
+    nnoremap <silent> [Space]n :<C-u>Denite -resume -mode=normal<CR>
+    nnoremap <silent> ft :<C-u>Denite filetype<CR>
+    nnoremap <silent> <C-t> :<C-u>Denite
+          \ -select=`tabpagenr()-1` -mode=normal deol<CR>
+    nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+    "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
+    nnoremap <silent> [Space]h
+          \ :<C-u>Denite command_history<CR>
+    nnoremap <silent> [Window]b :Denite buffer<CR>
+    nnoremap <silent> / :Denite line<CR>
 '''
 hook_source = 'source {{nvim_config_files}}/plugins/denite.rc.vim'
