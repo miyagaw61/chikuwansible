@@ -261,14 +261,17 @@ function! MR(...)
     endif
 endfunction
 
-" Denite Grep
-" ===========
-command! -nargs=? DG call Denite_grep(<f-args>)
-function! Denite_grep(...)
-    execute "mark a"
-    execute "Denite -buffer-name=search -auto-highlight -winheight=10 line"
-endfunction
-nnoremap <silent>/ :<C-u>DG<CR>
+"" Denite Grep
+"" ===========
+"command! -nargs=? DG call Denite_grep(<f-args>)
+"function! Denite_grep(...)
+"    execute "mark a"
+"    "execute "Denite -buffer-name=search -auto-highlight -winheight=10 line"
+"    "execute "Denite -buffer-name=search -winheight=10 line"
+"    "execute "Denite -buffer-name=search line"
+"    execute "Denite line"
+"endfunction
+"nnoremap <silent>/ :<C-u>DG<CR>
 
 " CNEXT
 " =====
