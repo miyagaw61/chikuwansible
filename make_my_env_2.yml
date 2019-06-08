@@ -17,5 +17,6 @@
     - include: tasks/install_lf.yml
     - include: tasks/install_ghq.yml
     - include: tasks/install_fzf2nd.yml
+    - include: tasks/install_ffmpeg.yml
     - include: tasks/install_neovim.yml
     - include: tasks/copy_sudoers.yml
