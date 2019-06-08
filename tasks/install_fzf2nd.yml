@@ -1,0 +1,14 @@
+- name: Clone "fzf2nd"
+  git:
+    repo: https://github.com/miyagaw61/fzf2nd
+    dest: "{{home}}/.fzf"
+
+- name: Install "fzf2nd"
+  shell: bash -lc "yes y | {{home}}/.fzf/install"
+
+- name: Permit fzf2nd To Execute
+  file:
+    path: "{{home}}/.fzf/bin/fzf2nd"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "u=rwx,g=rwx,o=rwx"
