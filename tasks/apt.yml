@@ -57,6 +57,7 @@
     - name: desktop-file-utils
     - name: nmap
     - name: translate-shell
+    - name: ffmpeg
 
 - name: Get kernel Version
   shell: "uname -r"
