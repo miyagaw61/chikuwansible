@@ -13,6 +13,7 @@
     - include: tasks/install_exa.yml
     - include: tasks/install_ripgrep.yml
     - include: tasks/install_rusgit.yml
+    - include: tasks/install_fd.yml
     - include: tasks/install_lf.yml
     - include: tasks/install_neovim.yml
     - include: tasks/copy_sudoers.yml
