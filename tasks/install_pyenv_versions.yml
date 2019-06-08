@@ -15,3 +15,10 @@
   args:
     chdir: "{{chikuwansible_path}}"
   become: no
+
+- name: Chown "pyenv_root"
+  file:
+    path: "{{pyenv_root}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
