@@ -1,0 +1,10 @@
+- name: Install ghq
+  shell: bash -lc "go get github.com/motemen/ghq"
+
+- name: Copy ghq to binaries dir
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    mode: "u=rwx,g=rwx,o=rwx"
+  with_items:
+    - {src: "{{home}}/go/bin/ghq", dest: "{{binaries}}"}
