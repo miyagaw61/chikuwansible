@@ -3,4 +3,9 @@ if [ "$UID" != "0" ] ;then
   echo "Require root privilege"
   exit 1
 fi
-ansible-playbook $CHIKUWANSIBLE_PATH/remake_bash.yml
+if [ -e ./chikuwansible-playbook ] ;then
+    ./chikuwasible-playbook ./remake_bash.yml
+else
+    echo "You can execute this command in chikuwansible directory"
+fi
+
