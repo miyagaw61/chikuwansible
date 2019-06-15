@@ -338,19 +338,14 @@ def configure(keymap):
             set_class_cj_cmd(lambda:jump_window_nr(7), "C")
 
         def initialize_keybind_c(keymap_class):
-            def put_function_key(function_key):
-                put_key(function_key)
-                put_key("RETURN")
-            keymap_class["C-7"] = lambda:put_function_key("F7")
-            keymap_class["C-8"] = lambda:put_function_key("F8")
-            keymap_class["C-0"] = lambda:put_function_key("F10")
-            keymap_class["C-OpenBracket"] = lambda:put_str("[")
-            keymap_class["C-CloseBracket"] = lambda:put_str("]")
-            keymap_class["C-Quote"] = lambda:put_str("`")
-            if hhkb_flag or jp_flag:
-                keymap_class["C-7"] = lambda:put_function_key("F7")
-                keymap_class["C-8"] = lambda:put_function_key("F8")
-                keymap_class["C-0"] = lambda:put_function_key("F10")
+            #def put_function_key(function_key):
+            #    put_key(function_key)
+            #    put_key("RETURN")
+            if jp_flag:
+                keymap_class["C-Atmark"] = lambda:put_str("[")
+                keymap_class["C-OpenBracket"] = lambda:put_str("]")
+                keymap_class["C-Colon"] = lambda:put_str("`")
+            else:
                 keymap_class["C-OpenBracket"] = lambda:put_str("[")
                 keymap_class["C-CloseBracket"] = lambda:put_str("]")
                 keymap_class["C-Quote"] = lambda:put_str("`")
