@@ -59,8 +59,8 @@ if [ "$color_prompt" = yes ]; then
     }
 
     function parse_path(){
-        now=$(pwd)
-        base=$(basename $now)
+        now="$(pwd)"
+        base=$(basename "$now")
         if test $(echo "$now" | grep "$REPOS/") ;then
             now=$(echo "$now" | sed -E "s@$REPOS/@@g")
             if test ! "$(echo "$now" | grep "/")" ;then
@@ -78,7 +78,7 @@ if [ "$color_prompt" = yes ]; then
                     now=${cyan}$base
                 fi
             fi
-        elif test $(echo "$now" | grep "$HOME") ;then
+        elif test "$(echo "$now" | grep "$HOME")" ;then
             now=$(echo "$now" | sed -E "s@$HOME@~@g")
             now=$(echo "$now" | sed -E "s/\/$//g")
         fi
