@@ -15,9 +15,15 @@ set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コー�
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 " バックアップファイルを作らない
-set nobackup
+" set nobackup
+" バックアップファイルを作る
+set backupdir=~/tmp/vimbackup
+set backup
 " スワップファイルを作らない
-set noswapfile
+" set noswapfile
+" スワップファイルを作る
+set directory=~/tmp/vimswap/
+set swapfile
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
 " バッファが編集中でもその他のファイルを開けるように
