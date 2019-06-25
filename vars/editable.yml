@@ -93,6 +93,7 @@ alias_dg: "defgrep"
 alias_dgp: "defgreparse"
 alias_op: "start"
 alias_d: "fzfd"
+alias_mg: "mygists"
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
 alias_ll: "exa -hal --git --time-style=iso --group-directories-first"

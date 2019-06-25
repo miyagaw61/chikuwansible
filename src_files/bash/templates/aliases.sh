@@ -25,6 +25,7 @@ alias dg="{{alias_dg}}"
 alias dgp="{{alias_dgp}}"
 alias op="{{alias_op}}"
 alias d="{{alias_d}}"
+alias mg="{{alias_mg}}"
 
 # alias ls
 # ====================================
