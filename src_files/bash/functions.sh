@@ -673,3 +673,7 @@ repod() {
         cd "$HOME/src/$dir"
     fi
 }
+
+mygists() {
+    cd $HOME/src/gist.github.com/miyagaw61
+}
