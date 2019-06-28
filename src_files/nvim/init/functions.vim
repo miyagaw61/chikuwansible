@@ -330,7 +330,7 @@ function! GitCommit(...)
     let l:dirname = fnamemodify(l:fullpath, ":h")
     let l:message = join(l:args[1:], " ")
     execute "cd " . l:dirname
-    execute "silent !git a " . l:fullpath
+    execute "silent !git a '" . l:fullpath . "'"
     execute "silent !git c -m '" . l:message . "'"
     execute "!git l3n"
 endfunction
@@ -408,7 +408,7 @@ function! GitAdd(...)
     let l:dirname = fnamemodify(l:fullpath, ":h")
     let l:message = join(l:args[1:], " ")
     execute "cd " . l:dirname
-    execute "silent !git add " . l:fullpath
+    execute "silent !git add '" . l:fullpath . "'"
 endfunction
 
 " GitCommitDefx
