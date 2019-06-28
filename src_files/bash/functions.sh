@@ -408,15 +408,15 @@ rust() {
 }
 
 v() {
-    jobs > /tmp/jobs
-    job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
     if [ $# -eq 0 ] ;then
         if [ "$(echo $VIM)" ] ;then
             #socket="$(echo /tmp/nvim*/0)"
             #NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
             NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
         else
-            if [ "$job_spec" ] ;then
+            if [ "$(jobs)" ] ;then
+                jobs > /tmp/jobs
+                job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
                 fg $job_spec
             else
                 rm -rf /tmp/nvimsocket
@@ -485,30 +485,34 @@ v() {
                 lf -a -tf | fzf2nd >> /tmp/viming_path
                 cd -
             else
-                echo "$(realpath $1)" > /tmp/viming_path
+                echo "$(realpath "$1")" > /tmp/viming_path
             fi
             if [ -d "$(cat /tmp/viming_path)" ] ;then
                 echo "" > /tmp/viming_path
             else
-                if [ "$job_spec" ] ;then
+                if [ "$(jobs)" ] ;then
+                    jobs > /tmp/jobs
+                    job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
                     fg $job_spec
                 else
                     rm -rf /tmp/nvimsocket
-                    NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $(cat /tmp/viming_path)
+                    NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim "$(cat /tmp/viming_path)"
                 fi
             fi
         fi
     else
         rm -rf /tmp/viming_path
         for x in $@ ;do
-            echo "$(realpath $x)" >> /tmp/viming_path
+            echo "$(realpath "$x")" >> /tmp/viming_path
         done
         if [ "$(echo $VIM)" ] ;then
             #socket="$(echo /tmp/nvim*/0)"
             #NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
             NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
         else
-            if [ "$job_spec" ] ;then
+            if [ "$(jobs)" ] ;then
+                jobs > /tmp/jobs
+                job_spec="$(rg -n NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^([^:]*).*@\1@g')"
                 fg $job_spec
             else
                 rm -rf /tmp/nvimsocket
