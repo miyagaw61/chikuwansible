@@ -30,4 +30,5 @@ for f in files:
             Shell(f'mv "{f}" "{n}"').call()
             break
         continue
-    Shell(f'mv "{f}" "{n}"').call()
+    else:
+        Shell(f'mv "{f}" "{n}"').call()
