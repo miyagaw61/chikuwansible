@@ -408,6 +408,8 @@ rust() {
 }
 
 v() {
+    jobs > /tmp/jobs
+    job_spec="$(rg NVIM_LISTEN_ADDRESS /tmp/jobs | sed -E 's@^\[([0-9]+)\].*@\1@g' | head -1)"
     if [ $# -eq 0 ] ;then
         if [ "$(echo $VIM)" ] ;then
             #socket="$(echo /tmp/nvim*/0)"
