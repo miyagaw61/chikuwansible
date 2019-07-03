@@ -683,3 +683,9 @@ repod() {
 mygists() {
     cd $HOME/src/gist.github.com/miyagaw61
 }
+
+knowledges() {
+    ghq list | rg gist.github.com | while read line ;do
+        echo /home/miyagaw61/src/$line/knowledge* 
+    done
+}
