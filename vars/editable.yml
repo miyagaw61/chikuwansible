@@ -94,6 +94,8 @@ alias_dgp: "defgreparse"
 alias_op: "start"
 alias_d: "fzfd"
 alias_mg: "mygists"
+alias_kns: "knowledges"
+alias_knfmt: 'sed -E ''s@.*$USER/([0-9a-f]+)/.*\@(.*)@[+] \2  | ___________________ [\1]@g''; pushd $HOME/src/gist.github.com/$USER > /dev/null'
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
 alias_ll: "exa -hal --git --time-style=iso --group-directories-first"
