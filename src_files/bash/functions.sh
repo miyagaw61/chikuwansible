@@ -686,6 +686,6 @@ mygists() {
 
 knowledges() {
     ghq list | rg gist.github.com | while read line ;do
-        echo /home/miyagaw61/src/$line/knowledge* 
+        echo /home/miyagaw61/src/$line/knowledge* | sed -E 's@ @\\ @g'
     done
 }
