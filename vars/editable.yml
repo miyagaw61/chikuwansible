@@ -1,6 +1,6 @@
 # User Name
 # =============================================
-user: miyagaw61
+user: "miyagaw61"
 
 # Basic Directory Path
 # =============================================
@@ -32,12 +32,12 @@ git_token_file: "{{docs}}/git_token"
 
 # GoLang
 # =============================================
-golang_version: 1.12
+golang_version: "1.12"
 
 # Python
 # =============================================
-python2_pyenv_version: 2.7.15
-python3_pyenv_version: 3.7.0
+python2_pyenv_version: "2.7.15"
+python3_pyenv_version: "3.7.0"
 pyenv_root: "{{config_files}}/.pyenv"
 python2_binary: "{{pyenv_root}}/shims/python2"
 python3_binary: "{{pyenv_root}}/shims/python3"
@@ -48,7 +48,7 @@ rust_src_path: "{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/
 
 # LLVM
 # =============================================
-llvm_version: 5.0
+llvm_version: "5.0"
 
 # NeoVim
 # =============================================
