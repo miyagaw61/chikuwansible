@@ -32,6 +32,7 @@ git_token_file: "{{docs}}/git_token"
 
 # GoLang
 # =============================================
+golang_old_version: "1.10"
 golang_version: "1.12"
 
 # Python

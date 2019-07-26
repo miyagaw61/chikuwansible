@@ -1,9 +1,9 @@
 - name: Install Old Golang By Apt
   apt:
-    name: "golang-1.9-go"
+    name: "golang-{{golang_old_version}}-go"
 
 - name: Install Latest Golang
-  shell: "/usr/lib/go-1.9/bin/go get golang.org/dl/go{{golang_version}}"
+  shell: "/usr/lib/go-{{golang_old_version}}/bin/go get golang.org/dl/go{{golang_version}}"
   become: no
 
 - name: Install Latest Golang
