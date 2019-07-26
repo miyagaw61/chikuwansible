@@ -86,7 +86,7 @@ vim make_your_environment.yml
     * install python2 and python3 for pyenv
 * install_pipenv.yml
     * install pipenv
-* install_latest_golang.yml
+* install_golang.yml
     * install latest golang
 * install_rust.yml
     * install rust

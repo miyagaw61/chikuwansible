@@ -10,7 +10,7 @@
     - include: tasks/install_pyenv.yml
     - include: tasks/install_pyenv_versions.yml
     - include: tasks/install_pipenv.yml
-    - include: tasks/install_latest_golang.yml
+    - include: tasks/install_golang.yml
     - include: tasks/install_exa.yml
     - include: tasks/install_ripgrep.yml
     - include: tasks/install_rusgit.yml
