@@ -1,6 +1,6 @@
 set -eu
 
-sudo apt-add-repository ppa:ansible/ansible -y
+#sudo apt-add-repository ppa:ansible/ansible -y
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install openssh-server -y
