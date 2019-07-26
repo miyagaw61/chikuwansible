@@ -1,0 +1,5 @@
+- name: Install Nightly Rust
+  shell: bash -lc "rustup install nightly"
+  become: no
+  environment:
+    PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"

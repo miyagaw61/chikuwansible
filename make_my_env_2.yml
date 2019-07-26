@@ -6,6 +6,7 @@
     - include_vars: vars/uneditable.yml
     - include: tasks/my_scripts.yml
     - include: tasks/install_rust.yml
+    - include: tasks/install_rust_nightly.yml
     - include: tasks/install_pyenv.yml
     - include: tasks/install_pyenv_versions.yml
     - include: tasks/install_pipenv.yml
