@@ -1,4 +1,3 @@
-export DISPLAY=localhost:0.0
 export TERM=xterm-256color
 export REPOS="{{repos}}"
 export MY_REPOS="{{my_repos}}"
