@@ -9,6 +9,13 @@
     - name: nasm
     - name: git
     - name: xorg
+    - name: xorg-dev
+    - name: libglu1-mesa-dev
+    - name: libgl1-mesa-glx
+    - name: libglfw3
+    - name: libglfw3-dev
+    - name: libglew-dev
+    - name: freeglut3-dev
     - name: autoconf
     - name: binutils
     - name: lib32z1
@@ -21,6 +28,7 @@
     - name: libtool-bin
     - name: bsdmainutils
     - name: build-essential
+    - name: module-assistant
     - name: libicu-dev
     - name: libfreetype6-dev
     - name: libpng-dev
