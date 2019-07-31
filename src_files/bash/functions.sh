@@ -1,4 +1,4 @@
-jmp() {
+emp() {
     if test $# -eq 0 ;then
         cat $REPOS/mgtools/conf/jmp.conf
     elif test $1 = "add" ;then
@@ -677,6 +677,14 @@ repod() {
     dir="$(ghq list | fzf2nd)"
     if [ "$dir" ] ;then
         cd "$HOME/src/$dir"
+    fi
+}
+
+gistd() {
+    file="$(ghq list | rg gist.github.com | while read line; do echo $HOME/src/$line/* ;done | fzf2nd)"
+    if [ "$file" ] ;then
+        dir="$(echo "$file" | sed -E 's@/[^/]*$@@g')"
+        cd "$dir"
     fi
 }
 
