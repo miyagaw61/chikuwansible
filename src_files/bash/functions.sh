@@ -674,7 +674,7 @@ fzfd() {
 }
 
 repod() {
-    dir="$(ghq list | fzf2nd)"
+    dir="$(ghq list | rg -v gist.github.com | fzf2nd)"
     if [ "$dir" ] ;then
         cd "$HOME/src/$dir"
     fi
