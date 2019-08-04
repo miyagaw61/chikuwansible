@@ -8,14 +8,6 @@
     - name: perl
     - name: nasm
     - name: git
-    - name: xorg
-    - name: xorg-dev
-    - name: libglu1-mesa-dev
-    - name: libgl1-mesa-glx
-    - name: libglfw3
-    - name: libglfw3-dev
-    - name: libglew-dev
-    - name: freeglut3-dev
     - name: autoconf
     - name: binutils
     - name: lib32z1
@@ -30,7 +22,6 @@
     - name: build-essential
     - name: module-assistant
     - name: libicu-dev
-    - name: libfreetype6-dev
     - name: libpng-dev
     - name: libssl-dev
     - name: libbz2-dev
@@ -45,6 +36,23 @@
     - name: socat
     - name: cifs-utils
     - name: openssh-server
+
+- name: Install GUI Packages By Apt
+  apt: "name={{item.name}}"
+  with_items:
+    - name: xorg
+    - name: xorg-dev
+    - name: libfreetype6-dev
+    - name: libglu1-mesa-dev
+    - name: libgl1-mesa-glx
+    - name: libglfw3
+    - name: libglfw3-dev
+    - name: libglew-dev
+    - name: freeglut3-dev
+    - name: libsdl2-dev
+    - name: libsdl2-ttf-dev
+    - name: libsdl2-image-dev
+    - name: libsdl2-mixer-dev
 
 - name: Install Useful Tools By Apt
   apt: "name={{item.name}}"
