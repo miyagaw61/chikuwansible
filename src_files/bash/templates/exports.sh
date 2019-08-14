@@ -30,3 +30,4 @@ export PYTHON2_PYENV_VERSION="{{python2_pyenv_version}}"
 export GIT_TOKEN_FILE="{{git_token_file}}"
 export KNOWLEDGES='{{knowledges}}'
 export k=$KNOWLEDGES
+export JAVA_HOME='{{java_home}}'

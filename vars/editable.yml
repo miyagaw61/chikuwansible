@@ -18,6 +18,10 @@ grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 knowledges: '{{home}}/src/gist.github.com/{{user}}/\[knowledge\]*'
 
+# JDK
+# =============================================
+java_home: '{{home}}/program/jdk-11.0.2/'
+
 # SLACK
 # =============================================
 rusgit_slack_url_file: "{{docs}}/slack_url"
