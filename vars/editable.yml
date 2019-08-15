@@ -55,6 +55,14 @@ rust_src_path: "{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/
 # =============================================
 llvm_version: "6.0"
 
+# IDA
+# =============================================
+ida_version: "7.0"
+
+# Ghidra
+# =============================================
+ghidra_version: "9.0.4"
+
 # NeoVim
 # =============================================
 nvim_config_files: "{{config_files}}/nvim"
