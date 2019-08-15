@@ -28,6 +28,8 @@ alias d="{{alias_d}}"
 alias mg="{{alias_mg}}"
 alias kns="{{alias_kns}}"
 alias knfmt="{{alias_knfmt}}"
+alias ida="{{alias_ida}}"
+alias ghidra="{{alias_ghidra}}"
 
 # alias ls
 # ====================================
