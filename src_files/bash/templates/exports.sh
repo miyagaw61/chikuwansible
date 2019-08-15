@@ -33,3 +33,5 @@ export k=$KNOWLEDGES
 export JAVA_HOME='{{java_home}}'
 export PATH=$PATH:{{program}}/ghidra_{{ghidra_version}}
 export PATH=$PATH:{{program}}/idafree-{{ida_version}}
+export PATH=$PATH:{{java_home}}/bin
+export PATH=$PATH:{{home}}/.fzf/bin
