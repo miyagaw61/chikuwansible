@@ -31,5 +31,5 @@ export GIT_TOKEN_FILE="{{git_token_file}}"
 export KNOWLEDGES='{{knowledges}}'
 export k=$KNOWLEDGES
 export JAVA_HOME='{{java_home}}'
-export PATH=$PATH:{{program_files}}/ghidra_{{ghidra_version}}
-export PATH=$PATH:{{program_files}}/idafree-{{ida_version}}
+export PATH=$PATH:{{program}}/ghidra_{{ghidra_version}}
+export PATH=$PATH:{{program}}/idafree-{{ida_version}}

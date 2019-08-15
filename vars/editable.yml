@@ -10,7 +10,7 @@ my_repos: "{{repos}}/{{user}}"
 tmp: "{{home}}/tmp"
 docs: "{{home}}/docs"
 events: "{{home}}/events"
-program_files: "{{home}}/program_files"
+program: "{{home}}/program"
 config_files: "{{home}}/docs/config_files"
 bash_config_files: "{{config_files}}/bash"
 binaries: "{{home}}/bin"
@@ -20,7 +20,7 @@ knowledges: '{{home}}/src/gist.github.com/{{user}}/\[knowledge\]*'
 
 # JDK
 # =============================================
-java_home: '{{home}}/program/jdk-11.0.2/'
+java_home: '{{program}}/jdk-11.0.2/'
 
 # SLACK
 # =============================================

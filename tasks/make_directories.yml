@@ -8,6 +8,6 @@
     - path: "{{tmp}}"
     - path: "{{docs}}"
     - path: "{{events}}"
-    - path: "{{program_files}}"
+    - path: "{{program}}"
     - path: "{{config_files}}"
     - path: "{{binaries}}"
