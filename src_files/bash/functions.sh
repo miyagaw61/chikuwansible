@@ -691,3 +691,7 @@ knowledges() {
         echo /home/miyagaw61/src/$line/knowledge* | sed -E 's@ @\\ @g'
     done
 }
+
+parse_python() {
+    rg -o -e "^ *[^#]*class.*" -e "^ *[^#]*def.*" $1
+}
