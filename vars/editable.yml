@@ -18,6 +18,11 @@ grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 knowledges: '{{home}}/src/gist.github.com/{{user}}/\[knowledge\]*'
 
+# EXGDB
+# =============================================
+exgdbpath: "{{repos}}/miyagaw61/exgdb"
+
+
 # JDK
 # =============================================
 java_home: '{{program}}/jdk-11.0.2/'
