@@ -18,7 +18,7 @@ highlight Normal ctermbg=none
 highlight Comment ctermfg=36
 
 highlight Search ctermfg=15 ctermbg=8 guifg=White guibg=#707070
-highlight Search cterm=bold ctermfg=white ctermbg=236
+highlight Search cterm=bold ctermfg=273 ctermbg=214
 
 highlight Statement cterm=none ctermfg=178
 highlight Statement cterm=none ctermfg=208
