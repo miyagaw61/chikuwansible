@@ -320,6 +320,7 @@ repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_add = '''
     autocmd FileType denite call s:denite_my_settings()
+    autocmd FileType denite set nopaste
     function! s:denite_my_settings() abort
       nnoremap <silent><buffer><expr> <CR>
       \ denite#do_map('do_action')
@@ -339,43 +340,43 @@ hook_add = '''
       "\ 'k' . denite#do_map('do_action', 'preview')
     endfunction
     nnoremap <silent> [Window]r
-          \ :<C-u>Denite -buffer-name=register
+          \ :<C-u>Denite -buffer-name=register -highlight-window-background=MyFloat
           \ register neoyank<CR>
     xnoremap <silent> [Window]r
-          \ :<C-u>Denite -default-action=replace -buffer-name=register
+          \ :<C-u>Denite -default-action=replace -buffer-name=register -highlight-window-background=MyFloat
           \ register neoyank<CR>
     nnoremap <silent> [Window]<Space>
-          \ :<C-u>Denite file/rec:~/.vim/rc<CR>
-    "nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight -winheight=10 line<CR>
+          \ :<C-u>Denite file/rec:~/.vim/rc -highlight-window-background=MyFloat<CR>
+    "nnoremap <silent> / :<C-u>Denite -buffer-name=search -winheight=10 -highlight-window-background=MyFloat line<CR>
     nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-          \ -auto-highlight -mode=normal line<CR>
+          \ -highlight-window-background=MyFloat -mode=normal line<CR>
     nnoremap <silent> [Window]s :<C-u>Denite file/point file/old
-          \ -sorters=sorter_rank
+          \ -sorters=sorter_rank -highlight-window-background=MyFloat
           \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
     "nnoremap <silent> [Window]d :<C-u>Denite file/rec -path=
     nnoremap <silent> [Window]d :OpenFileByDenite<Space>
     nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
-          \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+          \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately -highlight-window-background=MyFloat
           \  tag:include\<CR>"
     nnoremap <silent><expr> tp  &filetype == 'help' ?
-          \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-    "nnoremap <silent> [Window]n :<C-u>Denite dein<CR>
-    "nnoremap <silent> [Window]g :<C-u>Denite ghq<CR>
+          \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal -highlight-window-background=MyFloat jump\<CR>"
+    "nnoremap <silent> [Window]n :<C-u>Denite -highlight-window-background=MyFloat dein<CR>
+    "nnoremap <silent> [Window]g :<C-u>Denite ghq -highlight-window-background=MyFloat<CR>
     "nnoremap <silent> [Window]g :<C-u>Denite -buffer-name=search
-    "      \ -no-empty -mode=normal grep<CR>
+    "      \ -no-empty -mode=normal -highlight-window-background=MyFloat grep<CR>
     "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search
-    "      \ -resume -mode=normal -refresh -mode=normal<CR>
-    "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search -resume -mode=normal<CR>
-    nnoremap <silent> [Space]n :<C-u>Denite -resume -mode=normal<CR>
-    nnoremap <silent> ft :<C-u>Denite filetype<CR>
+    "      \ -resume -mode=normal -refresh -mode=normal -highlight-window-background=MyFloat<CR>
+    "nnoremap <silent> [Space]n :<C-u>Denite -buffer-name=search -resume -mode=normal -highlight-window-background=MyFloat<CR>
+    nnoremap <silent> [Space]n :<C-u>Denite -resume -mode=normal -highlight-window-background=MyFloat<CR>
+    nnoremap <silent> ft :<C-u>Denite filetype -highlight-window-background=MyFloat<CR>
     nnoremap <silent> <C-t> :<C-u>Denite
-          \ -select=`tabpagenr()-1` -mode=normal deol<CR>
-    nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-    "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus<CR>
+          \ -select=`tabpagenr()-1` -mode=normal deol -highlight-window-background=MyFloat<CR>
+    nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump -highlight-window-background=MyFloat<CR>
+    "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus -highlight-window-background=MyFloat<CR>
     nnoremap <silent> [Space]h
-          \ :<C-u>Denite command_history<CR>
-    nnoremap <silent> [Window]b :Denite buffer<CR>
-    nnoremap <silent> / :Denite line<CR>
+          \ :<C-u>Denite command_history -highlight-window-background=MyFloat<CR>
+    nnoremap <silent> [Window]b :Denite buffer -highlight-window-background=MyFloat<CR>
+    nnoremap <silent> / :Denite line -highlight-window-background=MyFloat<CR>
 '''
 hook_source = 'source {{nvim_config_files}}/plugins/denite.rc.vim'
 
