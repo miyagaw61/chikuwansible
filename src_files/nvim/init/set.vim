@@ -1,6 +1,6 @@
 " 行番号を表示
-"set number
-set relativenumber
+set number
+"set relativenumber
 
 " ビジュアルモードで選択したテキストが、クリップボードに入るようにする
 " set clipboard=autoselect
@@ -32,8 +32,6 @@ set hidden
 set showcmd
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=block
-" インデントはスマートインデント
-set smartindent
 " ビープ音を可視化
 "set visualbell
 " 括弧入力時の対応する括弧を表示
@@ -49,6 +47,10 @@ set wildmode=list:longest
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 "set list listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+" インデントはスマートインデント
+" set smartindent
+" ペーストモードに
+set paste
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
@@ -60,7 +62,7 @@ set softtabstop=4
 " 改行時に前の行のインデントを継続する
 set autoindent
 " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set smartindent
+" set smartindent
 
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
