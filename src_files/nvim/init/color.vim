@@ -2,7 +2,7 @@ syntax on
 "set background=light
 set t_ut=
 "set termguicolors
-"colorscheme neodark
+colorscheme neodark
 "set t_AB=[48;2;%lu;%lu;%lum
 "set t_Sb=[48;2;%lu;%lu;%lum
 "set t_8b=[48;2;%lu;%lu;%lum
