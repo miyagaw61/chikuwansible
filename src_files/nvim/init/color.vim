@@ -56,6 +56,10 @@ highlight! link Function MyFuncCall
 autocmd BufNewFile,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*("he=e-1,me=e-1
 autocmd BufNewFile,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
 
+highlight Builtin cterm=none ctermfg=123
+highlight Builtin cterm=none ctermfg=159
+highlight! link pythonBuiltin Builtin
+
 autocmd BufNewFile,BufRead *.c highlight MyType cterm=none ctermfg=74
 autocmd BufNewFile,BufRead *.c highlight! link Type MyType
 
