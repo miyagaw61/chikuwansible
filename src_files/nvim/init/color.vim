@@ -46,6 +46,7 @@ highlight PreProc cterm=none ctermfg=140
 highlight MyKeyword cterm=none ctermfg=14
 autocmd BufNewFile,BufRead *.py,*.rs syntax keyword MyKeyword True
 autocmd BufNewFile,BufRead *.py,*.rs syntax keyword MyKeyword False
+autocmd BufNewFile,BufRead *.py,*.rs syntax keyword MyKeyword None
 
 highlight MyFuncCall cterm=none ctermfg=14
 highlight MyFuncCall cterm=none ctermfg=06
