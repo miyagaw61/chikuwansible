@@ -30,6 +30,7 @@ alias kns="{{alias_kns}}"
 alias knfmt="{{alias_knfmt}}"
 alias ida="{{alias_ida}}"
 alias ghidra="{{alias_ghidra}}"
+alias kata="{{alias_kata}}"
 
 # alias ls
 # ====================================

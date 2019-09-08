@@ -116,6 +116,7 @@ alias_kns: "knowledges"
 alias_knfmt: 'sed -E ''s@.*$USER/([0-9a-f]+)/.*\@(.*)@[+] \2  | ___________________ [https://gist.github.com/$USER/\1]@g''; pushd $HOME/src/gist.github.com/$USER > /dev/null'
 alias_ida: "nohup sudo {{program}}/idafree-{{ida_version}}/ida64 > /tmp/ida_output.log &"
 alias_ghidra: "sudo {{program}}/ghidra_{{ghidra_version}}/ghidraRun"
+alias_kata: "git commit -m '\\\"\\@ <- これカタツムリみたい'"
 #### alias ls ####
 alias_ls: "exa --group-directories-first"
 alias_ll: "exa -hal --git --time-style=iso --group-directories-first"
