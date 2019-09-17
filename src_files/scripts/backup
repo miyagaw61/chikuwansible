@@ -2,33 +2,39 @@
 
 source $HOME/bin/error_trap.sh
 
+rsyncrm() {
+    source $HOME/bin/error_trap.sh
+    echo "[+]save: ${2}"
+    diff -r ${1} ${2} | grep "Only in ${2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
+    if [ "$(cat /tmp/will_delete_files)" ] ;then
+        cat /tmp/will_delete_files | while read line ;do
+            dname=$(dirname "$line")
+            dname=$(echo $dname | sed -E "s@${2}@${2}_grave@g")
+            bname="$(basename "${line}")"
+            if [ ! -e "$dname" ] ;then
+                mkdir -p "$dname"
+            fi
+            #if [ ! -e "$dname/$bname" ] ;then
+            #    mkdir -p "$dname/$bname"
+            #fi
+            echo "copy: to $dname/$bname"
+            cp -a "$line" "$dname/$bname"
+        done
+    fi
+    echo "[+]rsync: ${1}/ ${2}"
+    rsync -a --delete ${1}/ ${2}
+}
+
 backup_fn() {
     source $HOME/bin/error_trap.sh
     dst_dir=$1
-    echo "[+]save: ${dst_dir}"
     if [ ! -e ${home2}/${dst_dir} ] ;then
         mkdir ${home2}/${dst_dir}
     fi
     if [ ! -e ${home2}/${dst_dir}_grave ] ;then
         mkdir ${home2}/${dst_dir}_grave
     fi
-    diff -r ${home1}/${dst_dir} ${home2}/${dst_dir} | grep "Only in ${home2}" | sed -E 's@Only in ([^:]*): (.*)@\1/\2@g' > /tmp/will_delete_files
-    if [ "$(cat /tmp/will_delete_files)" ] ;then
-        cat /tmp/will_delete_files | while read line ;do
-            dname=$(dirname "$line")
-            dname=$(echo $dname | sed -E "s@${home2}/${dst_dir}@${home2}/${dst_dir}_grave@g")
-            bname="$(basename "${line}")"
-            if [ ! -e "$dname" ] ;then
-                mkdir -p "$dname"
-            fi
-            if [ ! -e "$dname/$bname" ] ;then
-                mkdir -p "$dname/$bname"
-            fi
-            cp -a "$line" "$dname/$bname"
-        done
-    fi
-    echo "[+]sync: ${dst_dir}"
-    rsync -a --delete ${home1}/${dst_dir}/ ${home2}/${dst_dir}
+    rsyncrm ${home1}/${dst_dir}/ ${home2}/${dst_dir}
 }
 
 if [ $# -eq 2 ] ;then
