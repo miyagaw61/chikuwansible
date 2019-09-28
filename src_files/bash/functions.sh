@@ -695,3 +695,7 @@ knowledges() {
 parse_python() {
     rg -o -e "^ *[^#]*class.*" -e "^ *[^#]*def.*" $1
 }
+
+xready() {
+    cp -a $MY_REPOS/ctf/exploit.py ./
+}
