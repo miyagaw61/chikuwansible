@@ -698,4 +698,7 @@ parse_python() {
 
 xready() {
     cp -a $MY_REPOS/ctf/exploit.py ./
+    if [ "$1" ] ;then
+        sed -E "s@target=\"./target\"@target=\"./$1\"@g" -i exploit.py
+    fi
 }
