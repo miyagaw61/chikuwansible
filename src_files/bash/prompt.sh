@@ -61,6 +61,7 @@ if [ "$color_prompt" = yes ]; then
     function parse_path(){
         now="$(pwd)"
         base=$(basename "$now")
+        escaped_base=$(echo $base | sed -E 's/@/\\@/g')
         if test $(echo "$now" | grep "$REPOS/") ;then
             now=$(echo "$now" | sed -E "s@$REPOS/@@g")
             if test ! "$(echo "$now" | grep "/")" ;then
@@ -71,7 +72,7 @@ if [ "$color_prompt" = yes ]; then
                 repo=$(echo "$now" | sed -E "s@/.*@@g")
                 unrepo=$(echo "$now" | sed -E "s@^$repo@@g")
                 unrepo=$(echo "$unrepo" | sed -E "s/\/$//g")
-                unrepo=$(echo $unrepo | sed -E "s@$base@@g")
+                unrepo=$(echo $unrepo | sed -E "s@$escaped_base@@g")
                 if test "$unrepo" ;then
                     now=${cyan}$repo${white}$unrepo${cyan}$base
                 else
