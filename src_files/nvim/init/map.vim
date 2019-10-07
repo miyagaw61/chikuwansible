@@ -9,7 +9,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "SET LEADER
 let mapleader = "\<Space>"
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>w :w<CR>:silent !sync<CR>
 "nnoremap <Leader>b :%!xxd -r<CR>
 
 noremap j gj

@@ -6,4 +6,4 @@ function! CloseBuf()
   endif
 endfunction
 
-nnoremap <Leader>q :up<CR>:call CloseBuf()<CR>
+nnoremap <Leader>q :up<CR>:silent !sync<CR>:call CloseBuf()<CR>
