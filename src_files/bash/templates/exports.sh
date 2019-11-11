@@ -26,6 +26,7 @@ if test -e "{{rusgit_slack_url_file}}" ;then
     export RUSGIT_SLACK_URL="{{rusgit_slack_url}}"
 fi
 export RUSGIT_SLACK_CHANNEL="{{rusgit_slack_channel}}"
+export TIPS_DIR="{{tips_dir}}"
 export PYTHON3_PYENV_VERSION="{{python3_pyenv_version}}"
 export PYTHON2_PYENV_VERSION="{{python2_pyenv_version}}"
 export GIT_TOKEN_FILE="{{git_token_file}}"

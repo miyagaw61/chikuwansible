@@ -17,6 +17,7 @@ binaries: "{{home}}/bin"
 grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 knowledges: '{{home}}/src/gist.github.com/{{user}}/\[knowledge\]*'
+tips_dir: "{{my_repos}}/tips"
 
 # EXGDB
 # =============================================
