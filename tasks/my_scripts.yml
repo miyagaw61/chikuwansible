@@ -22,3 +22,4 @@
     - name: gettag
     - name: op
     - name: start
+    - name: follow_upstream
