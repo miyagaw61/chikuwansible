@@ -70,7 +70,7 @@ if [ "$color_prompt" = yes ]; then
                 now=$(echo "$now" | sed -E "s@^[^/]*@@g")
                 now=$(echo "$now" | sed -E "s@^/@@g")
                 repo=$(echo "$now" | sed -E "s@/.*@@g")
-                unrepo=$(echo "$now" | sed -E "s@^$repo@@g")
+                unrepo=$(echo "$now" | sed -E "s/^$repo//g")
                 unrepo=$(echo "$unrepo" | sed -E "s/\/$//g")
                 unrepo=$(echo $unrepo | sed -E "s@$escaped_base@@g")
                 if test "$unrepo" ;then
