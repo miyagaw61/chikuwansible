@@ -667,6 +667,15 @@ fzfd() {
     fi
 }
 
+lind() {
+	v=$1
+	if [[ -z $v ]] ;then
+		echo "Usage: lind <linux_version>"
+	else
+		cd $REPOS/torvalds/v${v}
+	fi
+}
+
 repod() {
     dir="$(ghq list | rg -v gist.github.com | fzf2nd)"
     if [ "$dir" ] ;then
