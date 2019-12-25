@@ -10,6 +10,7 @@
     - name: rall
     - name: tmp.py
     - name: numfile_fmt
+    - name: spacefile_fmt
     - name: lszip
     - name: backup
     - name: l2w

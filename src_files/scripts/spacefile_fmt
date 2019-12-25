@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+from enert import *
+import os
+import re
+this_file = os.path.basename(__file__)
+
+r = re.compile(r""" """)
+num_r = re.compile(r"""(_[0-9]+[\.a-zA-Z0-9]*)$""")
+ext_r = re.compile(r"""(\.[a-zA-Z0-9]+)$""")
+
+cmd = """ fd " " """
+
+files, _ = Shell(cmd).readlines()
+
+for f in files:
+    if f == this_file or f == 's' or f == 'desktop.ini':
+        continue
+    _ret = r.findall(f)
+    if len(_ret) == 0:
+        continue
+    num = 0
+    n = r.sub("-", f)
+    if File(n).exist():
+        ext = ext_r.findall(n)
+        if len(ext) != 0:
+            ext = ext[0]
+        else:
+            ext = ""
+        if ext == "":
+            n = n + f"_{num}"
+        else:
+            n = ext_r.sub(f"_{num}{ext}", n)
+        while True:
+            num = num + 1
+            if num == 100:
+                print(f + ": over 100")
+                break
+            n = num_r.sub(f"_{num}{ext}", n);
+            if File(n).exist():
+                continue
+            Shell(f'mv "{f}" "{n}"').call()
+            break
+        continue
+    else:
+        Shell(f'mv "{f}" "{n}"').call()
