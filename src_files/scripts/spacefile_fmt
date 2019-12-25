@@ -11,6 +11,13 @@ ext_r = re.compile(r"""(\.[a-zA-Z0-9]+)$""")
 
 cmd = """ fd " " """
 
+def usage():
+    print("Usage: spacefile_fmt")
+    exit()
+
+if get(sys.argv, 1) == "-h":
+    usage()
+
 files, _ = Shell(cmd).readlines()
 
 for f in files:

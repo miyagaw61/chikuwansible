@@ -3,10 +3,22 @@
 from enert import *
 import os
 import re
+import sys
 this_file = os.path.basename(__file__)
+
+#r = re.compile(r"""\((\d+)\)""")
 r = re.compile(r""" \((\d+)\)""")
 
+#cmd = """ fd "\(\d+\)" """
 cmd = """ fd " \(\d+\)" """
+
+def usage():
+    print("Usage: numfile_fmt")
+    exit()
+
+if get(sys.argv, 1) == "-h":
+    usage()
+
 files, _ = Shell(cmd).readlines()
 
 for f in files:
