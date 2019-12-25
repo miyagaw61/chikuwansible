@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-start $@
+if [ $1 == "-a" ] ;then
+    for arg in "${@:2}" ;do
+        start "$arg"
+    done
+else
+    start "$@"
+fi
