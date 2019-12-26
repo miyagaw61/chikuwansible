@@ -11,6 +11,7 @@
     - path: "{{program}}"
     - path: "{{config_files}}"
     - path: "{{binaries}}"
+    - path: "{{vimbackup}}"
 
 - name: Change mode of cache directory
   file:

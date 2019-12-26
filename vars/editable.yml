@@ -14,6 +14,7 @@ program: "{{home}}/program"
 config_files: "{{home}}/docs/config_files"
 bash_config_files: "{{config_files}}/bash"
 binaries: "{{home}}/bin"
+vimbackup: "{{tmp}}/vimbackup"
 grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 knowledges: '{{home}}/src/gist.github.com/{{user}}/\[knowledge\]*'
