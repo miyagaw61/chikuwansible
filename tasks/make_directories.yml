@@ -11,3 +11,11 @@
     - path: "{{program}}"
     - path: "{{config_files}}"
     - path: "{{binaries}}"
+
+- name: Change mode of cache directory
+  file:
+    path: "{{home}}/.cache"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "u=rwx,g=rwx,o=rwx"
+    recurse: yes
