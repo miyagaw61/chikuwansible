@@ -1,6 +1,45 @@
 #!/bin/bash
 
-source $HOME/bin/error_trap.sh
+THIS_DIR=$PWD
+
+onerror() {
+    set +x
+    status=$?
+    script=$0
+    if [ ! -e $script ] ;then
+        script=${THIS_DIR}/$script
+    fi
+    line=$1
+    shift
+
+    args=
+    for i in "$@"; do
+        args+="\"$i\" "
+    done
+
+    echo ""
+    echo "------------------------------------------------------------"
+    echo "Error occured on $script [Line $line]: Status $status"
+    echo -n " >> "
+    cat $script | head -n $line | tail -n $(($line - $line + 1))
+    echo ""
+    echo "PID: $$"
+    echo "User: $USER"
+    echo "Current directory: $PWD"
+    echo "Command line: $script $args"
+    echo "------------------------------------------------------------"
+    echo ""
+
+    date
+    python $HOME/src/github.com/miyagaw61/miyagaw61_linebot/push.py $MY_LINE_ID 'error occured.'
+}
+
+begintrap() {
+    set -e
+    trap 'onerror $LINENO  "$@"' ERR
+}
+
+begintrap
 
 rsyncrm() {
     source $HOME/bin/error_trap.sh
@@ -54,14 +93,14 @@ if [ $# -eq 2 ] ;then
 
     backup_fn bin
     backup_fn docs
-    backup_fn program
-    backup_fn tmp
+    #backup_fn program
+    #backup_fn tmp
     backup_fn large_docs/ctf
     backup_fn large_docs/games
     backup_fn large_docs/images
     backup_fn large_docs/iso
     backup_fn large_docs/videos
-    backup_fn large_docs/VMs
+    #backup_fn large_docs/VMs
 
     date
     python $HOME/src/github.com/miyagaw61/miyagaw61_linebot/push.py $MY_LINE_ID 'backup finished.'
