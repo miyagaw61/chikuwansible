@@ -652,7 +652,11 @@ fzfd() {
             base_dir="$1"
         fi
         cd "$base_dir"
-        dir="$(lf -a -td | fzf2nd)"
+		if [ "$1" = "t" ] ;then
+			dir="$(ls -1 | fzf2nd)"
+		else
+			dir="$(lf -a -td | fzf2nd)"
+		fi
         cd "$old_dir"
         if [ "$dir" ] ;then
             cd "$base_dir/$dir"
