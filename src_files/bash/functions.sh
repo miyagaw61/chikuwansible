@@ -640,6 +640,8 @@ fzfd() {
             base_dir="$HOME/src/github.com"
         elif [ "$1" = "m" ] ;then
             base_dir="$HOME/src/github.com/miyagaw61"
+        elif [ "$1" = "l" ] ;then
+            base_dir="$HOME/src/github.com/torvalds"
         elif [ "$1" = "d" ] ;then
             base_dir="$HOME/docs"
         elif [ "$1" = "v" ] ;then
@@ -652,7 +654,7 @@ fzfd() {
             base_dir="$1"
         fi
         cd "$base_dir"
-		if [ "$1" = "t" ] ;then
+		if [ "$1" = "l" ] ;then
 			dir="$(ls -1 | fzf2nd)"
 		else
 			dir="$(lf -a -td | fzf2nd)"
