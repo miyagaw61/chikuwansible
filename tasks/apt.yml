@@ -13,6 +13,7 @@
     - name: lib32z1
     - name: libx32z1
     - name: libboost-all-dev
+    - name: bison
     - name: lib32z1-dev
     - name: libx32z1-dev
     - name: libbz2-dev
