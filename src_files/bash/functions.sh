@@ -654,8 +654,12 @@ fzfd() {
             base_dir="$1"
         fi
         cd "$base_dir"
-		if [ "$1" = "l" ] ;then
+        if [ "$1" = "t" ] ;then
 			dir="$(ls -1 | fzf2nd)"
+		elif [ "$1" = "s" ] ;then
+			dir="$(lf -d3 | rg '/.*/' | fzf2nd)"
+		elif [ "$1" = "g" ] ;then
+			dir="$(lf -d2 | rg '/' | fzf2nd)"
 		else
 			dir="$(lf -a -td | fzf2nd)"
 		fi
