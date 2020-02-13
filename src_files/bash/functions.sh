@@ -721,3 +721,10 @@ xready() {
         sed -E "s@target=\"./target\"@target=\"./$1\"@g" -i exploit.py
     fi
 }
+
+tags() {
+    symbol=$1
+    symbol=$(echo $symbol | sed -E 's@\.\*@[^ ]*@g')
+    symbol=$(echo $symbol | sed -E 's@\$@ @g')
+    ctags -x $(lf -a -tf) | rg "^$symbol"
+}
