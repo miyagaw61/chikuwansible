@@ -723,8 +723,14 @@ xready() {
 }
 
 tags() {
+    files=""
+    if [[ -e TAGFILES ]] ;then
+        files=$(cat TAGFILES)
+    else
+        files=$(lf -a -tf)
+    fi
     symbol=$1
     symbol=$(echo $symbol | sed -E 's@\.\*@[^ ]*@g')
     symbol=$(echo $symbol | sed -E 's@\$@ @g')
-    ctags -x $(lf -a -tf) | rg "^$symbol"
+    ctags -x $files | rg "^$symbol"
 }
