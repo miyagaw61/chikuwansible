@@ -4,9 +4,13 @@ import os
 
 home = os.environ['HOME']
 
-Shell('cp -a ' + home + '/bin/procon_template.rs ./src/main.rs').call()
+rs_files, _ = Shell("ls -1 ./src/bin/*.rs").readlines()
 
-Shell('echo "1.15.1" > rust-toolchain').call()
+for rs_file in rs_files:
+    Shell('cp -a ' + home + '/bin/procon_template.rs ' + rs_file).call()
+
+#Shell('echo "1.15.1" > rust-toolchain').call()
+dependencies_line_nr = Shell("cat Cargo.toml | rg -n '\[dependencies\]' | rg '^[0-9]+' -o").read()
 
 f = File('Cargo.toml')
 f_new = File('Cargo.toml.new')
@@ -15,29 +19,30 @@ for line in lines:
     if line[:10] == 'edition = ':
         continue
     f_new.add(line + '\n')
+    if line == '[dependencies]':
+        f_new.add('renert = { git = \"https://github.com/miyagaw61/renert" }\n')
 Shell('mv Cargo.toml.new Cargo.toml').call()
 
-f_makefile = File('src/Makefile')
+f_makefile = File('Makefile')
 f_makefile.rm()
-f_makefile.add('all:\n')
-f_makefile.add('\tcargo run\n')
-f_makefile.add('d:\n')
-filename, _ = Shell('cat Cargo.toml | rg "name = " | sed -E \'s@name = "(.*)"@\\1@g\'').read()
-filename = filename[:-1]
-f_makefile.add('\trust-gdb ../target/debug/{} -x gdbrc.py\n'.format(filename))
-f_makefile.add('r:\n')
-f_makefile.add('\tcargo run --release\n')
-f_makefile.add('rb:\n')
-f_makefile.add('\tRUST_BACKTRACE=1 cargo run\n')
-f_makefile.add('t:\n')
-f_makefile.add('\tcargo test -- --test-threads=1\n')
-f_makefile.add('tb:\n')
-f_makefile.add('\tRUST_BACKTRACE=1 cargo test -- --test-threads=1\n')
 
-f_gdbrc = File('src/gdbrc.py')
-f_gdbrc.rm()
-f_gdbrc.add('e = Exgdb()\n')
-f_gdbrc.add('c = ExgdbCmd()\n')
-f_gdbrc.add('c.b(\'{}::main\')\n'.format(filename))
-f_gdbrc.add('gdb.execute(\'run\')\n')
-f_gdbrc.add('gdb.execute(\'layout src\')\n')
+for rs_file in rs_files:
+    rs_id = rs_file[10]
+    f_makefile.add(rs_id + ':\n')
+    f_makefile.add('\tcargo test --bin ' + rs_id + ' -- --test-threads=1\n')
+    f_makefile.add(rs_id + 'd:\n')
+    f_makefile.add('\trust-gdb ./target/debug/' + rs_id + ' -x gdbrc_' + rs_id + '.py\n')
+    f_makefile.add(rs_id + 'b:\n')
+    f_makefile.add('\tRUST_BACKTRACE=1 cargo test --bin ' + rs_id + ' -- --test-threads=1\n')
+    f_makefile.add(rs_id + 'r:\n')
+    f_makefile.add('\tcargo run --bin ' + rs_id + ' --release\n')
+    f_makefile.add(rs_id + 'rb:\n')
+    f_makefile.add('\tRUST_BACKTRACE=1 cargo run --bin ' + rs_id + '\n')
+
+    f_gdbrc = File('src/gdbrc_' + rs_id + '.py')
+    f_gdbrc.rm()
+    f_gdbrc.add('e = Exgdb()\n')
+    f_gdbrc.add('c = ExgdbCmd()\n')
+    f_gdbrc.add('c.b(\'{}::main\')\n'.format(rs_file))
+    f_gdbrc.add('gdb.execute(\'run\')\n')
+    f_gdbrc.add('gdb.execute(\'layout src\')\n')
