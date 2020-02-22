@@ -92,6 +92,7 @@ if [ $# -eq 2 ] ;then
     date
 
     backup_fn bin
+    backup_fn src
     backup_fn docs
     #backup_fn program
     #backup_fn tmp
