@@ -24,3 +24,4 @@
     - name: op
     - name: start
     - name: follow_upstream
+    - name: now
