@@ -31,6 +31,7 @@ alias knfmt="{{alias_knfmt}}"
 alias ida="{{alias_ida}}"
 alias ghidra="{{alias_ghidra}}"
 alias kata="{{alias_kata}}"
+alias cscope_build="{{alias_cscope_build}}"
 
 # alias ls
 # ====================================
