@@ -728,3 +728,12 @@ function! D(...)
     let l:args_str = join(l:args, " ")
 	execute 'cscope find g ' . l:args_str
 endfunction
+
+" DCursor
+" =======
+command! -nargs=? DCursor call DCursor()
+function! DCursor()
+	let l:word = expand("<cword>")
+	execute 'cscope find g ' . l:word
+endfunction
+nnoremap [denite-gtags]d :DCursor<CR>

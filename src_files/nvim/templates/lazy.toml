@@ -188,7 +188,7 @@ hook_add = '''
     noremap [denite-gtags]  <Nop>
     nmap ,t [denite-gtags]
     nnoremap [denite-gtags]a :<C-u>DeniteCursorWord -buffer-name=search gtags_context<CR>
-    nnoremap [denite-gtags]d :<C-u>mark '<CR>:DeniteCursorWord -buffer-name=search gtags_def<CR>
+    "nnoremap [denite-gtags]d :<C-u>mark '<CR>:DeniteCursorWord -buffer-name=search gtags_def<CR> " use cscope now
     nnoremap [denite-gtags]c :<C-u>DeniteCursorWord -buffer-name=search gtags_context<CR>
     nnoremap [denite-gtags]r :<C-u>DeniteCursorWord -buffer-name=search gtags_ref<CR>
     nnoremap [denite-gtags]g :<C-u>DeniteCursorWord -buffer-name=search gtags_grep<CR>
