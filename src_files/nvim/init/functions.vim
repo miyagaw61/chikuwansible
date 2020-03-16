@@ -165,7 +165,14 @@ function! g:Quick_open()
     let l:path = system("cat /tmp/viming_path")
     let l:pathes = split(l:path, "\n")
     for l:x in l:pathes
-        execute "e " . l:x
+        let l:num_idx = stridx(l:x, " num=")
+        if l:num_idx == -1
+            execute "e " . l:x
+        else
+            let l:num = l:x[l:num_idx+5:]
+            let l:path = l:x[:l:num_idx]
+            execute "e +" . l:num . " " . l:path
+        endif
     endfor
 endfunction
 nnoremap <leader>o :call Quick_open()<CR>
