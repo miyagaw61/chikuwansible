@@ -718,3 +718,13 @@ function! s:get_syn_info()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call s:get_syn_info()
+
+" D
+" ===
+command! -nargs=? D call D(<f-args>)
+function! D(...)
+    let l:argc = len(a:000)
+    let l:args = split(a:000[0], " ")
+    let l:args_str = join(l:args, " ")
+	execute 'cscope find g ' . l:args_str
+endfunction
