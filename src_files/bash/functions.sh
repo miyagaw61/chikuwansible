@@ -783,3 +783,7 @@ tags() {
     symbol=$(echo $symbol | sed -E 's@\$@ @g')
     ctags -x $files | rg "^$symbol"
 }
+
+t() {
+	cscope -R -L -1 $@ 2> /dev/null
+}
