@@ -737,3 +737,11 @@ function! DCursor()
 	execute 'cscope find g ' . l:word
 endfunction
 nnoremap [denite-gtags]d :DCursor<CR>
+
+" Dclip
+" =====
+command! -nargs=? Dclip call Dclip()
+function! Dclip()
+	execute 'Denite -buffer-name=search gtags_def:' . @+
+endfunction
+nnoremap [denite-gtags]c :Dclip<CR>
