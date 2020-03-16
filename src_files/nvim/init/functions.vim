@@ -729,14 +729,14 @@ function! D(...)
 	execute 'cscope find g ' . l:args_str
 endfunction
 
-" DCursor
+" Dc
 " =======
-command! -nargs=? DCursor call DCursor()
-function! DCursor()
+command! -nargs=? Dc call Dc()
+function! Dc()
 	let l:word = expand("<cword>")
 	execute 'cscope find g ' . l:word
 endfunction
-nnoremap [denite-gtags]d :DCursor<CR>
+nnoremap [denite-gtags]d :Dc<CR>
 
 " Dclip
 " =====
