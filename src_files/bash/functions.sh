@@ -423,7 +423,7 @@ v() {
                 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
             fi
         fi
-    elif [ $# -eq 1 ] ;then
+    elif [ $# -ge 1 ] ;then
         if [ "$(echo $VIM)" ] ;then
             #socket="$(echo /tmp/nvim*/0)"
             #NVIM_LISTEN_ADDRESS=$socket nvr -c "e "$(realpath $1)
@@ -485,36 +485,85 @@ v() {
                 lf -a -tf | fzf2nd >> /tmp/viming_path
                 cd -
             else
-                echo "$(realpath "$1")" > /tmp/viming_path
+                echo -n "$(realpath "$1")" > /tmp/viming_path
             fi
             if [ -d "$(cat /tmp/viming_path)" ] ;then
                 echo "" > /tmp/viming_path
             else
+				last_arg=${@:$#:1}
+				if [ ${last_arg:0:1} == "+" ] ;then
+					num=${last_arg:1}
+					echo -n " num=" >> /tmp/viming_path
+					echo $num >> /tmp/viming_path
+				fi
                 if [ $job_spec ] ;then
                     fg $job_spec
                 else
                     rm -rf /tmp/nvimsocket
-                    NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim "$(cat /tmp/viming_path)"
+                    fname="$(cat /tmp/viming_path | sed -E 's@num=[0-9]+@@g')"
+                    if [ $num ] ;then
+                        NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim +$num $fname
+                    else
+                        NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $fname
+                    fi
                 fi
             fi
         fi
+    fi
+}
+
+vv() {
+    jobs -l > /tmp/jobs
+    job_spec="$(rg NVIM_LISTEN_ADDRESS /tmp/jobs | head -1 | awk '{print $1}' | sed -E 's@.*\[(.*)\].*@\1@g')"
+	if [ $# -ge 2 ] ;then
+		rm -rf /tmp/viming_path
+		for x in $@ ;do
+			echo "$(realpath "$x")" >> /tmp/viming_path
+		done
+		if [ "$(echo $VIM)" ] ;then
+			#socket="$(echo /tmp/nvim*/0)"
+			#NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
+			NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
+		else
+			if [ $job_spec ] ;then
+				fg $job_spec
+			else
+				rm -rf /tmp/nvimsocket
+				NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+			fi
+		fi
+	fi
+}
+
+minimal_v() {
+    jobs -l > /tmp/jobs
+    job_spec="$(rg NVIM_LISTEN_ADDRESS /tmp/jobs | head -1 | awk '{print $1}' | sed -E 's@.*\[(.*)\].*@\1@g')"
+    if [ $# -eq 0 ] ;then
+		if [ $job_spec ] ;then
+			fg $job_spec
+		else
+			rm -rf /tmp/nvimsocket
+			NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+		fi
     else
-        rm -rf /tmp/viming_path
-        for x in $@ ;do
-            echo "$(realpath "$x")" >> /tmp/viming_path
-        done
-        if [ "$(echo $VIM)" ] ;then
-            #socket="$(echo /tmp/nvim*/0)"
-            #NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
-            NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
-        else
-            if [ $job_spec ] ;then
-                fg $job_spec
-            else
-                rm -rf /tmp/nvimsocket
-                NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
-            fi
-        fi
+		echo -n "$(realpath "$1")" > /tmp/viming_path
+		last_arg=${@:$#:1}
+		if [ ${last_arg:0:1} == "+" ] ;then
+			num=${last_arg:1}
+			echo -n " num=" >> /tmp/viming_path
+			echo $num >> /tmp/viming_path
+		fi
+		if [ $job_spec ] ;then
+			fg $job_spec
+		else
+			rm -rf /tmp/nvimsocket
+			fname="$(cat /tmp/viming_path | sed -E 's@num=[0-9]+@@g')"
+			if [ $num ] ;then
+				NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim +$num $fname
+			else
+				NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $fname
+			fi
+		fi
     fi
 }
 
