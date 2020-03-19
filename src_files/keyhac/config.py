@@ -349,7 +349,9 @@ def configure(keymap):
                 keymap_class["C-OpenBracket"] = lambda:put_str("[")
                 keymap_class["C-CloseBracket"] = lambda:put_str("]")
                 keymap_class["C-Quote"] = lambda:put_str("`")
-
+            if hhkb_flag:
+                keymap_class["C-Colon"] = lambda:put_str("|")
+                
         def initialize_keybind_cspace(keymap_class):
             def translate():
                 time.sleep(0.5)
