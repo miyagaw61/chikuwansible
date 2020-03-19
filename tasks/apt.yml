@@ -76,6 +76,7 @@
     - name: nmap
     - name: translate-shell
     - name: ffmpeg
+    - name: xsel
 
 - name: Get kernel Version
   shell: "uname -r"
