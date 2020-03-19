@@ -1,0 +1,43 @@
+- name: Install Pygments
+  shell: "python -m pip install pygments"
+  become: no
+
+- name: Install Packages By Apt
+  apt:
+    name: "{{item}}"
+  with_items:
+    - exuberant-ctags
+    - global
+    - libncurses5-dev
+
+- name: Download Global Tar Ball
+  get_url:
+    url: "http://tamacom.com/global/global-{{global_version}}.tar.gz"
+    dest: "{{tmp}}/global-{{global_version}}.tar.gz"
+
+- name: Extract Global Tar Ball
+  shell: "tar zxvf global-{{global_version}}.tar.gz"
+  args:
+    chdir: "{{tmp}}"
+  become: no
+
+- name: Copy Config File
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "{{tmp}}/global-{{global_version}}/gtags.conf", dest: "{{home}}/.globalrc"}
+
+- name: Edit Config File 1
+  shell: "sed -E 's@:tc=native:@:tc=native:tc=pygments:@g' -i {{home}}/.globalrc"
+  become: no
+
+- name: Edit Config File 2
+  shell: "sed -E 's@:langmap=c\\\\:.c.h@:langmap=c\\\\:.c@g' -i {{home}}/.globalrc"
+  become: no
+
+- name: Edit Config File 3
+  shell: "sed -E 's@,cpp\\\\:.c@,cpp\\\\:.h.c@g' -i {{home}}/.globalrc"
+  become: no

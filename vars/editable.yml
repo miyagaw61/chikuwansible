@@ -88,6 +88,10 @@ photo: "i_view"
 video: "mpcbe"
 audio: "mplayer"
 
+# Global
+# =============================================
+global_version: "6.6.4"
+
 # Bashrc Aliases
 # =============================================
 #### set default useful options ####
