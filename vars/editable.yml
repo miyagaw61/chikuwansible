@@ -100,7 +100,7 @@ alias_objdump: "objdump -M intel"
 alias_less: "less -iMSR"
 #### be short ####
 alias_pbcopy: "xsel --clipboard --input"
-alias_pbpaste: "xsel --clipboard --output"
+alias_pbpaste: "xsel --clipboard"
 alias_xl: "pbcopy"
 alias_pt: "xsel -o"
 alias_all_update: "apt -y update; apt -y upgrade; rustup update; slk"
