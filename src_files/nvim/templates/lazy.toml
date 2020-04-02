@@ -71,7 +71,7 @@ hook_source = '''
 #    " racerバイナリ指定
 #    let g:racer_cmd = "{{home}}/.cargo/bin/racer"
 #    " rust本体のソースコードパス指定
-#    "let $RUST_SRC_PATH="/mnt/c/Users/miyagaw61/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+#    "let $RUST_SRC_PATH="/mnt/c/Users/miyagi1024/home/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 #    let $RUST_SRC_PATH="{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 #'''
 
@@ -265,7 +265,7 @@ hook_source = '''
           nnoremap <silent><buffer><expr> <S-j>g
          \ defx#do_action('cd') . defx#do_action('cd', 'src/github.com')
           nnoremap <silent><buffer><expr> <S-j>m
-         \ defx#do_action('cd') . defx#do_action('cd', 'src/github.com/miyagaw61')
+         \ defx#do_action('cd') . defx#do_action('cd', 'src/github.com/miyagi1024')
           nnoremap <silent><buffer><expr> <S-j>d
          \ defx#do_action('cd') . defx#do_action('cd', 'docs')
           nnoremap <silent><buffer><expr> <S-j>v

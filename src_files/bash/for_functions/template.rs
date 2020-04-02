@@ -107,7 +107,7 @@ fn stop() {
 fn main() {
     let matches = App::new("FILE_NAME")
         .version("0.0.1")
-        .author("miyagaw61 <miyagaw61@gmail.com>")
+        .author("miyagi1024 <miyagaw61@gmail.com>")
         .about("Cpuminer Wrapper in Rust")
         .subcommand(SubCommand::with_name("start")
                     .about("start FILE_NAME")

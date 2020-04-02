@@ -1,6 +1,6 @@
 ‚”|‚¯‚ñ‚³‚­	https://twitter.com/search?s=follows&f=tweets&q=	–¼Œ
-‚”|‚í‚”‚¿‚ñ‚‡	list:miyagaw61/perfect-monitoring	–¼Œ
-‚”|‚¹‚¿‚á‚ƒ‚‹	list:miyagaw61/sechack3651	–¼Œ
+‚”|‚í‚”‚¿‚ñ‚‡	list:miyagi1024/perfect-monitoring	–¼Œ
+‚”|‚¹‚¿‚á‚ƒ‚‹	list:miyagi1024/sechack3651	–¼Œ
 ‚‹‚„	```	–¼Œ
 ‚‹	`	–¼Œ
 ‚‹‚Î	```Bash	–¼Œ

@@ -1,5 +1,5 @@
 - name: Install "lf" By Cargo
-  shell: bash -lc "cargo install --git https://github.com/miyagaw61/lf --force"
+  shell: bash -lc "cargo install --git https://github.com/miyagi1024/lf --force"
   become: no
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"

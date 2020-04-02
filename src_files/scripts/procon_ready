@@ -20,7 +20,7 @@ for line in lines:
         continue
     f_new.add(line + '\n')
     if line == '[dependencies]':
-        f_new.add('renert = { git = \"https://github.com/miyagaw61/renert" }\n')
+        f_new.add('renert = { git = \"https://github.com/miyagi1024/renert" }\n')
 Shell('mv Cargo.toml.new Cargo.toml').call()
 
 f_makefile = File('Makefile')
