@@ -191,55 +191,65 @@ def configure(keymap):
             elif status == 0:
                 keymap.wnd.setImeStatus(1)
 
+        def enter_jp_mode():
+            status = keymap.wnd.getImeStatus()
+            if status == 0:
+                keymap.wnd.setImeStatus(1)
+
+        def enter_en_mode():
+            status = keymap.wnd.getImeStatus()
+            if status == 1:
+                keymap.wnd.setImeStatus(0)
+
         def i_jp():
             put_str("i")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def s_i_jp():
             put_str("I")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def o_jp():
             put_str("o")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def s_o_jp():
             put_str("O")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def a_jp():
             put_str("a")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def s_a_jp():
             put_str("A")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def c_jp():
             put_str("c")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def s_c_jp():
             put_str("C")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def m_jp():
             put_str("m")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(1)
+            enter_jp_mode()
 
         def return_en():
             put_key("RETURN")
             time.sleep(0.1)
-            keymap.wnd.setImeStatus(0)
+            enter_en_mode()
 
         def space_4():
             put_str("    ")
