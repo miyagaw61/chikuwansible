@@ -368,6 +368,8 @@ def configure(keymap):
                 keymap_class["C-Quote"] = lambda:put_str("`")
             if hhkb_flag:
                 keymap_class["C-Colon"] = lambda:put_str("|")
+	    keymap_class["C-J"] = lambda:enter_jp_mode()
+            keymap_class["C-K"] = lambda:enter_en_mode()
                 
         def initialize_keybind_cspace(keymap_class):
             def translate():
