@@ -621,6 +621,9 @@ fn main() {
 
         #def initialize_keybind_katahira(keymap_class):
         #    keymap_class["U3-A"] = lambda:put_str("hoge")
+        
+	def initialize_keybind_special(keymap_class):
+            keymap_class["Insert"] = "S-C-M"
 
         def initialize_keybind(keymap_class):
             if hhkb_flag or jp_flag:
@@ -636,9 +639,10 @@ fn main() {
             initialize_keybind_c(        keymap_class )
             initialize_keybind_cspace(   keymap_class )
             initialize_keybind_ci(       keymap_class )
-            #initialize_keybind_u0(       keymap_class )
+            #initialize_keybind_u0(      keymap_class )
             #initialize_keybind_cu0(     keymap_class )
             initialize_keybind_win(      keymap_class )
+	    initialize_keybind_special(  keymap_class )
 
             keymap_class["BackSlash"] = lambda:put_str("\\")
             #keymap_class["U0-Space"] = space_4
