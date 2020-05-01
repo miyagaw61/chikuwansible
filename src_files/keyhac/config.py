@@ -183,6 +183,13 @@ def configure(keymap):
             Input.send([pyauto.Key(esc_code)])
             time.sleep(0.1)
             keymap.wnd.setImeStatus(0)
+	
+        def ime_switch():
+            status = keymap.wnd.getImeStatus()
+            if status == 1:
+                keymap.wnd.setImeStatus(0)
+            elif status == 0:
+                keymap.wnd.setImeStatus(1)
 
         def i_jp():
             put_str("i")
