@@ -13,7 +13,7 @@
     name: neovim
 
 - name: Update NeoVim By Pip
-  shell: bash -lc "{{python3_binary}} -m pip install -U neovim"
+  shell: bash -lc "{{host_python3_pip}} install -U neovim"
 
 - name: Install Packages For NeoVim's Plugins By Apt
   apt:
@@ -23,8 +23,11 @@
     - name: "llvm-{{llvm_version}}"
     - name: "clang-{{llvm_version}}"
 
-- name: Install Packages For NeoVim's Plugins By Pip
-  shell: bash -lc "{{python3_binary}} -m pip install neovim-remote"
+- name: Install Libraries For NeoVim's Plugins By Pip2
+  shell: bash -lc "{{host_python2_pip}} install -U pynvim"
+
+- name: Install Packages For NeoVim's Plugins By Pip3
+  shell: bash -lc "{{host_python3_pip}} install -U neovim-remote"
 
 - name: Make Directories For NeoVim
   file:

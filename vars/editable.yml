@@ -53,6 +53,10 @@ python3_pyenv_version: "3.7.0"
 pyenv_root: "{{config_files}}/.pyenv"
 python2_binary: "{{pyenv_root}}/shims/python2"
 python3_binary: "{{pyenv_root}}/shims/python3"
+host_python2_binary: "/usr/bin/python2"
+host_python3_binary: "/usr/bin/python3"
+host_python2_pip: "/usr/bin/pip2"
+host_python3_pip: "/usr/bin/pip3"
 
 # Rust
 # =============================================

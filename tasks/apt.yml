@@ -78,6 +78,8 @@
     - name: ffmpeg
     - name: xsel
     - name: hping3
+    - name: python-pip
+    - name: python3-pip
 
 - name: Get kernel Version
   shell: "uname -r"
