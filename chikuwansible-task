@@ -14,6 +14,8 @@ Usage: chikuwansible-task [TASK_FILE_NAME...]
 def execute_task(task_name):
     if task_name[-4:] == ".yml":
         task_name = task_name[:-4]
+    if task_name[:6] == "tasks/":
+        task_name = task_name[6:]
     Shell(f"cp -a yml_template.yml {tmp_one_task_file.name}").call()
     s = f"    - include: tasks/{task_name}.yml\n"
     tmp_one_task_file.add(s)
