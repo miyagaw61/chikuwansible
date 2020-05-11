@@ -22,3 +22,9 @@
     owner: "{{user}}"
     group: "{{user}}"
     recurse: yes
+
+- name: Install Each Host Pip By Apt
+  apt: "name={{item.name}}"
+  with_items:
+    - name: python-pip
+    - name: python3-pip
