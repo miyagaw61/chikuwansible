@@ -1,5 +1,5 @@
 - name: Install Pygments
-  shell: "python -m pip install pygments"
+  shell: "{{python3_binary}} -m pip install pygments"
   become: no
 
 - name: Install Packages By Apt
