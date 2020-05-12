@@ -41,3 +41,7 @@
 - name: Edit Config File 3
   shell: "sed -E 's@,cpp\\\\:.c@,cpp\\\\:.h.c@g' -i {{home}}/.globalrc"
   become: no
+
+- name: Edit Config File 4
+  shell: "sed -E 's@min.css:@min.css,*.mo:@g' -i {{home}}/.globalrc"
+  become: no
