@@ -31,6 +31,9 @@ sudo ln -s /usr/bin/python3.5 /usr/bin/python
 
 ### Step3. Check
 
+Please check whether you can use ansible or not.  
+But if you can't use ping (e.g. can't use ICMP), this test will probably fail.
+
 ```
 $ cd chikuwansible.git
 $ ansible-playbook test.yml
