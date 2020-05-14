@@ -368,7 +368,7 @@ def configure(keymap):
                 keymap_class["C-Quote"] = lambda:put_str("`")
             if hhkb_flag:
                 keymap_class["C-Colon"] = lambda:put_str("|")
-	    keymap_class["C-J"] = lambda:enter_jp_mode()
+            keymap_class["C-J"] = lambda:enter_jp_mode()
             keymap_class["C-K"] = lambda:enter_en_mode()
                 
         def initialize_keybind_cspace(keymap_class):
@@ -634,7 +634,7 @@ fn main() {
         #def initialize_keybind_katahira(keymap_class):
         #    keymap_class["U3-A"] = lambda:put_str("hoge")
         
-	def initialize_keybind_special(keymap_class):
+        def initialize_keybind_special(keymap_class):
             keymap_class["Insert"] = "S-C-M"
 
         def initialize_keybind(keymap_class):
@@ -654,7 +654,7 @@ fn main() {
             #initialize_keybind_u0(      keymap_class )
             #initialize_keybind_cu0(     keymap_class )
             initialize_keybind_win(      keymap_class )
-	    initialize_keybind_special(  keymap_class )
+            initialize_keybind_special(  keymap_class )
 
             keymap_class["BackSlash"] = lambda:put_str("\\")
             #keymap_class["U0-Space"] = space_4
