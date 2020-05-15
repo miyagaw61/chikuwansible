@@ -44,7 +44,8 @@ git_token_file: "{{docs}}/git_token"
 # GoLang
 # =============================================
 golang_old_version: "1.10"
-golang_version: "1.13.7"
+golang_ubuntu20_version: "1.13"
+golang_version: "1.14.3"
 
 # Python
 # =============================================
@@ -55,8 +56,9 @@ python2_binary: "{{pyenv_root}}/shims/python2"
 python3_binary: "{{pyenv_root}}/shims/python3"
 host_python2_binary: "/usr/bin/python2"
 host_python3_binary: "/usr/bin/python3"
-host_python2_pip: "/usr/bin/pip2"
-host_python3_pip: "/usr/bin/pip3"
+host_pip_dir: "/usr/bin"
+host_python2_pip: "{{host_pip_dir}}/pip2"
+host_python3_pip: "{{host_pip_dir}}/pip3"
 
 # Rust
 # =============================================
