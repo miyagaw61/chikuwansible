@@ -409,24 +409,27 @@ rust() {
 
 v() {
     jobs -l > /tmp/jobs
-    job_spec="$(rg NVIM_LISTEN_ADDRESS /tmp/jobs | head -1 | awk '{print $1}' | sed -E 's@.*\[(.*)\].*@\1@g')"
+    #job_spec="$(rg NVIM_LISTEN_ADDRESS /tmp/jobs | head -1 | awk '{print $1}' | sed -E 's@.*\[(.*)\].*@\1@g')" # use nvim remote
+    job_spec="$(rg 'nvim' /tmp/jobs | head -1 | awk '{print $1}' | sed -E 's@.*\[(.*)\].*@\1@g')"
     if [ $# -eq 0 ] ;then
         if [ "$(echo $VIM)" ] ;then
             #socket="$(echo /tmp/nvim*/0)"
             #NVIM_LISTEN_ADDRESS=$socket nvr -c "Denite buffer"
-            NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer"
+            NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "Denite buffer" # use nvim remote
         else
             if [ $job_spec ] ;then
                 fg $job_spec
             else
                 rm -rf /tmp/nvimsocket
-                NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+                #NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim # use nvim remote
+                nvim
             fi
         fi
     elif [ $# -ge 1 ] ;then
         if [ "$(echo $VIM)" ] ;then
             #socket="$(echo /tmp/nvim*/0)"
             #NVIM_LISTEN_ADDRESS=$socket nvr -c "e "$(realpath $1)
+            #NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "e "$(realpath $1) # use nvim remote
             NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr -c "e "$(realpath $1)
         else
             old_dir="$PWD"
@@ -502,9 +505,11 @@ v() {
                     rm -rf /tmp/nvimsocket
                     fname="$(cat /tmp/viming_path | sed -E 's@num=[0-9]+@@g')"
                     if [ $num ] ;then
-                        NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim +$num $fname
+                        #NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim +$num $fname # use nvim remote
+                        nvim +$num $fname
                     else
-                        NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $fname
+                        #NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $fname # use nvim remote
+                        nvim $fname
                     fi
                 fi
             fi
