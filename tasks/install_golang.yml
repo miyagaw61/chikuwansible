@@ -2,7 +2,7 @@
   apt:
     name: "golang-{{golang_old_version}}-go"
 
-- name: Install Latest Golang
+- name: Download Latest Golang
   shell: "/usr/lib/go-{{golang_old_version}}/bin/go get golang.org/dl/go{{golang_version}}"
   become: no
 
