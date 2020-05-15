@@ -746,7 +746,7 @@ function! Dc()
 	let l:word = expand("<cword>")
 	execute 'cscope find g ' . l:word
 endfunction
-nnoremap [denite-gtags]d :Dc<CR>
+"nnoremap [denite-gtags]d :Dc<CR> " if you dont use cscope, do comment out
 
 " Dclip
 " =====
