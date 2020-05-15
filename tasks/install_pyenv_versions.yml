@@ -50,14 +50,14 @@
     - name: python3-pip
   when: ansible_facts['distribution_major_version'] == "20"
 
-- name: Move Host Pip2 from /usr/local/bin/ to /usr/local/ (ubuntu20)
+- name: Move Host Pip2 from /usr/local/bin/ to /usr/bin/ (ubuntu20)
   shell: "mv /usr/local/bin/pip2 {{host_pip_dir}})"
   when: ansible_facts['distribution_major_version'] == "20"
 
-- name: Move Host Pip2.7 from /usr/local/bin/ to /usr/local/ (ubuntu20)
+- name: Move Host Pip2.7 from /usr/local/bin/ to /usr/bin/ (ubuntu20)
   shell: "mv /usr/local/bin/pip2.7 {{host_pip_dir}}"
   when: ansible_facts['distribution_major_version'] == "20"
 
-- name: Move /usr/local/bin/pip to /usr/local/pip.bak (ubuntu20)
+- name: Move /usr/local/bin/pip to /usr/bin/pip.bak (ubuntu20)
   shell: "mv /usr/local/bin/pip {{host_pip_dir}}/pip.bak"
   when: ansible_facts['distribution_major_version'] == "20"
