@@ -67,3 +67,5 @@ autocmd BufNewFile,BufRead *.c highlight! link Type MyType
 highlight MyFloat ctermbg=236
 "set winhighlight=Normal:MyFloat,NormalNC:MyFloat
 "highlight Normal ctermbg=none
+
+autocmd BufEnter,BufRead * source /home/miyagi1024/docs/config_files/nvim/init/color.vim
