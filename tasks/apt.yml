@@ -97,3 +97,5 @@
     - name: libsnappy-dev
     - name: liblzma-dev
     - name: zlib1g-dev
+    - name: ccache
+    - name: libelf-dev
