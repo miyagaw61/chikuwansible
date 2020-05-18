@@ -14,58 +14,59 @@ colorscheme neodark
 "SYNTAX/HIGHLIGHT
 "================
 
-highlight Normal ctermbg=none
-highlight Comment ctermfg=36
+autocmd BufNewFile,BufEnter,BufRead * highlight Normal ctermbg=none
+autocmd BufNewFile,BufEnter,BufRead * highlight Comment ctermfg=36
 
-highlight Search ctermfg=15 ctermbg=8 guifg=White guibg=#707070
-highlight Search cterm=bold ctermfg=273 ctermbg=214
+autocmd BufNewFile,BufEnter,BufRead * highlight Search ctermfg=15 ctermbg=8 guifg=White guibg=#707070
+autocmd BufNewFile,BufEnter,BufRead * highlight Search cterm=bold ctermfg=273 ctermbg=214
 
-highlight Statement cterm=none ctermfg=178
-highlight Statement cterm=none ctermfg=208
-highlight Statement cterm=none ctermfg=172
+autocmd BufNewFile,BufEnter,BufRead * highlight Statement cterm=none ctermfg=178
+autocmd BufNewFile,BufEnter,BufRead * highlight Statement cterm=none ctermfg=208
+autocmd BufNewFile,BufEnter,BufRead * highlight Statement cterm=none ctermfg=172
 
-highlight LineNr cterm=none ctermfg=242
-highlight LineNr cterm=bold ctermfg=172
-highlight LineNr cterm=none ctermfg=172
+autocmd BufNewFile,BufEnter,BufRead * highlight LineNr cterm=none ctermfg=242
+autocmd BufNewFile,BufEnter,BufRead * highlight LineNr cterm=bold ctermfg=172
+autocmd BufNewFile,BufEnter,BufRead * highlight LineNr cterm=none ctermfg=172
 
-highlight Data cterm=none ctermfg=209
-highlight Data cterm=none ctermfg=203
-highlight Data cterm=none ctermfg=166
-highlight Data cterm=none ctermfg=06
-highlight Data cterm=none ctermfg=09
-highlight Data cterm=none ctermfg=160
-highlight Data cterm=none ctermfg=01
-highlight Data cterm=none ctermfg=brown
-highlight Data cterm=none ctermfg=196
-highlight! link Constant Data
-highlight! link String Data
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=209
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=203
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=166
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=06
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=09
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=160
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=01
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=brown
+autocmd BufNewFile,BufEnter,BufRead * highlight Data cterm=none ctermfg=196
+autocmd BufNewFile,BufEnter,BufRead * highlight! link Constant Data
+autocmd BufNewFile,BufEnter,BufRead * highlight! link String Data
 
-highlight PreProc cterm=bold ctermfg=06
-highlight PreProc cterm=none ctermfg=140
+autocmd BufNewFile,BufEnter,BufRead * highlight PreProc cterm=bold ctermfg=06
+autocmd BufNewFile,BufEnter,BufRead * highlight PreProc cterm=none ctermfg=140
 
-highlight MyKeyword cterm=none ctermfg=14
-autocmd BufNewFile,BufRead *.py,*.rs syntax keyword MyKeyword True
-autocmd BufNewFile,BufRead *.py,*.rs syntax keyword MyKeyword False
-autocmd BufNewFile,BufRead *.py,*.rs syntax keyword MyKeyword None
+autocmd BufNewFile,BufEnter,BufRead * highlight MyKeyword cterm=none ctermfg=14
 
-highlight MyFuncCall cterm=none ctermfg=14
-highlight MyFuncCall cterm=none ctermfg=06
-highlight MyFuncCall cterm=none ctermfg=74
-highlight MyFuncCall cterm=none ctermfg=none
-highlight! link Identifier MyFuncCall
-highlight! link Function MyFuncCall
-autocmd BufNewFile,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*("he=e-1,me=e-1
-autocmd BufNewFile,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs syntax keyword MyKeyword True
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs syntax keyword MyKeyword False
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs syntax keyword MyKeyword None
 
-highlight Builtin cterm=none ctermfg=123
-highlight Builtin cterm=none ctermfg=159
-highlight! link pythonBuiltin Builtin
+autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=14
+autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=06
+autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=74
+autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=none
 
-autocmd BufNewFile,BufRead *.c highlight MyType cterm=none ctermfg=74
-autocmd BufNewFile,BufRead *.c highlight! link Type MyType
+autocmd BufNewFile,BufEnter,BufRead * highlight! link Identifier MyFuncCall
+autocmd BufNewFile,BufEnter,BufRead * highlight! link Function MyFuncCall
 
-highlight MyFloat ctermbg=236
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*("he=e-1,me=e-1
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
+
+autocmd BufNewFile,BufEnter,BufRead * highlight Builtin cterm=none ctermfg=123
+autocmd BufNewFile,BufEnter,BufRead * highlight Builtin cterm=none ctermfg=159
+autocmd BufNewFile,BufEnter,BufRead * highlight! link pythonBuiltin Builtin
+
+autocmd BufNewFile,BufEnter,BufRead *.c highlight MyType cterm=none ctermfg=74
+autocmd BufNewFile,BufEnter,BufRead *.c highlight! link Type MyType
+
+autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h,*.rs,*.py highlight MyFloat ctermbg=236
 "set winhighlight=Normal:MyFloat,NormalNC:MyFloat
 "highlight Normal ctermbg=none
-
-autocmd BufEnter,BufRead * source /home/miyagi1024/docs/config_files/nvim/init/color.vim
