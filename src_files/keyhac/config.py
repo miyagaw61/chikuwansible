@@ -686,6 +686,7 @@ fn main() {
 
         def config_vim(keymap_class):
             keymap_class["C-SEMICOLON"] = "C-F", "BackSlash"
+            keymap_class["C-I"] = "C-I"
             #keymap_class["U0-J"] = escape
             #keymap_class["U0-I"] = i_jp
             #keymap_class["U0-O"] = o_jp
