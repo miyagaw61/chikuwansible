@@ -31,13 +31,25 @@
     - name: libsqlite3-dev
     - name: ucommon-utils
     - name: software-properties-common
-    - name: llvm-{{llvm_version}}
-    - name: libclang-{{llvm_version}}-dev
     - name: clang
     - name: automake
     - name: socat
     - name: cifs-utils
     - name: openssh-server
+
+- name: Install LLVM By Apt (not ubuntu20)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: llvm-{{llvm_version}}
+    - name: libclang-{{llvm_version}}-dev
+  when: ansible_facts['distribution_major_version'] != "20"
+
+- name: Install LLVM By Apt (ubuntu20)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: llvm-{{llvm_version_ubuntu20}}
+    - name: libclang-{{llvm_version_ubuntu20}}-dev
+  when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Install GUI Packages By Apt
   apt: "name={{item.name}}"

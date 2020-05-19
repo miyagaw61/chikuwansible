@@ -67,6 +67,7 @@ rust_src_path: "{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/
 # LLVM
 # =============================================
 llvm_version: "6.0"
+llvm_version_ubuntu20: "9"
 
 # IDA
 # =============================================
@@ -80,6 +81,7 @@ ghidra_version: "9.0.4"
 # =============================================
 nvim_config_files: "{{config_files}}/nvim"
 libclang_path: "/usr/lib/llvm-{{llvm_version}}/lib/libclang-{{llvm_version}}.so"
+libclang_path_ubuntu20: "/usr/lib/llvm-{{llvm_version_ubuntu20}}/lib/libclang-{{llvm_version_ubuntu20}}.so"
 clang_header: "/usr/include/clang"
 
 # Editor

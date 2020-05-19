@@ -15,13 +15,23 @@
 - name: Update NeoVim By Pip
   shell: bash -lc "{{host_python3_pip}} install -U neovim"
 
-- name: Install Packages For NeoVim's Plugins By Apt
+- name: Install Packages For NeoVim's Plugins By Apt (not ubuntu20)
   apt:
     name: "{{item.name}}"
   with_items:
     - name: silversearcher-ag
     - name: "llvm-{{llvm_version}}"
     - name: "clang-{{llvm_version}}"
+  when: ansible_facts['distribution_major_version'] != "20"
+
+- name: Install Packages For NeoVim's Plugins By Apt (ubuntu20)
+  apt:
+    name: "{{item.name}}"
+  with_items:
+    - name: silversearcher-ag
+    - name: "llvm-{{llvm_version_ubuntu20}}"
+    - name: "clang-{{llvm_version_ubuntu20}}"
+  when: ansible_facts['distribution_major_version_ubuntu20'] == "20"
 
 - name: Install Libraries For NeoVim's Plugins By Pip2
   shell: bash -lc "{{host_python2_pip}} install -U pynvim"
