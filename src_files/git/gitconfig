@@ -1,0 +1,122 @@
+[user]
+    email = miyagaw61@gmail.com
+    name = miyagi1024
+
+[alias]
+    # log
+    l = log --graph --topo-order -C -M --date=short --oneline --decorate=short
+    l = log --graph --topo-order -C -M --pretty=format:\"< %h > %ad [%an] %Cgreen%d %Creset %s\" --date=short
+    l1 = !git l HEAD~1..HEAD
+    l2 = !git l HEAD~2..HEAD
+    l3 = !git l HEAD~3..HEAD
+    l4 = !git l HEAD~4..HEAD
+    l3n = !"echo \"\n\n\n\n\"; git l HEAD~3..HEAD"
+    l5 = !git l HEAD~5..HEAD
+    l10 = !git l HEAD~10..HEAD
+    l20 = !git l HEAD~20..HEAD
+    l20n = !"echo \"\n\n\n\n\"; git HEAD~20..HEAD"
+    l30 = !git l HEAD~30..HEAD
+    l40 = !git l HEAD~40..HEAD
+    l50 = !git l HEAD~50..HEAD
+    l60 = !git l HEAD~60..HEAD
+    l70 = !git l HEAD~70..HEAD
+    l80 = !git l HEAD~80..HEAD
+    l90 = !git l HEAD~90..HEAD
+    lsimple = !git l --simplify-by-decoration
+    l-grep = !git l --pickaxe-regex -S
+    l-msg = !git l --grep
+    # diff
+	d = diff
+	dc = !git d --cached
+    dw = !git d --color-words --word-diff-regex='\\\\w+|[^[:space:]]'
+    dcw = !git d --cached --color-words --word-diff-regex='\\\\w+|[^[:space:]]'
+    dr = "!f() { git fetch $1; git diff HEAD..remotes/$1/$(git rev-parse --abbrev-ref HEAD); }; f"
+    # branch
+    b = branch
+    ba = branch -a -vv
+    # status
+    st = status
+    s = status --short --branch
+    # checkout
+    co = checkout
+    # add
+    a = add
+    ap = add -p
+    # commit
+    c = !git commit
+    cm = !rusgit commit
+    ca = !git commit --amend
+    cf = !git commit --fixup
+    first = !git commit --allow-empty -m \"first commit\"
+    # pull
+    pull = !git pull
+    pullr = !git pull --rebase
+    # push
+    push = !git push
+    fpush = !git push --force-with-lease
+    # rebase
+    r = rebase
+    rash = !git r --autosquash
+    rc = !git r --continue
+    ra = !git r --abort
+    # show
+	sh = show
+    shw = show --color-words --word-diff-regex='\\\\w+|[^[:space:]]'
+    # tag
+    t = tag
+    # cherry-pick
+    pick = cherry-pick
+    # how to use
+    co-convert-file = !git co COMMIT_ID -- FILE_NAME
+    co-convert-oursFile = !git co --ours FILE_NAME
+    co-convert-theirsFile = !git co --theirs FILE_NAME
+    co-undo-newestCommit-or-newestStage = !git co FILE_NAME
+    l-specify-file = !git l -- FILE_NAME
+    l-show-file = !git l --name-status
+    l-filter-author = !git l --author AUTHOR_NAME
+    l-filter-commitMessage = !git l-msg REGEX
+    l-filter-merge = !git l --merges
+    l-filter-nomerge = !git l --no-merges
+    l-all-branch = !git l --all
+    pick-one-commit = !git pick COMMIT_ID
+    pick-many-commit = !git pick COMMIT_ID..COMMIT_ID
+    pick-ammend = !git pick -e COMMIT_ID
+    pick-nocommit = !git pick -n COMMIT_ID
+    pick-continue = !git pick --continue
+    blame-older = !git blame COMMIT_ID -- FILE_NAME
+    blame-filter-linenr = !git blame -L LINE_NR,LINE_NR FILE_NAME
+    blame-filter-linenr-5 = !git blame -L LINE_NR,+5 FILE_NAME
+    blame-filter-regex = !git blame -L /REGEX/ FILE_NAME
+    blame-filter-regex-5 = !git blame -L /REGEX/,+5 FILE_NAME
+    diff-newestIndex-to-now = !git d FILE_NAME
+    diff-newestCommit-to-newestIndex = !git dc FILE_NAME
+    diff-HEAD-to-commit = !git d COMMIT_ID [FILE_NAME]
+    diff-commit-to-commit = !git d COMMIT_ID..COMMIT_ID
+    diff-baseCommit-to-commit2 = !git d COMMIT_ID...COMMIT_ID
+    diff-file-to-file = !git d FILE_NAME..FILE_NAME
+    diff-create-patch = !git d ARGS > PATH_FILE
+    diff-show-file = !git d --name-status
+    diff-show-file-changedRegex = !git d -G REGEX
+    diff-show-file-changedStringCount = !git d -S STRING
+    diff-show-file-changedStringCount-ver2 = !git d -S -f"STRING"
+    diff-show-file-changedRegexCount = !git d --pickaxe-regex -S REGEX
+    diff-show-file-changedRegexCount-ver2 = !git d --pickaxe-regex -S -f"REGEX"
+    diff-show-base = !git d --base
+    diff-show-ours = !git d --ours
+    diff-show-theirs = !git d --theirs
+    sh-then-file = !git sh COMMIT_ID:FILE_NAME > NEW_FILE_NAME
+
+[push]
+    default = upstream
+
+[ghq]
+    root = ~/src
+
+[core]
+    pager = less -iMR
+    quotepath = false
+    editor = nvim
+    pager = delta --plus-color="#013800" --minus-color="#340001" --theme='Monokai Extended'
+
+[interactive]
+    diffFilter = delta --color-only
