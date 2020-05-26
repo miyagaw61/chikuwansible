@@ -100,6 +100,13 @@ audio: "mplayer"
 # =============================================
 global_version: "6.6.4"
 
+# Delta
+# =============================================
+delta_version: "0.1.1"
+delta_name: "delta-{{delta_version}}-x86_64-unknown-linux-gnu"
+delta_tar_name: "{{delta_name}}.tar.gz"
+delta_release_url: "https://github.com/dandavison/delta/releases/download/{{delta_version}}/{{delta_tar_name}}"
+
 # Bashrc Aliases
 # =============================================
 #### set default useful options ####

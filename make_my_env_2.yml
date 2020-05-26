@@ -21,4 +21,5 @@
     - include: tasks/install_fzf2nd.yml
     - include: tasks/install_neovim.yml
     - include: tasks/install_global.yml
+    - include: tasks/install_delta.yml
     - include: tasks/copy_sudoers.yml
