@@ -726,7 +726,7 @@ function! CscopeDef(...)
     let l:argc = len(a:000)
     let l:args = split(a:000[0], " ")
     let l:args_str = join(l:args, " ")
-	execute 'cscope find g ' . l:args_str
+    execute 'cscope find g ' . l:args_str
 endfunction
 
 " D
@@ -736,15 +736,15 @@ function! D(...)
     let l:argc = len(a:000)
     let l:args = split(a:000[0], " ")
     let l:args_str = join(l:args, " ")
-	execute 'Denite -buffer-name=search gtags_def:' . l:args_str
+    execute 'Denite -buffer-name=search gtags_def:' . l:args_str
 endfunction
 
 " Dc
 " =======
 command! -nargs=? Dc call Dc()
 function! Dc()
-	let l:word = expand("<cword>")
-	execute 'cscope find g ' . l:word
+    let l:word = expand("<cword>")
+    execute 'cscope find g ' . l:word
 endfunction
 "nnoremap [denite-gtags]d :Dc<CR> " if you dont use cscope, do comment out
 
@@ -752,7 +752,7 @@ endfunction
 " =====
 command! -nargs=? Dclip call Dclip()
 function! Dclip()
-	execute 'Denite -buffer-name=search gtags_def:' . @+
+    execute 'Denite -buffer-name=search gtags_def:' . @+
 endfunction
 nnoremap [denite-gtags]c :Dclip<CR>
 
