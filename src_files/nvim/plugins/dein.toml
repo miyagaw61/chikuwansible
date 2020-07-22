@@ -50,6 +50,20 @@ hook_post_update = '''
 '''
 
 [[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+	set list lcs=tab:\¦\ 
+	"let g:indentLine_fileType = ['codenote.c']
+	"let g:indentLine_setColors = 0
+	"let g:indentLine_color_term = 200
+	"let g:indentLine_color_gui = '#A4E57E'
+	"let g:indentLine_bgcolor_term = 202
+	"let g:indentLine_bgcolor_gui = '#FF5F00'
+	"let g:indentLine_conceallevel = 2
+	"let g:indentLine_enabled = 0
+'''
+
+[[plugins]]
 repo = 'Lokaltog/vim-easymotion'
 hook_add = '''
     let g:EasyMotion_do_mapping = 0

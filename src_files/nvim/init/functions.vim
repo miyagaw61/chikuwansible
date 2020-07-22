@@ -755,3 +755,17 @@ function! Dclip()
 	execute 'Denite -buffer-name=search gtags_def:' . @+
 endfunction
 nnoremap [denite-gtags]c :Dclip<CR>
+
+" EnableIndentLine
+" =====
+command! -nargs=? EnableIndentLine call EnableIndentLine()
+function! EnableIndentLine()
+    set list lcs=tab:\¦\ 
+endfunction
+
+" DisableIndentLine
+" =====
+command! -nargs=? DisableIndentLine call DisableIndentLine()
+function! DisableIndentLine()
+    set list lcs=tab:\ \ 
+endfunction
