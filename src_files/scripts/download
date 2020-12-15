@@ -14,6 +14,7 @@ Usage:
     download ts2mp4
     download mp4_from_ts
     download mkv2mp4
+    download m3u8
     """
     print(help.__doc__)
 
@@ -211,6 +212,15 @@ Usage: urls2list URLS_PATH FORMAT
         new_line = line + ' {0}.{1}'.format(i, fmt)
         new_f.add(new_line + '\n')
     Shell('mv {0} {1}'.format(new_f.abspath, urls)).call()
+
+def m3u8(m3u8_url, output_fname):
+    """
+    Usage: m3u8 M3U8_URL OUTPUT_FNAME
+    """
+    header = 'ffmpeg -protocol_whitelist file,crypto,http,https,tcp,tls -allowed_extensions ALL -i'
+    footer = '-flags +loop+global_header -bsf:a aac_adtstoasc -vcodec libx264 -c copy ' + output_fname
+    cmd = header + ' \'' + m3u8_url + '\' ' + footer
+    Shell(cmd).call()
 
 def create_args(argv):
     args = ""
