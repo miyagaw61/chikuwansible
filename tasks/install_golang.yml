@@ -1,22 +1,10 @@
-- name: Install Old Golang By Apt (not ubuntu20)
+- name: Install Old Golang By Apt
   apt:
     name: "golang-{{golang_old_version}}-go"
-  when: ansible_facts['distribution_major_version'] != "20"
 
-- name: Install Old Golang By Apt (ubuntu20)
-  apt:
-    name: "golang-{{golang_ubuntu20_version}}-go"
-  when: ansible_facts['distribution_major_version'] == "20"
-
-- name: Download Latest Golang (not ubuntu20)
+- name: Download Latest Golang
   shell: "/usr/lib/go-{{golang_old_version}}/bin/go get golang.org/dl/go{{golang_version}}"
   become: no
-  when: ansible_facts['distribution_major_version'] != "20"
-
-- name: Download Latest Golang (ubuntu20)
-  shell: "/usr/lib/go-{{golang_ubuntu20_version}}/bin/go get golang.org/dl/go{{golang_version}}"
-  become: no
-  when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Install Latest Golang
   shell: "{{home}}/go/bin/go{{golang_version}} download"

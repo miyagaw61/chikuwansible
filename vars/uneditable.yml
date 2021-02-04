@@ -1,1 +1,5 @@
 cargo_path: "{{home}}/.cargo"
+
+# NeoVim
+# =============================================
+libclang_path: "/usr/lib/llvm-{{llvm_version}}/lib/libclang-{{llvm_version}}.so"

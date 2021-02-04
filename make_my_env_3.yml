@@ -1,0 +1,23 @@
+- hosts: localhost
+  become: yes
+  connection: local
+  tasks:
+    - include_vars: vars/editable.yml
+    - include_vars: vars/editable_ubuntu14.yml
+      when: ansible_facts['distribution_major_version'] == "14"
+    - include_vars: vars/editable_ubuntu20.yml
+      when: ansible_facts['distribution_major_version'] == "20"
+    - include_vars: vars/uneditable.yml
+    - include: tasks/install_rust.yml
+    - include: tasks/install_rust_nightly.yml
+    - include: tasks/install_golang.yml
+    - include: tasks/install_exa.yml
+    - include: tasks/install_ripgrep.yml
+    - include: tasks/install_rusgit.yml
+    - include: tasks/install_fd.yml
+    - include: tasks/install_lf.yml
+    - include: tasks/install_ghq.yml
+    - include: tasks/install_fzf2nd.yml
+    - include: tasks/install_neovim.yml
+    - include: tasks/install_global.yml
+    - include: tasks/install_delta.yml

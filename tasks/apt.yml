@@ -19,7 +19,6 @@
     - name: libx32z1-dev
     - name: libbz2-dev
     - name: libtool
-    - name: libtool-bin
     - name: bsdmainutils
     - name: build-essential
     - name: module-assistant
@@ -37,21 +36,45 @@
     - name: cifs-utils
     - name: openssh-server
 
-- name: Install LLVM By Apt (not ubuntu20)
+- name: Install Basic Packages By Apt (ubuntu14)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: libtool
+  when: ansible_facts['distribution_major_version'] == "14"
+
+- name: Install Basic Packages By Apt (ubuntu20)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: libtool-bin
+  when: ansible_facts['distribution_major_version'] == "20"
+
+- name: Install Basic Packages By Apt (others)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: libtool-bin
+  when: ansible_facts['distribution_major_version'] != "14" and ansible_facts['distribution_major_version'] != "20"
+
+- name: Install LLVM By Apt
   apt: "name={{item.name}}"
   with_items:
     - name: llvm-{{llvm_version}}
     - name: libclang-{{llvm_version}}-dev
-  when: ansible_facts['distribution_major_version'] != "20"
 
-- name: Install LLVM By Apt (ubuntu20)
+- name: Install GUI Packages By Apt (ubuntu14)
   apt: "name={{item.name}}"
   with_items:
-    - name: llvm-{{llvm_version_ubuntu20}}
-    - name: libclang-{{llvm_version_ubuntu20}}-dev
-  when: ansible_facts['distribution_major_version'] == "20"
+    - name: libglfw2
+    - name: libglfw-dev
+  when: ansible_facts['distribution_major_version'] == "14"
 
-- name: Install GUI Packages By Apt
+- name: Install GUI Packages By Apt (ubuntu20, others)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: libglfw3
+    - name: libglfw3-dev
+  when: ansible_facts['distribution_major_version'] != "14"
+
+- name: Install GUI Packages By Apt (common)
   apt: "name={{item.name}}"
   with_items:
     - name: xorg
@@ -59,8 +82,6 @@
     - name: libfreetype6-dev
     - name: libglu1-mesa-dev
     - name: libgl1-mesa-glx
-    - name: libglfw3
-    - name: libglfw3-dev
     - name: libglew-dev
     - name: freeglut3-dev
     - name: libsdl2-dev
@@ -68,7 +89,14 @@
     - name: libsdl2-image-dev
     - name: libsdl2-mixer-dev
 
-- name: Install Useful Tools By Apt
+- name: Install Useful Tools By Apt (not ubuntu14)
+  apt: "name={{item.name}}"
+  with_items:
+    - name: translate-shell
+    - name: ffmpeg
+  when: ansible_facts['distribution_major_version'] != "14"
+
+- name: Install Useful Tools By Apt (common)
   apt: "name={{item.name}}"
   with_items:
     - name: traceroute
@@ -86,8 +114,6 @@
     - name: silversearcher-ag
     - name: desktop-file-utils
     - name: nmap
-    - name: translate-shell
-    - name: ffmpeg
     - name: xsel
     - name: hping3
     - name: unar

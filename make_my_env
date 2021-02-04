@@ -6,3 +6,4 @@ if [ "$UID" != "0" ] ;then
 fi
 ./chikuwansible-playbook make_my_env_1.yml
 ./chikuwansible-playbook make_my_env_2.yml
+./chikuwansible-playbook make_my_env_3.yml

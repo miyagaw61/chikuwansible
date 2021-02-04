@@ -1,0 +1,3 @@
+python3_pyenv_version: "3.6.0"
+llvm_version: "3.9"
+golang_old_version: "1.10"

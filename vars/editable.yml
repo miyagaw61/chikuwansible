@@ -1,6 +1,6 @@
 # User Name
 # =============================================
-user: "miyagi1024"
+user: "miyase256"
 
 # Basic Directory Path
 # =============================================
@@ -22,7 +22,7 @@ tips_dir: "{{my_repos}}/tips"
 
 # EXGDB
 # =============================================
-exgdbpath: "{{repos}}/miyagi1024/exgdb"
+exgdbpath: "{{repos}}/miyase256/exgdb"
 
 
 # JDK
@@ -37,14 +37,13 @@ rusgit_slack_channel: "@miyagi1024"
 
 # Git
 # =============================================
-git_user: "miyagi1024"
+git_user: "miyase256"
 git_email: "miyagaw61@gmail.com"
 git_token_file: "{{docs}}/git_token"
 
 # GoLang
 # =============================================
 golang_old_version: "1.10"
-golang_ubuntu20_version: "1.13"
 golang_version: "1.14.3"
 
 # Python
@@ -67,7 +66,6 @@ rust_src_path: "{{home}}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/
 # LLVM
 # =============================================
 llvm_version: "6.0"
-llvm_version_ubuntu20: "10"
 
 # IDA
 # =============================================
@@ -80,8 +78,6 @@ ghidra_version: "9.0.4"
 # NeoVim
 # =============================================
 nvim_config_files: "{{config_files}}/nvim"
-libclang_path: "/usr/lib/llvm-{{llvm_version}}/lib/libclang-{{llvm_version}}.so"
-libclang_path_ubuntu20: "/usr/lib/llvm-{{llvm_version_ubuntu20}}/lib/libclang-{{llvm_version_ubuntu20}}.so"
 clang_header: "/usr/include/clang"
 
 # Editor

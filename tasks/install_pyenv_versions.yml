@@ -3,12 +3,19 @@
 #
 #- name: Install Python3
 #  shell: bash -lc "pyenv install {{python3_pyenv_version}}"
-
+ 
 - name: Install Python2
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
   args:
     chdir: "{{chikuwansible_path}}"
   become: no
+
+- name: Chown "pyenv_root"
+  file:
+    path: "{{pyenv_root}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
 
 - name: Install Python3
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python3_pyenv_version}}"
@@ -23,12 +30,20 @@
     group: "{{user}}"
     recurse: yes
 
-- name: Install Each Host Pip By Apt (not ubuntu20)
+#
+# ubuntu14~19
+#
+
+- name: Install Each Host Pip By Apt (ubntu14~19)
   apt: "name={{item.name}}"
   with_items:
     - name: python-pip
     - name: python3-pip
-  when: ansible_facts['distribution_major_version'] != "20"
+  when: ansible_facts['distribution_major_version'] < "20"
+
+#
+# ubuntu20
+#
 
 - name: Install Host Python2 By Apt (ubuntu20)
   apt: "name={{item.name}}"
