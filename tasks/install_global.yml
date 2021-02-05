@@ -45,3 +45,23 @@
 - name: Edit Config File 4
   shell: "sed -E 's@min.css:@min.css,*.mo:@g' -i {{home}}/.globalrc"
   become: no
+
+- name: Build and Install phase1 (ubuntu14..19)
+  shell: "./configure --prefix=/usr/local"
+  args:
+    chdir: "{{tmp}}/global-{{global_version}}"
+  become: no
+  when: ansible_facts['distribution_major_version'] <= "19"
+
+- name: Build and Install phase2 (ubuntu14..19)
+  shell: "make"
+  args:
+    chdir: "{{tmp}}/global-{{global_version}}"
+  become: no
+  when: ansible_facts['distribution_major_version'] <= "19"
+
+- name: Build and Install phase3 (ubuntu14..19)
+  shell: "make install"
+  args:
+    chdir: "{{tmp}}/global-{{global_version}}"
+  when: ansible_facts['distribution_major_version'] <= "19"
