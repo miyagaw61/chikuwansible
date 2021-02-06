@@ -117,6 +117,7 @@
     - name: xsel
     - name: hping3
     - name: unar
+    - name: tmux
 
 - name: Get kernel Version
   shell: "uname -r"
