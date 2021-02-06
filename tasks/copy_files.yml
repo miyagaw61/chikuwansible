@@ -6,3 +6,5 @@
     group: "root"
   with_items:
     - {src: "src_files/sudoers", dest: "/etc/sudoers"}
+    - {src: "src_files/tmux/.tmux.conf", dest: "{{home}}"}
+    - {src: "src_files/git/gitconfig", dest: "{{home}}/.gitconfig"}
