@@ -1,6 +1,6 @@
 - name: Clone "fzf2nd"
   git:
-    repo: https://github.com/miyagi1024/fzf2nd
+    repo: https://github.com/miyase256/fzf2nd
     dest: "{{home}}/.fzf"
 
 - name: Install "fzf2nd"

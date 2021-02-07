@@ -33,7 +33,7 @@ java_home: '{{program}}/jdk-11.0.2/'
 # =============================================
 rusgit_slack_url_file: "{{docs}}/slack_url"
 rusgit_slack_url: "$(cat {{rusgit_slack_url_file}})"
-rusgit_slack_channel: "@miyagi1024"
+rusgit_slack_channel: "@miyase256"
 
 # Git
 # =============================================

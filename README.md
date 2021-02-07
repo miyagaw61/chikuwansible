@@ -96,7 +96,7 @@ vim make_your_environment.yml
 * install_neovim.yml
     * install neovim and make my unique init.vim
 * install_rusgit.yml
-    * install https://github.com/miyagi1024/rusgit
+    * install https://github.com/miyase256/rusgit
 * install_exa.yml
     * install https://github.com/ogham/exa
 * make_directories.yml

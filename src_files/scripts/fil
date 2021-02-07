@@ -7,9 +7,9 @@ import datetime
 
 def l2w(linux_path):
     windows_path = linux_path.replace('/mnt/c', 'C:')
-    windows_path = windows_path.replace('/home/miyagi1024', 'C:/Users/miyagi1024/home')
-    windows_path = windows_path.replace('~', 'C:/Users/miyagi1024/home')
-    windows_path = windows_path.replace('$HOME', 'C:/Users/miyagi1024/home')
+    windows_path = windows_path.replace('/home/miyase256', 'C:/Users/miyase256/home')
+    windows_path = windows_path.replace('~', 'C:/Users/miyase256/home')
+    windows_path = windows_path.replace('$HOME', 'C:/Users/miyase256/home')
     windows_path = windows_path.replace('/', '\\')
     return windows_path
 

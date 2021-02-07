@@ -1,4 +1,4 @@
 - name: Clone DEIN Repository
   git:
-    repo: https://github.com/miyagi1024/rumt
+    repo: https://github.com/miyase256/rumt
     dest: "{{binaries}}"

@@ -2,9 +2,9 @@ if test $# -eq 0 ;then
     echo "Usage: l2w LINUX_PATH"
 else
     path="$(echo $1 | sed -E 's@/mnt/c@C:@g')"
-    path="$(echo $path | sed -E 's@/home/miyagi1024@C:/Users/miyagi1024/home@g')"
-    path="$(echo $path | sed -E 's@~@C:/Users/miyagi1024/home@g')"
-    path="$(echo $path | sed -E 's@$HOME@C:/Users/miyagi1024/home@g')"
+    path="$(echo $path | sed -E 's@/home/miyase256@C:/Users/miyase256/home@g')"
+    path="$(echo $path | sed -E 's@~@C:/Users/miyase256/home@g')"
+    path="$(echo $path | sed -E 's@$HOME@C:/Users/miyase256/home@g')"
     path="$(echo $path | sed -E 's@/@\\@g')"
     echo $path
 fi
