@@ -32,6 +32,16 @@
 - name: Install neovim-remote
   shell: bash -lc "python -m pip install -U neovim-remote"
 
+- name: Chown "/usr/local/lib/"
+  file:
+    path: "{{/usr/local/lib/}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
+
+- name: Install pynvim to /usr/bin/python2
+  shell: bash -lc "/usr/bin/python2 -m pip install -U pynvim"
+
 - name: Make Directories For NeoVim
   file:
     path: "{{item.path}}"

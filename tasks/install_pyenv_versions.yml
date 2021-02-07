@@ -1,9 +1,3 @@
-#- name: Install Python2
-#  shell: bash -lc "pyenv install {{python2_pyenv_version}}"
-#
-#- name: Install Python3
-#  shell: bash -lc "pyenv install {{python3_pyenv_version}}"
- 
 - name: Install Python2
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
   args:
@@ -29,6 +23,16 @@
     owner: "{{user}}"
     group: "{{user}}"
     recurse: yes
+
+- name: Make "$pyenv_root/shims/python2,3"
+  template:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "src_files/pyenv/templates/python2", dest: "{{pyenv_root}}/shims/python2"}
+    - {src: "src_files/pyenv/templates/python3", dest: "{{pyenv_root}}/shims/python3"}
 
 #
 # ubuntu14~19
