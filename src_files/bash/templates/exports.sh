@@ -38,3 +38,4 @@ export PATH=$PATH:{{program}}/idafree-{{ida_version}}
 export PATH=$PATH:{{java_home}}/bin
 export PATH=$PATH:{{home}}/.fzf/bin
 export NVIM_PYTHON_LOG_FILE="{{home}}/.cache/nvim/log"
+export SHELL=/bin/bash
