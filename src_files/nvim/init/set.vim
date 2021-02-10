@@ -43,6 +43,8 @@ source $VIMRUNTIME/macros/matchit.vim
 set laststatus=0
 " コマンドラインの補完
 set wildmode=list:longest
+" donot fold
+set nowrap
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
@@ -51,8 +53,8 @@ set wildmode=list:longest
 " set smartindent
 " ペーストモードに
 set paste
-" Tab文字を半角スペースにする
-set expandtab
+" Tab文字を半角スペースにする or not
+set noexpandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
 set tabstop=4
 " 行頭でのTab文字の表示幅
