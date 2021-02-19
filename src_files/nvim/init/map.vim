@@ -214,4 +214,4 @@ nnoremap <silent><C-s>p :Sp<CR>
 nnoremap <silent><C-s>v :Sv<CR>
 
 " Jump List
-nnoremap z<CR> z<CR>H<C-y><C-y><C-y>
+nnoremap z<CR> z<CR>H10<C-y>
