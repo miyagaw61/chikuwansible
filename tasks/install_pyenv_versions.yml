@@ -70,7 +70,7 @@
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Move Host Pip2 from /usr/local/bin/ to /usr/bin/ (ubuntu20)
-  shell: "mv /usr/local/bin/pip2 {{host_pip_dir}})"
+  shell: "mv /usr/local/bin/pip2 {{host_pip_dir}}"
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Move Host Pip2.7 from /usr/local/bin/ to /usr/bin/ (ubuntu20)
