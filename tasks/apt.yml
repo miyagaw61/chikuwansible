@@ -139,3 +139,4 @@
     - name: zlib1g-dev
     - name: ccache
     - name: libelf-dev
+  when: "'WSL' not in result.stdout"
