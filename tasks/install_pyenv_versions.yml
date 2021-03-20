@@ -56,7 +56,7 @@
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Download Host Pip2 By Curl (ubuntu20)
-  shell: "curl https://bootstrap.pypa.io/get-pip.py --output /tmp/get-pip.py"
+  shell: "curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output /tmp/get-pip.py"
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Install Host Pip2 By Python2 (ubuntu20)
