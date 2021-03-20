@@ -34,7 +34,7 @@
 
 - name: Chown "/usr/local/lib/"
   file:
-    path: "{{/usr/local/lib/}}"
+    path: "/usr/local/lib/"
     owner: "{{user}}"
     group: "{{user}}"
     recurse: yes
