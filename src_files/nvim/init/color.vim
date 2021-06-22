@@ -49,23 +49,24 @@ autocmd BufNewFile,BufEnter,BufRead *.py,*.rs syntax keyword MyKeyword True
 autocmd BufNewFile,BufEnter,BufRead *.py,*.rs syntax keyword MyKeyword False
 autocmd BufNewFile,BufEnter,BufRead *.py,*.rs syntax keyword MyKeyword None
 
-autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=14
 autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=06
 autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=74
 autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=none
+autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=14
+autocmd BufNewFile,BufEnter,BufRead * highlight MyFuncCall cterm=none ctermfg=81
 
 autocmd BufNewFile,BufEnter,BufRead * highlight! link Identifier MyFuncCall
 autocmd BufNewFile,BufEnter,BufRead * highlight! link Function MyFuncCall
 
-autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*("he=e-1,me=e-1
-autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c syntax match MyFuncCall "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c,*.cpp,*.h syntax match MyFuncCall "\w\(\w\)*("he=e-1,me=e-1
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c,*.cpp,*.h syntax match MyFuncCall "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
 
 autocmd BufNewFile,BufEnter,BufRead * highlight Builtin cterm=none ctermfg=123
 autocmd BufNewFile,BufEnter,BufRead * highlight Builtin cterm=none ctermfg=159
 autocmd BufNewFile,BufEnter,BufRead * highlight! link pythonBuiltin Builtin
 
-autocmd BufNewFile,BufEnter,BufRead *.c highlight MyType cterm=none ctermfg=74
-autocmd BufNewFile,BufEnter,BufRead *.c highlight! link Type MyType
+autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h highlight MyType cterm=none ctermfg=74
+autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h highlight! link Type MyType
 
 autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h,*.rs,*.py highlight MyFloat ctermbg=236
 "set winhighlight=Normal:MyFloat,NormalNC:MyFloat
