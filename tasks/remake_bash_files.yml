@@ -12,6 +12,8 @@
     owner: "{{user}}"
     group: "{{user}}"
   with_items:
+    - {src: "{{home}}/.bashrc", dest: "{{home}}/.bashrc.bak"}
+    - {src: "/root/.bashrc", dest: "/root/.bashrc.bak"}
     - {src: "src_files/bash/templates/bashrc", dest: "{{home}}/.bashrc"}
     - {src: "src_files/bash/templates/exports.sh", dest: "{{bash_config_files}}/exports.sh"}
     - {src: "src_files/bash/templates/aliases.sh", dest: "{{bash_config_files}}/aliases.sh"}
