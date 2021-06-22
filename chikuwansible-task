@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-from enert import *
+import os
 import sys
+import subprocess
 
-tmp_one_task_file = File("tmp_one_task.yml")
+tmp_one_task_file_name = "tmp_one_task.yml"
+tmp_one_task_file = open(tmp_one_task_file_name, "a")
 
 def help():
     """
@@ -16,10 +18,15 @@ def execute_task(task_name):
         task_name = task_name[:-4]
     if task_name[:6] == "tasks/":
         task_name = task_name[6:]
-    Shell(f"cp -a yml_template.yml {tmp_one_task_file.name}").call()
+    if task_name[:8] == "./tasks/":
+        task_name = task_name[8:]
+    proc = subprocess.Popen(f"cp -a yml_template.yml {tmp_one_task_file_name}", shell=True)
+    proc.communicate()
     s = f"    - include: tasks/{task_name}.yml\n"
-    tmp_one_task_file.add(s)
-    Shell(f"./chikuwansible-playbook {tmp_one_task_file.name}").call()
+    tmp_one_task_file.write(s)
+    tmp_one_task_file.flush()
+    proc = subprocess.Popen(f"./chikuwansible-playbook {tmp_one_task_file_name}", shell=True)
+    proc.communicate()
 
 argv = sys.argv
 argc = len(argv)
@@ -31,5 +38,9 @@ if argv[1] in ("-h", "--help"):
 for task_name in argv[1:]:
     execute_task(task_name)
 
-tmp_one_task_file.rm()
-File(tmp_one_task_file.name[:-4] + ".retry").rm()
+tmp_one_task_file.close()
+os.remove(tmp_one_task_file_name)
+
+retry_file_name = tmp_one_task_file_name[:-4] + ".retry"
+if os.path.exists(retry_file_name):
+    os.remove(retry_file_name)
