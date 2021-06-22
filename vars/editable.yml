@@ -1,12 +1,13 @@
 # User Name
 # =============================================
+git_user: "miyase256"
 user: "miyase256"
 
 # Basic Directory Path
 # =============================================
 home: "/home/{{user}}"
 repos: "{{home}}/src/github.com"
-my_repos: "{{repos}}/{{user}}"
+my_repos: "{{repos}}/{{git_user}}"
 tmp: "{{home}}/tmp"
 docs: "{{home}}/docs"
 events: "{{home}}/events"
@@ -17,7 +18,7 @@ binaries: "{{home}}/bin"
 vimbackup: "{{tmp}}/vimbackup"
 grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
-knowledges: '{{home}}/src/gist.github.com/{{user}}/\[knowledge\]*'
+knowledges: '{{home}}/src/gist.github.com/{{git_user}}/\[knowledge\]*'
 tips_dir: "{{my_repos}}/tips"
 
 # EXGDB
@@ -37,7 +38,6 @@ rusgit_slack_channel: "@miyase256"
 
 # Git
 # =============================================
-git_user: "miyase256"
 git_email: "miyagaw61@gmail.com"
 git_token_file: "{{docs}}/git_token"
 
