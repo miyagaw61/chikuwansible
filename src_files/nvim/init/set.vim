@@ -52,7 +52,7 @@ set nowrap
 " インデントはスマートインデント
 " set smartindent
 " ペーストモードに
-set paste
+set nopaste " XXX: I used paste
 " Tab文字を半角スペースにする or not
 set noexpandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
