@@ -12,6 +12,7 @@
     - path: "{{config_files}}"
     - path: "{{binaries}}"
     - path: "{{vimbackup}}"
+    - path: "{{nvim_logfile_dir}}"
 
 - name: Change mode of cache directory
   file:

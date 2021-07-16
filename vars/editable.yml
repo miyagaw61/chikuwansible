@@ -1,7 +1,7 @@
 # User Name
 # =============================================
 git_user: "miyase256"
-user: "miyase256"
+user: "miyagi1024"
 
 # Basic Directory Path
 # =============================================
@@ -20,6 +20,7 @@ grave_root: "{{tmp}}/grave_root"
 chikuwansible_path: "{{my_repos}}/chikuwansible"
 knowledges: '{{home}}/src/gist.github.com/{{git_user}}/\[knowledge\]*'
 tips_dir: "{{my_repos}}/tips"
+nvim_logfile_dir: "{{home}}/.cache/nvim/log"
 
 # EXGDB
 # =============================================
