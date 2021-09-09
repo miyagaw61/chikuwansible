@@ -112,7 +112,7 @@ hook_add = '''
 [[plugins]]
 repo = 'haya14busa/incsearch-easymotion.vim'
 hook_add = '''
-    nmap m <Plug>(incsearch-easymotion-stay)
+    nmap [Window]m <Plug>(incsearch-easymotion-stay)
 '''
 
 [[plugins]]
