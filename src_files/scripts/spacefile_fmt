@@ -6,48 +6,65 @@ import re
 this_file = os.path.basename(__file__)
 
 r = re.compile(r""" """)
+r2 = re.compile(r"""\'""")
 num_r = re.compile(r"""(_[0-9]+[\.a-zA-Z0-9]*)$""")
 ext_r = re.compile(r"""(\.[a-zA-Z0-9]+)$""")
 
 cmd = """ fd " " """
 
 def usage():
-    print("Usage: spacefile_fmt")
+    print("Usage: spacefile_fmt [-h] [-q]")
+    print("   -h: help")
+    print("   -q: target is quote instead of space")
     exit()
+
+def spacefile_fmt():
+    for f in files:
+        if f == this_file or f == 's' or f == 'desktop.ini':
+            continue
+        _ret = r.findall(f)
+        if get(sys.argv, 1) == None and len(_ret) == 0:
+            continue
+        _ret = r2.findall(f)
+        if get(sys.argv, 1) == "-q" and len(_ret) == 0:
+            continue
+        num = 0
+        n = r.sub("-", f)
+        n = r2.sub("-", n)
+        if File(n).exist():
+            print("WARNING")
+            print(f)
+            print("->")
+            print(n)
+            exit()
+            ext = ext_r.findall(n)
+            if len(ext) != 0:
+                ext = ext[0]
+            else:
+                ext = ""
+            if ext == "":
+                n = n + f"_{num}"
+            else:
+                n = ext_r.sub(f"_{num}{ext}", n)
+            while True:
+                num = num + 1
+                if num == 100:
+                    print(f + ": over 100")
+                    break
+                n = num_r.sub(f"_{num}{ext}", n);
+                if File(n).exist():
+                    continue
+                Shell(f'mv "{f}" "{n}"').call()
+                break
+            continue
+        else:
+            Shell(f'mv "{f}" "{n}"').call()
 
 if get(sys.argv, 1) == "-h":
     usage()
 
-files, _ = Shell(cmd).readlines()
+if get(sys.argv, 1) == "-q":
+    cmd = """ fd "'" """
 
-for f in files:
-    if f == this_file or f == 's' or f == 'desktop.ini':
-        continue
-    _ret = r.findall(f)
-    if len(_ret) == 0:
-        continue
-    num = 0
-    n = r.sub("-", f)
-    if File(n).exist():
-        ext = ext_r.findall(n)
-        if len(ext) != 0:
-            ext = ext[0]
-        else:
-            ext = ""
-        if ext == "":
-            n = n + f"_{num}"
-        else:
-            n = ext_r.sub(f"_{num}{ext}", n)
-        while True:
-            num = num + 1
-            if num == 100:
-                print(f + ": over 100")
-                break
-            n = num_r.sub(f"_{num}{ext}", n);
-            if File(n).exist():
-                continue
-            Shell(f'mv "{f}" "{n}"').call()
-            break
-        continue
-    else:
-        Shell(f'mv "{f}" "{n}"').call()
+files, _ = Shell(cmd).readlines()
+spacefile_fmt()
