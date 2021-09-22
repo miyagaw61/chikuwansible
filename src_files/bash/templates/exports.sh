@@ -1,4 +1,5 @@
 export TERM=xterm-256color
+#export TERM=xterm
 export REPOS="{{repos}}"
 export MY_REPOS="{{my_repos}}"
 export XDG_CONFIG_HOME="{{config_files}}"
@@ -37,8 +38,8 @@ export PATH=$PATH:{{program}}/ghidra_{{ghidra_version}}
 export PATH=$PATH:{{program}}/idafree-{{ida_version}}
 export PATH=$PATH:{{java_home}}/bin
 export PATH=$PATH:{{home}}/.fzf/bin
-
-export TERM="xterm"
-
 export NVIM_PYTHON_LOG_FILE="{{home}}/.cache/nvim/log"
 export SHELL=/bin/bash
+#export DISPLAY="localhost:0.0" # VM
+#export DISPLAY="$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0" # WSL2
+export PYTHONPATH="${PYTHONPATH}:/usr/lib/pythno3/dist-packages/"
