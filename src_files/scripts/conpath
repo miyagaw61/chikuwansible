@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+from enert import *
+import os
+
+env = os.environ
+home_path = env["HOME"]
+conf_path = home_path + "/tmp/conpath.conf"
+
+argv = sys.argv
+arg1 = get(argv, 1)
+
+def usage():
+    print("conpath - convert path")
+    print("Usage: conpath <TAG>")
+    print("       conpath <-a|--add> <TAG> <PATH>")
+    print("       conpath <-d|--delete> <TAG>")
+    print("       conpath <-s|--show>")
+    print("       conpath <-h|--help>")
+    print("Tips:")
+    print("  conf file path: " + conf_path)
+
+def add():
+    arg2 = get(argv, 2)
+    arg3 = get(argv, 3)
+    if (arg2 == None):
+        print("ERROR: line" + get_line())
+        return
+    f = File(conf_path)
+    if (arg3 != None):
+        f.add(arg2 + ":" + arg3 + "\n")
+    else:
+        f.add(arg2 + ":" + os.getcwd() + "\n")
+
+def delete():
+    a_tag = get(argv, 2)
+    if (a_tag == None):
+        print("ERROR: line" + get_line())
+        return
+    f = File(conf_path)
+    tmp_f = File(conf_path + ".tmp")
+    if (tmp_f.exist() == False):
+        tmp_f.create()
+    lines = f.readlines()
+    for line in lines:
+        tag = line[:line.index(":")]
+        path = line[line.index(":")+1:]
+        if tag == a_tag:
+            continue
+        tmp_f.add(tag + ":" + path + "\n")
+    tmp_f.mv(conf_path)
+
+def show():
+    f = File(conf_path)
+    lines = f.readlines()
+    for line in lines:
+        print(line)
+
+def conpath():
+    if arg1 == None or arg1 == "-h" or arg1 == "--help":
+        usage()
+        return
+
+    f = File(conf_path)
+    if (f.exist() == False):
+        f.create()
+
+    if arg1 == "-a" or arg1 == "--add":
+        add()
+        return
+    if arg1 == "-d" or arg1 == "--delete":
+        delete()
+        return
+    if arg1 == "-s" or arg1 == "--show":
+        show()
+        return
+
+    a_tag = get(argv, 1)
+    if (a_tag == None):
+        print("ERROR: line" + get_line())
+        return
+
+    lines = f.readlines()
+    for line in lines:
+        tag = line[:line.index(":")]
+        path = line[line.index(":")+1:]
+        if tag == a_tag:
+            print(path)
+            return
+
+conpath()

@@ -792,3 +792,7 @@ tags() {
 t() {
 	cscope -R -L -1 $@ 2> /dev/null
 }
+
+goto() {
+	cd $(conpath $1)
+}
