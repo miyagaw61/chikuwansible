@@ -74,9 +74,9 @@ hook_add = '''
     " let g:EasyMotion_keys = 'QZASDFGHJKL;'
     " let g:EasyMotion_keys = 'Q1Z2A3S4D5F6G7H8J9K/;'
     let g:EasyMotion_keys = 'ASDFGHJKL;WEROIUXCVNM'
-    nmap m <Plug>(easymotion-sn)
-    xmap m <Plug>(easymotion-sn)
-    omap m <Plug>(easymotion-sn)
+    " nmap m <Plug>(easymotion-sn)
+    " xmap m <Plug>(easymotion-sn)
+    " omap m <Plug>(easymotion-sn)
     nmap [Space]f <Plug>(easymotion-overwin-f)
     nmap [Space]l <Plug>(easymotion-overwin-line)
 '''
