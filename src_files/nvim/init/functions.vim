@@ -769,3 +769,10 @@ command! -nargs=? DisableIndentLine call DisableIndentLine()
 function! DisableIndentLine()
     set list lcs=tab:\ \ 
 endfunction
+
+" Fp - show Full Path
+" ===================
+command! -nargs=? Fp call Fp()
+function! Fp()
+    execute 'echo expand("%:p")'
+endfunction
