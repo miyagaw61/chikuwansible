@@ -30,10 +30,10 @@ call denite#custom#var('file/rec/git', 'command',
 
 " call denite#custom#option('default', 'prompt', '>')
 " call denite#custom#option('default', 'short_source_names', v:true)
+" call denite#custom#option('default', 'split', 'floating')
 call denite#custom#option('default', {
       \ 'highlight_filter_background': 'CursorLine',
       \ 'source_names': 'short',
-      \ 'split': 'floating',
       \ })
 
 let s:menus = {}
