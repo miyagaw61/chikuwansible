@@ -776,3 +776,21 @@ command! -nargs=? Fp call Fp()
 function! Fp()
     execute 'echo expand("%:p")'
 endfunction
+
+" Idtmput - Insert definition of tmput()
+" ======================================
+command! -nargs=? Idtmput call Idtmput()
+function! Idtmput()
+    normal o#define tmput(fmt, ...) console_output("miya: tmp: %s: " fmt, __FUNCTION__, ##__VA_ARGS__)
+endfunction
+command! -nargs=? Idt call Idtmput()
+
+" Itmput - Insert tmput()
+" =======================
+nnoremap gGinsert_tmput <Left><Left>
+command! -nargs=? Itmput call Itmput()
+function! Itmput()
+    normal otmput("");
+    normal gGinsert_tmput
+endfunction
+command! -nargs=? It call Itmput()
