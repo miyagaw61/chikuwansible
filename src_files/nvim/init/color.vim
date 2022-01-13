@@ -60,6 +60,7 @@ autocmd BufNewFile,BufEnter,BufRead * highlight! link Function MyFuncCall
 
 autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c,*.cpp,*.h syntax match MyFuncCall "\w\(\w\)*("he=e-1,me=e-1
 autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c,*.cpp,*.h syntax match MyFuncCall "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
+autocmd BufNewFile,BufEnter,BufRead *.py,*.rs,*.c,*.cpp,*.h syntax match MyFuncCall "\w\(\w\)*)("he=e-2,me=e-2 " (foo)();
 
 autocmd BufNewFile,BufEnter,BufRead * highlight Builtin cterm=none ctermfg=123
 autocmd BufNewFile,BufEnter,BufRead * highlight Builtin cterm=none ctermfg=159
