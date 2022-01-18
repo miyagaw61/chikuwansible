@@ -385,3 +385,16 @@ repo = 'raghur/fruzzy'
 on_source = ['denite.nvim']
 hook_source = 'let g:fruzzy#sortonempty = 0'
 hook_post_update = 'call fruzzy#install()'
+
+[[plugins]]
+repo = 'MattesGroeger/vim-bookmarks'
+on_path = '.*'
+hook_source = '''
+	"let g:bookmark_auto_save_file = '$HOME.'/.vim-bookmarks'
+	"let g:bookmark_manage_per_buffer = 1
+	let g:bookmark_save_per_working_dir = 1
+	let g:bookmark_auto_save = 1
+	let g:bookmark_highlight_lines = 1
+	highlight BookmarkLine ctermbg=233 ctermfg=NONE
+	highlight BookmarkAnnotationLine ctermbg=236 ctermfg=NONE
+'''
