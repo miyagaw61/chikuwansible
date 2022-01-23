@@ -33,6 +33,12 @@ alias ghidra="{{alias_ghidra}}"
 alias kata="{{alias_kata}}"
 alias cscope_build="{{alias_cscope_build}}"
 
+# alias safe_commands
+# ====================================
+alias rm="{{alias_remove}}"
+alias cp="{{alias_copy}}"
+alias mv="{{alias_move}}"
+
 # alias ls
 # ====================================
 alias ls="{{alias_ls}}"
