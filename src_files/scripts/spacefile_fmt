@@ -6,16 +6,21 @@ import re
 this_file = os.path.basename(__file__)
 
 r = re.compile(r""" """)
-r2 = re.compile(r"""\'""")
 num_r = re.compile(r"""(_[0-9]+[\.a-zA-Z0-9]*)$""")
 ext_r = re.compile(r"""(\.[a-zA-Z0-9]+)$""")
+quote_r = re.compile(r"""\'""")
+and_r = re.compile(r"""&""")
+#exc_r = re.compile(r"""!""")
+#open_r = re.compile(r"""\[""")
+#close_r = re.compile(r"""]""")
 
 cmd = """ fd " " """
 
 def usage():
-    print("Usage: spacefile_fmt [-h] [-q]")
+    print("Usage: spacefile_fmt [-h] [-q] [-a]")
     print("   -h: help")
     print("   -q: target is quote instead of space")
+    print("   -a: target is and instead of space")
     exit()
 
 def spacefile_fmt():
@@ -25,12 +30,19 @@ def spacefile_fmt():
         _ret = r.findall(f)
         if get(sys.argv, 1) == None and len(_ret) == 0:
             continue
-        _ret = r2.findall(f)
+        _ret = quote_r.findall(f)
         if get(sys.argv, 1) == "-q" and len(_ret) == 0:
+            continue
+        _ret = and_r.findall(f)
+        if get(sys.argv, 1) == "-a" and len(_ret) == 0:
             continue
         num = 0
         n = r.sub("-", f)
-        n = r2.sub("-", n)
+        n = quote_r.sub("-", n)
+        n = and_r.sub("-and-", n)
+        #n = exc_r.sub("-", n)
+        #n = open_r.sub("-", n)
+        #n = close_r.sub("-", n)
         if File(n).exist():
             print("WARNING")
             print(f)
@@ -65,6 +77,9 @@ if get(sys.argv, 1) == "-h":
 
 if get(sys.argv, 1) == "-q":
     cmd = """ fd "'" """
+
+if get(sys.argv, 1) == "-a":
+    cmd = """ fd "&" """
 
 files, _ = Shell(cmd).readlines()
 spacefile_fmt()
