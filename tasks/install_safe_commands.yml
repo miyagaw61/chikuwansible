@@ -1,0 +1,4 @@
+- name: Install "safe_commands" By Pip
+  shell: bash -lc "{{python3_binary}} -m pip install -U {{item.name}}"
+  with_items:
+    - name: "git+https://github.com/miyase256/safe_commands"
