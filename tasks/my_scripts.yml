@@ -25,3 +25,4 @@
     - name: start
     - name: follow_upstream
     - name: now
+    - name: conpath
