@@ -18,3 +18,5 @@
     #  include: tasks/apt_update_upgrade.yml
     - name: Remake Files For Bashrc
       include: tasks/remake_bash_files.yml
+    - name: Remake My Scripts
+      include: tasks/my_scripts.yml
