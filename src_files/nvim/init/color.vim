@@ -72,3 +72,149 @@ autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h highlight! link Type MyType
 autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h,*.rs,*.py highlight MyFloat ctermbg=236
 "set winhighlight=Normal:MyFloat,NormalNC:MyFloat
 "highlight Normal ctermbg=none
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! s:InitHighlightCurrentWord()
+  if !exists("b:current_match")
+    let b:current_match = ""
+  endif
+  if !exists("b:current_matchit")
+    let b:current_matchit = ""
+  endif
+  if !exists("b:current_cword")
+    let b:current_cword = ""
+  endif
+endfunction
+
+source $VIMRUNTIME/macros/matchit.vim
+
+function! s:GetMatchitPattern(cwd)
+  if !exists('b:match_words')
+    return ''
+  endif
+  if !exists('b:mw')
+    call s:InitMatchit()
+  endif
+  for pat in b:mw
+    if a:cwd =~# pat
+      let l:cmw = pat
+      break
+    endif
+  endfor
+  for pat in b:new_mw
+    if a:cwd =~# pat
+      let l:cmw = pat
+    endif
+  endfor
+  if !exists("l:cmw")
+    return ''
+  endif
+
+  let lcs = []
+  let wsv = winsaveview()
+  while 1
+    exe 'normal %'
+    let lc = {'line': line('.'), 'col': col('.')}
+    if len(lcs) > 0
+      if (lc.line == lcs[0].line && lc.col == lcs[0].col) || (lc.line == lcs[-1].line && lc.col == lcs[-1].col)
+        break
+      endif
+    endif
+    call add(lcs, lc)
+  endwhile
+  echo lcs
+  call winrestview(wsv)
+  call map(lcs, '"\\%" . v:val.line . "l\\%" . v:val.col . "c"')
+  let lcre = join(lcs, '\|')
+  return '.*\%(' . lcre . '\).*\&' .
+         \b:new_mwre . '\|' .
+         \b:mwre
+endfunction
+
+function! s:InitMatchit()
+  if !exists('b:match_words')
+    return
+  endif
+  let b:mw = split(b:match_words, ',\|:')
+  let l:mw = filter(b:mw, 'v:val !~ "^[(){}[\\]]$"')
+  let mwre = join(l:mw, '\|') . '\)'
+  let b:mwre = substitute(mwre, "'", "''", 'g')
+  let b:new_mw = ["\\<function\\>", "\\<elseif\\>", "\\<endif\\>", "\\<endfor\\>"]
+  let b:new_mwre = "\\%\\(" . join(b:new_mw, '\|')
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+highlight CurrentWord term=NONE cterm=bold ctermbg=154 ctermfg=273
+highlight CurrentWord term=NONE cterm=bold ctermbg=22 ctermfg=255
+highlight CurrentWord term=NONE ctermbg=19 ctermfg=NONE
+highlight CurrentWord term=NONE cterm=bold ctermbg=10 ctermfg=273
+
+highlight MatchitWord term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
+highlight MatchParen term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
+highlight CurrentCword term=NONE ctermbg=14 ctermfg=273 cterm=bold
+
+function! s:EscapeText( text )
+  return substitute( escape(a:text, '\' . '^$.*[~'), "\n", '\\n', 'ge' )
+endfunction
+
+function! s:GetCurrentWord()
+  let l:cword = expand('<cWORD>')
+  if l:cword[0] == "#"
+  else
+    let l:cword = expand('<cword>')
+  endif
+  let l:cchar = getline('.')[col('.')-1]
+  if l:cchar == "\("
+    let l:cword = "\("
+  elseif l:cchar == "\{"
+    let l:word = "\{"
+  endif
+  if !empty(l:cword)
+    let l:regexp = s:EscapeText(l:cword)
+    if l:cword =~# '^\k\+$'
+      let l:regexp = '\<' . l:regexp . '\>'
+    endif
+    return l:regexp
+  else
+    return ''
+  endif
+endfunction
+
+function! DeleteAllMatches()
+    if b:current_match != ""
+      call matchdelete(b:current_match)
+      let b:current_match = ""
+    endif
+    if b:current_matchit != ""
+      call matchdelete(b:current_matchit)
+      let b:current_matchit = ""
+    endif
+    if b:current_cword != ""
+      call matchdelete(b:current_cword)
+      let b:current_cword = ""
+    endif
+endfunction
+
+function! s:HighlightCurrentWord()
+  let l:word = s:GetCurrentWord()
+  if !empty(l:word)
+    call DeleteAllMatches()
+    let b:current_match = matchadd('CurrentWord', l:word, 0)
+  endif
+  let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
+  if !empty(l:matchit_word)
+    let b:current_matchit = matchadd('MatchitWord', l:matchit_word, 0)
+  endif
+  if !empty(l:word)
+    let l:current_cword = '\w*\%' . line('.') . 'l\%' . col('.') . 'c\w*\&\%\(' . l:word .'\)'
+    let b:current_cword = matchadd('CurrentCword', l:current_cword, 0)
+  endif
+endfunction
+
+augroup cwh
+  autocmd!
+  autocmd BufNewFile,BufEnter *.vim,*.py,*.rs,*.c,*.cpp,*.h call s:InitHighlightCurrentWord()
+  autocmd CursorMoved,CursorMovedI *.vim,*.py,*.rs,*.c,*.cpp,*.h call s:HighlightCurrentWord()
+augroup END
