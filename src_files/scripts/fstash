@@ -1,0 +1,71 @@
+#!/usr/bin/python3
+
+import sys
+import os
+from enert import *
+
+tmp_dir = "/tmp/fstash"
+stack_file = tmp_dir + "/fstash_stack.txt"
+f_tmp_dir = File(tmp_dir)
+f_stack = File(stack_file)
+
+def usage(err_no=0):
+    print("Usage: ")
+    print("  fstash push FILE_PATH")
+    print("  fstash pop")
+    print("  fstash show")
+    if err_no == -1:
+        print("Error: No such command: copy")
+        print("Hint: Please install https://github.com/miyase256/safe_commands")
+    exit()
+
+def init():
+    if Shell("which copy").read()[0] == "":
+        return -1
+    if not f_tmp_dir.exist():
+        f_tmp_dir.mkdir()
+    if not f_stack.exist():
+        f_stack.create()
+    return 0
+
+def push(fname):
+    f = File(fname)
+    Shell("copy " + f.abspath + " " + tmp_dir).call()
+    pushed_filepath = tmp_dir + "/" + f.basename
+    f_stack.add(pushed_filepath + "\n")
+    print("pushed: " + f.abspath)
+
+def pop():
+    files = f_stack.readlines()
+    if files[-1] == "":
+        files = files[:-1]
+    pushed_filepath = files[-1]
+    f_pushed = File(pushed_filepath)
+    Shell("copy " + f_pushed.abspath + " ./").call()
+    f_stack.write("\n".join(files[:-1]) + "\n")
+    print("poped: " + f_pushed.basename)
+
+def show():
+    Shell("cat " + f_stack.abspath).call()
+
+argv = sys.argv
+sub_cmd = get(argv, 1)
+if sub_cmd != None:
+    if sub_cmd == "-h" or sub_cmd == "--help":
+        usage()
+
+err_no = init()
+if err_no:
+    usage(err_no)
+
+if sub_cmd == "push":
+    fname = get(argv, 2)
+    if fname == None:
+        usage()
+    push(fname)
+elif sub_cmd == "pop":
+    pop()
+elif sub_cmd == "show":
+    show()
+else:
+    pop()

@@ -32,6 +32,8 @@ alias ida="{{alias_ida}}"
 alias ghidra="{{alias_ghidra}}"
 alias kata="{{alias_kata}}"
 alias cscope_build="{{alias_cscope_build}}"
+alias push="{{alias_push}}"
+alias pop="{{alias_pop}}"
 
 # alias safe_commands
 # ====================================
