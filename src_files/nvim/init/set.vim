@@ -49,22 +49,26 @@ set nowrap
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 "set list listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
-" インデントはスマートインデント
-" set smartindent
 " ペーストモードに
 set nopaste " XXX: I used paste
-" Tab文字を半角スペースにする or not
-set noexpandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=4
-" 行頭でのTab文字の表示幅
-set shiftwidth=4
-" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set softtabstop=4
 " 改行時に前の行のインデントを継続する
-set autoindent
+set autoindent " set ai/noai
 " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-" set smartindent
+set smartindent " set si/nosi
+" 直前のインデントをコピー
+set copyindent " set ci/noci
+" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+" -1だとshiftwidthに従う
+set softtabstop=-1 " set sts=-1
+" 行頭でのTab文字の表示幅
+" 0だとtabstopに従う
+set shiftwidth=0 " set sw=0
+" 行頭以外のTab文字の表示幅（スペースいくつ分）
+" ここの変更のみでインデントの幅を調整
+set tabstop=8 " set ts=8
+" Tab文字を半角スペースにする/しない
+" ここの変更のみでインデントの種類を調整
+set noexpandtab " set et/noet
 
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
@@ -132,4 +136,4 @@ set visualbell t_vb=
 set spelllang=en,cjk
 
 "自動移動
-set autochdir
+"set autochdir
