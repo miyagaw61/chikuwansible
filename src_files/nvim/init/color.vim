@@ -74,7 +74,12 @@ autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h,*.rs,*.py highlight MyFloat ct
 "highlight Normal ctermbg=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight Current Word
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Initialize of HighlightCurrentWord
+" ==================================
+source $VIMRUNTIME/macros/matchit.vim
 function! s:InitHighlightCurrentWord()
   if !exists("b:current_match")
     let b:current_match = ""
@@ -85,10 +90,22 @@ function! s:InitHighlightCurrentWord()
   if !exists("b:current_cword")
     let b:current_cword = ""
   endif
+  if !exists("b:current_matchit1")
+    let b:current_matchit1 = ""
+  endif
+  if !exists("b:current_matchit2")
+    let b:current_matchit2 = ""
+  endif
+  if !exists("b:current_matchit3")
+    let b:current_matchit3 = ""
+  endif
+  if !exists("b:current_matchit4")
+    let b:current_matchit4 = ""
+  endif
 endfunction
 
-source $VIMRUNTIME/macros/matchit.vim
-
+" Get Matchit Pattern
+" ===================
 function! s:GetMatchitPattern(cwd)
   if !exists('b:match_words')
     return ''
@@ -132,6 +149,8 @@ function! s:GetMatchitPattern(cwd)
          \b:mwre
 endfunction
 
+" Initialize of Matchit
+" ==================
 function! s:InitMatchit()
   if !exists('b:match_words')
     return
@@ -144,8 +163,8 @@ function! s:InitMatchit()
   let b:new_mwre = "\\%\\(" . join(b:new_mw, '\|')
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Highlight Color List
+" ====================
 highlight CurrentWord term=NONE cterm=bold ctermbg=154 ctermfg=273
 highlight CurrentWord term=NONE cterm=bold ctermbg=22 ctermfg=255
 highlight CurrentWord term=NONE ctermbg=19 ctermfg=NONE
@@ -155,10 +174,19 @@ highlight MatchitWord term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
 highlight MatchParen term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
 highlight CurrentCword term=NONE ctermbg=14 ctermfg=273 cterm=bold
 
+highlight Matchit1 term=NONE ctermbg=brown ctermfg=273 cterm=bold
+highlight Matchit2 term=NONE ctermbg=blue ctermfg=273 cterm=bold
+highlight Matchit3 term=NONE ctermbg=100 ctermfg=273 cterm=bold
+highlight Matchit4 term=NONE ctermbg=magenta ctermfg=273 cterm=bold
+
+" Escape Text
+" ===========
 function! s:EscapeText( text )
   return substitute( escape(a:text, '\' . '^$.*[~'), "\n", '\\n', 'ge' )
 endfunction
 
+" Get Current Word
+" ================
 function! s:GetCurrentWord()
   let l:cword = expand('<cWORD>')
   if l:cword[0] == "#"
@@ -182,6 +210,8 @@ function! s:GetCurrentWord()
   endif
 endfunction
 
+" Delete All Matches
+" ==================
 function! DeleteAllMatches()
     if b:current_match != ""
       call matchdelete(b:current_match)
@@ -197,6 +227,8 @@ function! DeleteAllMatches()
     endif
 endfunction
 
+" Highlight Current Word (Main Function)
+" ======================================
 function! s:HighlightCurrentWord()
   let l:word = s:GetCurrentWord()
   if !empty(l:word)
@@ -213,8 +245,126 @@ function! s:HighlightCurrentWord()
   endif
 endfunction
 
+" Autocmd for Highlight Current Word
+" ==================================
 augroup cwh
   autocmd!
   autocmd BufNewFile,BufEnter *.vim,*.py,*.rs,*.c,*.cpp,*.h call s:InitHighlightCurrentWord()
   autocmd CursorMoved,CursorMovedI *.vim,*.py,*.rs,*.c,*.cpp,*.h call s:HighlightCurrentWord()
 augroup END
+
+
+" HighlightMatchit1
+" =================
+command! -nargs=? HighlightMatchit1 call HighlightMatchit1()
+function! HighlightMatchit1()
+  let l:word = s:GetCurrentWord()
+  if !empty(l:word)
+    call DeleteAllMatches()
+  endif
+  let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
+  if !empty(l:matchit_word)
+    let b:current_matchit1 = matchadd('Matchit1', l:matchit_word, 0)
+  endif
+endfunction
+command! -nargs=? H1 call HighlightMatchit1()
+
+" DeleteHighlightMatchit1
+" =======================
+command! -nargs=? DeleteHighlightMatchit1 call DeleteHighlightMatchit1()
+function! DeleteHighlightMatchit1()
+  if !empty(b:current_matchit1)
+    call matchdelete(b:current_matchit1)
+    let b:current_matchit1 = ""
+  endif
+endfunction
+command! -nargs=? D1 call DeleteHighlightMatchit1()
+
+" HighlightMatchit2
+" =================
+command! -nargs=? HighlightMatchit2 call HighlightMatchit2()
+function! HighlightMatchit2()
+  let l:word = s:GetCurrentWord()
+  if !empty(l:word)
+    call DeleteAllMatches()
+  endif
+  let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
+  if !empty(l:matchit_word)
+    let b:current_matchit2 = matchadd('Matchit2', l:matchit_word, 0)
+  endif
+endfunction
+command! -nargs=? H2 call HighlightMatchit2()
+
+" DeleteHighlightMatchit2
+" =======================
+command! -nargs=? DeleteHighlightMatchit2 call DeleteHighlightMatchit2()
+function! DeleteHighlightMatchit2()
+  if !empty(b:current_matchit2)
+    call matchdelete(b:current_matchit2)
+    let b:current_matchit2 = ""
+  endif
+endfunction
+command! -nargs=? D2 call DeleteHighlightMatchit2()
+
+" HighlightMatchit3
+" =================
+command! -nargs=? HighlightMatchit3 call HighlightMatchit3()
+function! HighlightMatchit3()
+  let l:word = s:GetCurrentWord()
+  if !empty(l:word)
+    call DeleteAllMatches()
+  endif
+  let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
+  if !empty(l:matchit_word)
+    let b:current_matchit3 = matchadd('Matchit3', l:matchit_word, 0)
+  endif
+endfunction
+command! -nargs=? H3 call HighlightMatchit3()
+
+" DeleteHighlightMatchit3
+" =======================
+command! -nargs=? DeleteHighlightMatchit3 call DeleteHighlightMatchit3()
+function! DeleteHighlightMatchit3()
+  if !empty(b:current_matchit3)
+    call matchdelete(b:current_matchit3)
+    let b:current_matchit3 = ""
+  endif
+endfunction
+command! -nargs=? D3 call DeleteHighlightMatchit3()
+
+" HighlightMatchit4
+" =================
+command! -nargs=? HighlightMatchit4 call HighlightMatchit4()
+function! HighlightMatchit4()
+  let l:word = s:GetCurrentWord()
+  if !empty(l:word)
+    call DeleteAllMatches()
+  endif
+  let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
+  if !empty(l:matchit_word)
+    let b:current_matchit4 = matchadd('Matchit4', l:matchit_word, 0)
+  endif
+endfunction
+command! -nargs=? H4 call HighlightMatchit4()
+
+" DeleteHighlightMatchit4
+" =======================
+command! -nargs=? DeleteHighlightMatchit4 call DeleteHighlightMatchit4()
+function! DeleteHighlightMatchit4()
+  if !empty(b:current_matchit4)
+    call matchdelete(b:current_matchit4)
+    let b:current_matchit4 = ""
+  endif
+endfunction
+command! -nargs=? D4 call DeleteHighlightMatchit4()
+
+" DeleteHighlightMatchitAll
+" =========================
+command! -nargs=? DeleteHighlightMatchitAll call DeleteHighlightMatchitAll()
+function! DeleteHighlightMatchitAll()
+  call DeleteHighlightMatchit1()
+  call DeleteHighlightMatchit2()
+  call DeleteHighlightMatchit3()
+  call DeleteHighlightMatchit4()
+endfunction
+command! -nargs=? Da call DeleteHighlightMatchitAll()
