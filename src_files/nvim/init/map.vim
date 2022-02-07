@@ -215,3 +215,7 @@ nnoremap <silent><C-s>v :Sv<CR>
 
 " Jump List
 nnoremap z<CR> z<CR>H10<C-y>
+
+" Left, Right
+nnoremap <Left> g0ze
+nnoremap <Right> g$zs
