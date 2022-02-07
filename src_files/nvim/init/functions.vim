@@ -794,3 +794,29 @@ function! Itmput()
     normal gGinsert_tmput
 endfunction
 command! -nargs=? It call Itmput()
+
+" MyBookmarkToggle
+" =================
+command! -nargs=? MyBookmarkToggle call MyBookmarkToggle()
+function! MyBookmarkToggle()
+    execute 'BookmarkToggle'
+    execute 'silent BookmarkSave '.getcwd().'/.vim-bookmarks'
+endfunction
+nnoremap mm :MyBookmarkToggle<CR>
+
+" MyBookmarkLoad
+" ==============
+command! -nargs=? MyBookmarkLoad call MyBookmarkLoad()
+function! MyBookmarkLoad()
+    execute 'BookmarkLoad a 0'
+endfunction
+nnoremap ml :MyBookmarkLoad<CR>
+
+" MyBookmarkQuit
+" ==============
+command! -nargs=? MyBookmarkQuit call MyBookmarkQuit()
+function! MyBookmarkQuit()
+    normal gj
+    execute 'call CloseBuf()'
+endfunction
+nnoremap mq :MyBookmarkQuit<CR>
