@@ -375,7 +375,7 @@ hook_add = '''
     "nnoremap <silent> [Space]gs :<C-u>Denite gitstatus -highlight-window-background=MyFloat<CR>
     nnoremap <silent> [Space]h
           \ :<C-u>Denite command_history -highlight-window-background=MyFloat<CR>
-    nnoremap <silent> [Window]b :call DeleteAllMatches()<CR>:Denite buffer -highlight-window-background=MyFloat<CR>
+    nnoremap <silent> [Window]b :Denite buffer -highlight-window-background=MyFloat<CR>
     nnoremap <silent> / :Denite line -highlight-window-background=MyFloat<CR>
 '''
 hook_source = 'source {{nvim_config_files}}/plugins/denite.rc.vim'

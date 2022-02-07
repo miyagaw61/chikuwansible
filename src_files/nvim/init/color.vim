@@ -81,27 +81,27 @@ autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h,*.rs,*.py highlight MyFloat ct
 " ==================================
 source $VIMRUNTIME/macros/matchit.vim
 function! s:InitHighlightCurrentWord()
-  if !exists("b:current_match")
-    let b:current_match = ""
-  endif
-  if !exists("b:current_matchit")
-    let b:current_matchit = ""
-  endif
-  if !exists("b:current_cword")
-    let b:current_cword = ""
-  endif
-  if !exists("b:current_matchit1")
-    let b:current_matchit1 = ""
-  endif
-  if !exists("b:current_matchit2")
-    let b:current_matchit2 = ""
-  endif
-  if !exists("b:current_matchit3")
-    let b:current_matchit3 = ""
-  endif
-  if !exists("b:current_matchit4")
-    let b:current_matchit4 = ""
-  endif
+  "if !exists("w:current_match")
+    let w:current_match = ""
+  "endif
+  "if !exists("w:current_matchit")
+    let w:current_matchit = ""
+  "endif
+  "if !exists("w:current_cword")
+    let w:current_cword = ""
+  "endif
+  "if !exists("w:current_matchit1")
+    let w:current_matchit1 = ""
+  "endif
+  "if !exists("w:current_matchit2")
+    let w:current_matchit2 = ""
+  "endif
+  "if !exists("w:current_matchit3")
+    let w:current_matchit3 = ""
+  "endif
+  "if !exists("w:current_matchit4")
+    let w:current_matchit4 = ""
+  "endif
 endfunction
 
 " Get Matchit Pattern
@@ -213,17 +213,24 @@ endfunction
 " Delete All Matches
 " ==================
 function! DeleteAllMatches()
-    if b:current_match != ""
-      call matchdelete(b:current_match)
-      let b:current_match = ""
+    if exists("w:current_match")
+      if w:current_match != ""
+        echo w:current_match
+        call matchdelete(w:current_match)
+        let w:current_match = ""
+      endif
     endif
-    if b:current_matchit != ""
-      call matchdelete(b:current_matchit)
-      let b:current_matchit = ""
+    if exists("w:current_matchit") 
+      if w:current_matchit != ""
+        call matchdelete(w:current_matchit)
+        let w:current_matchit = ""
+      endif
     endif
-    if b:current_cword != ""
-      call matchdelete(b:current_cword)
-      let b:current_cword = ""
+    if exists("w:current_cword") 
+      if w:current_cword != ""
+        call matchdelete(w:current_cword)
+        let w:current_cword = ""
+      endif
     endif
 endfunction
 
@@ -233,15 +240,15 @@ function! s:HighlightCurrentWord()
   let l:word = s:GetCurrentWord()
   if !empty(l:word)
     call DeleteAllMatches()
-    let b:current_match = matchadd('CurrentWord', l:word, 0)
+    let w:current_match = matchadd('CurrentWord', l:word, 0)
   endif
   let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
   if !empty(l:matchit_word)
-    let b:current_matchit = matchadd('MatchitWord', l:matchit_word, 0)
+    let w:current_matchit = matchadd('MatchitWord', l:matchit_word, 0)
   endif
   if !empty(l:word)
     let l:current_cword = '\w*\%' . line('.') . 'l\%' . col('.') . 'c\w*\&\%\(' . l:word .'\)'
-    let b:current_cword = matchadd('CurrentCword', l:current_cword, 0)
+    let w:current_cword = matchadd('CurrentCword', l:current_cword, 0)
   endif
 endfunction
 
@@ -250,6 +257,7 @@ endfunction
 augroup cwh
   autocmd!
   autocmd BufNewFile,BufEnter *.vim,*.py,*.rs,*.c,*.cpp,*.h call s:InitHighlightCurrentWord()
+  "autocmd BufNewFile,BufEnter *.vim,*.py,*.rs,*.c,*.cpp,*.h call DeleteAllMatches()
   autocmd CursorMoved,CursorMovedI *.vim,*.py,*.rs,*.c,*.cpp,*.h call s:HighlightCurrentWord()
 augroup END
 
@@ -264,7 +272,7 @@ function! HighlightMatchit1()
   endif
   let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
   if !empty(l:matchit_word)
-    let b:current_matchit1 = matchadd('Matchit1', l:matchit_word, 0)
+    let w:current_matchit1 = matchadd('Matchit1', l:matchit_word, 0)
   endif
 endfunction
 command! -nargs=? H1 call HighlightMatchit1()
@@ -273,9 +281,9 @@ command! -nargs=? H1 call HighlightMatchit1()
 " =======================
 command! -nargs=? DeleteHighlightMatchit1 call DeleteHighlightMatchit1()
 function! DeleteHighlightMatchit1()
-  if !empty(b:current_matchit1)
-    call matchdelete(b:current_matchit1)
-    let b:current_matchit1 = ""
+  if !empty(w:current_matchit1)
+    call matchdelete(w:current_matchit1)
+    let w:current_matchit1 = ""
   endif
 endfunction
 command! -nargs=? D1 call DeleteHighlightMatchit1()
@@ -290,7 +298,7 @@ function! HighlightMatchit2()
   endif
   let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
   if !empty(l:matchit_word)
-    let b:current_matchit2 = matchadd('Matchit2', l:matchit_word, 0)
+    let w:current_matchit2 = matchadd('Matchit2', l:matchit_word, 0)
   endif
 endfunction
 command! -nargs=? H2 call HighlightMatchit2()
@@ -299,9 +307,9 @@ command! -nargs=? H2 call HighlightMatchit2()
 " =======================
 command! -nargs=? DeleteHighlightMatchit2 call DeleteHighlightMatchit2()
 function! DeleteHighlightMatchit2()
-  if !empty(b:current_matchit2)
-    call matchdelete(b:current_matchit2)
-    let b:current_matchit2 = ""
+  if !empty(w:current_matchit2)
+    call matchdelete(w:current_matchit2)
+    let w:current_matchit2 = ""
   endif
 endfunction
 command! -nargs=? D2 call DeleteHighlightMatchit2()
@@ -316,7 +324,7 @@ function! HighlightMatchit3()
   endif
   let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
   if !empty(l:matchit_word)
-    let b:current_matchit3 = matchadd('Matchit3', l:matchit_word, 0)
+    let w:current_matchit3 = matchadd('Matchit3', l:matchit_word, 0)
   endif
 endfunction
 command! -nargs=? H3 call HighlightMatchit3()
@@ -325,9 +333,9 @@ command! -nargs=? H3 call HighlightMatchit3()
 " =======================
 command! -nargs=? DeleteHighlightMatchit3 call DeleteHighlightMatchit3()
 function! DeleteHighlightMatchit3()
-  if !empty(b:current_matchit3)
-    call matchdelete(b:current_matchit3)
-    let b:current_matchit3 = ""
+  if !empty(w:current_matchit3)
+    call matchdelete(w:current_matchit3)
+    let w:current_matchit3 = ""
   endif
 endfunction
 command! -nargs=? D3 call DeleteHighlightMatchit3()
@@ -342,7 +350,7 @@ function! HighlightMatchit4()
   endif
   let l:matchit_word = s:GetMatchitPattern(l:word) " getline('.') is better but it's heavy
   if !empty(l:matchit_word)
-    let b:current_matchit4 = matchadd('Matchit4', l:matchit_word, 0)
+    let w:current_matchit4 = matchadd('Matchit4', l:matchit_word, 0)
   endif
 endfunction
 command! -nargs=? H4 call HighlightMatchit4()
@@ -351,9 +359,9 @@ command! -nargs=? H4 call HighlightMatchit4()
 " =======================
 command! -nargs=? DeleteHighlightMatchit4 call DeleteHighlightMatchit4()
 function! DeleteHighlightMatchit4()
-  if !empty(b:current_matchit4)
-    call matchdelete(b:current_matchit4)
-    let b:current_matchit4 = ""
+  if !empty(w:current_matchit4)
+    call matchdelete(w:current_matchit4)
+    let w:current_matchit4 = ""
   endif
 endfunction
 command! -nargs=? D4 call DeleteHighlightMatchit4()
