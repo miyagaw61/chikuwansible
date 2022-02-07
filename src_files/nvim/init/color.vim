@@ -81,27 +81,27 @@ autocmd BufNewFile,BufEnter,BufRead *.c,*.cpp,*.h,*.rs,*.py highlight MyFloat ct
 " ==================================
 source $VIMRUNTIME/macros/matchit.vim
 function! s:InitHighlightCurrentWord()
-  "if !exists("w:current_match")
-    let w:current_match = ""
-  "endif
-  "if !exists("w:current_matchit")
-    let w:current_matchit = ""
-  "endif
-  "if !exists("w:current_cword")
-    let w:current_cword = ""
-  "endif
-  "if !exists("w:current_matchit1")
-    let w:current_matchit1 = ""
-  "endif
-  "if !exists("w:current_matchit2")
-    let w:current_matchit2 = ""
-  "endif
-  "if !exists("w:current_matchit3")
-    let w:current_matchit3 = ""
-  "endif
-  "if !exists("w:current_matchit4")
-    let w:current_matchit4 = ""
-  "endif
+  if !exists("w:current_match")
+   let w:current_match = ""
+  endif
+  if !exists("w:current_matchit")
+   let w:current_matchit = ""
+  endif
+  if !exists("w:current_cword")
+   let w:current_cword = ""
+  endif
+  if !exists("w:current_matchit1")
+   let w:current_matchit1 = ""
+  endif
+  if !exists("w:current_matchit2")
+   let w:current_matchit2 = ""
+  endif
+  if !exists("w:current_matchit3")
+   let w:current_matchit3 = ""
+  endif
+  if !exists("w:current_matchit4")
+   let w:current_matchit4 = ""
+  endif
 endfunction
 
 " Get Matchit Pattern
