@@ -10,6 +10,8 @@ num_r = re.compile(r"""(_[0-9]+[\.a-zA-Z0-9]*)$""")
 ext_r = re.compile(r"""(\.[a-zA-Z0-9]+)$""")
 quote_r = re.compile(r"""\'""")
 and_r = re.compile(r"""&""")
+bracket_r = re.compile(r"""\(|\)""")
+jpspace_r = re.compile(r"""　""")
 #exc_r = re.compile(r"""!""")
 #open_r = re.compile(r"""\[""")
 #close_r = re.compile(r"""]""")
@@ -21,6 +23,8 @@ def usage():
     print("   -h: help")
     print("   -q: target is quote instead of space")
     print("   -a: target is and instead of space")
+    print("   -b: target is bracket instead of space")
+    print("   -s: target is japanese style space instead of space")
     exit()
 
 def spacefile_fmt():
@@ -36,10 +40,18 @@ def spacefile_fmt():
         _ret = and_r.findall(f)
         if get(sys.argv, 1) == "-a" and len(_ret) == 0:
             continue
+        _ret = bracket_r.findall(f)
+        if get(sys.argv, 1) == "-b" and len(_ret) == 0:
+            continue
+        _ret = jpspace_r.findall(f)
+        if get(sys.argv, 1) == "-s" and len(_ret) == 0:
+            continue
         num = 0
         n = r.sub("-", f)
         n = quote_r.sub("-", n)
         n = and_r.sub("-and-", n)
+        n = bracket_r.sub("-", n)
+        n = jpspace_r.sub("-", n)
         #n = exc_r.sub("-", n)
         #n = open_r.sub("-", n)
         #n = close_r.sub("-", n)
@@ -80,6 +92,12 @@ if get(sys.argv, 1) == "-q":
 
 if get(sys.argv, 1) == "-a":
     cmd = """ fd "&" """
+
+if get(sys.argv, 1) == "-b":
+    cmd = """ fd "\(|\)" """
+
+if get(sys.argv, 1) == "-s":
+    cmd = """ fd "　" """
 
 files, _ = Shell(cmd).readlines()
 spacefile_fmt()
