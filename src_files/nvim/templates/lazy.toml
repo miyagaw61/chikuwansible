@@ -201,16 +201,13 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
-hook_source = '''
+hook_add = '''
     map <Space>r [Space]r
-    " hook-shabadoubi_touch_henshin を有効にする
-    " shabadoubi_touch_henshin/wait でアニメーションの重みを設定できる
-    " 早いと思ったらこの値を大きくすれば遅くなる
     let g:quickrun_config = {
     \   "_" : {
-    \       "outputter/buffer/split" : ":botright 13",
+    \       "outputter/buffer/opener" : "belowright 13new",
     \       "runner" : "vimproc",
-    \       "runner/vimproc/updatetime" : 40,
+    \       "runner/vimproc/updatetime" : 40
     \   }
     \}
 '''

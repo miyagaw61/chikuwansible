@@ -53,7 +53,8 @@ nnoremap <silent>gGso :!echo %:p > /tmp/viming_path 2> /dev/null<CR><CR>
 
 "terminal mapping
 nnoremap [Space]d  :!echo "%:p:h" > /tmp/deol_cd.tmp<CR>:b bash<CR>icd $(cat /tmp/deol_cd.tmp);<Space>
-nnoremap [Space]r :QuickRun -args<Space>
+nnoremap [Space]r :w<CR>:silent !sync<CR>:QuickRun -args<Space>
+nnoremap [Space]t :w<CR>:silent !sync<CR>:QuickRun -type test<CR>
 nnoremap [Space]t  :Deol<CR>
 nnoremap <C-g>a :GitAdd %:p<CR>
 nnoremap <C-g>c :GitCommit %:p<Space>
