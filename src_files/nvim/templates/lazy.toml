@@ -199,6 +199,19 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'hsawaji/denite-ctags'
+on_source = ['denite.nvim']
+hook_add = '''
+augroup denite_settings
+  autocmd!
+  autocmd BufEnter *
+        \   if empty(&buftype)
+        \|      nnoremap <silent><buffer> <C-]> :<C-u>Denite ctags:`expand('<cword>')`<CR>
+        \|  endif
+augroup END
+'''
+
+[[plugins]]
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
 hook_add = '''
