@@ -37,9 +37,9 @@ alias pop="{{alias_pop}}"
 
 # alias safe_commands
 # ====================================
-alias rm="{{alias_remove}}"
-alias cp="{{alias_copy}}"
-alias mv="{{alias_move}}"
+alias rm="{{alias_rm}}"
+alias cp="{{alias_cp}}"
+alias mv="{{alias_mv}}"
 
 # alias ls
 # ====================================

@@ -17,9 +17,9 @@ if [[ "$program" = "python"* ]]; then
   done
 fi
 
-export PYENV_ROOT="/home/miyase256/docs/config_files/.pyenv"
+export PYENV_ROOT="{{config_files}}/.pyenv"
 if test "$(cat $PYENV_ROOT/version | grep 3.7.0)" ;then
     exec "/usr/bin/python2" "$@"
 else
-    exec "/home/miyase256/docs/config_files/.pyenv/libexec/pyenv" exec "$program" "$@"
+    exec "{{config_files}}/.pyenv/libexec/pyenv" exec "$program" "$@"
 fi

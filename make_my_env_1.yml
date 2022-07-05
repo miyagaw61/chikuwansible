@@ -2,17 +2,10 @@
   become: yes
   connection: local
   tasks:
-    - include_vars: vars/editable_others.yml
-    - include_vars: vars/editable_ubuntu14.yml
-      when: ansible_facts['distribution_major_version'] == "14"
-    - include_vars: vars/editable_ubuntu16.yml
-      when: ansible_facts['distribution_major_version'] == "16"
-    - include_vars: vars/editable_ubuntu18.yml
-      when: ansible_facts['distribution_major_version'] == "18"
-    - include_vars: vars/editable_ubuntu20.yml
-      when: ansible_facts['distribution_major_version'] == "20"
-    - include_vars: vars/editable.yml
     - include_vars: vars/uneditable.yml
+    - include_vars: vars/editable.yml
+    #- include_vars: vars/editable_ubuntu20.yml
+    #  when: ansible_facts['distribution_major_version'] == "20"
     - include: tasks/apt_update_upgrade.yml
     - include: tasks/apt.yml
     - include: tasks/make_directories.yml

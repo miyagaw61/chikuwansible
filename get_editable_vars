@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+echo ""
+echo "#######################################"
+echo [+] python3_pyenv_version
+echo "#######################################"
+apt search '^python3.[0-9]*$' | grep 'python3\.[0-9]*' --color=always
+
+echo ""
+echo "#######################################"
+echo [+] llvm_version
+echo "#######################################"
+apt search '^llvm-[0-9].*-dev' | grep 'llvm-[0-9\.]*-dev' --color=always
+
+echo ""
+echo "#######################################"
+echo [+] golang_version
+echo "#######################################"
+curl https://go.dev/dl/ | grep -o 'go[0-9]*\.[0-9]*\.[0-9]*\.linux-amd64.tar.gz' | head -10 | grep '[0-9]*\.[0-9]*\.[0-9]*' --color=always
+
+echo ""
+echo "#######################################"
+echo [+] global_version
+echo "#######################################"
+curl https://ftp.gnu.org/pub/gnu/global/ | grep -o 'global-[0-9\.]*\.tar.gz' | tail -10 | grep '[0-9\.]*' --color=always
+
+# echo ""
+# echo "#######################################"
+# echo [+] neovim_version
+# echo "#######################################"
+# curl https://github.com/neovim/neovim/releases | grep 'v[0-9\.][0-9\.]*.*nvim-linux64.tar.gz' | grep '[0-9][0-9]*\.[0-9][0-9\.]*'
+
+echo ""
+echo "#######################################"
+echo [+] your config
+echo "#######################################"
+cat vars/editable.yml | head -9
+

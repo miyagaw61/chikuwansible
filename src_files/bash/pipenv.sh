@@ -1,2 +1,2 @@
 #pipenv
-#ANSIBLE_PIPENVeval "$(pipenv --completion)"
+#ANSIBLE_PIPENVeval "$(_PIPENV_COMPLETE=bash_source pipenv)"

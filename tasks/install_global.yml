@@ -12,7 +12,7 @@
 
 - name: Download Global Tar Ball
   get_url:
-    url: "http://tamacom.com/global/global-{{global_version}}.tar.gz"
+    url: "https://ftp.gnu.org/pub/gnu/global/global-{{global_version}}.tar.gz"
     dest: "{{tmp}}/global-{{global_version}}.tar.gz"
 
 - name: Extract Global Tar Ball

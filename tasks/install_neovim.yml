@@ -84,6 +84,7 @@
   git:
     repo: https://github.com/Shougo/dein.vim
     dest: "{{nvim_config_files}}/repos/github.com/Shougo/dein.vim"
+    force: yes
 
 - name: Chown "nvim"
   file:

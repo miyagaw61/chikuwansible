@@ -1,7 +1,11 @@
-# User Name
+# Probably you have to edit these
 # =============================================
 git_user: "miyase256"
-user: "miyagi1024"
+user: "miya"
+python3_pyenv_version: "3.9.0"
+llvm_version: "12"
+golang_version: "1.18.3"
+global_version: "6.6.8"
 
 # Basic Directory Path
 # =============================================
@@ -42,10 +46,6 @@ rusgit_slack_channel: "@miyase256"
 git_email: "miyagaw61@gmail.com"
 git_token_file: "{{docs}}/git_token"
 
-# GoLang
-# =============================================
-golang_version: "1.14.3"
-
 # Python
 # =============================================
 python2_pyenv_version: "2.7.15"
@@ -55,12 +55,17 @@ python3_binary: "{{pyenv_root}}/shims/python3"
 host_python2_binary: "/usr/bin/python2"
 host_python3_binary: "/usr/bin/python3"
 host_pip_dir: "/usr/bin"
-host_python2_pip: "{{host_pip_dir}}/pip2"
-host_python3_pip: "{{host_pip_dir}}/pip3"
+host_python2_pip: "{{host_python2_binary}} -m pip"
+host_python3_pip: "{{host_python3_binary}} -m pip"
+
+# Golang
+# =============================================
+go_bin_base: "/usr/local"
+go_bin: "{{go_bin_base}}/go/bin"
 
 # Rust
 # =============================================
-rust_src_path: "$(rustc --print sysroot)/lib/rustlib/src/rust/library/"
+rust_src_path: "$({{home}}/.cargo/bin/rustc --print sysroot)/lib/rustlib/src/rust/library/"
 
 # IDA
 # =============================================
@@ -86,17 +91,6 @@ browser: "firefox"
 photo: "i_view"
 video: "mpcbe"
 audio: "mplayer"
-
-# Global
-# =============================================
-global_version: "6.6.4"
-
-# Delta
-# =============================================
-delta_version: "0.1.1"
-delta_name: "delta-{{delta_version}}-x86_64-unknown-linux-gnu"
-delta_tar_name: "{{delta_name}}.tar.gz"
-delta_release_url: "https://github.com/dandavison/delta/releases/download/{{delta_version}}/{{delta_tar_name}}"
 
 # Bashrc Aliases
 # =============================================

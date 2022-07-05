@@ -2,6 +2,7 @@
   git:
     repo: https://github.com/miyase256/fzf2nd
     dest: "{{home}}/.fzf"
+    force: yes
 
 - name: Install "fzf2nd"
   shell: bash -lc "yes y | {{home}}/.fzf/install"

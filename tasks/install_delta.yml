@@ -1,5 +1,5 @@
 - name: Install "delta" By Cargo
-  shell: bash -lc "cargo install --git https://github.com/dandavison/delta --force"
+  shell: bash -lc "cargo install git-delta --force"
   become: no
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"

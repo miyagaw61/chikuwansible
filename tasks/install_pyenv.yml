@@ -2,6 +2,7 @@
   git: 
     repo: https://github.com/pyenv/pyenv.git
     dest: "{{pyenv_root}}"
+    force: yes
 
 - name: Chown "pyenv_root"
   file:

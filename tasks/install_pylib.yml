@@ -3,3 +3,4 @@
   with_items:
     - name: "git+https://github.com/miyase256/enert"
     - name: "beautifulsoup4"
+    - name: "ansible"

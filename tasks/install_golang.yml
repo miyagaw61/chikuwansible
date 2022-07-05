@@ -1,24 +1,18 @@
-- name: Install Old Golang By Apt
-  apt:
-    name: "golang-{{golang_old_version}}-go"
-
 - name: Download Latest Golang
-  shell: "/usr/lib/go-{{golang_old_version}}/bin/go get golang.org/dl/go{{golang_version}}"
-  become: no
+  get_url:   
+    url: "https://go.dev/dl/go{{golang_version}}.linux-amd64.tar.gz"
+    dest: "{{tmp}}/go{{golang_version}}.linux-amd64.tar.gz"
 
 - name: Install Latest Golang
-  shell: "{{home}}/go/bin/go{{golang_version}} download"
+  shell: "rm -rf {{go_bin_base}}/go && tar -C {{go_bin_base}} -xzf go1.18.3.linux-amd64.tar.gz"
+  args:
+    chdir: "{{tmp}}"
   become: no
 
-- name: "Make Go Symbolic Link"
+- name: Chown "{{go_bin_base}}/go"
   file:
-    path: /usr/local/bin/go
-    src: "{{home}}/go/bin/go{{golang_version}}"
-    state: link
-
-- name: Chown "{{home}}/go"
-  file:
-    path: "{{home}}/go"
+    path: "{{go_bin_base}}/go"
     owner: "{{user}}"
     group: "{{user}}"
     recurse: yes
+

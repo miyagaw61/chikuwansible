@@ -1,5 +1,5 @@
 - name: Install ghq
-  shell: bash -lc "go get github.com/motemen/ghq"
+  shell: bash -lc "go install github.com/x-motemen/ghq@latest"
 
 - name: Copy ghq to binaries dir
   copy:
