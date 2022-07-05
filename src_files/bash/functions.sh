@@ -796,3 +796,44 @@ t() {
 goto() {
 	cd $(conpath $1)
 }
+
+rumt_cwd() {
+	echo 'lf -d 1' > Rumtfile.rumt_cwd
+	echo '(.*)' >> Rumtfile.rumt_cwd
+	for x in $@ ;do
+		echo -n "$x" >> Rumtfile.rumt_cwd
+		echo -n " " >> Rumtfile.rumt_cwd
+	done
+	echo "" >> Rumtfile.rumt_cwd
+	cat Rumtfile.rumt_cwd
+	rumt Rumtfile.rumt_cwd
+	\rm -rf Rumtfile.rumt_cwd
+}
+
+rumt_all() {
+	echo 'lf -a' > Rumtfile.rumt_all
+	echo '(.*)' >> Rumtfile.rumt_all
+	for x in $@ ;do
+		echo -n "$x" >> Rumtfile.rumt_all
+		echo -n " " >> Rumtfile.rumt_all
+	done
+	echo "" >> Rumtfile.rumt_all
+	rumt Rumtfile.rumt_all
+	\rm -rf Rumtfile.rumt_all
+}
+
+rumt1() {
+	if test ! "$rumt1_cmd" ;then
+		return 1
+	fi
+	echo "$rumt1_cmd" > Rumtfile.rumt1
+	echo '(.*)' >> Rumtfile.rumt1
+	for x in $@ ;do
+		echo -n "$x" >> Rumtfile.rumt1
+		echo -n " " >> Rumtfile.rumt1
+	done
+	echo "" >> Rumtfile.rumt1
+	cat Rumtfile.rumt1
+	rumt Rumtfile.rumt1
+	\rm -rf Rumtfile.rumt1
+}
