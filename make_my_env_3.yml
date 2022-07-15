@@ -21,3 +21,4 @@
     - include: tasks/install_delta.yml
     - include: tasks/install_cargotools.yml
     - include: tasks/install_safe_commands.yml
+    - include: tasks/install_rumt.yml

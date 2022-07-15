@@ -1,5 +1,9 @@
-- name: Clone DEIN Repository
+- name: Clone rumt
   git:
     repo: https://github.com/miyase256/rumt
-    dest: "{{binaries}}"
+    dest: "{{my_repos}}/rumt"
     force: yes
+
+- name: Move rumt binary to bin directory
+  shell: "mv {{my_repos}}/rumt/rumt {{binaries}}/rumt"
+
