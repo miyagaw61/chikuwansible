@@ -798,6 +798,10 @@ goto() {
 }
 
 rumt_cwd() {
+	if test $1 = "-h" ;then
+		echo 'Usage rumt_cwd <command>...'
+		return 1
+	fi
 	echo 'lf -d 1' > Rumtfile.rumt_cwd
 	echo '(.*)' >> Rumtfile.rumt_cwd
 	for x in $@ ;do
@@ -811,6 +815,10 @@ rumt_cwd() {
 }
 
 rumt_all() {
+	if test $1 = "-h" ;then
+		echo 'Usage rumt_all <command>...'
+		return 1
+	fi
 	echo 'lf -a' > Rumtfile.rumt_all
 	echo '(.*)' >> Rumtfile.rumt_all
 	for x in $@ ;do
@@ -823,6 +831,10 @@ rumt_all() {
 }
 
 rumt1() {
+	if test $1 = "-h" ;then
+		echo 'Usage rumt1_cmd=<command> rumt1 <command>...'
+		return 1
+	fi
 	if test ! "$rumt1_cmd" ;then
 		return 1
 	fi
