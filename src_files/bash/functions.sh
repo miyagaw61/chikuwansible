@@ -798,7 +798,7 @@ goto() {
 }
 
 rumt_cwd() {
-	if test $1 = "-h" ;then
+	if [[ $1 = "-h" ]] ;then
 		echo 'Usage rumt_cwd <command>...'
 		return 1
 	fi
@@ -815,7 +815,7 @@ rumt_cwd() {
 }
 
 rumt_all() {
-	if test $1 = "-h" ;then
+	if [[ $1 = "-h" ]] ;then
 		echo 'Usage rumt_all <command>...'
 		return 1
 	fi
@@ -831,7 +831,7 @@ rumt_all() {
 }
 
 rumt1() {
-	if test $1 = "-h" ;then
+	if [[ $1 = "-h" ]] ;then
 		echo 'Usage rumt1_cmd=<command> rumt1 <command>...'
 		return 1
 	fi
