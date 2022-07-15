@@ -6,6 +6,7 @@
     # log
     l = log --graph --topo-order -C -M --date=short --oneline --decorate=short
     l = log --graph --topo-order -C -M --pretty=format:\"< %h > %ad [%an] %Cgreen%d %Creset %s\" --date=short
+    l = log --graph --topo-order -C -M --pretty=format:\"< %h > %ad [%an:%ae] %Cgreen%d %Creset %s\" --date=short
     l1 = !git l HEAD~1..HEAD
     l2 = !git l HEAD~2..HEAD
     l3 = !git l HEAD~3..HEAD
@@ -13,8 +14,9 @@
     l3n = !"echo \"\n\n\n\n\"; git l HEAD~3..HEAD"
     l5 = !git l HEAD~5..HEAD
     l10 = !git l HEAD~10..HEAD
+    l10n = !"echo \"\n\n\n\n\"; git l HEAD~10..HEAD"
     l20 = !git l HEAD~20..HEAD
-    l20n = !"echo \"\n\n\n\n\"; git HEAD~20..HEAD"
+    l20n = !"echo \"\n\n\n\n\"; git l HEAD~20..HEAD"
     l30 = !git l HEAD~30..HEAD
     l40 = !git l HEAD~40..HEAD
     l50 = !git l HEAD~50..HEAD
@@ -26,8 +28,9 @@
     l-grep = !git l --pickaxe-regex -S
     l-msg = !git l --grep
     # diff
-	d = diff
-	dc = !git d --cached
+    d =  diff
+    d =  -c delta.side-by-side=true diff
+    dc = !git d --cached
     dw = !git d --color-words --word-diff-regex='\\\\w+|[^[:space:]]'
     dcw = !git d --cached --color-words --word-diff-regex='\\\\w+|[^[:space:]]'
     dr = "!f() { git fetch $1; git diff HEAD..remotes/$1/$(git rev-parse --abbrev-ref HEAD); }; f"
@@ -60,7 +63,8 @@
     rc = !git r --continue
     ra = !git r --abort
     # show
-	sh = show
+    sh =  -c delta.side-by-side=true show
+    sh =  show
     shw = show --color-words --word-diff-regex='\\\\w+|[^[:space:]]'
     # tag
     t = tag
@@ -116,7 +120,25 @@
     pager = less -iMR
     quotepath = false
     editor = nvim
-    pager = delta --plus-color="#013800" --minus-color="#340001" --theme='Monokai Extended'
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+    #width = -70
 
 [interactive]
     diffFilter = delta --color-only
+
+[credential]
+    helper = store
+
+[includeIf "gitdir:~/src/github.com/"]
+    path = ~/.gitconfig_github
