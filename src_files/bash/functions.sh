@@ -849,3 +849,7 @@ rumt1() {
 	rumt Rumtfile.rumt1
 	\rm -rf Rumtfile.rumt1
 }
+
+dojo() {
+	echo 'userland app debug on shell, library call, systemcall like strace: ltrace -f -S -o ltrace.txt'
+}
