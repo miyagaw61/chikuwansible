@@ -11,3 +11,4 @@
     - include: tasks/make_directories.yml
     - include: tasks/make_bashrc.yml
     - include: tasks/copy_files.yml
+    - include: tasks/install_bashlibs.yml

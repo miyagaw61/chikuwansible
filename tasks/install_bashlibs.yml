@@ -1,0 +1,22 @@
+- name: Clone "utils.sh"
+  git: 
+    repo: https://github.com/miyase256/utils.sh
+    dest: "{{my_repos}}/utils.sh"
+    force: yes
+
+- name: Chown "utils.sh"
+  file:
+    path: "{{my_repos}}/utils.sh"
+    owner: "{{user}}"
+    group: "{{user}}"
+    recurse: yes
+
+- name: Copy "utils.sh"
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "{{my_repos}}/utils.sh/utils.sh", dest: "{{binaries}}/utils.sh"}
+    - {src: "{{my_repos}}/utils.sh/ether.sh", dest: "{{binaries}}/ether.sh"}

@@ -850,6 +850,16 @@ rumt1() {
 	\rm -rf Rumtfile.rumt1
 }
 
+deline() {
+	if [[ $1 = "-h" ]] ;then
+		echo 'Usage: deline <flie> <regex>'
+		return 1
+	fi
+	if test ! "$rumt1_cmd" ;then
+		return 1
+	fi
+}
+
 dojo() {
 	echo 'userland app debug on shell, library call, systemcall like strace: ltrace -f -S -o ltrace.txt'
 }
