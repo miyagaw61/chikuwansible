@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-if [ "$UID" != "0" ] ;then
-  echo "Require root privilege"
-  exit 1
-fi
+#if [ "$UID" != "0" ] ;then
+#  echo "Require root privilege"
+#  exit 1
+#fi
 if [ $# -eq 0 -o "$1" = "-h" -o "$1" = "--help" ] ;then
     echo "Usage: chikuwansible-playbook PLAYBOOK_FILE"
     exit 1
 fi
 if [ -e ./chikuwansible-playbook ] ;then
-    ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh
+    #ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh -K
+    ansible-playbook ./$1 -K
 else
     echo "You can execute this command in chikuwansible directory"
 fi
