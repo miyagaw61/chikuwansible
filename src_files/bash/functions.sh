@@ -863,3 +863,20 @@ deline() {
 dojo() {
 	echo 'userland app debug on shell, library call, systemcall like strace: ltrace -f -S -o ltrace.txt'
 }
+
+# Use utils.sh
+
+deline() {
+	if ! IsAnyChar $1 || StrCmp $1 "-h" ;then
+		echo 'Usage: deline <file> <regex>'
+		return $FALURE
+	fi
+	file=$1
+	regex=$2
+	\rm -rf $file.deline.bak
+	cp $file $file.deline.bak
+	rm $file.deline.bak
+	cat $file | rg -v "$regex" > $file.deline.tmp
+	\mv $file.deline.tmp $file
+	return $SUCCESS
+}
