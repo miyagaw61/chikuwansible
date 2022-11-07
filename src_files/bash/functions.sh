@@ -1,3 +1,5 @@
+. ~/bin/utils.sh
+
 emp() {
     if test $# -eq 0 ;then
         cat $REPOS/mgtools/conf/jmp.conf
@@ -850,16 +852,6 @@ rumt1() {
 	\rm -rf Rumtfile.rumt1
 }
 
-deline() {
-	if [[ $1 = "-h" ]] ;then
-		echo 'Usage: deline <flie> <regex>'
-		return 1
-	fi
-	if test ! "$rumt1_cmd" ;then
-		return 1
-	fi
-}
-
 dojo() {
 	echo 'userland app debug on shell, library call, systemcall like strace: ltrace -f -S -o ltrace.txt'
 }
@@ -879,4 +871,9 @@ deline() {
 	cat $file | rg -v "$regex" > $file.deline.tmp
 	\mv $file.deline.tmp $file
 	return $SUCCESS
+}
+
+revlog() {
+	TARGET_REV=$1
+	git log --oneline `git show-branch --merge-base "${TARGET_REV}^1" "${TARGET_REV}^2"`..HEAD --reverse  -p -U20
 }
