@@ -212,24 +212,24 @@ $ rm -rf .sudo_password.txt
 ### Step5. Run Ansible-Playbook
 
 ```
-$ sudo ./make_my_env
+$ ./make_my_env
 ```
 
 OR
 
 ```
-$ sudo ./make_your_env
+$ ./make_your_env
 ```
 
 OR
 
 ```
-$ sudo ./chikuwansible-playbook hoge.yml # make_your_env.yml, etc
+$ ./chikuwansible-playbook hoge.yml # make_your_env.yml, etc
 ```
 
 OR
 
 ```
-$ sudo ./chikuwansible-task tasks/hoge.yml # tasks/install_rust.yml, etc
+$ ./chikuwansible-task tasks/hoge.yml # tasks/install_rust.yml, etc
 ```
 

@@ -5,6 +5,7 @@
   become: no
 
 - name: Chown "pyenv_root"
+  become: yes
   file:
     path: "{{pyenv_root}}"
     owner: "{{user}}"
@@ -18,6 +19,7 @@
   become: no
 
 - name: Chown "pyenv_root"
+  become: yes
   file:
     path: "{{pyenv_root}}"
     owner: "{{user}}"
@@ -39,6 +41,7 @@
 #
 
 - name: Install Each Host Pip By Apt (ubntu14~19)
+  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: python-pip
@@ -50,6 +53,7 @@
 #
 
 - name: Install Host Python2 By Apt (ubuntu20)
+  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: python2
@@ -64,6 +68,7 @@
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Install Host Pip3 By Apt (ubuntu20)
+  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: python3-pip

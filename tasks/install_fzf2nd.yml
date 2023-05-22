@@ -1,6 +1,6 @@
 - name: Clone "fzf2nd"
   git:
-    repo: https://github.com/miyase256/fzf2nd
+    repo: "https://{{git_token}}github.com/miyase256/fzf2nd"
     dest: "{{home}}/.fzf"
     force: yes
 

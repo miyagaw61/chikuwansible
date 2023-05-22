@@ -11,7 +11,7 @@
     mode: "u=rwx,g=rwx,o=rwx"
 
 - name: Execute Rust Installer
-  shell: "{{tmp}}/rust_installer.sh -y"
+  shell: bash -lc "{{tmp}}/rust_installer.sh -y"
   args:
     chdir: "{{tmp}}"
   become: no

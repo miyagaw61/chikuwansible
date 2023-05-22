@@ -1,13 +1,15 @@
 - hosts: localhost
-  become: yes
   connection: local
   tasks:
     - include_vars: vars/uneditable.yml
     - include_vars: vars/editable.yml
-    #- include_vars: vars/editable_ubuntu20.yml
-    #  when: ansible_facts['distribution_major_version'] == "20"
-    - include: tasks/my_scripts.yml
-    - include: tasks/install_pyenv.yml
-    - include: tasks/install_pyenv_versions.yml
-    - include: tasks/install_pipenv.yml
-    - include: tasks/install_pylib.yml
+    - import_tasks:
+        file: tasks/my_scripts.yml
+    - import_tasks:
+        file: tasks/install_pyenv.yml
+    - import_tasks:
+        file: tasks/install_pyenv_versions.yml
+    - import_tasks:
+        file: tasks/install_pipenv.yml
+    - import_tasks:
+        file: tasks/install_pylib.yml

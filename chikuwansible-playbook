@@ -8,8 +8,7 @@ if [ $# -eq 0 -o "$1" = "-h" -o "$1" = "--help" ] ;then
     exit 1
 fi
 if [ -e ./chikuwansible-playbook ] ;then
-    #ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh -K
-    ansible-playbook ./$1 -K
+    ansible-playbook ./$1 --extra-vars="@vault.yml" --vault-password-file=vault.sh
 else
     echo "You can execute this command in chikuwansible directory"
 fi

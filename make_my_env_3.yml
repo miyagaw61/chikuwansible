@@ -1,24 +1,35 @@
 - hosts: localhost
-  become: yes
   connection: local
   tasks:
     - include_vars: vars/uneditable.yml
-     include_vars: vars/editable.yml
-     #- include_vars: vars/editable_ubuntu20.yml
-     #  when: ansible_facts['distribution_major_version'] == "20"
-    - include: tasks/install_rust.yml
-    - include: tasks/install_rust_nightly.yml
-    - include: tasks/install_golang.yml
-    - include: tasks/install_exa.yml
-    - include: tasks/install_ripgrep.yml
-    - include: tasks/install_rusgit.yml
-    - include: tasks/install_fd.yml
-    - include: tasks/install_lf.yml
-    - include: tasks/install_ghq.yml
-    - include: tasks/install_fzf2nd.yml
-    - include: tasks/install_neovim.yml
-    - include: tasks/install_global.yml
-    - include: tasks/install_delta.yml
-    - include: tasks/install_cargotools.yml
-    - include: tasks/install_safe_commands.yml
-    - include: tasks/install_rumt.yml
+    - include_vars: vars/editable.yml
+    - import_tasks:
+        file: tasks/install_rust.yml
+    - import_tasks:
+        file: tasks/install_golang.yml
+    - import_tasks:
+        file: tasks/install_exa.yml
+    - import_tasks:
+        file: tasks/install_ripgrep.yml
+    - import_tasks:
+        file: tasks/install_rusgit.yml
+    - import_tasks:
+        file: tasks/install_fd.yml
+    - import_tasks:
+        file: tasks/install_lf.yml
+    - import_tasks:
+        file: tasks/install_ghq.yml
+    - import_tasks:
+        file: tasks/install_fzf2nd.yml
+    - import_tasks:
+        file: tasks/install_neovim.yml
+    - import_tasks:
+        file: tasks/install_global.yml
+    - import_tasks:
+        file: tasks/install_delta.yml
+    - import_tasks:
+        file: tasks/install_cargotools.yml
+    - import_tasks:
+        file: tasks/install_safe_commands.yml
+    - import_tasks:
+        file: tasks/install_rumt.yml

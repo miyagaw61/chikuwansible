@@ -3,6 +3,7 @@
   become: no
 
 - name: Install Packages By Apt
+  become: yes
   apt:
     name: "{{item}}"
   with_items:

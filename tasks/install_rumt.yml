@@ -1,6 +1,6 @@
 - name: Clone rumt
   git:
-    repo: https://github.com/miyase256/rumt
+    repo: "https://{{git_token}}github.com/miyase256/rumt"
     dest: "{{my_repos}}/rumt"
     force: yes
 

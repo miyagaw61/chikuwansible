@@ -1,14 +1,17 @@
 - hosts: localhost
-  become: yes
   connection: local
   tasks:
     - include_vars: vars/uneditable.yml
-    - include_vars: vars/editable.yml
-    #- include_vars: vars/editable_ubuntu20.yml
-    #  when: ansible_facts['distribution_major_version'] == "20"
-    - include: tasks/apt_update_upgrade.yml
-    - include: tasks/apt.yml
-    - include: tasks/make_directories.yml
-    - include: tasks/make_bashrc.yml
-    - include: tasks/copy_files.yml
-    - include: tasks/install_bashlibs.yml
+     include_vars: vars/editable.yml
+    - import_tasks:
+        file: tasks/apt_update_upgrade.yml
+    - import_tasks:
+        file: tasks/apt.yml
+    - import_tasks:
+        file: tasks/make_directories.yml
+    - import_tasks:
+        file: tasks/make_bashrc.yml
+    - import_tasks:
+        file: tasks/copy_files.yml
+    - import_tasks:
+        file: tasks/install_bashlibs.yml

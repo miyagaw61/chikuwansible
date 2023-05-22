@@ -20,10 +20,13 @@ vault_init() {
         echo "$2: FILE NOT FOUND"
         exit 1
     fi
-    echo "ansible_sudo_pass: $(sudo cat $1)" > vault.yml
+    echo "ansible_sudo_pass: $(cat $1)" > vault.yml
+    echo "ansible_become_pass: $(cat $1)" >> vault.yml
+    echo "password: $(cat $1)" >> vault.yml
     echo '#!/bin/bash' > vault.sh
-    echo "echo \$(sudo cat $2)" >> vault.sh
+    echo "echo \$(cat $2)" >> vault.sh
     sudo chmod +x vault.sh
+    cat vault.yml
     ansible-vault encrypt vault.yml --vault-password-file=vault.sh
 }
 

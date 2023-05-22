@@ -4,12 +4,13 @@
     dest: "{{tmp}}/go{{golang_version}}.linux-amd64.tar.gz"
 
 - name: Install Latest Golang
-  shell: "rm -rf {{go_bin_base}}/go && tar -C {{go_bin_base}} -xzf go1.18.3.linux-amd64.tar.gz"
+  shell: "rm -rf {{go_bin_base}}/go && tar -C {{go_bin_base}} -xzf go{{golang_version}}.linux-amd64.tar.gz"
   args:
     chdir: "{{tmp}}"
   become: no
 
 - name: Chown "{{go_bin_base}}/go"
+  become: yes
   file:
     path: "{{go_bin_base}}/go"
     owner: "{{user}}"

@@ -1,10 +1,11 @@
 - name: Clone "utils.sh"
   git: 
-    repo: https://github.com/miyase256/utils.sh
+    repo: "https://{{git_token}}github.com/miyase256/utils.sh"
     dest: "{{my_repos}}/utils.sh"
     force: yes
 
 - name: Chown "utils.sh"
+  become: yes
   file:
     path: "{{my_repos}}/utils.sh"
     owner: "{{user}}"

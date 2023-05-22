@@ -16,6 +16,15 @@
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
 
+- name: Make .rusty-tags Directory
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - "{{home}}/.rusty-tags"
+
 - name: Copy config.toml of rusty-tags
   copy:
     src: "{{item.src}}"
@@ -23,4 +32,4 @@
     owner: "{{user}}"
     group: "{{user}}"
   with_items:
-    - {src: "src_files/rusty-tags/config.toml", dest: "{{home}}/.rusty-tags/config.toml"}
+    - {src: "src_files/rusty-tags/rusty-tags_config.toml", dest: "{{home}}/.rusty-tags/config.toml"}
