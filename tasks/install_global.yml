@@ -1,9 +1,9 @@
 - name: Install Pygments
   shell: "{{python3_binary}} -m pip install pygments"
-  become: no
+  become: yes
+  become_user: "{{user}}"
 
 - name: Install Packages By Apt
-  become: yes
   apt:
     name: "{{item}}"
   with_items:
@@ -20,7 +20,8 @@
   shell: "tar zxvf global-{{global_version}}.tar.gz"
   args:
     chdir: "{{tmp}}"
-  become: no
+  become: yes
+  become_user: "{{user}}"
 
 - name: Copy Config File
   copy:
@@ -33,32 +34,38 @@
 
 - name: Edit Config File 1
   shell: "sed -E 's@:tc=native:@:tc=native:tc=pygments:@g' -i {{home}}/.globalrc"
-  become: no
+  become: yes
+  become_user: "{{user}}"
 
 - name: Edit Config File 2
   shell: "sed -E 's@:langmap=c\\\\:.c.h@:langmap=c\\\\:.c@g' -i {{home}}/.globalrc"
-  become: no
+  become: yes
+  become_user: "{{user}}"
 
 - name: Edit Config File 3
   shell: "sed -E 's@,cpp\\\\:.c@,cpp\\\\:.h.c@g' -i {{home}}/.globalrc"
-  become: no
+  become: yes
+  become_user: "{{user}}"
 
 - name: Edit Config File 4
   shell: "sed -E 's@min.css:@min.css,*.mo:@g' -i {{home}}/.globalrc"
-  become: no
+  become: yes
+  become_user: "{{user}}"
 
 - name: Build and Install phase1 (ubuntu14..19)
   shell: "./configure --prefix=/usr/local"
   args:
     chdir: "{{tmp}}/global-{{global_version}}"
-  become: no
+  become: yes
+  become_user: "{{user}}"
   when: ansible_facts['distribution_major_version'] <= "19"
 
 - name: Build and Install phase2 (ubuntu14..19)
   shell: "make"
   args:
     chdir: "{{tmp}}/global-{{global_version}}"
-  become: no
+  become: yes
+  become_user: "{{user}}"
   when: ansible_facts['distribution_major_version'] <= "19"
 
 - name: Build and Install phase3 (ubuntu14..19)

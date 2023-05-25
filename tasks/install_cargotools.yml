@@ -1,18 +1,21 @@
 - name: Install cargo-edit
   shell: bash -lc "cargo install cargo-edit"
-  become: no
+  become: yes
+  become_user: "{{user}}"
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
 
 - name: Install cargo-watch
   shell: bash -lc "cargo install cargo-watch"
-  become: no
+  become: yes
+  become_user: "{{user}}"
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
 
 - name: Install rusty-tags
   shell: bash -lc "cargo install rusty-tags"
-  become: no
+  become: yes
+  become_user: "{{user}}"
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
 

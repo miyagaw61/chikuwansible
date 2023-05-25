@@ -1,5 +1,4 @@
 - name: Install Basic Packages By Apt
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: curl
@@ -38,35 +37,30 @@
     - name: openssh-server
 
 - name: Install Basic Packages By Apt (ubuntu14)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: libtool
   when: ansible_facts['distribution_major_version'] == "14"
 
 - name: Install Basic Packages By Apt (ubuntu20)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: libtool-bin
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Install Basic Packages By Apt (others)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: libtool-bin
   when: ansible_facts['distribution_major_version'] != "14" and ansible_facts['distribution_major_version'] != "20"
 
 - name: Install LLVM By Apt
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: llvm-{{llvm_version}}
     - name: libclang-{{llvm_version}}-dev
 
 - name: Install GUI Packages By Apt (ubuntu14)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: libglfw2
@@ -74,7 +68,6 @@
   when: ansible_facts['distribution_major_version'] == "14"
 
 - name: Install GUI Packages By Apt (ubuntu20, others)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: libglfw3
@@ -82,7 +75,6 @@
   when: ansible_facts['distribution_major_version'] != "14"
 
 - name: Install GUI Packages By Apt (common)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: xorg
@@ -98,7 +90,6 @@
     - name: libsdl2-mixer-dev
 
 - name: Install Useful Tools By Apt (not ubuntu14)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: translate-shell
@@ -106,7 +97,6 @@
   when: ansible_facts['distribution_major_version'] != "14"
 
 - name: Install Useful Tools By Apt (common)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: traceroute
@@ -136,7 +126,6 @@
   failed_when: False
 
 - name: Install Tools For Development Kernel By Apt
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: "linux-headers-{{result.stdout}}"
@@ -150,4 +139,4 @@
     - name: zlib1g-dev
     - name: ccache
     - name: libelf-dev
-  when: "'Microsoft' not in result.stdout"
+  when: "'icrosoft' not in result.stdout"

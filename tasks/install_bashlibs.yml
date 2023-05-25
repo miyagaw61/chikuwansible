@@ -5,7 +5,6 @@
     force: yes
 
 - name: Chown "utils.sh"
-  become: yes
   file:
     path: "{{my_repos}}/utils.sh"
     owner: "{{user}}"

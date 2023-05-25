@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#set -eu
-#if [ "$UID" != "0" ] ;then
-#  echo "Require root privilege"
-#  exit 1
-#fi
+set -eu
+if [ "$UID" != "0" ] ;then
+  echo "Require root privilege"
+  exit 1
+fi
 ./chikuwansible-playbook make_my_env_1.yml
 ./chikuwansible-playbook make_my_env_2.yml
 ./chikuwansible-playbook make_my_env_3.yml

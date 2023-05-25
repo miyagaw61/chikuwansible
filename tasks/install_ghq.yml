@@ -1,3 +1,4 @@
 - name: Install ghq
   shell: bash -lc "{{go_bin}}/go install github.com/x-motemen/ghq@latest"
-  become: no
+  become: yes
+  become_user: "{{user}}"

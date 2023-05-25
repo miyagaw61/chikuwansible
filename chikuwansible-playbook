@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#if [ "$UID" != "0" ] ;then
-#  echo "Require root privilege"
-#  exit 1
-#fi
+if [ "$UID" != "0" ] ;then
+  echo "Require root privilege"
+  exit 1
+fi
 if [ $# -eq 0 -o "$1" = "-h" -o "$1" = "--help" ] ;then
     echo "Usage: chikuwansible-playbook PLAYBOOK_FILE"
     exit 1

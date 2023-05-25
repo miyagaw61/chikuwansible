@@ -2,7 +2,7 @@
   connection: local
   tasks:
     - include_vars: vars/uneditable.yml
-     include_vars: vars/editable.yml
+    - include_vars: vars/editable.yml
     - import_tasks:
         file: tasks/apt_update_upgrade.yml
     - import_tasks:

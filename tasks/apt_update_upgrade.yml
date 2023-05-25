@@ -1,7 +1,5 @@
 - name: Apt Update
-  become: yes
   apt: update_cache=yes
 
 - name: Apt Upgrade
-  become: yes
   apt: upgrade=safe

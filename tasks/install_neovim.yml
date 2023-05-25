@@ -7,12 +7,10 @@
 - name: Install Basic Packages For NeoVim By Apt
   apt: 
     name: software-properties-common 
-  become: yes
 
 - name: Install NeoVim By Apt
   apt: 
     name: neovim
-  become: yes
 
 - name: Update NeoVim By Pip
   shell: bash -lc "{{host_python3_pip}} install -U neovim"
@@ -20,7 +18,6 @@
 - name: Install Packages For NeoVim's Plugins By Apt
   apt:
     name: "{{item.name}}"
-  become: yes
   with_items:
     - name: silversearcher-ag
     - name: "llvm-{{llvm_version}}"
@@ -36,7 +33,6 @@
   shell: bash -lc "python -m pip install -U neovim-remote"
 
 - name: Chown "/usr/local/lib/"
-  become: yes
   file:
     path: "/usr/local/lib/"
     owner: "{{user}}"
@@ -92,7 +88,6 @@
     force: yes
 
 - name: Chown "nvim"
-  become: yes
   file:
     path: "{{nvim_config_files}}"
     owner: "{{user}}"

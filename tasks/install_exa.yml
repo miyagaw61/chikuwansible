@@ -1,5 +1,4 @@
 - name: Install Basic Packages By Apt
-  become: yes
   apt:
     name: "{{item}}"
   with_items:
@@ -7,7 +6,8 @@
     - zlib1g-dev
 
 - name: Install Exa By Cargo
-  become: no
+  become: yes
+  become_user: "{{user}}"
   shell: bash -lc "cargo install exa --force"
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"

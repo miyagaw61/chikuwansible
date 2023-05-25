@@ -1,25 +1,35 @@
+- name: Check if python2 is already installed or not
+  shell: "ls {{config_files}}/.pyenv/versions/{{python2_pyenv_version}}"
+  register: result
+
 - name: Install Python2
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
   args:
     chdir: "{{chikuwansible_path}}"
-  become: no
+  when: result.rc != 0
+  become: yes
+  become_user: "{{user}}"
 
 - name: Chown "pyenv_root"
-  become: yes
   file:
     path: "{{pyenv_root}}"
     owner: "{{user}}"
     group: "{{user}}"
     recurse: yes
 
+- name: Check if python3 is already installed or not
+  shell: "ls {{config_files}}/.pyenv/versions/{{python3_pyenv_version}}"
+  register: result
+
 - name: Install Python3
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python3_pyenv_version}}"
   args:
     chdir: "{{chikuwansible_path}}"
-  become: no
+  when: result.rc != 0
+  become: yes
+  become_user: "{{user}}"
 
 - name: Chown "pyenv_root"
-  become: yes
   file:
     path: "{{pyenv_root}}"
     owner: "{{user}}"
@@ -41,7 +51,6 @@
 #
 
 - name: Install Each Host Pip By Apt (ubntu14~19)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: python-pip
@@ -53,7 +62,6 @@
 #
 
 - name: Install Host Python2 By Apt (ubuntu20)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: python2
@@ -68,7 +76,6 @@
   when: ansible_facts['distribution_major_version'] == "20"
 
 - name: Install Host Pip3 By Apt (ubuntu20)
-  become: yes
   apt: "name={{item.name}}"
   with_items:
     - name: python3-pip

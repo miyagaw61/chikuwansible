@@ -8,19 +8,33 @@
     - "{{bash_config_files}}"
     - "{{bash_config_files}}/python"
 
-- name: Make "bashrc" From Template
-  template:
+- name: Check if backuped file is already exists or not
+  shell: "ls {{home}}/.bashrc.bak"
+  register: result
+
+- name: Backup File For Bashrc
+  copy:
     src: "{{item.src}}"
     dest: "{{item.dest}}"
     owner: "{{user}}"
     group: "{{user}}"
   with_items:
     - {src: "{{home}}/.bashrc", dest: "{{home}}/.bashrc.bak"}
+  when: result.rc != 0
+
+- name: Check if backuped file is already exists or not
+  shell: "ls /root/.bashrc.bak"
+  register: result
+
+- name: Backup File For Bashrc
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
     - {src: "/root/.bashrc", dest: "/root/.bashrc.bak"}
-    - {src: "src_files/bash/templates/bashrc", dest: "{{home}}/.bashrc"}
-    - {src: "src_files/bash/templates/exports.sh", dest: "{{bash_config_files}}/exports.sh"}
-    - {src: "src_files/bash/templates/aliases.sh", dest: "{{bash_config_files}}/aliases.sh"}
-    - {src: "src_files/bash/templates/pyenv.sh", dest: "{{bash_config_files}}/pyenv.sh"}
+  when: result.rc != 0
 
 - name: Copy Files For Bashrc
   copy:
@@ -42,3 +56,15 @@
     - {src: "src_files/bash/tmp.sh", dest: "{{bash_config_files}}/tmp.sh"}
     - {src: "src_files/bash/inputrc", dest: "{{home}}/.inputrc"}
     - {src: "{{home}}/.bashrc", dest: "/root/.bashrc"}
+
+- name: Make "bashrc" From Template
+  template:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "src_files/bash/templates/bashrc", dest: "{{home}}/.bashrc"}
+    - {src: "src_files/bash/templates/exports.sh", dest: "{{bash_config_files}}/exports.sh"}
+    - {src: "src_files/bash/templates/aliases.sh", dest: "{{bash_config_files}}/aliases.sh"}
+    - {src: "src_files/bash/templates/pyenv.sh", dest: "{{bash_config_files}}/pyenv.sh"}

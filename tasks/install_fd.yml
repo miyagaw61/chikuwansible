@@ -1,5 +1,6 @@
 - name: Install "fd" By Cargo
   shell: bash -lc "cargo install --git https://github.com/sharkdp/fd --force"
-  become: no
+  become: yes
+  become_user: "{{user}}"
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"

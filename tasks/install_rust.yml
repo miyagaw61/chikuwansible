@@ -14,4 +14,5 @@
   shell: bash -lc "{{tmp}}/rust_installer.sh -y"
   args:
     chdir: "{{tmp}}"
-  become: no
+  become: yes
+  become_user: "{{user}}"
