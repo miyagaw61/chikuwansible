@@ -9,8 +9,9 @@ sudo apt install ansible -y
 
 if test ! -e /usr/bin/python ;then
 
-echo "============================="
+echo "========================================================"
 echo "You must have /usr/bin/python"
-echo "============================="
+echo "(ex) sudo ln -s /usr/bin/python{version} /usr/bin/python"
+echo "========================================================"
 
 fi

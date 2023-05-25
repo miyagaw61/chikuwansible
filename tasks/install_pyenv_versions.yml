@@ -1,6 +1,7 @@
 - name: Check if python2 is already installed or not
   shell: "ls {{config_files}}/.pyenv/versions/{{python2_pyenv_version}}"
   register: result
+  failed_when: result.rc > 2
 
 - name: Install Python2
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python2_pyenv_version}}"
@@ -20,6 +21,7 @@
 - name: Check if python3 is already installed or not
   shell: "ls {{config_files}}/.pyenv/versions/{{python3_pyenv_version}}"
   register: result
+  failed_when: result.rc > 2
 
 - name: Install Python3
   shell: "{{chikuwansible_path}}/install_python.sh {{pyenv_root}} {{python3_pyenv_version}}"

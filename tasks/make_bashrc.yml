@@ -8,9 +8,10 @@
     - "{{bash_config_files}}"
     - "{{bash_config_files}}/python"
 
-- name: Check if backuped file is already exists or not
+- name: Check if backuped file already exists or not
   shell: "ls {{home}}/.bashrc.bak"
   register: result
+  failed_when: result.rc > 2
 
 - name: Backup File For Bashrc
   copy:
@@ -22,9 +23,10 @@
     - {src: "{{home}}/.bashrc", dest: "{{home}}/.bashrc.bak"}
   when: result.rc != 0
 
-- name: Check if backuped file is already exists or not
+- name: Check if backuped file already exists or not
   shell: "ls /root/.bashrc.bak"
   register: result
+  failed_when: result.rc > 2
 
 - name: Backup File For Bashrc
   copy:
