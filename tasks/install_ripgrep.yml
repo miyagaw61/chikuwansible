@@ -1,4 +1,6 @@
 - name: Install Ripgrep By Cargo
+  become: yes
+  become_user: "{{user}}"
   shell: bash -lc "cargo install ripgrep --force"
   environment:
     PATH: "{{ansible_env.PATH}}:{{home}}/.cargo/bin"
