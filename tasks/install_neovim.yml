@@ -1,12 +1,15 @@
-#- name: Add Apt-Repository For NeoVim
-#  apt_repository: repo=ppa:neovim-ppa/unstable
-#
-#- name: Apt Update
-#  apt: update_cache=yes
+- name: Add Apt-Repository For NeoVim
+  apt_repository:
+    repo: ppa:neovim-ppa/stable
+
+- name: Apt Update
+  apt: update_cache=yes
 
 - name: Install Basic Packages For NeoVim By Apt
   apt: 
-    name: software-properties-common 
+    name: "{{item.name}}"
+  with_items:
+    - name: software-properties-common 
 
 - name: Install NeoVim By Apt
   apt: 
