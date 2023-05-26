@@ -35,6 +35,11 @@
     - name: socat
     - name: cifs-utils
     - name: openssh-server
+    - name: ninja-build
+    - name: gettext
+    - name: g++
+    - name: pkg-config
+    - name: unzip
 
 - name: Install Basic Packages By Apt (ubuntu14)
   apt: "name={{item.name}}"
