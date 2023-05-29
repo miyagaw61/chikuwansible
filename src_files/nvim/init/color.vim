@@ -165,15 +165,31 @@ endfunction
 
 " Highlight Color List
 " ====================
+
+" CurrentWord is not current word when match
 highlight CurrentWord term=NONE cterm=bold ctermbg=154 ctermfg=273
 highlight CurrentWord term=NONE cterm=bold ctermbg=22 ctermfg=255
 highlight CurrentWord term=NONE ctermbg=19 ctermfg=NONE
+" greenback white
 highlight CurrentWord term=NONE cterm=bold ctermbg=10 ctermfg=273
 
-highlight MatchitWord term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
+" MatchParen is partner symbol
+" purpleback white
 highlight MatchParen term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
+" blueback white
+highlight MatchParen term=NONE ctermbg=Blue ctermfg=2 cterm=bold
+
+" MatchitWord is partner word
+" purpleback white
+highlight MatchitWord term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
+
+" CurrentCword is current word when match
+" whiteback red
+highlight CurrentCword term=NONE ctermbg=15 ctermfg=1 cterm=bold
+" waterback white
 highlight CurrentCword term=NONE ctermbg=14 ctermfg=273 cterm=bold
 
+" MatchitN is for many depth match
 highlight Matchit1 term=NONE ctermbg=brown ctermfg=273 cterm=bold
 highlight Matchit2 term=NONE ctermbg=blue ctermfg=273 cterm=bold
 highlight Matchit3 term=NONE ctermbg=100 ctermfg=273 cterm=bold
