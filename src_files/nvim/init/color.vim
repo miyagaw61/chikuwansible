@@ -178,6 +178,8 @@ highlight CurrentWord term=NONE cterm=bold ctermbg=10 ctermfg=273
 highlight MatchParen term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
 " blueback white
 highlight MatchParen term=NONE ctermbg=Blue ctermfg=2 cterm=bold
+" blueback yellow
+highlight MatchParen term=NONE ctermbg=Blue ctermfg=Yellow cterm=bold
 
 " MatchitWord is partner word
 " purpleback white
@@ -188,6 +190,8 @@ highlight MatchitWord term=NONE ctermbg=DarkMagenta ctermfg=273 cterm=bold
 highlight CurrentCword term=NONE ctermbg=15 ctermfg=1 cterm=bold
 " waterback white
 highlight CurrentCword term=NONE ctermbg=14 ctermfg=273 cterm=bold
+" blueback yellow
+highlight CurrentCword term=NONE ctermbg=Blue ctermfg=Yellow cterm=bold
 
 " MatchitN is for many depth match
 highlight Matchit1 term=NONE ctermbg=brown ctermfg=273 cterm=bold
