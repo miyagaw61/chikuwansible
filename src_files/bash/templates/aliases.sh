@@ -35,12 +35,6 @@ alias cscope_build="{{alias_cscope_build}}"
 alias push="{{alias_push}}"
 alias pop="{{alias_pop}}"
 
-# alias safe_commands
-# ====================================
-alias rm="{{alias_rm}}"
-alias cp="{{alias_cp}}"
-alias mv="{{alias_mv}}"
-
 # alias ls
 # ====================================
 alias ls="{{alias_ls}}"

@@ -126,9 +126,6 @@ alias_ida: "nohup sudo {{program}}/idafree-{{ida_version}}/ida64 > /tmp/ida_outp
 alias_ghidra: "sudo {{program}}/ghidra_{{ghidra_version}}/ghidraRun"
 alias_kata: "git commit -m '\\\"\\@ <- これカタツムリみたい'"
 alias_cscope_build: "cscope -b -q -k"
-alias_rm: "remove"
-alias_cp: "copy"
-alias_mv: "move"
 alias_push: "fstash push"
 alias_pop: "fstash pop"
 #### alias ls ####

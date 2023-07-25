@@ -30,6 +30,6 @@
     - import_tasks:
         file: tasks/install_cargotools.yml
     - import_tasks:
-        file: tasks/install_safe_commands.yml
+        file: tasks/install_safe.yml
     - import_tasks:
         file: tasks/install_rumt.yml

@@ -1,0 +1,29 @@
+- name: Clone "safe"
+  git:
+    repo: "https://{{git_token}}github.com/miyase256/safe"
+    dest: "{{repos}}/safe"
+    force: yes
+
+- name: Copy "safe" to bin
+  copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+  with_items:
+    - {src: "{{repos}}/safe/safe", dest: "{{binaries}}/safe"}
+    - {src: "{{repos}}/safe/c", dest: "{{binaries}}/c"}
+    - {src: "{{repos}}/safe/m", dest: "{{binaries}}/m"}
+    - {src: "{{repos}}/safe/r", dest: "{{binaries}}/r"}
+
+- name: Permit safe commands To Execute
+  file:
+    path: "{{item.path}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "u=rwx,g=rwx,o=rwx"
+  with_items:
+    - {path: "{{binaries}}/safe"}
+    - {path: "{{binaries}}/c"}
+    - {path: "{{binaries}}/m"}
+    - {path: "{{binaries}}/r"}
