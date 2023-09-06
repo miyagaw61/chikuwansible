@@ -1,6 +1,6 @@
 - name: Clone "safe"
   git:
-    repo: "https://{{git_token}}github.com/miyase256/safe"
+    repo: "https://{{git_token}}github.com/miyagaw61/safe"
     dest: "{{repos}}/safe"
     force: yes
 

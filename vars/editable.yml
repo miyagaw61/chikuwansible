@@ -1,6 +1,6 @@
 # Probably you have to edit these
 # =============================================
-git_user: "miyase256"
+git_user: "miyagaw61"
 user: "miya"
 python3_pyenv_version: "3.9.0"
 llvm_version: "12"
@@ -29,7 +29,7 @@ nvim_logfile_dir: "{{home}}/.cache/nvim/log"
 
 # EXGDB
 # =============================================
-exgdbpath: "{{repos}}/miyase256/exgdb"
+exgdbpath: "{{repos}}/miyagaw61/exgdb"
 
 
 # JDK
@@ -40,7 +40,7 @@ java_home: '{{program}}/jdk-11.0.2/'
 # =============================================
 rusgit_slack_url_file: "{{docs}}/slack_url"
 rusgit_slack_url: "$(cat {{rusgit_slack_url_file}})"
-rusgit_slack_channel: "@miyase256"
+rusgit_slack_channel: "@miyagaw61"
 
 # Git
 # =============================================

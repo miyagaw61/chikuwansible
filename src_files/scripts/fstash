@@ -16,7 +16,7 @@ def usage(err_no=0):
     print("  fstash show")
     if err_no == -1:
         print("Error: No such command: copy")
-        print("Hint: Please install https://github.com/miyase256/safe_commands")
+        print("Hint: Please install https://github.com/miyagaw61/safe_commands")
     exit()
 
 def init():

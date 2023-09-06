@@ -1,5 +1,5 @@
 - name: Install "rusgit" By Cargo
-  shell: bash -lc "cargo install --git https://github.com/miyase256/rusgit --force"
+  shell: bash -lc "cargo install --git https://github.com/miyagaw61/rusgit --force"
   become: yes
   become_user: "{{user}}"
   environment:

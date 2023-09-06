@@ -1,6 +1,6 @@
 - name: Install Basic Libraries By Pip
   shell: bash -lc "{{python3_binary}} -m pip install -U {{item.name}}"
   with_items:
-    - name: "git+https://github.com/miyase256/enert"
+    - name: "git+https://github.com/miyagaw61/enert"
     - name: "beautifulsoup4"
     - name: "ansible"

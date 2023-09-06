@@ -86,7 +86,7 @@ repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'nixprime/cpsm'
-#hook_add = 'set runtimepath+=/home/miyase256/docs/config_files/nvim/repos/github.com/nixprime/cpsm'
+#hook_add = 'set runtimepath+=/home/miyagaw61/docs/config_files/nvim/repos/github.com/nixprime/cpsm'
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
@@ -145,7 +145,7 @@ hook_add = '''
 [[plugins]]
 repo = 'jremmen/vim-ripgrep'
 hook_add = '''
-    "let g:rg_binary='/home/miyase256/.cargo/bin/rg'
+    "let g:rg_binary='/home/miyagaw61/.cargo/bin/rg'
     let g:ag_qhandler="copen 30"
     let g:ag_highlight=1
 '''

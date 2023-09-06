@@ -127,7 +127,7 @@ global-6.6.tar.gz
 #######################################
 # Probably you have to edit these
 # =============================================
-git_user: "miyase256"
+git_user: "miyagaw61"
 user: "miya"
 python3_pyenv_version: "3.9.0"
 llvm_version: "12"
@@ -178,7 +178,7 @@ $ vim make_your_env.yml
 * install_neovim.yml
     * install neovim and make my unique init.vim
 * install_rusgit.yml
-    * install https://github.com/miyase256/rusgit
+    * install https://github.com/miyagaw61/rusgit
 * install_exa.yml
     * install https://github.com/ogham/exa
 * make_directories.yml

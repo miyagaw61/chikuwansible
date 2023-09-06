@@ -29,10 +29,10 @@ repobase(){
     if [ "$1" = "-h" ] ;then
         echo "Usage: repobase PATH"
     else
-        base="$(echo $1 | sed -E "s@~@/home/miyase256@g")"
-        base="$(echo $base | sed -E "s@/mnt/c/Users/miyase256/home@/home/miyase256@g")"
-        base="$(echo $base | sed -E "s@/home/miyase256/src/github.com/([^/]*)/([^/]*).*@\1/\2@g")"
-        echo /home/miyase256/src/github.com/${base}
+        base="$(echo $1 | sed -E "s@~@/home/miyagaw61@g")"
+        base="$(echo $base | sed -E "s@/mnt/c/Users/miyagaw61/home@/home/miyagaw61@g")"
+        base="$(echo $base | sed -E "s@/home/miyagaw61/src/github.com/([^/]*)/([^/]*).*@\1/\2@g")"
+        echo /home/miyagaw61/src/github.com/${base}
     fi
 }
 
@@ -261,7 +261,7 @@ da_func() {
 }
 
 commits() {
-    curl https://api.github.com/users/${GIT_NAME}/events | rg "\"created_at\":|\"name\":.*${GIT_NAME}/|\"message\":" | red ".*\"name\": \"miyase256/(.*)\"," '[+]$1:' | red ".*\"message\": (.*)" '-> $1' | red ".*\"created_at\": \"\d{4}-\d{2}-(\d{2}).*\"" '_SPACES_($1)_RETURN__RETURN_' | sed -E "/:$/N;s/.*:\n_SPACES_.*/_DELETED_/g" | sed -E "/_RETURN_$/N;s/_RETURN_\n_SPACES_.*/_DELETED_/g" | sed -E "/:$/N;N;s/.*:\n_SPACES_.*/_DELETED_/g" | sed -E "s/_SPACES_/                      /g" | sed -E "s/_RETURN_/\\n/g" | tr -d "_DELETED_" | less
+    curl https://api.github.com/users/${GIT_NAME}/events | rg "\"created_at\":|\"name\":.*${GIT_NAME}/|\"message\":" | red ".*\"name\": \"miyagaw61/(.*)\"," '[+]$1:' | red ".*\"message\": (.*)" '-> $1' | red ".*\"created_at\": \"\d{4}-\d{2}-(\d{2}).*\"" '_SPACES_($1)_RETURN__RETURN_' | sed -E "/:$/N;s/.*:\n_SPACES_.*/_DELETED_/g" | sed -E "/_RETURN_$/N;s/_RETURN_\n_SPACES_.*/_DELETED_/g" | sed -E "/:$/N;N;s/.*:\n_SPACES_.*/_DELETED_/g" | sed -E "s/_SPACES_/                      /g" | sed -E "s/_RETURN_/\\n/g" | tr -d "_DELETED_" | less
 }
 
 w2l() {
@@ -279,9 +279,9 @@ l2w() {
         echo "Usage: l2w LINUX_PATH"
     else
         path="$(echo $1 | sed -E 's@/mnt/c@C:@g')"
-        path="$(echo $path | sed -E 's@/home/miyase256@C:/Users/miyase256/home@g')"
-        path="$(echo $path | sed -E 's@~@C:/Users/miyase256/home@g')"
-        path="$(echo $path | sed -E 's@$HOME@C:/Users/miyase256/home@g')"
+        path="$(echo $path | sed -E 's@/home/miyagaw61@C:/Users/miyagaw61/home@g')"
+        path="$(echo $path | sed -E 's@~@C:/Users/miyagaw61/home@g')"
+        path="$(echo $path | sed -E 's@$HOME@C:/Users/miyagaw61/home@g')"
         path="$(echo $path | sed -E 's@/@\\@g')"
         echo $path
     fi
@@ -478,7 +478,7 @@ v() {
                 lf -a -tf | fzf2nd >> /tmp/viming_path
                 cd -
             elif [ "$1" = "m" ] ;then
-                base_dir="$HOME/src/github.com/miyase256"
+                base_dir="$HOME/src/github.com/miyagaw61"
                 cd "$base_dir"
                 echo -n "$base_dir/" > /tmp/viming_path
                 lf -a -tf | fzf2nd >> /tmp/viming_path
@@ -695,7 +695,7 @@ fzfd() {
         elif [ "$1" = "g" ] ;then
             base_dir="$HOME/src/github.com"
         elif [ "$1" = "m" ] ;then
-            base_dir="$HOME/src/github.com/miyase256"
+            base_dir="$HOME/src/github.com/miyagaw61"
         elif [ "$1" = "l" ] ;then
             base_dir="$HOME/src/github.com/torvalds"
         elif [ "$1" = "d" ] ;then
@@ -758,12 +758,12 @@ gistd() {
 }
 
 mygists() {
-    cd $HOME/src/gist.github.com/miyase256
+    cd $HOME/src/gist.github.com/miyagaw61
 }
 
 knowledges() {
     ghq list | rg gist.github.com | while read line ;do
-        echo /home/miyase256/src/$line/knowledge* | sed -E 's@ @\\ @g'
+        echo /home/miyagaw61/src/$line/knowledge* | sed -E 's@ @\\ @g'
     done
 }
 

@@ -9,9 +9,9 @@ exit 0
 apt update -y
 apt upgrade -y
 apt install git -y
-mkdir -p $HOME/src/github.com/miyase256/
-cd $HOME/src/github.com/miyase256/
-git clone https://github.com/miyase256/chikuwansible
+mkdir -p $HOME/src/github.com/miyagaw61/
+cd $HOME/src/github.com/miyagaw61/
+git clone https://github.com/miyagaw61/chikuwansible
 cd chikuwansible 
 ./install_ansible.sh
 echo $1 > .sudo_password.txt
