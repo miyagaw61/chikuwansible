@@ -820,3 +820,34 @@ function! MyBookmarkQuit()
     execute 'call CloseBuf()'
 endfunction
 nnoremap mq :MyBookmarkQuit<CR>
+
+function! AutoSetIndent()
+    " タブとスペースのカウント用変数
+    let s:tabs = 0
+    let s:spaces = 0
+
+    " 最初の100行を調べる
+    for i in range(1, 100)
+        if i > line("$")
+            break
+        endif
+        let l:line = getline(i)
+        if l:line =~ '^\t'
+            let s:tabs += 1
+        elseif l:line =~ '^ \+'
+            let s:spaces += 1
+        endif
+    endfor
+
+    " タブとスペースの使用状況に基づいて設定を切り替え
+    if s:tabs > s:spaces
+        set noexpandtab
+        echo "Indentation: tabs"
+    else
+        set expandtab
+        echo "Indentation: spaces"
+    endif
+endfunction
+
+" ファイルを開いた際に関数を自動的に実行
+autocmd BufEnter,BufRead * silent call AutoSetIndent()
