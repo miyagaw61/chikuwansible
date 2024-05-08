@@ -49,6 +49,7 @@
     c = !git commit
     cm = !rusgit commit
     ca = !git commit --amend
+    reset-author = !git commit --amend --reset-author
     cf = !git commit --fixup
     first = !git commit --allow-empty -m \"first commit\"
     # pull
