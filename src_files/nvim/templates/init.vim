@@ -9,4 +9,5 @@ source {{nvim_config_files}}/init/paste_indent.vim
 source {{nvim_config_files}}/init/let.vim
 source {{nvim_config_files}}/init/closebuf.vim
 source {{nvim_config_files}}/init/color.vim
+source {{nvim_config_files}}/init/init.lua
 "set runtimepath+=/home/miyagaw61/.cache/dein/repos/github.com/nixprime/cpsm
