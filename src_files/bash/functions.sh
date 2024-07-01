@@ -495,12 +495,24 @@ v() {
             if [ -d "$(cat /tmp/viming_path)" ] ;then
                 echo "" > /tmp/viming_path
             else
-				last_arg=${@:$#:1}
-				if [ ${last_arg:0:1} == "+" ] ;then
-					num=${last_arg:1}
-					echo -n " num=" >> /tmp/viming_path
-					echo $num >> /tmp/viming_path
-				fi
+                last_arg=${@:$#:1}
+                num=""
+                fname=""
+                if [ ${last_arg:0:1} == "+" ] ;then
+                    num=${last_arg:1}
+                fi
+                if [[ "$1" == *:* ]]; then
+                    # コロンで分割し、後ろの部分を変数numに格納
+                    fname="${1%%:*}"
+                    num="${1#*:}"
+                fi
+                if [ "$fname" != "" ] ;then
+                    echo -n "$(realpath "$fname")" > /tmp/viming_path
+                fi
+                if [ "$num" != "" ] ;then
+                    echo -n " num=" >> /tmp/viming_path
+                    echo $num >> /tmp/viming_path
+                fi
                 if [ $job_spec ] ;then
                     fg $job_spec
                 else
