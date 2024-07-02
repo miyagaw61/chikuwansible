@@ -28,6 +28,19 @@ require('mason-lspconfig').setup_handlers({ function(server)
   require('lspconfig')[server].setup(opt)
 end })
 
+-- cargo build で Blocking waiting for file lock on build directory になるのを防ぐ
+
+require'lspconfig'.rust_analyzer.setup{
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+        extraArgs = { "--target-dir", "/tmp/rust-analyzer" },
+      },
+    },
+  },
+}
+
 -- 2. build-in LSP function
 -- keyboard shortcut
 vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
@@ -96,27 +109,3 @@ cmp.setup({
 --     { name = "cmdline" },
 --   },
 -- })
-
-
--- 1. LSPに関連するキーバインド
--- 
---     K: カーソル位置のシンボルに関するドキュメントを表示
---     gf: ファイルのフォーマット
---     gr: 参照箇所を表示
---     gd: 定義にジャンプ
---     gD: 宣言にジャンプ
---     gi: 実装にジャンプ
---     gt: 型定義にジャンプ
---     gn: 名前の変更
---     ga: コードアクションの実行
---     ge: 診断情報をポップアップ表示
---     g]: 次の診断エラーにジャンプ
---     g[: 前の診断エラーにジャンプ
--- 
--- 2. 自動補完（nvim-cmp）に関連するキーバインド
--- 
---     <C-p>: 前の補完候補を選択
---     <C-n>: 次の補完候補を選択
---     <C-l>: 補完を表示
---     <C-e>: 補完を中止
---     <CR>: 補完候補を確定
