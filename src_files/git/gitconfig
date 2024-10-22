@@ -37,6 +37,7 @@
     # branch
     b = branch
     ba = branch -a -vv
+    ba-sort = for-each-ref --sort=-committerdate --format="%(refname:short) %(committerdate)" refs/heads refs/remotes
     # status
     st = status
     s = status --short --branch
