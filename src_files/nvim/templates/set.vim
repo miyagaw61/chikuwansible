@@ -139,3 +139,4 @@ set spelllang=en,cjk
 "set autochdir
 
 set runtimepath+={{config_files}}/nvim/repos/github.com/KeitaNakamura/neodark.vim
+
