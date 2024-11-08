@@ -74,9 +74,9 @@ hook_add = '''
     " let g:EasyMotion_keys = 'QZASDFGHJKL;'
     " let g:EasyMotion_keys = 'Q1Z2A3S4D5F6G7H8J9K/;'
     let g:EasyMotion_keys = 'ASDFGHJKL;WEROIUXCVNM'
-    nmap [Window]M <Plug>(easymotion-sn)
-    xmap [Window]M <Plug>(easymotion-sn)
-    omap [Window]M <Plug>(easymotion-sn)
+    nmap [Window]m <Plug>(easymotion-sn)
+    xmap [Window]m <Plug>(easymotion-sn)
+    omap [Window]m <Plug>(easymotion-sn)
     nmap [Space]f <Plug>(easymotion-overwin-f)
     nmap [Space]l <Plug>(easymotion-overwin-line)
 '''
@@ -112,7 +112,7 @@ hook_add = '''
 [[plugins]]
 repo = 'haya14busa/incsearch-easymotion.vim'
 hook_add = '''
-    nmap [Window]M <Plug>(incsearch-easymotion-stay)
+    nmap [Window]m <Plug>(incsearch-easymotion-stay)
 '''
 
 [[plugins]]
